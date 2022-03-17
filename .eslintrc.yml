@@ -1,0 +1,84 @@
+env:
+  commonjs: true
+  node: true
+  jest: true
+extends:
+  - standard
+parserOptions:
+  ecmaVersion: 12
+plugins:
+  - jsdoc
+ignorePatterns:
+  - trials
+rules:
+  comma-dangle: off
+  eol-last:
+    - error
+    - always
+  jsdoc/require-hyphen-before-param-description:
+    - error
+    - always
+  jsdoc/require-param: error
+  jsdoc/require-param-name: error
+  jsdoc/require-param-type: error
+  jsdoc/require-returns: error
+  jsdoc/require-returns-type: error
+  jsdoc/require-throws: error
+  jsdoc/require-yields: error
+  multiline-ternary:
+    - error
+    - always
+  newline-per-chained-call: error
+  no-await-in-loop: error
+  no-console: error
+  #### no-else-if: error
+  no-extra-semi: error
+  no-negated-condition: error
+  no-nested-ternary: error
+  no-param-reassign: error
+  no-restricted-syntax:
+    - error
+    - selector: 'DoWhileStatement'
+      message: 'Object-Oriented Programming does not require do..while statement.'
+    - selector: 'ForStatement'
+      message: 'Object-Oriented Programming does not require `for` statement.'
+    - selector: 'ForInStatement'
+      message: 'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.'
+    - selector: 'ForOfStatement'
+      message: 'for..of loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{values,entries}, and iterate over the resulting array.'
+    - selector: 'SwitchStatement'
+      message: 'Object-Oriented Programming does not require `switch` statement.'
+    - selector: 'WhileStatement'
+      message: 'Object-Oriented Programming does not require `while` statement.'
+  no-return-await: error
+  no-unexpected-multiline: error
+  no-unneeded-ternary:
+    - error
+    - defaultAssignment: false
+  no-unreachable: error
+  no-var: error
+  operator-linebreak:
+    - error
+    - before
+    - overrides:
+        =: after
+  padding-line-between-statements:
+    - error
+    - blankLine: always
+      prev: directive
+      next: "*"
+    - blankLine: always
+      prev: "*"
+      next:
+        - break
+        - continue
+        - return
+        - throw
+  semi-spacing:
+    - error
+    - before: false
+      after: true
+  semi-style:
+    - error
+    - first
+  spaced-comment: error
