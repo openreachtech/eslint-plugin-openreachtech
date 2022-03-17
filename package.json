@@ -1,0 +1,26 @@
+{
+  "name": "@openreachtech/eslint-plugin-no-else-if",
+  "version": "0.0.0",
+  "description": "ESLiint custom rule: no-else-if.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/openreachtech/eslint-plugin-no-else-if.git"
+  },
+  "keywords": [
+    "ESLint",
+    "plugin",
+    "else",
+    "if",
+    "elseif"
+  ],
+  "author": "Open Reach Tech",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/openreachtech/eslint-plugin-no-else-if/issues"
+  },
+  "homepage": "https://github.com/openreachtech/eslint-plugin-no-else-if#readme"
+}
