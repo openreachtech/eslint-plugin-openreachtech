@@ -2,6 +2,12 @@
   "name": "eslint-plugin-openreachtech",
   "version": "0.0.0",
   "description": "ESLint custom rules by Open Reach Tech.",
+  "files": [
+    "lib/",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
