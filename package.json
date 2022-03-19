@@ -1,5 +1,5 @@
 {
-  "name": "@openreachtech/eslint-plugin-no-else-if",
+  "name": "eslint-plugin-openreachtech",
   "version": "0.0.0",
   "description": "ESLiint custom rule: no-else-if.",
   "main": "index.js",
