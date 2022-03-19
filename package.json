@@ -1,7 +1,7 @@
 {
   "name": "eslint-plugin-openreachtech",
   "version": "0.0.0",
-  "description": "ESLiint custom rule: no-else-if.",
+  "description": "ESLint custom rules by Open Reach Tech.",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
