@@ -24,7 +24,7 @@
     "if",
     "elseif"
   ],
-  "author": "Open Reach Tech",
+  "author": "Open Reach Tech inc.",
   "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/openreachtech/eslint-plugin-no-else-if/issues"
