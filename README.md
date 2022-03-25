@@ -12,23 +12,29 @@ no-else-if
 
 ## Usage
 
-* Update `.eslintrc` settings in your application package.
-
-1. Add `openreachtech` into `plugins` property.
+1. Install
 
     ```
+    npm install --save-dev eslint-plugin-openreachtech
+    ```
+
+2. Update `.eslintrc` settings in your application package.
+
+    ```
+    ...
+
     plugins:
       - openreachtech
-    ```
 
-2. Add `openreachtech/no-else-if: error` into `rules` property.
+    ...
 
-    ```
     rules:
       openreachtech/no-else-if: error
+
+    ...
     ```
 
-* Error message.
+* Error Message.
 
     ```
     % npx eslint .
