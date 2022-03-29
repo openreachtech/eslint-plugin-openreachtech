@@ -33,6 +33,13 @@ const invalidCodes = [
   if (subconditions) {
     // noop 02-04
   }`,
+  `if (condition) {
+    // noop 02-05
+  }
+  else
+  if (subconditions) {
+    // noop 02-06
+  }`,
 ]
 
 describe('ESLint: no-else-if', () => {
