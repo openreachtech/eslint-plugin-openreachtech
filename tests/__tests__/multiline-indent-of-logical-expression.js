@@ -41,6 +41,14 @@ const validCodes = [
     console.log(22, first, second, third)
   }
   `,
+  `
+  if (
+  first
+    || second
+  ) {
+    save(first, second)
+  }
+  `,
 ]
 
 describe(ruleName, () => {
@@ -66,14 +74,6 @@ describe(ruleName, () => {
       if (
         first
       || second
-      ) {
-        save(first, second)
-      }
-      `,
-      `
-      if (
-      first
-        || second
       ) {
         save(first, second)
       }

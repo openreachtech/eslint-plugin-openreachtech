@@ -157,139 +157,217 @@ const validCodes = [
         + rightOperand
         - 11
   }`,
+  `
+  const result = leftOperand
+    -1 !== flag || die()`,
+  `
+  const result = leftOperand
+      -1 === flag || die()`,
 ]
 
 describe(ruleName, () => {
-  describe('simple indent error (single)', () => {
-    const errors = [
-      'When chopping down infix operator, it requires indentation after the second line.'
-    ]
+  describe('valid code only', () => {
+    // tester.run([rule name], [rule defination], [test patterns])
+    tester.run(
+      ruleName,
+      ruleBody,
+      {
+        valid: validCodes.map(code => ({ code })),
+        invalid: [],
+      }
+    )
+  })
 
+  describe('simple indent error (single)', () => {
     const invalidCodes = [
-      `
-      const result = leftOperand
-      + 11
-      `,
-      `
-        const result = leftOperand
-      + 11
-      `,
-      `
-      const result = leftOperand
-      - 11
-      `,
-      `
-        const result = leftOperand
-      - 11
-      `,
-      `
-      const result = leftOperand
-      * 11
-      `,
-      `
-        const result = leftOperand
-      * 11
-      `,
-      `
-      const result = leftOperand
-      / 11
-      `,
-      `
-        const result = leftOperand
-      / 11
-      `,
-      `
-      const result = leftOperand
-      % 11
-      `,
-      `
-        const result = leftOperand
-      % 11
-      `,
-      `
-      const result = leftOperand
-      ** 11
-      `,
-      `
-        const result = leftOperand
-      ** 11
-      `,
-      `
-      const result = leftOperand
-      | 11
-      `,
-      `
-        const result = leftOperand
-      | 11
-      `,
-      `
-      const result = leftOperand
-      & 11
-      `,
-      `
-        const result = leftOperand
-      & 11
-      `,
-      `
-      const result = leftOperand
-      ^ 11
-      `,
-      `
-        const result = leftOperand
-      ^ 11
-      `,
-      `
-      const result = leftOperand
-      << 4
-      `,
-      `
-        const result = leftOperand
-      << 4
-      `,
-      `
-      const result = leftOperand
-      >> 6
-      `,
-      `
-        const result = leftOperand
-      >> 6
-      `,
-      `
-      const result = leftOperand
-      >>> 8
-      `,
-      `
-        const result = leftOperand
-      >>> 8
-      `,
-      `
-      const result = leftOperand
-      in 8
-      `,
-      `
-        const result = leftOperand
-      in 8
-      `,
-      `
-      const result = leftOperand
-      instanceof 8
-      `,
-      `
-        const result = leftOperand
-      instanceof 8
-      `,
-      `
-      {
-        const result = leftOperand
-        + 11
-      }
-      `,
-      `
-      {
-        const result = leftOperand
-      + 11
-      }
-      `,
+      [
+        [
+          `
+          const result = leftOperand
+          + 11
+          `,
+          `
+            const result = leftOperand
+          + 11
+          `,
+        ],
+        'When chopping down by infix operator as "+", it requires indentation after the second line.',
+      ],
+      [
+        [
+          `
+          const result = leftOperand
+          - 11
+          `,
+          `
+            const result = leftOperand
+          - 11
+          `,
+          `
+          const result = leftOperand
+          -1 === flag || die()`,
+          `
+            const result = leftOperand
+          -1 === flag || die()`,
+        ],
+        'When chopping down by infix operator as "-", it requires indentation after the second line.',
+      ],
+      [
+        [
+          `
+          const result = leftOperand
+          * 11
+          `,
+          `
+            const result = leftOperand
+          * 11
+          `,
+        ],
+        'When chopping down by infix operator as "*", it requires indentation after the second line.',
+      ],
+      [
+        [
+          `
+          const result = leftOperand
+          / 11
+          `,
+          `
+            const result = leftOperand
+          / 11
+          `,
+        ],
+        'When chopping down by infix operator as "/", it requires indentation after the second line.',
+      ],
+      [
+        [
+          `
+          const result = leftOperand
+          % 11
+          `,
+          `
+            const result = leftOperand
+          % 11
+          `,
+        ],
+        'When chopping down by infix operator as "%", it requires indentation after the second line.',
+      ],
+      [
+        [
+          `
+          const result = leftOperand
+          ** 11
+          `,
+          `
+            const result = leftOperand
+          ** 11
+          `,
+        ],
+        'When chopping down by infix operator as "**", it requires indentation after the second line.',
+      ],
+      [
+        [
+          `
+          const result = leftOperand
+          | 11
+          `,
+          `
+            const result = leftOperand
+          | 11
+          `,
+        ],
+        'When chopping down by infix operator as "|", it requires indentation after the second line.',
+      ],
+      [
+        [
+          `
+          const result = leftOperand
+          & 11
+          `,
+          `
+            const result = leftOperand
+          & 11
+          `,
+        ],
+        'When chopping down by infix operator as "&", it requires indentation after the second line.',
+      ],
+      [
+        [
+          `
+          const result = leftOperand
+          ^ 11
+          `,
+          `
+            const result = leftOperand
+          ^ 11
+          `,
+        ],
+        'When chopping down by infix operator as "^", it requires indentation after the second line.',
+      ],
+      [
+        [
+          `
+          const result = leftOperand
+          << 11
+          `,
+          `
+            const result = leftOperand
+          << 11
+          `,
+        ],
+        'When chopping down by infix operator as "<<", it requires indentation after the second line.',
+      ],
+      [
+        [
+          `
+          const result = leftOperand
+          >> 11
+          `,
+          `
+            const result = leftOperand
+          >> 11
+          `,
+        ],
+        'When chopping down by infix operator as ">>", it requires indentation after the second line.',
+      ],
+      [
+        [
+          `
+          const result = leftOperand
+          >>> 11
+          `,
+          `
+            const result = leftOperand
+          >>> 11
+          `,
+        ],
+        'When chopping down by infix operator as ">>>", it requires indentation after the second line.',
+      ],
+      [
+        [
+          `
+          const result = leftOperand
+          in 11
+          `,
+          `
+            const result = leftOperand
+          in 11
+          `,
+        ],
+        'When chopping down by infix operator as "in", it requires indentation after the second line.',
+      ],
+      [
+        [
+          `
+          const result = leftOperand
+          instanceof 11
+          `,
+          `
+            const result = leftOperand
+          instanceof 11
+          `,
+        ],
+        'When chopping down by infix operator as "instanceof", it requires indentation after the second line.',
+      ],
     ]
 
     // tester.run([rule name], [rule defination], [test patterns])
@@ -297,8 +375,10 @@ describe(ruleName, () => {
       ruleName,
       ruleBody,
       {
-        valid: validCodes.map(code => ({ code })),
-        invalid: invalidCodes.map(code => ({ code, errors }))
+        valid: [],
+        invalid: invalidCodes.flatMap(([codes, errorMessage]) =>
+          codes.map(code => ({ code, errors: [errorMessage]}))
+        ),
       }
     )
   })
@@ -309,35 +389,45 @@ describe(ruleName, () => {
     ]
 
     const invalidCodes = [
-      `
-      const result = leftOperand
-          + rightOperand
-        - 11
-      `,
-      `
-      const result = leftOperand
-        * rightOperand
-          / 11
-      `,
-      `
-      {
-        const result = leftOperand
-        + rightOperand
-          - 11
-      }
-      `,
-      `
-      {
-        const result = leftOperand
-            + rightOperand
-          - 11
-      }`,
-      `
-      {
-        const result = leftOperand
-          + rightOperand
+      [
+        [
+          `
+          const result = leftOperand
+              + rightOperand
             - 11
-      }`,
+          `,
+          `
+          {
+            const result = leftOperand
+            + rightOperand
+              - 11
+          }
+          `,
+          `
+          {
+            const result = leftOperand
+                + rightOperand
+              - 11
+          }`,
+          `
+          {
+            const result = leftOperand
+              + rightOperand
+                - 11
+          }`,
+        ],
+        'Different indent of right operand vertically by infix operator as "+".'
+      ],
+      [
+        [
+          `
+          const result = leftOperand
+            * rightOperand
+              / 11
+          `,
+        ],
+        'Different indent of right operand vertically by infix operator as "*".'
+      ],
     ]
 
     // tester.run([rule name], [rule defination], [test patterns])
@@ -345,43 +435,48 @@ describe(ruleName, () => {
       ruleName,
       ruleBody,
       {
-        valid: validCodes.map(code => ({ code })),
-        invalid: invalidCodes.map(code => ({ code, errors }))
+        valid: [],
+        invalid: invalidCodes.flatMap(([codes, errorMessage]) =>
+          codes.map(code => ({ code, errors: [errorMessage]}))
+        ),
       }
     )
   })
 
   describe('simple indent error (double)', () => {
-    const errors = [
-      'When chopping down infix operator, it requires indentation after the second line.',
-      'When chopping down infix operator, it requires indentation after the second line.',
-    ]
-
     const invalidCodes = [
-      `
-      const result = leftOperand
-      + rightOperand
-      - 11
-      `,
-      `
-        const result = leftOperand
-      + rightOperand
-      - 11
-      `,
-      `
-      {
-        const result = leftOperand
-        + rightOperand
-        - 11
-      }
-      `,
-      `
-      {
-        const result = leftOperand
-      + rightOperand
-      - 11
-      }
-      `,
+      [
+        [
+          `
+          const result = leftOperand
+          + rightOperand
+          - 11
+          `,
+          `
+            const result = leftOperand
+          + rightOperand
+          - 11
+          `,
+          `
+          {
+            const result = leftOperand
+            + rightOperand
+            - 11
+          }
+          `,
+          `
+          {
+            const result = leftOperand
+          + rightOperand
+          - 11
+          }
+          `,
+        ],
+        [
+          'When chopping down by infix operator as "-", it requires indentation after the second line.',
+          'When chopping down by infix operator as "+", it requires indentation after the second line.',
+        ]
+      ],
     ]
 
     // tester.run([rule name], [rule defination], [test patterns])
@@ -389,45 +484,50 @@ describe(ruleName, () => {
       ruleName,
       ruleBody,
       {
-        valid: validCodes.map(code => ({ code })),
-        invalid: invalidCodes.map(code => ({ code, errors }))
+        valid: [],
+        invalid: invalidCodes.flatMap(([codes, errors]) =>
+          codes.map(code => ({ code, errors }))
+        ),
       }
     )
   })
 
   describe('simple indent error (complex)', () => {
-    const errors = [
-      'When chopping down infix operator, it requires indentation after the second line.',
-      'Different indent of right operand vertically.',
-    ]
-
     const invalidCodes = [
-      `
-      const result = leftOperand
-        + rightOperand
-      - 11
-      `,
-      `
-      {
-        const result = leftOperand
+      [
+        [
+          `
+          const result = leftOperand
+            + rightOperand
+          - 11
+          `,
+          `
+          {
+            const result = leftOperand
+              + rightOperand
+            - 11
+          }
+          `,
+          `
+          {
+            const result = leftOperand
           + rightOperand
-        - 11
-      }
-      `,
-      `
-      {
-        const result = leftOperand
-      + rightOperand
-        - 11
-      }
-      `,
-      `
-      {
-        const result = leftOperand
-        + rightOperand
-      - 11
-      }
-      `,
+            - 11
+          }
+          `,
+          `
+          {
+            const result = leftOperand
+            + rightOperand
+          - 11
+          }
+          `,
+        ],
+        [
+          'When chopping down by infix operator as "-", it requires indentation after the second line.',
+          'Different indent of right operand vertically by infix operator as "+".',
+        ],
+      ],
     ]
 
     // tester.run([rule name], [rule defination], [test patterns])
@@ -435,65 +535,10 @@ describe(ruleName, () => {
       ruleName,
       ruleBody,
       {
-        valid: validCodes.map(code => ({ code })),
-        invalid: invalidCodes.map(code => ({ code, errors }))
-      }
-    )
-  })
-
-  describe('space after operator', () => {
-    const errors = ['Needs space after infix operator.']
-
-    const invalidCodes = [
-      `
-      {
-        const result = leftOperand
-          -1
-      }`,
-      `
-      const result = leftOperand
-        -1 === flag || die()`,
-      // `
-      // const result = leftOperand
-      //     -1 === flag || die()`,
-
-      // `  const result = leftOperand
-      // + 11`,
-      // `  const result = leftOperand
-      // -1`,
-
-      // `  const result = leftOperand
-      // + rightOperand
-      // -1`,
-      // `  const result = leftOperand
-      //   + rightOperand
-      // -1`,
-      // `  const result = leftOperand
-      // + rightOperand
-      //   -1`,
-
-      // `  const result = leftOperand
-      // + rightOperand
-      // - 11`,
-      // `  const result = leftOperand
-      //   + rightOperand
-      // - 11`,
-      // `  const result = leftOperand
-      // + rightOperand
-      //   - 11`,
-
-      // `  const result = leftOperand
-      // + rightOperand
-      // -1 === flag || die()`,
-    ]
-
-    // tester.run([rule name], [rule defination], [test patterns])
-    tester.run(
-      ruleName,
-      ruleBody,
-      {
-        valid: validCodes.map(code => ({ code })),
-        invalid: invalidCodes.map(code => ({ code, errors }))
+        valid: [],
+        invalid: invalidCodes.flatMap(([codes, errors]) =>
+          codes.map(code => ({ code, errors }))
+        ),
       }
     )
   })
