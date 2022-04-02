@@ -62,7 +62,7 @@ rules:
     - selector: 'ForInStatement'
       message: 'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys, values, entries}, and iterate over the resulting array.'
     - selector: 'ForOfStatement'
-      message: 'for..of loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{values, entries}, and iterate over the resulting array
+      message: 'for..of loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{values, entries}, and iterate over the resulting array.'
     - selector: 'ForStatement'
       message: 'Object-Oriented Programming does not require `for` statement.'
     - selector: 'IfStatement IfStatement'

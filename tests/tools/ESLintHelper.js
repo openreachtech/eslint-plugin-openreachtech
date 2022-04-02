@@ -1,13 +1,15 @@
 // @ts-check
 'use strict'
 
-const RuleTester = require('eslint').RuleTester
+const {
+  RuleTester
+} = require('eslint')
 
 class ESLintHelper {
   /**
    * Create tester instance.
    * @param {Object.<string, *>} options
-   * @returns
+   * @returns {RuleTester} - RuleTester instance.
    */
   static createTester (options = {
     env: {

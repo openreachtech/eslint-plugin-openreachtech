@@ -3,6 +3,7 @@
 
 // ESLint tester instead of Jest `test()`
 const tester = require('../tools/ESLintHelper').createTester()
+
 /** @type {Function|Object} */
 const ruleBody = require('../../lib/multiline-indent-of-binary-expression')
 
