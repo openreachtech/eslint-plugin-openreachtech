@@ -3,29 +3,31 @@
 
 // ESLint tester instead of Jest `test()`
 const tester = require('../tools/ESLintHelper').createTester()
+/** @type {Function|Object} */
 const ruleBody = require('../../lib/multiline-indent-of-logical-expression')
 
+const ruleName = 'multiline-indent-of-logical-expression'
 const validCodes = [
-  // `{
-  //   if (first
-  //     || second
-  //     || third
-  //   ) {
-  //     console.log(first, second, third)
-  //   }
-  // }`,
-  // `{
-  //   if (
-  //     first
-  //     || second
-  //     || third
-  //   ) {
-  //     console.log(first, second, third)
-  //   }
-  // }`,
+  `
+  if (first
+    || second
+    || third
+  ) {
+    console.log(1, first, second, third)
+  }
+  `,
+  `
+  if (
+    first
+    || second
+    || third
+  ) {
+    console.log(2, first, second, third)
+  }
+  `,
 ]
 
-describe('ESLint: binary-expression-multiline-indent', () => {
+describe(ruleName, () => {
   describe('simple indent error (single)', () => {
     const errors = ['When chopping down infix operator, it requires indentation after the second line.']
 
@@ -60,11 +62,26 @@ describe('ESLint: binary-expression-multiline-indent', () => {
         save(first, second)
       }
       `,
+      `
+      if (
+        first
+      || second
+      ) {
+        console.log(first, second, third)
+      }`,
+      `
+      if (
+        first
+      || second
+        || third
+      ) {
+        console.log(first, second, third)
+      }`,
     ]
 
     // tester.run([rule name], [rule defination], [test patterns])
     tester.run(
-      'binary-expression-multiline-indent',
+      ruleName,
       ruleBody,
       {
         valid: validCodes.map(code => ({ code })),
@@ -112,55 +129,27 @@ describe('ESLint: binary-expression-multiline-indent', () => {
         console.log(first, second, third)
       }
       `,
+      `
+      if (
+        first
+        || second
+      || third
+      ) {
+        console.log(first, second, third)
+      }`,
+      `
+      if (
+        first
+      || second
+      || third
+      ) {
+        console.log(first, second, third)
+      }`,
     ]
 
     // tester.run([rule name], [rule defination], [test patterns])
     tester.run(
-      'binary-expression-multiline-indent',
-      ruleBody,
-      {
-        valid: validCodes.map(code => ({ code })),
-        invalid: invalidCodes.map(code => ({ code, errors }))
-      }
-    )
-  })
-
-  describe('space after operator', () => {
-    const errors = ['Needs space after infix operator.']
-
-    const invalidCodes = [
-      // `  if (
-      //   first
-      // || second
-      // ) {
-      //   console.log(first, second, third)
-      // }`,
-      // `  if (
-      //   first
-      // || second
-      // || third
-      // ) {
-      //   console.log(first, second, third)
-      // }`,
-      // `  if (
-      //   first
-      // || second
-      //   || third
-      // ) {
-      //   console.log(first, second, third)
-      // }`,
-      // `  if (
-      //   first
-      //   || second
-      // || third
-      // ) {
-      //   console.log(first, second, third)
-      // }`,
-    ]
-
-    // tester.run([rule name], [rule defination], [test patterns])
-    tester.run(
-      'binary-expression-multiline-indent',
+      ruleName,
       ruleBody,
       {
         valid: validCodes.map(code => ({ code })),

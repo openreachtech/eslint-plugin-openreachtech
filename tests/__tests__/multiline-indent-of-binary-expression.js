@@ -3,8 +3,10 @@
 
 // ESLint tester instead of Jest `test()`
 const tester = require('../tools/ESLintHelper').createTester()
+/** @type {Function|Object} */
 const ruleBody = require('../../lib/multiline-indent-of-binary-expression')
 
+const ruleName = 'multiline-indent-of-binary-expression'
 const validCodes = [
   'const result = leftOperand - 11',
 
@@ -24,19 +26,8 @@ const validCodes = [
   `
   const result = leftOperand
       + rightOperand
-    - 11
-  `,
-  `
-  const result = leftOperand
-    + rightOperand
       - 11
   `,
-  `
-  const result = leftOperand
-      + rightOperand
-      - 11
-  `,
-
 
   `
   {
@@ -54,18 +45,18 @@ const validCodes = [
       + rightOperand
       - 11
   }`,
-  `
-  {
-    const result = leftOperand
-        + rightOperand
-      - 11
-  }`,
-  `
-  {
-    const result = leftOperand
-      + rightOperand
-        - 11
-  }`,
+  // `
+  // {
+  //   const result = leftOperand
+  //       + rightOperand
+  //     - 11
+  // }`,
+  // `
+  // {
+  //   const result = leftOperand
+  //     + rightOperand
+  //       - 11
+  // }`,
   `
   {
     const result = leftOperand
@@ -74,11 +65,22 @@ const validCodes = [
   }`,
 ]
 
-describe('ESLint: binary-expression-multiline-indent', () => {
+describe(ruleName, () => {
   describe('simple indent error (single)', () => {
     const errors = ['When chopping down infix operator, it requires indentation after the second line.']
 
     const invalidCodes = [
+      `
+      const result = leftOperand
+          + rightOperand
+        - 11
+      `,
+      `
+      const result = leftOperand
+        + rightOperand
+          - 11
+      `,
+
       `
       {
         const result = leftOperand
@@ -91,13 +93,7 @@ describe('ESLint: binary-expression-multiline-indent', () => {
       + 11
       }
       `,
-      `
-      {
-        const result = leftOperand
-          + rightOperand
-        - 11
-      }
-      `,
+
       `
       {
         const result = leftOperand
@@ -105,41 +101,11 @@ describe('ESLint: binary-expression-multiline-indent', () => {
           - 11
       }
       `,
-      `
-      if (first
-      || second
-      ) {
-        save(first, second, third)
-      }
-      `,
-      `
-      if (first
-    || second
-      ) {
-        save(first, second)
-      }
-      `,
-      `
-      if (
-        first
-      || second
-      ) {
-        save(first, second)
-      }
-      `,
-      `
-      if (
-      first
-        || second
-      ) {
-        save(first, second)
-      }
-      `,
     ]
 
     // tester.run([rule name], [rule defination], [test patterns])
     tester.run(
-      'binary-expression-multiline-indent',
+      ruleName,
       ruleBody,
       {
         valid: validCodes.map(code => ({ code })),
@@ -158,6 +124,13 @@ describe('ESLint: binary-expression-multiline-indent', () => {
       `
       {
         const result = leftOperand
+          + rightOperand
+        - 11
+      }
+      `,
+      `
+      {
+        const result = leftOperand
         + rightOperand
         - 11
       }
@@ -187,7 +160,7 @@ describe('ESLint: binary-expression-multiline-indent', () => {
 
     // tester.run([rule name], [rule defination], [test patterns])
     tester.run(
-      'binary-expression-multiline-indent',
+      ruleName,
       ruleBody,
       {
         valid: validCodes.map(code => ({ code })),
@@ -200,13 +173,16 @@ describe('ESLint: binary-expression-multiline-indent', () => {
     const errors = ['Needs space after infix operator.']
 
     const invalidCodes = [
-      // `{
-      //   const result = leftOperand
-      //     -1
-      // }`,
-      // `  const result = leftOperand
-      //   -1 === flag || die()`,
-      // `  const result = leftOperand
+      `
+      {
+        const result = leftOperand
+          -1
+      }`,
+      `
+      const result = leftOperand
+        -1 === flag || die()`,
+      // `
+      // const result = leftOperand
       //     -1 === flag || die()`,
 
       // `  const result = leftOperand
@@ -242,7 +218,7 @@ describe('ESLint: binary-expression-multiline-indent', () => {
 
     // tester.run([rule name], [rule defination], [test patterns])
     tester.run(
-      'binary-expression-multiline-indent',
+      ruleName,
       ruleBody,
       {
         valid: validCodes.map(code => ({ code })),
