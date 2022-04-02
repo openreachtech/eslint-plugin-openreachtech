@@ -46,18 +46,6 @@ const validCodes = [
       + rightOperand
       - 11
   }`,
-  // `
-  // {
-  //   const result = leftOperand
-  //       + rightOperand
-  //     - 11
-  // }`,
-  // `
-  // {
-  //   const result = leftOperand
-  //     + rightOperand
-  //       - 11
-  // }`,
   `
   {
     const result = leftOperand
@@ -68,20 +56,51 @@ const validCodes = [
 
 describe(ruleName, () => {
   describe('simple indent error (single)', () => {
-    const errors = ['When chopping down infix operator, it requires indentation after the second line.']
+    const errors = [
+      'When chopping down infix operator, it requires indentation after the second line.'
+    ]
 
     const invalidCodes = [
       `
       const result = leftOperand
-          + rightOperand
-        - 11
+      + 11
+      `,
+      `
+        const result = leftOperand
+      + 11
       `,
       `
       const result = leftOperand
-        + rightOperand
-          - 11
+      - 11
       `,
-
+      `
+        const result = leftOperand
+      - 11
+      `,
+      `
+      const result = leftOperand
+      * 11
+      `,
+      `
+        const result = leftOperand
+      * 11
+      `,
+      `
+      const result = leftOperand
+      / 11
+      `,
+      `
+        const result = leftOperand
+      / 11
+      `,
+      `
+      const result = leftOperand
+      % 11
+      `,
+      `
+        const result = leftOperand
+      % 11
+      `,
       `
       {
         const result = leftOperand
@@ -94,7 +113,35 @@ describe(ruleName, () => {
       + 11
       }
       `,
+    ]
 
+    // tester.run([rule name], [rule defination], [test patterns])
+    tester.run(
+      ruleName,
+      ruleBody,
+      {
+        valid: validCodes.map(code => ({ code })),
+        invalid: invalidCodes.map(code => ({ code, errors }))
+      }
+    )
+  })
+
+  describe('indent of right operand', () => {
+    const errors = [
+      'Different indent of right operand vertically.',
+    ]
+
+    const invalidCodes = [
+      `
+      const result = leftOperand
+          + rightOperand
+        - 11
+      `,
+      `
+      const result = leftOperand
+        + rightOperand
+          - 11
+      `,
       `
       {
         const result = leftOperand
@@ -102,6 +149,18 @@ describe(ruleName, () => {
           - 11
       }
       `,
+      `
+      {
+        const result = leftOperand
+            + rightOperand
+          - 11
+      }`,
+      `
+      {
+        const result = leftOperand
+          + rightOperand
+            - 11
+      }`,
     ]
 
     // tester.run([rule name], [rule defination], [test patterns])
@@ -123,6 +182,55 @@ describe(ruleName, () => {
 
     const invalidCodes = [
       `
+      const result = leftOperand
+      + rightOperand
+      - 11
+      `,
+      `
+        const result = leftOperand
+      + rightOperand
+      - 11
+      `,
+      `
+      {
+        const result = leftOperand
+        + rightOperand
+        - 11
+      }
+      `,
+      `
+      {
+        const result = leftOperand
+      + rightOperand
+      - 11
+      }
+      `,
+    ]
+
+    // tester.run([rule name], [rule defination], [test patterns])
+    tester.run(
+      ruleName,
+      ruleBody,
+      {
+        valid: validCodes.map(code => ({ code })),
+        invalid: invalidCodes.map(code => ({ code, errors }))
+      }
+    )
+  })
+
+  describe('simple indent error (complex)', () => {
+    const errors = [
+      'When chopping down infix operator, it requires indentation after the second line.',
+      'Different indent of right operand vertically.',
+    ]
+
+    const invalidCodes = [
+      `
+      const result = leftOperand
+        + rightOperand
+      - 11
+      `,
+      `
       {
         const result = leftOperand
           + rightOperand
@@ -132,13 +240,6 @@ describe(ruleName, () => {
       `
       {
         const result = leftOperand
-        + rightOperand
-        - 11
-      }
-      `,
-      `
-      {
-        const result = leftOperand
       + rightOperand
         - 11
       }
@@ -147,13 +248,6 @@ describe(ruleName, () => {
       {
         const result = leftOperand
         + rightOperand
-      - 11
-      }
-      `,
-      `
-      {
-        const result = leftOperand
-      + rightOperand
       - 11
       }
       `,
@@ -214,7 +308,6 @@ describe(ruleName, () => {
       // `  const result = leftOperand
       // + rightOperand
       // -1 === flag || die()`,
-
     ]
 
     // tester.run([rule name], [rule defination], [test patterns])
