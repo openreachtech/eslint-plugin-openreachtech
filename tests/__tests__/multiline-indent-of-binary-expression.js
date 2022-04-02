@@ -384,10 +384,6 @@ describe(ruleName, () => {
   })
 
   describe('indent of right operand', () => {
-    const errors = [
-      'Different indent of right operand vertically.',
-    ]
-
     const invalidCodes = [
       [
         [
