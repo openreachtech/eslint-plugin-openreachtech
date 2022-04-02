@@ -52,39 +52,54 @@ const validCodes = [
 ]
 
 describe(ruleName, () => {
-  describe('simple indent error (single)', () => {
-    const errors = ['When chopping down infix operator, it requires indentation after the second line.']
+  describe('valid code only', () => {
+    // tester.run([rule name], [rule defination], [test patterns])
+    tester.run(
+      ruleName,
+      ruleBody,
+      {
+        valid: validCodes.map(code => ({ code })),
+        invalid: [],
+      }
+    )
+  })
 
+  describe('simple indent error (single)', () => {
     const invalidCodes = [
-      `
-      if (first
-      || second
-      ) {
-        save(first, second, third)
-      }
-      `,
-      `
-      if (first
-    || second
-      ) {
-        save(first, second)
-      }
-      `,
-      `
-      if (
-        first
-      || second
-      ) {
-        save(first, second)
-      }
-      `,
-      `
-      if (
-        first
-      || second
-      ) {
-        console.log(first, second, third)
-      }`,
+      [
+        [
+          `
+          if (first
+          || second
+          ) {
+            save(first, second, third)
+          }
+          `,
+          `
+            if (first
+          || second
+            ) {
+              save(first, second)
+            }
+          `,
+          `
+          if (
+            first
+          || second
+          ) {
+            save(first, second)
+          }
+          `,
+          `
+          if (
+            first
+          || second
+          ) {
+            console.log(first, second, third)
+          }`,
+        ],
+        ['When chopping down by infix operator as "||", it requires indentation after the second line.']
+      ],
     ]
 
     // tester.run([rule name], [rule defination], [test patterns])
@@ -92,51 +107,60 @@ describe(ruleName, () => {
       ruleName,
       ruleBody,
       {
-        valid: validCodes.map(code => ({ code })),
-        invalid: invalidCodes.map(code => ({ code, errors }))
+        valid: [],
+        invalid: invalidCodes.flatMap(([codes, errors]) =>
+          codes.map(code => ({ code, errors }))
+        ),
       }
     )
   })
 
   describe('indent of right operand', () => {
-    const errors = [
-      'Different indent of right operand vertically.',
-    ]
-
     const invalidCodes = [
-      `
-      if (
-        first
-        || second
-          || third
-      ) {
-        console.log(first, second, third)
-      }`,
-      `
-      if (
-        first
-          || second
-        || third
-      ) {
-        console.log(first, second, third)
-      }`,
-      `
-      if (
-        first
-      || second
-        || third
-      ) {
-        console.log(first, second, third)
-      }`,
-      // `(first || second) || third` is right.
-      `
-      if (first
-      || second
-        || third
-      ) {
-        console.log(first, second, third)
-      }
-      `,
+      [
+        [
+          `
+          if (first
+            || second
+              && third
+          ) {
+            console.log(first, second, third)
+          }`,
+          `
+          if (first
+              || second
+            && third
+          ) {
+            console.log(first, second, third)
+          }`,
+          `
+          if (
+            first
+            || second
+              && third
+          ) {
+            console.log(first, second, third)
+          }`,
+          `
+          if (
+            first
+              || second
+            && third
+          ) {
+            console.log(first, second, third)
+          }`,
+          `
+          if (
+            first
+            || second
+          && third
+          ) {
+            console.log(first, second, third)
+          }
+          `,
+        ],
+        ['Different indent of right operand vertically by infix operator as "&&".']
+      ],
     ]
 
     // tester.run([rule name], [rule defination], [test patterns])
@@ -144,53 +168,58 @@ describe(ruleName, () => {
       ruleName,
       ruleBody,
       {
-        valid: validCodes.map(code => ({ code })),
-        invalid: invalidCodes.map(code => ({ code, errors }))
+        valid: [],
+        invalid: invalidCodes.flatMap(([codes, errors]) =>
+          codes.map(code => ({ code, errors }))
+        ),
       }
     )
   })
 
   describe('simple indent error (double)', () => {
-    const errors = [
-      'When chopping down infix operator, it requires indentation after the second line.',
-      'When chopping down infix operator, it requires indentation after the second line.',
-    ]
-
     const invalidCodes = [
-      `
-      if (first
-      || second
-      || third
-      ) {
-        console.log(first, second, third)
-      }
-      `,
-      `
-      if (first
-    || second
-    || third
-      ) {
-        console.log(first, second, third)
-      }
-      `,
-      `
-      if (
-        first
-      || second
-      || third
-      ) {
-        console.log(first, second, third)
-      }
-      `,
-      `
-      if (
-        first
-    || second
-    || third
-      ) {
-        console.log(first, second, third)
-      }
-      `,
+      [
+        [
+          `
+          if (first
+          || second
+          && third
+          ) {
+            console.log(first, second, third)
+          }
+          `,
+          `
+            if (first
+          || second
+          && third
+            ) {
+              console.log(first, second, third)
+            }
+          `,
+          `
+          if (
+            first
+          || second
+          && third
+          ) {
+            console.log(first, second, third)
+          }
+          `,
+          `
+            if (
+              first
+          || second
+          && third
+            ) {
+              console.log(first, second, third)
+            }
+          `,
+        ],
+        [
+          'When chopping down by infix operator as "||", it requires indentation after the second line.',
+          'When chopping down by infix operator as "&&", it requires indentation after the second line.',
+        ]
+      ],
     ]
 
     // tester.run([rule name], [rule defination], [test patterns])
@@ -198,77 +227,74 @@ describe(ruleName, () => {
       ruleName,
       ruleBody,
       {
-        valid: validCodes.map(code => ({ code })),
-        invalid: invalidCodes.map(code => ({ code, errors }))
+        valid: [],
+        invalid: invalidCodes.flatMap(([codes, errors]) =>
+          codes.map(code => ({ code, errors }))
+        ),
       }
     )
   })
 
   describe('simple indent error (complex)', () => {
-    const errors = [
-      'When chopping down infix operator, it requires indentation after the second line.',
-      'Different indent of right operand vertically.',
-    ]
-
     const invalidCodes = [
-      `
-      if (first
-    || second
-      || third
-      ) {
-        console.log(first, second, third)
-      }
-      `,
-      `
-      if (first
-    || second
-      || third
-      ) {
-        console.log(first, second, third)
-      }
-      `,
-      `
-      if (first
-      || second
-    || third
-      ) {
-        console.log(first, second, third)
-      }
-      `,
-      `
-      if (first
-      || second
-    || third
-      ) {
-        console.log(first, second, third)
-      }
-      `,
-      `
-      if (
-        first
-    || second
-      || third
-      ) {
-        console.log(first, second, third)
-      }
-      `,
-      `
-      if (
-        first
-        || second
-      || third
-      ) {
-        console.log(first, second, third)
-      }`,
-      `
-      if (
-        first
-    || second
-      || third
-      ) {
-        console.log(first, second, third)
-      }
-      `,
+      [
+        [
+          `
+          if (first
+          || second
+            && third
+          ) {
+            console.log(first, second, third)
+          }
+          `,
+          `
+            if (first
+          || second
+            && third
+            ) {
+              console.log(first, second, third)
+            }
+          `,
+          `
+            if (first
+            || second
+          && third
+            ) {
+              console.log(first, second, third)
+            }
+          `,
+          `
+            if (first
+            || second
+          && third
+            ) {
+              console.log(first, second, third)
+            }
+          `,
+          `
+            if (
+              first
+          || second
+            && third
+            ) {
+              console.log(first, second, third)
+            }
+          `,
+          `
+          if (
+            first
+          || second
+            && third
+          ) {
+            console.log(first, second, third)
+          }
+          `,
+        ],
+        [
+          'When chopping down by infix operator as "||", it requires indentation after the second line.',
+          'Different indent of right operand vertically by infix operator as "&&".',
+        ]
+      ],
     ]
 
     // tester.run([rule name], [rule defination], [test patterns])
@@ -276,8 +302,10 @@ describe(ruleName, () => {
       ruleName,
       ruleBody,
       {
-        valid: validCodes.map(code => ({ code })),
-        invalid: invalidCodes.map(code => ({ code, errors }))
+        valid: [],
+        invalid: invalidCodes.flatMap(([codes, errors]) =>
+          codes.map(code => ({ code, errors }))
+        ),
       }
     )
   })
