@@ -13,12 +13,117 @@ const validCodes = [
 
   `
   const result = leftOperand
+    + 11
+  `,
+  `
+  const result = leftOperand
+      + 11
+  `,
+  `
+  const result = leftOperand
     - 11
   `,
   `
   const result = leftOperand
       - 11
   `,
+  `
+  const result = leftOperand
+    * 11
+  `,
+  `
+  const result = leftOperand
+      * 11
+  `,
+  `
+  const result = leftOperand
+    / 11
+  `,
+  `
+  const result = leftOperand
+      / 11
+  `,
+  `
+  const result = leftOperand
+    % 11
+  `,
+  `
+  const result = leftOperand
+      % 11
+  `,
+  `
+  const result = leftOperand
+    ** 11
+  `,
+  `
+  const result = leftOperand
+      ** 11
+  `,
+  `
+  const result = leftOperand
+    | 11
+  `,
+  `
+  const result = leftOperand
+    | 11
+  `,
+  `
+  const result = leftOperand
+    & 11
+  `,
+  `
+  const result = leftOperand
+    & 11
+  `,
+  `
+  const result = leftOperand
+    ^ 11
+  `,
+  `
+  const result = leftOperand
+    ^ 11
+  `,
+  `
+  const result = leftOperand
+    << 4
+  `,
+  `
+  const result = leftOperand
+    << 4
+  `,
+  `
+  const result = leftOperand
+    >> 6
+  `,
+  `
+  const result = leftOperand
+    >> 6
+  `,
+  `
+  const result = leftOperand
+    >>> 8
+  `,
+  `
+  const result = leftOperand
+    >>> 8
+  `,
+  `
+  const result = leftOperand
+    in 8
+  `,
+  `
+  const result = leftOperand
+    in 8
+  `,
+  `
+  const result = leftOperand
+    instanceof 8
+  `,
+  `
+  const result = leftOperand
+    instanceof 8
+  `,
+
   `
   const result = leftOperand
     + rightOperand
