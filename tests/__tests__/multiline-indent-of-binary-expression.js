@@ -191,7 +191,7 @@ describe(ruleName, () => {
           + 11
           `,
         ],
-        'When chopping down by infix operator as "+", it requires indentation after the second line.',
+        ['When chopping down by infix operator as "+", it requires indentation after the second line.']
       ],
       [
         [
@@ -210,7 +210,7 @@ describe(ruleName, () => {
             const result = leftOperand
           -1 === flag || die()`,
         ],
-        'When chopping down by infix operator as "-", it requires indentation after the second line.',
+        ['When chopping down by infix operator as "-", it requires indentation after the second line.']
       ],
       [
         [
@@ -223,7 +223,7 @@ describe(ruleName, () => {
           * 11
           `,
         ],
-        'When chopping down by infix operator as "*", it requires indentation after the second line.',
+        ['When chopping down by infix operator as "*", it requires indentation after the second line.']
       ],
       [
         [
@@ -236,7 +236,7 @@ describe(ruleName, () => {
           / 11
           `,
         ],
-        'When chopping down by infix operator as "/", it requires indentation after the second line.',
+        ['When chopping down by infix operator as "/", it requires indentation after the second line.']
       ],
       [
         [
@@ -249,7 +249,7 @@ describe(ruleName, () => {
           % 11
           `,
         ],
-        'When chopping down by infix operator as "%", it requires indentation after the second line.',
+        ['When chopping down by infix operator as "%", it requires indentation after the second line.']
       ],
       [
         [
@@ -262,7 +262,7 @@ describe(ruleName, () => {
           ** 11
           `,
         ],
-        'When chopping down by infix operator as "**", it requires indentation after the second line.',
+        ['When chopping down by infix operator as "**", it requires indentation after the second line.']
       ],
       [
         [
@@ -275,7 +275,7 @@ describe(ruleName, () => {
           | 11
           `,
         ],
-        'When chopping down by infix operator as "|", it requires indentation after the second line.',
+        ['When chopping down by infix operator as "|", it requires indentation after the second line.']
       ],
       [
         [
@@ -288,7 +288,7 @@ describe(ruleName, () => {
           & 11
           `,
         ],
-        'When chopping down by infix operator as "&", it requires indentation after the second line.',
+        ['When chopping down by infix operator as "&", it requires indentation after the second line.']
       ],
       [
         [
@@ -301,7 +301,7 @@ describe(ruleName, () => {
           ^ 11
           `,
         ],
-        'When chopping down by infix operator as "^", it requires indentation after the second line.',
+        ['When chopping down by infix operator as "^", it requires indentation after the second line.']
       ],
       [
         [
@@ -314,7 +314,7 @@ describe(ruleName, () => {
           << 11
           `,
         ],
-        'When chopping down by infix operator as "<<", it requires indentation after the second line.',
+        ['When chopping down by infix operator as "<<", it requires indentation after the second line.']
       ],
       [
         [
@@ -327,7 +327,7 @@ describe(ruleName, () => {
           >> 11
           `,
         ],
-        'When chopping down by infix operator as ">>", it requires indentation after the second line.',
+        ['When chopping down by infix operator as ">>", it requires indentation after the second line.']
       ],
       [
         [
@@ -340,7 +340,7 @@ describe(ruleName, () => {
           >>> 11
           `,
         ],
-        'When chopping down by infix operator as ">>>", it requires indentation after the second line.',
+        ['When chopping down by infix operator as ">>>", it requires indentation after the second line.']
       ],
       [
         [
@@ -353,7 +353,7 @@ describe(ruleName, () => {
           in 11
           `,
         ],
-        'When chopping down by infix operator as "in", it requires indentation after the second line.',
+        ['When chopping down by infix operator as "in", it requires indentation after the second line.']
       ],
       [
         [
@@ -366,7 +366,7 @@ describe(ruleName, () => {
           instanceof 11
           `,
         ],
-        'When chopping down by infix operator as "instanceof", it requires indentation after the second line.',
+        ['When chopping down by infix operator as "instanceof", it requires indentation after the second line.']
       ],
     ]
 
@@ -376,8 +376,8 @@ describe(ruleName, () => {
       ruleBody,
       {
         valid: [],
-        invalid: invalidCodes.flatMap(([codes, errorMessage]) =>
-          codes.map(code => ({ code, errors: [errorMessage]}))
+        invalid: invalidCodes.flatMap(([codes, errors]) =>
+          codes.map(code => ({ code, errors }))
         ),
       }
     )
@@ -416,7 +416,7 @@ describe(ruleName, () => {
                 - 11
           }`,
         ],
-        'Different indent of right operand vertically by infix operator as "+".'
+        ['Different indent of right operand vertically by infix operator as "+".']
       ],
       [
         [
@@ -426,7 +426,7 @@ describe(ruleName, () => {
               / 11
           `,
         ],
-        'Different indent of right operand vertically by infix operator as "*".'
+        ['Different indent of right operand vertically by infix operator as "*".']
       ],
     ]
 
@@ -526,7 +526,7 @@ describe(ruleName, () => {
         [
           'When chopping down by infix operator as "-", it requires indentation after the second line.',
           'Different indent of right operand vertically by infix operator as "+".',
-        ],
+        ]
       ],
     ]
 
