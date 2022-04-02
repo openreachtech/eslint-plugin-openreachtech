@@ -1,11 +1,12 @@
 env:
   commonjs: true
-  node: true
+  es2021: true
   jest: true
+  node: true
 extends:
-  - standard
+  - eslint:recommended
 parserOptions:
-  ecmaVersion: 12
+  ecmaVersion: latest
 plugins:
   - jsdoc
 ignorePatterns:
@@ -15,6 +16,9 @@ rules:
   eol-last:
     - error
     - always
+  indent:
+    - error
+    - 2
   jsdoc/require-hyphen-before-param-description:
     - error
     - always
@@ -25,29 +29,50 @@ rules:
   jsdoc/require-returns-type: error
   jsdoc/require-throws: error
   jsdoc/require-yields: error
+  lines-around-comment:
+    - error
+    - beforeBlockComment: true
+      allowArrayStart: true
+      allowBlockStart: true
+      allowClassStart: true
+      allowObjectStart: true
+  linebreak-style:
+    - error
+    - unix
   multiline-ternary:
     - error
     - always
   newline-per-chained-call: error
   no-await-in-loop: error
   no-console: error
-  #### no-else-if: error
   no-extra-semi: error
   no-negated-condition: error
   no-nested-ternary: error
   no-param-reassign: error
   no-restricted-syntax:
     - error
+    - selector: 'CallExpression[callee.callee.object.name=/it|test/][callee.callee.property.name="each"] IfStatement'
+      message: 'no if statement in it.each()/test.each()'
+    - selector: 'CallExpression[callee.name=/it|test/] IfStatement'
+      message: 'no if statement in it()/test()'
+    - selector: 'CallExpression[callee.property.name="forEach"]'
+      message: 'Object-Oriented Programming does not require `#forEach()`.'
     - selector: 'DoWhileStatement'
       message: 'Object-Oriented Programming does not require do..while statement.'
+    - selector: 'ForInStatement'
+      message: 'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys, values, entries}, and iterate over the resulting array.'
+    - selector: 'ForOfStatement'
+      message: 'for..of loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{values, entries}, and iterate over the resulting array
     - selector: 'ForStatement'
       message: 'Object-Oriented Programming does not require `for` statement.'
-    - selector: 'ForInStatement'
-      message: 'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.'
-    - selector: 'ForOfStatement'
-      message: 'for..of loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{values,entries}, and iterate over the resulting array.'
+    - selector: 'IfStatement IfStatement'
+      message: 'Nested if statements are prohibited, including "else if".'
+    - selector: 'LabeledStatement'
+      message: 'Labeled statement is not allowed'
     - selector: 'SwitchStatement'
       message: 'Object-Oriented Programming does not require `switch` statement.'
+    - selector: 'VariableDeclaration[kind="let"]'
+      message: 'Object-Oriented Programming does not require `let` variable declaration.'
     - selector: 'WhileStatement'
       message: 'Object-Oriented Programming does not require `while` statement.'
   no-return-await: error
@@ -74,6 +99,12 @@ rules:
         - continue
         - return
         - throw
+  quotes:
+    - error
+    - single
+  semi:
+    - error
+    - never
   semi-spacing:
     - error
     - before: false
@@ -81,4 +112,7 @@ rules:
   semi-style:
     - error
     - first
+  space-infix-ops: error
+  space-unary-ops: error
   spaced-comment: error
+  strict: error
