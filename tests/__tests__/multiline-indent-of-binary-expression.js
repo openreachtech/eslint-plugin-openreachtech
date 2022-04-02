@@ -102,6 +102,78 @@ describe(ruleName, () => {
       % 11
       `,
       `
+      const result = leftOperand
+      ** 11
+      `,
+      `
+        const result = leftOperand
+      ** 11
+      `,
+      `
+      const result = leftOperand
+      | 11
+      `,
+      `
+        const result = leftOperand
+      | 11
+      `,
+      `
+      const result = leftOperand
+      & 11
+      `,
+      `
+        const result = leftOperand
+      & 11
+      `,
+      `
+      const result = leftOperand
+      ^ 11
+      `,
+      `
+        const result = leftOperand
+      ^ 11
+      `,
+      `
+      const result = leftOperand
+      << 4
+      `,
+      `
+        const result = leftOperand
+      << 4
+      `,
+      `
+      const result = leftOperand
+      >> 6
+      `,
+      `
+        const result = leftOperand
+      >> 6
+      `,
+      `
+      const result = leftOperand
+      >>> 8
+      `,
+      `
+        const result = leftOperand
+      >>> 8
+      `,
+      `
+      const result = leftOperand
+      in 8
+      `,
+      `
+        const result = leftOperand
+      in 8
+      `,
+      `
+      const result = leftOperand
+      instanceof 8
+      `,
+      `
+        const result = leftOperand
+      instanceof 8
+      `,
+      `
       {
         const result = leftOperand
         + 11
@@ -139,8 +211,8 @@ describe(ruleName, () => {
       `,
       `
       const result = leftOperand
-        + rightOperand
-          - 11
+        * rightOperand
+          / 11
       `,
       `
       {
