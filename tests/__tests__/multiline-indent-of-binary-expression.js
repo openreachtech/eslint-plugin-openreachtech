@@ -436,8 +436,8 @@ describe(ruleName, () => {
       ruleBody,
       {
         valid: [],
-        invalid: invalidCodes.flatMap(([codes, errorMessage]) =>
-          codes.map(code => ({ code, errors: [errorMessage]}))
+        invalid: invalidCodes.flatMap(([codes, errors]) =>
+          codes.map(code => ({ code, errors }))
         ),
       }
     )
