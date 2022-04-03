@@ -190,6 +190,12 @@ describe(ruleName, () => {
             const result = leftOperand
           + 11
           `,
+          `
+          function getEnv () {
+            return this.env.NODE_ENV
+            + 'aaaa' // <---------------- should error
+          }
+          `,
         ],
         ['When chopping down by infix operator as "+", it requires indentation after the second line.']
       ],
@@ -465,6 +471,13 @@ describe(ruleName, () => {
             const result = leftOperand
           + rightOperand
           - 11
+          }
+          `,
+          `
+          function testFunc (xxx) {
+            return xxx
+            + 9 // <---------------- should error
+            - 8
           }
           `,
         ],

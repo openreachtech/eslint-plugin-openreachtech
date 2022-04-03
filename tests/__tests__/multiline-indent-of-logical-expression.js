@@ -97,6 +97,14 @@ describe(ruleName, () => {
           ) {
             console.log(first, second, third)
           }`,
+          `
+          function test (xxx) {
+            const zzz = xxx
+            || 999 // <---------------- should error
+
+            return zzz
+          }
+          `,
         ],
         ['When chopping down by infix operator as "||", it requires indentation after the second line.']
       ],
