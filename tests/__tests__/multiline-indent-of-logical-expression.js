@@ -41,14 +41,6 @@ const validCodes = [
     console.log(22, first, second, third)
   }
   `,
-  `
-  if (
-  first
-    || second
-  ) {
-    save(first, second)
-  }
-  `,
 ]
 
 describe(ruleName, () => {
@@ -93,10 +85,27 @@ describe(ruleName, () => {
           `
           if (
             first
-          || second
+              || second
           ) {
-            console.log(first, second, third)
-          }`,
+            save(first, second)
+          }
+          `,
+          `
+          if (
+          first
+            || second
+          ) {
+            save(first, second)
+          }
+          `,
+          `
+            if (
+          first
+            || second
+            ) {
+              save(first, second)
+            }
+          `,
           `
           function test (xxx) {
             const zzz = xxx
@@ -146,14 +155,6 @@ describe(ruleName, () => {
             first
             || second
               && third
-          ) {
-            console.log(first, second, third)
-          }`,
-          `
-          if (
-            first
-              || second
-            && third
           ) {
             console.log(first, second, third)
           }`,
@@ -280,14 +281,13 @@ describe(ruleName, () => {
             }
           `,
           `
-            if (
-              first
-          || second
+          if (
+            first
+              || second
             && third
-            ) {
-              console.log(first, second, third)
-            }
-          `,
+          ) {
+            console.log(first, second, third)
+          }`,
           `
           if (
             first
@@ -296,6 +296,15 @@ describe(ruleName, () => {
           ) {
             console.log(first, second, third)
           }
+          `,
+          `
+            if (
+              first
+          || second
+            && third
+            ) {
+              console.log(first, second, third)
+            }
           `,
         ],
         [
