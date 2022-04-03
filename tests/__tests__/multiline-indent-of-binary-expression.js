@@ -7,6 +7,12 @@ const tester = require('../tools/ESLintHelper').createTester()
 /** @type {Function|Object} */
 const ruleBody = require('../../lib/multiline-indent-of-binary-expression')
 
+const theCaseSuggestedByGoogle = `
+var THINGS_TO_EAT = [apples, oysters, sprayOnCheese]  // セミコロンがない
+
+// 3. bash 風な条件文
+-1 == resultOfOperation() || die();`
+
 const ruleName = 'multiline-indent-of-binary-expression'
 const validCodes = [
   'const result = leftOperand - 11',
@@ -215,6 +221,7 @@ describe(ruleName, () => {
           `
             const result = leftOperand
           -1 === flag || die()`,
+          theCaseSuggestedByGoogle,
         ],
         ['When chopping down by infix operator as "-", it requires indentation after the second line.']
       ],
