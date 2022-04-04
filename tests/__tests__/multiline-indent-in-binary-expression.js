@@ -159,10 +159,38 @@ const validCodes = [
   }`,
   `
   {
-    const result = leftOperand
+    const result =
+      leftOperand
+      + rightOperand
+      - 11
+  }`,
+
+  `
+  {
+  const result =
+    leftOperand
+    - 11
+  }`,
+  `
+  const result =
+      leftOperand
+      - 11
+  `,
+  `
+  {
+    const result =
+      leftOperand
+      + rightOperand
+      - 11
+  }`,
+  `
+  {
+    const result =
+        leftOperand
         + rightOperand
         - 11
   }`,
+
   `
   const result = leftOperand
     -1 !== flag || die()`,
@@ -214,6 +242,17 @@ describe('multiline indent in infix operator expression', () => {
           `
             const result = leftOperand
           - 11
+          `,
+          `
+          {
+          const result =
+            leftOperand
+              - 11
+          }`,
+          `
+          const result =
+              leftOperand
+            - 11
           `,
           `
           const result = leftOperand
