@@ -52,9 +52,9 @@ rules:
   no-restricted-syntax:
     - error
     - selector: 'CallExpression[callee.callee.object.name=/it|test/][callee.callee.property.name="each"] IfStatement'
-      message: 'no if statement in it.each()/test.each()'
+      message: 'If statement in it.each()/test.each() is not allowed.'
     - selector: 'CallExpression[callee.name=/it|test/] IfStatement'
-      message: 'no if statement in it()/test()'
+      message: 'If statement in it()/test() is not allowed.'
     - selector: 'CallExpression[callee.property.name="forEach"]'
       message: 'Object-Oriented Programming does not require `#forEach()`.'
     - selector: 'DoWhileStatement'
@@ -68,7 +68,7 @@ rules:
     - selector: 'IfStatement IfStatement'
       message: 'Nested if statements are prohibited, including "else if".'
     - selector: 'LabeledStatement'
-      message: 'Labeled statement is not allowed'
+      message: 'Labeled statement is not allowed.'
     - selector: 'SwitchStatement'
       message: 'Object-Oriented Programming does not require `switch` statement.'
     - selector: 'VariableDeclaration[kind="let"]'
