@@ -5,7 +5,7 @@
 const tester = require('../tools/ESLintHelper').createTester()
 
 /** @type {Function|Object} */
-const ruleBody = require('../../lib/multiline-indent-of-binary-expression')
+const ruleBody = require('../../lib/multiline-indent-in-binary-expression')
 
 const theCaseSuggestedByGoogle = `
 var THINGS_TO_EAT = [apples, oysters, sprayOnCheese]  // セミコロンがない
@@ -13,7 +13,7 @@ var THINGS_TO_EAT = [apples, oysters, sprayOnCheese]  // セミコロンがな�
 // 3. bash 風な条件文
 -1 == resultOfOperation() || die();`
 
-const ruleName = 'multiline-indent-of-binary-expression'
+const ruleName = 'multiline-indent-in-binary-expression'
 const validCodes = [
   'const result = leftOperand - 11',
 

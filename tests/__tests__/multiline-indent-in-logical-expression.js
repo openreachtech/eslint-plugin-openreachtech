@@ -5,9 +5,9 @@
 const tester = require('../tools/ESLintHelper').createTester()
 
 /** @type {Function|Object} */
-const ruleBody = require('../../lib/multiline-indent-of-logical-expression')
+const ruleBody = require('../../lib/multiline-indent-in-logical-expression')
 
-const ruleName = 'multiline-indent-of-logical-expression'
+const ruleName = 'multiline-indent-in-logical-expression'
 const validCodes = [
   `
   if (first
