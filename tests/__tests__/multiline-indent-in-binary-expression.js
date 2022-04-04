@@ -173,7 +173,7 @@ const validCodes = [
 
 describe('multiline indent in infix operator expression', () => {
   describe('valid code only', () => {
-    // tester.run([rule name], [rule defination], [test patterns])
+    // tester.run([rule name], [rule definition], [test patterns])
     tester.run(
       ruleName,
       ruleBody,
@@ -383,7 +383,7 @@ describe('multiline indent in infix operator expression', () => {
       ],
     ]
 
-    // tester.run([rule name], [rule defination], [test patterns])
+    // tester.run([rule name], [rule definition], [test patterns])
     tester.run(
       ruleName,
       ruleBody,
@@ -439,7 +439,7 @@ describe('multiline indent in infix operator expression', () => {
       ],
     ]
 
-    // tester.run([rule name], [rule defination], [test patterns])
+    // tester.run([rule name], [rule definition], [test patterns])
     tester.run(
       ruleName,
       ruleBody,
@@ -495,7 +495,7 @@ describe('multiline indent in infix operator expression', () => {
       ],
     ]
 
-    // tester.run([rule name], [rule defination], [test patterns])
+    // tester.run([rule name], [rule definition], [test patterns])
     tester.run(
       ruleName,
       ruleBody,
@@ -546,7 +546,7 @@ describe('multiline indent in infix operator expression', () => {
       ],
     ]
 
-    // tester.run([rule name], [rule defination], [test patterns])
+    // tester.run([rule name], [rule definition], [test patterns])
     tester.run(
       ruleName,
       ruleBody,
