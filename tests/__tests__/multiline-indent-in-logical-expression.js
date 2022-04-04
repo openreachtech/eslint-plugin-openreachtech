@@ -43,7 +43,7 @@ const validCodes = [
   `,
 ]
 
-describe(ruleName, () => {
+describe('multiline indent in infix operator expression', () => {
   describe('valid code only', () => {
     // tester.run([rule name], [rule defination], [test patterns])
     tester.run(
