@@ -5,7 +5,7 @@
 const tester = require('../tools/ESLintHelper').createTester()
 
 /** @type {Function|Object} */
-const ruleBody = require('../../lib/multiline-indent-in-binary-expression')
+const ruleBody = require('../../lib/indent-in-binary-expression')
 
 const theCaseSuggestedByGoogle = `
 var THINGS_TO_EAT = [apples, oysters, sprayOnCheese]  // セミコロンがない
