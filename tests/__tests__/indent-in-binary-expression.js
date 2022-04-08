@@ -13,9 +13,9 @@ var THINGS_TO_EAT = [apples, oysters, sprayOnCheese]  // セミコロンがな�
 // 3. bash 風な条件文
 -1 == resultOfOperation() || die();`
 
-const ruleName = 'multiline-indent-in-binary-expression'
+const ruleName = 'indent-in-binary-expression'
 
-describe('multiline indent in binary expression', () => {
+describe('indent in binary expression', () => {
   describe('valid code only', () => {
     const validCodes = [
       'const result = leftOperand - 11',
