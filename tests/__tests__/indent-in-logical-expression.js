@@ -5,11 +5,11 @@
 const tester = require('../tools/ESLintHelper').createTester()
 
 /** @type {Function|Object} */
-const ruleBody = require('../../lib/multiline-indent-in-logical-expression')
+const ruleBody = require('../../lib/indent-in-logical-expression')
 
-const ruleName = 'multiline-indent-in-logical-expression'
+const ruleName = 'indent-in-logical-expression'
 
-describe('multiline indent in infix operator expression', () => {
+describe('indent in infix operator expression', () => {
   describe('valid code only', () => {
     const validCodes = [
       `
