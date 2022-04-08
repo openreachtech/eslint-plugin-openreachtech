@@ -78,7 +78,6 @@ describe('BinaryExpression', () => {
           instanceof 8
         `,
 
-
         `
         const result = leftOperand
           + rightOperand
