@@ -2,14 +2,14 @@
 'use strict'
 
 // ESLint tester instead of Jest `test()`
-const tester = require('../tools/ESLintHelper').createTester()
+const tester = require('../../tools/ESLintHelper').createTester()
 
 /** @type {Function|Object} */
-const ruleBody = require('../../lib/indent-in-logical-expression')
+const ruleBody = require('../../../lib/indent-in-infix-expression')
 
 const ruleName = 'indent-in-logical-expression'
 
-describe('indent in infix operator expression', () => {
+describe('LogicalExpression', () => {
   describe('valid code only', () => {
     const validCodes = [
       `
@@ -72,7 +72,7 @@ describe('indent in infix operator expression', () => {
     )
   })
 
-  describe('must indent', () => {
+  describe('Must add indent (x1)', () => {
     const invalidCodes = [
       [
         [
@@ -105,6 +105,14 @@ describe('indent in infix operator expression', () => {
             }
           `,
           `
+          if (
+            first
+          || second
+          ) {
+            save(first, second)
+          }
+          `,
+          `
           function test (xxx) {
             const zzz = xxx
             || 999 // <---------------- should error
@@ -114,7 +122,7 @@ describe('indent in infix operator expression', () => {
           `,
         ],
         [
-          'Must indent second line of infix expression, when chopped down before "||" operator.'
+          'Must add indent before "||" operator.',
         ]
       ],
       [
@@ -129,7 +137,7 @@ describe('indent in infix operator expression', () => {
           `,
         ],
         [
-          'Must indent second line of infix expression, when chopped down before "&&" operator.'
+          'Must add indent before "&&" operator.',
         ]
       ],
     ]
@@ -146,18 +154,10 @@ describe('indent in infix operator expression', () => {
     )
   })
 
-  describe('must align indent left-right operands', () => {
+  describe('Must remove indent (x1)', () => {
     const invalidCodes = [
       [
         [
-          `
-          if (
-            first
-          || second
-          ) {
-            save(first, second)
-          }
-          `,
           `
           if (
             first
@@ -186,14 +186,14 @@ describe('indent in infix operator expression', () => {
           function test (xxx) {
             const zzz =
               xxx
-            || 999 // <---------------- should error
+                || 999 // <---------------- should error
 
             return zzz
           }
           `,
         ],
         [
-          'Must align indent before "||" operator to left-operand, when chopped down before left-operand of infix expression.'
+          'Must remove indent before "||" operator.',
         ]
       ]
     ]
@@ -210,28 +210,50 @@ describe('indent in infix operator expression', () => {
     )
   })
 
-  describe('must align indent of operator in nested expressions', () => {
+  describe('Must add indent (x1), Must remove indent (x1)', () => {
     const invalidCodes = [
       [
         [
           `
           if (first
-            || second
+          || second
               && third
           ) {
             console.log(first, second, third)
           }`,
           `
           if (first
-              || second
-            && third
+              && second
+          || third
           ) {
             console.log(first, second, third)
           }`,
           `
+          if (first
+        || second
+              && third
+          ) {
+            console.log(first, second, third)
+          }`,
+          `
+          if (first
+                && second
+          || third
+          ) {
+            console.log(first, second, third)
+          }`,
+          `
+          if (first
+                && second
+        || third
+          ) {
+            console.log(first, second, third)
+          }`,
+
+          `
           if (
             first
-            || second
+          || second
               && third
           ) {
             console.log(first, second, third)
@@ -239,15 +261,39 @@ describe('indent in infix operator expression', () => {
           `
           if (
             first
-            || second
-          && third
+              && second
+          || third
           ) {
             console.log(first, second, third)
-          }
-          `,
+          }`,
+          `
+          if (
+            first
+        || second
+              && third
+          ) {
+            console.log(first, second, third)
+          }`,
+          `
+          if (
+            first
+                && second
+          || third
+          ) {
+            console.log(first, second, third)
+          }`,
+          `
+          if (
+            first
+                && second
+        || third
+          ) {
+            console.log(first, second, third)
+          }`,
         ],
         [
-          'Must align operator in nested infix expressions, when chopped down before "&&" operator.'
+          'Must add indent before "||" operator.',
+          'Must remove indent before "&&" operator.',
         ]
       ],
     ]
@@ -264,178 +310,33 @@ describe('indent in infix operator expression', () => {
     )
   })
 
-  describe('must align indent left-right operands (x2)', () => {
-    const invalidCodes = [
-      [
-        [
-          `
-          if (
-            first
-          || second
-          && third
-          ) {
-            console.log(first, second, third)
-          }
-          `,
-          `
-            if (
-              first
-          || second
-          && third
-            ) {
-              console.log(first, second, third)
-            }
-          `,
-        ],
-        [
-          'Must align indent before "||" operator to left-operand, when chopped down before left-operand of infix expression.',
-          'Must align indent before "&&" operator to left-operand, when chopped down before left-operand of infix expression.',
-        ]
-      ]
-    ]
-
-    tester.run(
-      ruleName,
-      ruleBody,
-      {
-        valid: [],
-        invalid: invalidCodes.flatMap(([codes, errors]) =>
-          codes.map(code => ({ code, errors }))
-        ),
-      }
-    )
-  })
-
-  describe('shortage indent && align each right operand', () => {
+  describe('three errors', () => {
     const invalidCodes = [
       [
         [
           `
           if (first
-          || second
-              && third
-          ) {
-            console.log(first, second, third)
-          }
-          `,
-          `
-          if (first
-          || second
-            && third
-          ) {
-            console.log(first, second, third)
-          }
-          `,
-          `
-            if (first
-          || second
-            && third
-            ) {
-              console.log(first, second, third)
-            }
-          `,
-          `
-            if (first
-            || second
-          && third
-            ) {
-              console.log(first, second, third)
-            }
-          `,
-        ],
-        [
-          'Must indent second line of infix expression, when chopped down before "||" operator.',
-          'Must align operator in nested infix expressions, when chopped down before "&&" operator.',
-        ]
-      ]
-    ]
-
-    tester.run(
-      ruleName,
-      ruleBody,
-      {
-        valid: [],
-        invalid: invalidCodes.flatMap(([codes, errors]) =>
-          codes.map(code => ({ code, errors }))
-        ),
-      }
-    )
-  })
-
-  describe('shortage indent && nested left-right', () => {
-    const invalidCodes = [
-      [
-        [
-          `
-          if (first
-          || second
-          && third
-          ) {
-            console.log(first, second, third)
-          }
-          `,
-          `
-            if (first
-          || second
-          && third
-            ) {
-              console.log(first, second, third)
-            }
-          `,
-        ],
-        [
-          'Must indent second line of infix expression, when chopped down before "||" operator.',
-          'Must align indent before "&&" operator to left-operand, when chopped down before left-operand of infix expression.',
-        ]
-      ]
-    ]
-
-    tester.run(
-      ruleName,
-      ruleBody,
-      {
-        valid: [],
-        invalid: invalidCodes.flatMap(([codes, errors]) =>
-          codes.map(code => ({ code, errors }))
-        ),
-      }
-    )
-  })
-
-  describe('align left operand to right operand && align each right operand', () => {
-    const invalidCodes = [
-      [
-        [
-          `
-          if (
-            first
               || second
-            && third
+          && third
+          || fourth
           ) {
-            console.log(first, second, third)
+            console.log(first, second, third, fourth)
           }`,
           `
           if (
             first
-          || second
-            && third
+              || second
+          && third
+          || fourth
           ) {
-            console.log(first, second, third)
+            console.log(first, second, third, fourth)
           }
-          `,
-          `
-            if (
-              first
-          || second
-            && third
-            ) {
-              console.log(first, second, third)
-            }
           `,
         ],
         [
-          'Must align indent before "||" operator to left-operand, when chopped down before left-operand of infix expression.',
-          'Must align operator in nested infix expressions, when chopped down before "&&" operator.',
+          'Must add indent before "||" operator.',
+          'Must remove indent before "||" operator.',
+          'Must add indent before "&&" operator.',
         ]
       ]
     ]
