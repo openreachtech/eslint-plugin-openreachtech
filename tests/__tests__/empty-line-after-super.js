@@ -30,6 +30,18 @@ const validCodes = [
     }
   `,
 
+  // has empty lines after super()
+  `
+    class A extends B {
+      constructor (name, age) {
+        super(name)
+        
+ 
+        this.age = age
+      }
+    }
+  `,
+
   // has empty line after super() - single line comments
   `
    class A extends B {
