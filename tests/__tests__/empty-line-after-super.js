@@ -317,6 +317,34 @@ const invalidCodes = [
       }
     `
   },
+
+  // has no empty line after super() - all in one line
+  {
+    code: `
+      class A extends B {constructor (name, age) {super(name); this.age = age;}}
+    `,
+    output: `
+      class A extends B {constructor (name, age) {super(name);
+
+      this.age = age;}}
+    `
+  }, 
+
+  // has no empty line after super() - all in one line in constructor
+  {
+    code: `
+      class A extends B {
+        constructor (name, age) {super(name); this.age = age;}
+      }
+    `,
+    output: `
+      class A extends B {
+        constructor (name, age) {super(name);
+
+        this.age = age;}
+      }
+    `
+  },
 ]
  
 const errors = [{ 
