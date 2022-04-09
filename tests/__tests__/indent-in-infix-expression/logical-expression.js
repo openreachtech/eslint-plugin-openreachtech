@@ -122,7 +122,7 @@ describe('LogicalExpression', () => {
           `,
         ],
         [
-          'Must add indent before "||" operator.',
+          'Must add indent before "||".',
         ]
       ],
       [
@@ -137,7 +137,7 @@ describe('LogicalExpression', () => {
           `,
         ],
         [
-          'Must add indent before "&&" operator.',
+          'Must add indent before "&&".',
         ]
       ],
     ]
@@ -193,7 +193,7 @@ describe('LogicalExpression', () => {
           `,
         ],
         [
-          'Must remove indent before "||" operator.',
+          'Must remove indent before "||".',
         ]
       ]
     ]
@@ -292,8 +292,8 @@ describe('LogicalExpression', () => {
           }`,
         ],
         [
-          'Must add indent before "||" operator.',
-          'Must remove indent before "&&" operator.',
+          'Must add indent before "||".',
+          'Must remove indent before "&&".',
         ]
       ],
     ]
@@ -334,9 +334,9 @@ describe('LogicalExpression', () => {
           `,
         ],
         [
-          'Must add indent before "||" operator.',
-          'Must remove indent before "||" operator.',
-          'Must add indent before "&&" operator.',
+          'Must add indent before "||".',
+          'Must remove indent before "||".',
+          'Must add indent before "&&".',
         ]
       ]
     ]
