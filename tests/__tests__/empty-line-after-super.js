@@ -317,7 +317,7 @@ const errors = [{
 // Tests
 //  ------------------------------------------------------------------------------
    
-const ruleTester = new RuleTester({ parserOptions: { ecmaVersion: 2015 } })
+const ruleTester = new RuleTester({ parserOptions: { ecmaVersion: 6 } })
  
 ruleTester.run('empty-line-after-super', rule, {
   valid: validCodes.map(code => ({ code })),
