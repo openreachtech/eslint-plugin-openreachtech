@@ -7,11 +7,18 @@ const tester = require('../../tools/ESLintHelper').createTester()
 /** @type {Function|Object} */
 const ruleBody = require('../../../lib/indent-in-infix-expression')
 
-const theCaseSuggestedByGoogle = `
-var THINGS_TO_EAT = [apples, oysters, sprayOnCheese]  // no semi-colon
+const theCaseSuggestedByGoogle = {
+  code: `
+    var THINGS_TO_EAT = [apples, oysters, sprayOnCheese]  // no semi-colon
 
-// bash-like conditional statements
--1 == resultOfOperation() || die();`
+    // bash-like conditional statements
+    -1 == resultOfOperation() || die();`,
+  output: `
+    var THINGS_TO_EAT = [apples, oysters, sprayOnCheese]  // no semi-colon
+
+    // bash-like conditional statements
+      -1 == resultOfOperation() || die();`,
+}
 
 const ruleName = 'indent-in-infix-expression'
 
@@ -128,41 +135,92 @@ describe('BinaryExpression', () => {
       const invalidCodes = [
         [
           [
-            `
-            const result = leftOperand
-            - 1
-            `,
-            `
-              const result = leftOperand
-            - 1
-            `,
-            `
-            const result =
-              leftOperand
-            - 1
-            `,
-            `
-            const result =
-                leftOperand
+            {
+              code: `
+                const result = leftOperand
+                - 1
+              `,
+              output: `
+                const result = leftOperand
+                  - 1
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
               - 1
             `,
-            `
-            const result =
-            leftOperand
-          - 1
+              output: `
+                const result = leftOperand
+                  - 1
             `,
-            `
-            function getEnv () {
-              return this.env.NODE_ENV
-              - 'aaaa' // <---------------- should error
-            }
-            `,
-            `
-            const result = leftOperand
-            -1 === flag || die()`,
-            `
-              const result = leftOperand
-            -1 === flag || die()`,
+            },
+            {
+              code: `
+                const result =
+                  leftOperand
+                - 1
+              `,
+              output: `
+                const result =
+                  leftOperand
+                  - 1
+              `,
+            },
+            {
+              code: `
+                const result =
+                    leftOperand
+                  - 1
+              `,
+              output: `
+                const result =
+                    leftOperand
+                    - 1
+              `,
+            },
+            {
+              code: `
+                const result =
+                leftOperand
+              - 1
+              `,
+              output: `
+                const result =
+                leftOperand
+                - 1
+              `,
+            },
+            {
+              code: `
+                function getEnv () {
+                  return this.env.NODE_ENV
+                  - 'aaaa' // <---------------- should error
+                }
+              `,
+              output: `
+                function getEnv () {
+                  return this.env.NODE_ENV
+                    - 'aaaa' // <---------------- should error
+                }
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+                -1 === flag || die()`,
+              output: `
+                const result = leftOperand
+                  -1 === flag || die()`,
+            },
+            {
+              code: `
+                const result = leftOperand
+              -1 === flag || die()`,
+              output: `
+                const result = leftOperand
+                  -1 === flag || die()`,
+            },
             theCaseSuggestedByGoogle,
           ],
           [
@@ -171,170 +229,326 @@ describe('BinaryExpression', () => {
         ],
         [
           [
-            `
-            const result = leftOperand
-            + 11
+            {
+              code: `
+                const result = leftOperand
+                + 11
+              `,
+              output: `
+                const result = leftOperand
+                  + 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+              + 11
             `,
-            `
-              const result = leftOperand
-            + 11
+              output: `
+                const result = leftOperand
+                  + 11
             `,
+            },
           ],
           ['Must add indent before "+".']
         ],
         [
           [
-            `
-            const result = leftOperand
-            * 11
+            {
+              code: `
+                const result = leftOperand
+                * 11
+              `,
+              output: `
+                const result = leftOperand
+                  * 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+              * 11
             `,
-            `
-              const result = leftOperand
-            * 11
+              output: `
+                const result = leftOperand
+                  * 11
             `,
+            },
           ],
           ['Must add indent before "*".']
         ],
         [
           [
-            `
-            const result = leftOperand
-            / 11
+            {
+              code: `
+                const result = leftOperand
+                / 11
+              `,
+              output: `
+                const result = leftOperand
+                  / 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+              / 11
             `,
-            `
-              const result = leftOperand
-            / 11
+              output: `
+                const result = leftOperand
+                  / 11
             `,
+            },
           ],
           ['Must add indent before "/".']
         ],
         [
           [
-            `
-            const result = leftOperand
-            % 11
+            {
+              code: `
+                const result = leftOperand
+                % 11
+              `,
+              output: `
+                const result = leftOperand
+                  % 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+              % 11
             `,
-            `
-              const result = leftOperand
-            % 11
+              output: `
+                const result = leftOperand
+                  % 11
             `,
+            },
           ],
           ['Must add indent before "%".']
         ],
         [
           [
-            `
-            const result = leftOperand
-            ** 11
+            {
+              code: `
+                const result = leftOperand
+                ** 11
+              `,
+              output: `
+                const result = leftOperand
+                  ** 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+              ** 11
             `,
-            `
-              const result = leftOperand
-            ** 11
+              output: `
+                const result = leftOperand
+                  ** 11
             `,
+            },
           ],
           ['Must add indent before "**".']
         ],
         [
           [
-            `
-            const result = leftOperand
-            | 11
+            {
+              code: `
+                const result = leftOperand
+                | 11
+              `,
+              output: `
+                const result = leftOperand
+                  | 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+              | 11
             `,
-            `
-              const result = leftOperand
-            | 11
+              output: `
+                const result = leftOperand
+                  | 11
             `,
+            },
           ],
           ['Must add indent before "|".']
         ],
         [
           [
-            `
-            const result = leftOperand
-            & 11
+            {
+              code: `
+                const result = leftOperand
+                & 11
+              `,
+              output: `
+                const result = leftOperand
+                  & 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+              & 11
             `,
-            `
-              const result = leftOperand
-            & 11
+              output: `
+                const result = leftOperand
+                  & 11
             `,
+            },
           ],
           ['Must add indent before "&".']
         ],
         [
           [
-            `
-            const result = leftOperand
-            ^ 11
+            {
+              code: `
+                const result = leftOperand
+                ^ 11
+              `,
+              output: `
+                const result = leftOperand
+                  ^ 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+              ^ 11
             `,
-            `
-              const result = leftOperand
-            ^ 11
+              output: `
+                const result = leftOperand
+                  ^ 11
             `,
+            },
           ],
           ['Must add indent before "^".']
         ],
         [
           [
-            `
-            const result = leftOperand
-            << 11
+            {
+              code: `
+                const result = leftOperand
+                << 11
+              `,
+              output: `
+                const result = leftOperand
+                  << 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+              << 11
             `,
-            `
-              const result = leftOperand
-            << 11
+              output: `
+                const result = leftOperand
+                  << 11
             `,
+            },
           ],
           ['Must add indent before "<<".']
         ],
         [
           [
-            `
-            const result = leftOperand
-            >> 11
+            {
+              code: `
+                const result = leftOperand
+                >> 11
+              `,
+              output: `
+                const result = leftOperand
+                  >> 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+              >> 11
             `,
-            `
-              const result = leftOperand
-            >> 11
+              output: `
+                const result = leftOperand
+                  >> 11
             `,
+            },
           ],
           ['Must add indent before ">>".']
         ],
         [
           [
-            `
-            const result = leftOperand
-            >>> 11
+            {
+              code: `
+                const result = leftOperand
+                >>> 11
+              `,
+              output: `
+                const result = leftOperand
+                  >>> 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+              >>> 11
             `,
-            `
-              const result = leftOperand
-            >>> 11
+              output: `
+                const result = leftOperand
+                  >>> 11
             `,
+            },
           ],
           ['Must add indent before ">>>".']
         ],
         [
           [
-            `
-            const result = leftOperand
-            in 11
+            {
+              code: `
+                const result = leftOperand
+                in 11
+              `,
+              output: `
+                const result = leftOperand
+                  in 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+              in 11
             `,
-            `
-              const result = leftOperand
-            in 11
+              output: `
+                const result = leftOperand
+                  in 11
             `,
+            },
           ],
           ['Must add indent before "in".']
         ],
         [
           [
-            `
-            const result = leftOperand
-            instanceof RightOperandClass
+            {
+              code: `
+                const result = leftOperand
+                instanceof RightOperandClass
+              `,
+              output: `
+                const result = leftOperand
+                  instanceof RightOperandClass
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+              instanceof RightOperandClass
             `,
-            `
-              const result = leftOperand
-            instanceof RightOperandClass
+              output: `
+                const result = leftOperand
+                  instanceof RightOperandClass
             `,
+            },
           ],
           ['Must add indent before "instanceof".']
         ],
@@ -345,8 +559,8 @@ describe('BinaryExpression', () => {
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([codes, errors]) =>
-            codes.map(code => ({ code, errors }))
+          invalid: invalidCodes.flatMap(([patterns, errors]) =>
+            patterns.map(it => ({ ...it, errors }))
           ),
         }
       )
@@ -356,17 +570,32 @@ describe('BinaryExpression', () => {
       const invalidCodes = [
         [
           [
-            `
-            const result =
-              leftOperand
-                - 1
-            `,
-            `
             {
-              const result =
-                leftOperand
-                  - 11
-            }`,
+              code: `
+                const result =
+                  leftOperand
+                    - 1
+              `,
+              output: `
+                const result =
+                  leftOperand
+                  - 1
+              `,
+            },
+            {
+              code: `
+                {
+                  const result =
+                    leftOperand
+                      - 11
+                }`,
+              output: `
+                {
+                  const result =
+                    leftOperand
+                    - 11
+                }`,
+            },
           ],
           [
             'Must remove indent before "-".',
@@ -379,8 +608,8 @@ describe('BinaryExpression', () => {
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([codes, errors]) =>
-            codes.map(code => ({ code, errors }))
+          invalid: invalidCodes.flatMap(([patterns, errors]) =>
+            patterns.map(it => ({ ...it, errors }))
           ),
         }
       )
@@ -390,51 +619,110 @@ describe('BinaryExpression', () => {
       const invalidCodes = [
         [
           [
-            `
-            const result = leftOperand
-            + rightOperand
-                - 11
-            `,
-            `
-            const result = leftOperand
-          + rightOperand
-                - 11
-            `,
-            `
-            const result = leftOperand
-            + rightOperand
-                  - 11
-            `,
-            `
-            const result = leftOperand
-         + rightOperand
-                  - 11
-            `,
-
-            `
-            const result =
-              leftOperand
-            + rightOperand
-                - 11
-            `,
-            `
-            const result =
-              leftOperand
-          + rightOperand
-                - 11
-            `,
-            `
-            const result =
-              leftOperand
-            + rightOperand
-                  - 11
-            `,
-            `
-            const result =
-              leftOperand
-          + rightOperand
+            {
+              code: `
+                const result = leftOperand
+                + rightOperand
                     - 11
-            `,
+              `,
+              output: `
+                const result = leftOperand
+                  + rightOperand
+                  - 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+              + rightOperand
+                    - 11
+              `,
+              output: `
+                const result = leftOperand
+                  + rightOperand
+                  - 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+                + rightOperand
+                      - 11
+              `,
+              output: `
+                const result = leftOperand
+                  + rightOperand
+                  - 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+            + rightOperand
+                      - 11
+              `,
+              output: `
+                const result = leftOperand
+                  + rightOperand
+                  - 11
+              `,
+            },
+            {
+              code: `
+                const result =
+                  leftOperand
+                + rightOperand
+                    - 11
+              `,
+              output: `
+                const result =
+                  leftOperand
+                  + rightOperand
+                  - 11
+              `,
+            },
+            {
+              code: `
+                const result =
+                  leftOperand
+              + rightOperand
+                    - 11
+              `,
+              output: `
+                const result =
+                  leftOperand
+                  + rightOperand
+                  - 11
+              `,
+            },
+            {
+              code: `
+                const result =
+                  leftOperand
+                + rightOperand
+                      - 11
+              `,
+              output: `
+                const result =
+                  leftOperand
+                  + rightOperand
+                  - 11
+              `,
+            },
+            {
+              code: `
+                const result =
+                  leftOperand
+              + rightOperand
+                        - 11
+              `,
+              output: `
+                const result =
+                  leftOperand
+                  + rightOperand
+                  - 11
+              `,
+            },
           ],
           [
             'Must remove indent before "-".',
@@ -443,51 +731,124 @@ describe('BinaryExpression', () => {
         ],
         [
           [
-            `
-            const result = leftOperand
-            + rightOperand
-                * 11
-            `,
-            `
-            const result = leftOperand
-          + rightOperand
-                * 11
-            `,
-            `
-            const result = leftOperand
-            + rightOperand
-                  * 11
-            `,
-            `
-            const result = leftOperand
-         + rightOperand
-                  * 11
-            `,
-
-            `
-            const result =
-              leftOperand
-            + rightOperand
-                * 11
-            `,
-            `
-            const result =
-              leftOperand
-          + rightOperand
-                * 11
-            `,
-            `
-            const result =
-              leftOperand
-            + rightOperand
-                  * 11
-            `,
-            `
-            const result =
-              leftOperand
-          + rightOperand
+            {
+              code: `
+                const result = leftOperand
+                + rightOperand
                     * 11
-            `,
+              `,
+              output: `
+                const result = leftOperand
+                  + rightOperand
+                  * 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+              + rightOperand
+                    * 11
+              `,
+              output: `
+                const result = leftOperand
+                  + rightOperand
+                  * 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+                + rightOperand
+                      * 11
+              `,
+              output: `
+                const result = leftOperand
+                  + rightOperand
+                  * 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+            + rightOperand
+                      * 11
+              `,
+              output: `
+                const result = leftOperand
+                  + rightOperand
+                  * 11
+              `,
+            },
+            {
+              code: `
+                const result =
+                  leftOperand
+                + rightOperand
+                    * 11
+              `,
+              output: `
+                const result =
+                  leftOperand
+                  + rightOperand
+                  * 11
+              `,
+            },
+            {
+              code: `
+                const result =
+                  leftOperand
+              + rightOperand
+                    * 11
+              `,
+              output: `
+                const result =
+                  leftOperand
+                  + rightOperand
+                  * 11
+              `,
+            },
+            {
+              code: `
+                const result =
+                  leftOperand
+                + rightOperand
+                      * 11
+              `,
+              output: `
+                const result =
+                  leftOperand
+                  + rightOperand
+                  * 11
+              `,
+            },
+            {
+              code: `
+                const result =
+                  leftOperand
+              + rightOperand
+                        * 11
+              `,
+              output: `
+                const result =
+                  leftOperand
+                  + rightOperand
+                  * 11
+              `,
+            },
+            {
+              code: `
+                const result =
+                    leftOperand
+                + rightOperand
+                          * 11
+              `,
+              output: `
+                const result =
+                    leftOperand
+                    + rightOperand
+                    * 11
+              `,
+            },
           ],
           [
             'Must add indent before "+".',
@@ -501,8 +862,8 @@ describe('BinaryExpression', () => {
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([codes, errors]) =>
-            codes.map(code => ({ code, errors }))
+          invalid: invalidCodes.flatMap(([patterns, errors]) =>
+            patterns.map(it => ({ ...it, errors }))
           ),
         }
       )
@@ -512,19 +873,36 @@ describe('BinaryExpression', () => {
       const invalidCodes = [
         [
           [
-            `
-            const result = firstOperand
-            + secondOperand
-            * thirdOperand
-            - fourthOperand
-            `,
-            `
-            const result =
-              firstOperand
-            + secondOperand
-            * thirdOperand
-            - fourthOperand
-            `,
+            {
+              code: `
+                const result = firstOperand
+                + secondOperand
+                * thirdOperand
+                - fourthOperand
+              `,
+              output: `
+                const result = firstOperand
+                  + secondOperand
+                  * thirdOperand
+                  - fourthOperand
+              `,
+            },
+            {
+              code: `
+                const result =
+                  firstOperand
+                + secondOperand
+                * thirdOperand
+                - fourthOperand
+                `,
+              output: `
+                const result =
+                  firstOperand
+                  + secondOperand
+                  * thirdOperand
+                  - fourthOperand
+                `,
+            },
           ],
           [
             // in operating priority low to hight.
@@ -535,19 +913,36 @@ describe('BinaryExpression', () => {
         ],
         [
           [
-            `
-            const result = firstOperand
-                + secondOperand
-            * thirdOperand
-            - fourthOperand
-            `,
-            `
-            const result =
-              firstOperand
-                + secondOperand
-            * thirdOperand
-            - fourthOperand
-            `,
+            {
+              code: `
+                const result = firstOperand
+                    + secondOperand
+                * thirdOperand
+                - fourthOperand
+              `,
+              output: `
+                const result = firstOperand
+                  + secondOperand
+                  * thirdOperand
+                  - fourthOperand
+              `,
+            },
+            {
+              code: `
+                const result =
+                  firstOperand
+                    + secondOperand
+                * thirdOperand
+                - fourthOperand
+              `,
+              output: `
+                const result =
+                  firstOperand
+                  + secondOperand
+                  * thirdOperand
+                  - fourthOperand
+              `,
+            },
           ],
           [
             'Must add indent before "-".',
@@ -557,19 +952,50 @@ describe('BinaryExpression', () => {
         ],
         [
           [
-            `
-            const result = firstOperand
-            + secondOperand
-                * thirdOperand
-            - fourthOperand
-            `,
-            `
-            const result =
-              firstOperand
-            + secondOperand
-                * thirdOperand
-            - fourthOperand
-            `,
+            {
+              code: `
+                const result = firstOperand
+                + secondOperand
+                    * thirdOperand
+                - fourthOperand
+              `,
+              output: `
+                const result = firstOperand
+                  + secondOperand
+                  * thirdOperand
+                  - fourthOperand
+              `,
+            },
+            {
+              code: `
+                const result = firstOperand
+                + secondOperand
+                    * thirdOperand
+                - fourthOperand
+              `,
+              output: `
+                const result = firstOperand
+                  + secondOperand
+                  * thirdOperand
+                  - fourthOperand
+              `,
+            },
+            {
+              code: `
+                const result =
+                  firstOperand
+                + secondOperand
+                    * thirdOperand
+                - fourthOperand
+              `,
+              output: `
+                const result =
+                  firstOperand
+                  + secondOperand
+                  * thirdOperand
+                  - fourthOperand
+              `,
+            },
           ],
           [
             'Must add indent before "-".',
@@ -579,19 +1005,38 @@ describe('BinaryExpression', () => {
         ],
         [
           [
-            `
-            const result = firstOperand
-            + secondOperand
-            * thirdOperand
-                - fourthOperand
-            `,
-            `
-            const result =
-              firstOperand
-            + secondOperand
-            * thirdOperand
-                - fourthOperand
-            `,
+            {
+              code: `
+                const result = firstOperand
+                + secondOperand
+                * thirdOperand
+                    - fourthOperand
+              `,
+              output: `
+                const result = firstOperand
+                  + secondOperand
+                  * thirdOperand
+                  - fourthOperand
+              `,
+            },
+            {
+              code: `
+                const result =
+                  firstOperand
+                + secondOperand
+                * thirdOperand
+                    - fourthOperand
+              `,
+              output: `
+                const result =
+                  firstOperand
+                  + secondOperand
+                  * thirdOperand
+                  - fourthOperand
+              `,
+            },
+
+
           ],
           [
             'Must remove indent before "-".',
@@ -606,8 +1051,8 @@ describe('BinaryExpression', () => {
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([codes, errors]) =>
-            codes.map(code => ({ code, errors }))
+          invalid: invalidCodes.flatMap(([patterns, errors]) =>
+            patterns.map(it => ({ ...it, errors }))
           ),
         }
       )
@@ -741,29 +1186,62 @@ describe('BinaryExpression', () => {
       const invalidCodes = [
         [
           [
-            `
-            const result = leftOperand -
-            1
-            `,
-            `
-              const result = leftOperand -
-            1
-            `,
-            `
-            const result =
-              leftOperand -
-            1
-            `,
-            `
-            const result =
-                leftOperand -
+            {
+              code: `
+                const result = leftOperand -
+                1
+              `,
+              output: `
+                const result = leftOperand -
+                  1
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand -
               1
             `,
-            `
-            const result =
-            leftOperand -
-          1
+              output: `
+                const result = leftOperand -
+                  1
             `,
+            },
+            {
+              code: `
+                const result =
+                  leftOperand -
+                1
+              `,
+              output: `
+                const result =
+                  leftOperand -
+                  1
+              `,
+            },
+            {
+              code: `
+                const result =
+                    leftOperand -
+                  1
+              `,
+              output: `
+                const result =
+                    leftOperand -
+                    1
+              `,
+            },
+            {
+              code: `
+                const result =
+                leftOperand -
+              1
+              `,
+              output: `
+                const result =
+                leftOperand -
+                1
+              `,
+            },
           ],
           [
             'Must add indent before right operand of "-".',
@@ -771,178 +1249,368 @@ describe('BinaryExpression', () => {
         ],
         [
           [
-            `
-            const result = leftOperand +
-            11
+            {
+              code: `
+                const result = leftOperand +
+                11
+              `,
+              output: `
+                const result = leftOperand +
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand +
+              11
             `,
-            `
-              const result = leftOperand +
-            11
+              output: `
+                const result = leftOperand +
+                  11
             `,
-            `
-            function getEnv () {
-              return this.env.NODE_ENV +
-              'aaaa' // <---------------- should error
-            }
-            `,
+            },
+            {
+              code: `
+                function getEnv () {
+                  return this.env.NODE_ENV +
+                  'aaaa' // <---------------- should error
+                }
+              `,
+              output: `
+                function getEnv () {
+                  return this.env.NODE_ENV +
+                    'aaaa' // <---------------- should error
+                }
+              `,
+            },
           ],
-          ['Must add indent before right operand of "+".']
+          [
+            'Must add indent before right operand of "+".',
+          ]
         ],
         [
           [
-            `
-            const result = leftOperand *
-            11
+            {
+              code: `
+                const result = leftOperand *
+                11
+              `,
+              output: `
+                const result = leftOperand *
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand *
+              11
             `,
-            `
-              const result = leftOperand *
-            11
+              output: `
+                const result = leftOperand *
+                  11
             `,
+            },
           ],
-          ['Must add indent before right operand of "*".']
+          [
+            'Must add indent before right operand of "*".',
+          ]
         ],
         [
           [
-            `
-            const result = leftOperand /
-            11
+            {
+              code: `
+                const result = leftOperand /
+                11
+              `,
+              output: `
+                const result = leftOperand /
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand /
+              11
             `,
-            `
-              const result = leftOperand /
-            11
+              output: `
+                const result = leftOperand /
+                  11
             `,
+            },
           ],
-          ['Must add indent before right operand of "/".']
+          [
+            'Must add indent before right operand of "/".',
+          ]
         ],
         [
           [
-            `
-            const result = leftOperand %
-            11
+            {
+              code: `
+                const result = leftOperand %
+                11
+              `,
+              output: `
+                const result = leftOperand %
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand %
+              11
             `,
-            `
-              const result = leftOperand %
-            11
+              output: `
+                const result = leftOperand %
+                  11
             `,
+            },
           ],
-          ['Must add indent before right operand of "%".']
+          [
+            'Must add indent before right operand of "%".',
+          ]
         ],
         [
           [
-            `
-            const result = leftOperand **
-            11
+            {
+              code: `
+                const result = leftOperand **
+                11
+              `,
+              output: `
+                const result = leftOperand **
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand **
+              11
             `,
-            `
-              const result = leftOperand **
-            11
+              output: `
+                const result = leftOperand **
+                  11
             `,
+            },
           ],
-          ['Must add indent before right operand of "**".']
+          [
+            'Must add indent before right operand of "**".',
+          ]
         ],
         [
           [
-            `
-            const result = leftOperand |
-            11
+            {
+              code: `
+                const result = leftOperand |
+                11
+              `,
+              output: `
+                const result = leftOperand |
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand |
+              11
             `,
-            `
-              const result = leftOperand |
-            11
+              output: `
+                const result = leftOperand |
+                  11
             `,
+            },
           ],
-          ['Must add indent before right operand of "|".']
+          [
+            'Must add indent before right operand of "|".',
+          ]
         ],
         [
           [
-            `
-            const result = leftOperand &
-            11
+            {
+              code: `
+                const result = leftOperand &
+                11
+              `,
+              output: `
+                const result = leftOperand &
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand &
+              11
             `,
-            `
-              const result = leftOperand &
-            11
+              output: `
+                const result = leftOperand &
+                  11
             `,
+            },
           ],
-          ['Must add indent before right operand of "&".']
+          [
+            'Must add indent before right operand of "&".',
+          ]
         ],
         [
           [
-            `
-            const result = leftOperand ^
-            11
+            {
+              code: `
+                const result = leftOperand ^
+                11
+              `,
+              output: `
+                const result = leftOperand ^
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand ^
+              11
             `,
-            `
-              const result = leftOperand ^
-            11
+              output: `
+                const result = leftOperand ^
+                  11
             `,
+            },
           ],
-          ['Must add indent before right operand of "^".']
+          [
+            'Must add indent before right operand of "^".',
+          ]
         ],
         [
           [
-            `
-            const result = leftOperand <<
-            11
+            {
+              code: `
+                const result = leftOperand <<
+                11
+              `,
+              output: `
+                const result = leftOperand <<
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand <<
+              11
             `,
-            `
-              const result = leftOperand <<
-            11
+              output: `
+                const result = leftOperand <<
+                  11
             `,
+            },
           ],
-          ['Must add indent before right operand of "<<".']
+          [
+            'Must add indent before right operand of "<<".',
+          ]
         ],
         [
           [
-            `
-            const result = leftOperand >>
-            11
+            {
+              code: `
+                const result = leftOperand >>
+                11
+              `,
+              output: `
+                const result = leftOperand >>
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand >>
+              11
             `,
-            `
-              const result = leftOperand >>
-            11
+              output: `
+                const result = leftOperand >>
+                  11
             `,
+            },
           ],
-          ['Must add indent before right operand of ">>".']
+          [
+            'Must add indent before right operand of ">>".',
+          ]
         ],
         [
           [
-            `
-            const result = leftOperand >>>
-            11
+            {
+              code: `
+                const result = leftOperand >>>
+                11
+              `,
+              output: `
+                const result = leftOperand >>>
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand >>>
+              11
             `,
-            `
-              const result = leftOperand >>>
-            11
+              output: `
+                const result = leftOperand >>>
+                  11
             `,
+            },
           ],
-          ['Must add indent before right operand of ">>>".']
+          [
+            'Must add indent before right operand of ">>>".',
+          ]
         ],
         [
           [
-            `
-            const result = leftOperand in
-            11
+            {
+              code: `
+                const result = leftOperand in
+                11
+              `,
+              output: `
+                const result = leftOperand in
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand in
+              11
             `,
-            `
-              const result = leftOperand in
-            11
+              output: `
+                const result = leftOperand in
+                  11
             `,
+            },
           ],
-          ['Must add indent before right operand of "in".']
+          [
+            'Must add indent before right operand of "in".',
+          ]
         ],
         [
           [
-            `
-            const result = leftOperand instanceof
-            RightOperandClass
+            {
+              code: `
+                const result = leftOperand instanceof
+                RightOperandClass
+              `,
+              output: `
+                const result = leftOperand instanceof
+                  RightOperandClass
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand instanceof
+              RightOperandClass
             `,
-            `
-              const result = leftOperand instanceof
-            RightOperandClass
+              output: `
+                const result = leftOperand instanceof
+                  RightOperandClass
             `,
+            },
           ],
-          ['Must add indent before right operand of "instanceof".']
+          [
+            'Must add indent before right operand of "instanceof".',
+          ]
         ],
       ]
 
@@ -951,8 +1619,8 @@ describe('BinaryExpression', () => {
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([codes, errors]) =>
-            codes.map(code => ({ code, errors }))
+          invalid: invalidCodes.flatMap(([patterns, errors]) =>
+            patterns.map(it => ({ ...it, errors }))
           ),
         }
       )
@@ -962,17 +1630,32 @@ describe('BinaryExpression', () => {
       const invalidCodes = [
         [
           [
-            `
-            const result =
-              leftOperand -
-                1
-            `,
-            `
             {
-              const result =
-                leftOperand -
+              code: `
+                const result =
+                  leftOperand -
+                    1
+              `,
+              output: `
+                const result =
+                  leftOperand -
+                  1
+              `,
+            },
+            {
+              code: `
+              {
+                const result =
+                  leftOperand -
+                    11
+              }`,
+              output: `
+              {
+                const result =
+                  leftOperand -
                   11
-            }`,
+              }`,
+            },
           ],
           [
             'Must remove indent before right operand of "-".',
@@ -985,8 +1668,8 @@ describe('BinaryExpression', () => {
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([codes, errors]) =>
-            codes.map(code => ({ code, errors }))
+          invalid: invalidCodes.flatMap(([patterns, errors]) =>
+            patterns.map(it => ({ ...it, errors }))
           ),
         }
       )
@@ -996,51 +1679,110 @@ describe('BinaryExpression', () => {
       const invalidCodes = [
         [
           [
-            `
-            const result = leftOperand +
-            rightOperand -
-                11
-            `,
-            `
-            const result = leftOperand +
-          rightOperand -
-                11
-            `,
-            `
-            const result = leftOperand +
-            rightOperand -
-                  11
-            `,
-            `
-            const result = leftOperand +
-         rightOperand -
-                  11
-            `,
-
-            `
-            const result =
-              leftOperand +
-            rightOperand -
-                11
-            `,
-            `
-            const result =
-              leftOperand +
-          rightOperand -
-                11
-            `,
-            `
-            const result =
-              leftOperand +
-            rightOperand -
-                  11
-            `,
-            `
-            const result =
-              leftOperand +
-          rightOperand -
+            {
+              code: `
+                const result = leftOperand +
+                rightOperand -
                     11
-            `,
+              `,
+              output: `
+                const result = leftOperand +
+                  rightOperand -
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand +
+              rightOperand -
+                    11
+              `,
+              output: `
+                const result = leftOperand +
+                  rightOperand -
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand +
+                rightOperand -
+                      11
+              `,
+              output: `
+                const result = leftOperand +
+                  rightOperand -
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand +
+            rightOperand -
+                      11
+              `,
+              output: `
+                const result = leftOperand +
+                  rightOperand -
+                  11
+              `,
+            },
+            {
+              code: `
+                const result =
+                  leftOperand +
+                rightOperand -
+                    11
+              `,
+              output: `
+                const result =
+                  leftOperand +
+                  rightOperand -
+                  11
+              `,
+            },
+            {
+              code: `
+                const result =
+                  leftOperand +
+              rightOperand -
+                    11
+              `,
+              output: `
+                const result =
+                  leftOperand +
+                  rightOperand -
+                  11
+              `,
+            },
+            {
+              code: `
+                const result =
+                  leftOperand +
+                rightOperand -
+                      11
+              `,
+              output: `
+                const result =
+                  leftOperand +
+                  rightOperand -
+                  11
+              `,
+            },
+            {
+              code: `
+                const result =
+                  leftOperand +
+              rightOperand -
+                        11
+              `,
+              output: `
+                const result =
+                  leftOperand +
+                  rightOperand -
+                  11
+              `,
+            },
           ],
           [
             'Must remove indent before right operand of "-".',
@@ -1049,51 +1791,110 @@ describe('BinaryExpression', () => {
         ],
         [
           [
-            `
-            const result = leftOperand +
-            rightOperand               *
-                11
-            `,
-            `
-            const result = leftOperand +
-          rightOperand *
-                11
-            `,
-            `
-            const result = leftOperand +
-            rightOperand *
-                  11
-            `,
-            `
-            const result = leftOperand +
-         rightOperand *
-                  11
-            `,
-
-            `
-            const result =
-              leftOperand +
-            rightOperand *
-                11
-            `,
-            `
-            const result =
-              leftOperand +
-          rightOperand *
-                11
-            `,
-            `
-            const result =
-              leftOperand +
-            rightOperand *
-                  11
-            `,
-            `
-            const result =
-              leftOperand +
-          rightOperand *
+            {
+              code: `
+                const result = leftOperand +
+                rightOperand *
                     11
-            `,
+              `,
+              output: `
+                const result = leftOperand +
+                  rightOperand *
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand +
+              rightOperand *
+                    11
+              `,
+              output: `
+                const result = leftOperand +
+                  rightOperand *
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand +
+                rightOperand *
+                      11
+              `,
+              output: `
+                const result = leftOperand +
+                  rightOperand *
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand +
+            rightOperand *
+                      11
+              `,
+              output: `
+                const result = leftOperand +
+                  rightOperand *
+                  11
+              `,
+            },
+            {
+              code: `
+                const result =
+                  leftOperand +
+                rightOperand *
+                    11
+              `,
+              output: `
+                const result =
+                  leftOperand +
+                  rightOperand *
+                  11
+              `,
+            },
+            {
+              code: `
+                const result =
+                  leftOperand +
+              rightOperand *
+                    11
+              `,
+              output: `
+                const result =
+                  leftOperand +
+                  rightOperand *
+                  11
+              `,
+            },
+            {
+              code: `
+                const result =
+                  leftOperand +
+                rightOperand *
+                      11
+              `,
+              output: `
+                const result =
+                  leftOperand +
+                  rightOperand *
+                  11
+              `,
+            },
+            {
+              code: `
+                const result =
+                  leftOperand +
+              rightOperand *
+                        11
+              `,
+              output: `
+                const result =
+                  leftOperand +
+                  rightOperand *
+                  11
+              `,
+            },
           ],
           [
             'Must add indent before right operand of "+".',
@@ -1107,8 +1908,8 @@ describe('BinaryExpression', () => {
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([codes, errors]) =>
-            codes.map(code => ({ code, errors }))
+          invalid: invalidCodes.flatMap(([patterns, errors]) =>
+            patterns.map(it => ({ ...it, errors }))
           ),
         }
       )
@@ -1118,19 +1919,36 @@ describe('BinaryExpression', () => {
       const invalidCodes = [
         [
           [
-            `
-            const result = firstOperand +
-            secondOperand *
-          thirdOperand -
-          fourthOperand
-            `,
-            `
-            const result =
-              firstOperand +
-            secondOperand *
-          thirdOperand -
-          fourthOperand
-            `,
+            {
+              code: `
+                const result = firstOperand +
+                secondOperand *
+              thirdOperand -
+              fourthOperand
+              `,
+              output: `
+                const result = firstOperand +
+                  secondOperand *
+                  thirdOperand -
+                  fourthOperand
+              `,
+            },
+            {
+              code: `
+                const result =
+                  firstOperand +
+                secondOperand *
+              thirdOperand -
+              fourthOperand
+              `,
+              output: `
+                const result =
+                  firstOperand +
+                  secondOperand *
+                  thirdOperand -
+                  fourthOperand
+              `,
+            },
           ],
           [
             // in operating priority low to hight.
@@ -1141,19 +1959,36 @@ describe('BinaryExpression', () => {
         ],
         [
           [
-            `
-            const result = firstOperand +
-                secondOperand *
-            thirdOperand -
-            fourthOperand
-            `,
-            `
-            const result =
-              firstOperand +
-                secondOperand *
-            thirdOperand -
-            fourthOperand
-            `,
+            {
+              code: `
+                const result = firstOperand +
+                    secondOperand *
+                thirdOperand -
+                fourthOperand
+              `,
+              output: `
+                const result = firstOperand +
+                  secondOperand *
+                  thirdOperand -
+                  fourthOperand
+              `,
+            },
+            {
+              code: `
+                const result =
+                  firstOperand +
+                    secondOperand *
+                thirdOperand -
+                fourthOperand
+              `,
+              output: `
+                const result =
+                  firstOperand +
+                  secondOperand *
+                  thirdOperand -
+                  fourthOperand
+              `,
+            },
           ],
           [
             'Must add indent before right operand of "-".',
@@ -1163,19 +1998,36 @@ describe('BinaryExpression', () => {
         ],
         [
           [
-            `
-            const result = firstOperand +
-            secondOperand *
-                thirdOperand -
-            fourthOperand
-            `,
-            `
-            const result =
-              firstOperand +
-            secondOperand *
-                thirdOperand -
-            fourthOperand
-            `,
+            {
+              code: `
+                const result = firstOperand +
+                secondOperand *
+                    thirdOperand -
+                fourthOperand
+              `,
+              output: `
+                const result = firstOperand +
+                  secondOperand *
+                  thirdOperand -
+                  fourthOperand
+              `,
+            },
+            {
+              code: `
+                const result =
+                  firstOperand +
+                secondOperand *
+                    thirdOperand -
+                fourthOperand
+              `,
+              output: `
+                const result =
+                  firstOperand +
+                  secondOperand *
+                  thirdOperand -
+                  fourthOperand
+              `,
+            },
           ],
           [
             'Must add indent before right operand of "-".',
@@ -1185,19 +2037,36 @@ describe('BinaryExpression', () => {
         ],
         [
           [
-            `
-            const result = firstOperand +
-            secondOperand *
-          thirdOperand -
-                fourthOperand
-            `,
-            `
-            const result =
-              firstOperand +
-            secondOperand *
-          thirdOperand -
-                fourthOperand
-            `,
+            {
+              code: `
+                const result = firstOperand +
+                secondOperand *
+              thirdOperand -
+                    fourthOperand
+              `,
+              output: `
+                const result = firstOperand +
+                  secondOperand *
+                  thirdOperand -
+                  fourthOperand
+              `,
+            },
+            {
+              code: `
+                const result =
+                  firstOperand +
+                secondOperand *
+              thirdOperand -
+                    fourthOperand
+              `,
+              output: `
+                const result =
+                  firstOperand +
+                  secondOperand *
+                  thirdOperand -
+                  fourthOperand
+              `,
+            },
           ],
           [
             'Must remove indent before right operand of "-".',
@@ -1212,8 +2081,8 @@ describe('BinaryExpression', () => {
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([codes, errors]) =>
-            codes.map(code => ({ code, errors }))
+          invalid: invalidCodes.flatMap(([patterns, errors]) =>
+            patterns.map(it => ({ ...it, errors }))
           ),
         }
       )
