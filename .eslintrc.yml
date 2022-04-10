@@ -76,6 +76,7 @@ rules:
     - selector: 'WhileStatement'
       message: 'Object-Oriented Programming does not require `while` statement.'
   no-return-await: error
+  no-trailing-spaces: error
   no-unexpected-multiline: error
   no-unneeded-ternary:
     - error
