@@ -18,7 +18,7 @@ const validCodes = [
     } 
   }
   `,
- 
+
   // has empty line after super()
   `
     class A extends B {
@@ -95,7 +95,7 @@ const validCodes = [
   }
   `,
 ]
- 
+
 const invalidCodes = [
   // has no empty line after super() - multiple statements in same line
   {
@@ -115,7 +115,7 @@ const invalidCodes = [
         }
       }
     `
-  },  
+  },
 
   // has no empty line after super()
   {
@@ -328,7 +328,7 @@ const invalidCodes = [
 
       this.age = age;}}
     `
-  }, 
+  },
 
   // has no empty line after super() - all in one line in constructor
   {
@@ -346,19 +346,19 @@ const invalidCodes = [
     `
   },
 ]
- 
-const errors = [{ 
-  messageId: 'errorMessage', 
-  data: { kind: 'this' }, 
-  type: 'ExpressionStatement' 
+
+const errors = [{
+  messageId: 'errorMessage',
+  data: { kind: 'this' },
+  type: 'ExpressionStatement'
 }]
-   
+
 // ------------------------------------------------------------------------------
 // Tests
 //  ------------------------------------------------------------------------------
-   
+
 const ruleTester = new RuleTester({ parserOptions: { ecmaVersion: 6 } })
- 
+
 ruleTester.run('empty-line-after-super', rule, {
   valid: validCodes.map(code => ({ code })),
   invalid: invalidCodes.map(({ code, output }) => ({ code, output, errors }))
