@@ -1,12 +1,13 @@
 // @ts-check
 'use strict'
 
-// ESLint tester instead of Jest `test()`
-const tester = require('../../tools/ESLintHelper').createTester()
+const ESLintHelper = require('../../tools/ESLintHelper')
 
 /** @type {Function|Object} */
 const ruleBody = require('../../../lib/indent-in-infix-expression')
 
+// ESLint tester instead of Jest `test()`
+const tester = ESLintHelper.createTester()
 const ruleName = 'indent-in-logical-expression'
 
 describe('LogicalExpression', () => {
@@ -74,7 +75,7 @@ describe('LogicalExpression', () => {
     })
 
     describe('Must add indent (x1)', () => {
-      const invalidCases = [
+      const invalidCases = ESLintHelper.expandInvalidCases([
         [
           [
             {
@@ -211,22 +212,20 @@ describe('LogicalExpression', () => {
             'Must add indent before "&&".',
           ]
         ],
-      ]
+      ])
 
       tester.run(
         ruleName,
         ruleBody,
         {
           valid: [],
-          invalid: invalidCases.flatMap(([patterns, errors]) =>
-            patterns.map(it => ({ ...it, errors }))
-          ),
+          invalid: invalidCases
         }
       )
     })
 
     describe('Must remove indent (x1)', () => {
-      const invalidCases = [
+      const invalidCases = ESLintHelper.expandInvalidCases([
         [
           [
             {
@@ -308,22 +307,20 @@ describe('LogicalExpression', () => {
             'Must remove indent before "||".',
           ]
         ]
-      ]
+      ])
 
       tester.run(
         ruleName,
         ruleBody,
         {
           valid: [],
-          invalid: invalidCases.flatMap(([patterns, errors]) =>
-            patterns.map(it => ({ ...it, errors }))
-          ),
+          invalid: invalidCases
         }
       )
     })
 
     describe('Must add indent (x1), Must remove indent (x1)', () => {
-      const invalidCases = [
+      const invalidCases = ESLintHelper.expandInvalidCases([
         [
           [
             {
@@ -502,22 +499,20 @@ describe('LogicalExpression', () => {
             'Must remove indent before "&&".',
           ]
         ],
-      ]
+      ])
 
       tester.run(
         ruleName,
         ruleBody,
         {
           valid: [],
-          invalid: invalidCases.flatMap(([patterns, errors]) =>
-            patterns.map(it => ({ ...it, errors }))
-          ),
+          invalid: invalidCases
         }
       )
     })
 
     describe('three errors', () => {
-      const invalidCases = [
+      const invalidCases = ESLintHelper.expandInvalidCases([
         [
           [
             {
@@ -569,16 +564,14 @@ describe('LogicalExpression', () => {
             'Must add indent before "&&".',
           ]
         ]
-      ]
+      ])
 
       tester.run(
         ruleName,
         ruleBody,
         {
           valid: [],
-          invalid: invalidCases.flatMap(([patterns, errors]) =>
-            patterns.map(it => ({ ...it, errors }))
-          ),
+          invalid: invalidCases
         }
       )
     })
@@ -648,7 +641,7 @@ describe('LogicalExpression', () => {
     })
 
     describe('Must add indent (x1)', () => {
-      const invalidCases = [
+      const invalidCases = ESLintHelper.expandInvalidCases([
         [
           [
             {
@@ -785,22 +778,20 @@ describe('LogicalExpression', () => {
             'Must add indent before right operand of "&&".',
           ]
         ],
-      ]
+      ])
 
       tester.run(
         ruleName,
         ruleBody,
         {
           valid: [],
-          invalid: invalidCases.flatMap(([patterns, errors]) =>
-            patterns.map(it => ({ ...it, errors }))
-          ),
+          invalid: invalidCases
         }
       )
     })
 
     describe('Must remove indent (x1)', () => {
-      const invalidCases = [
+      const invalidCases = ESLintHelper.expandInvalidCases([
         [
           [
             {
@@ -886,22 +877,20 @@ describe('LogicalExpression', () => {
             'Must remove indent before right operand of "||".',
           ]
         ]
-      ]
+      ])
 
       tester.run(
         ruleName,
         ruleBody,
         {
           valid: [],
-          invalid: invalidCases.flatMap(([patterns, errors]) =>
-            patterns.map(it => ({ ...it, errors }))
-          ),
+          invalid: invalidCases
         }
       )
     })
 
     describe('Must add indent (x1), Must remove indent (x1)', () => {
-      const invalidCases = [
+      const invalidCases = ESLintHelper.expandInvalidCases([
         [
           [
             {
@@ -1080,22 +1069,20 @@ describe('LogicalExpression', () => {
             'Must remove indent before right operand of "&&".',
           ]
         ],
-      ]
+      ])
 
       tester.run(
         ruleName,
         ruleBody,
         {
           valid: [],
-          invalid: invalidCases.flatMap(([patterns, errors]) =>
-            patterns.map(it => ({ ...it, errors }))
-          ),
+          invalid: invalidCases
         }
       )
     })
 
     describe('three errors', () => {
-      const invalidCases = [
+      const invalidCases = ESLintHelper.expandInvalidCases([
         [
           [
             {
@@ -1146,16 +1133,14 @@ describe('LogicalExpression', () => {
             'Must add indent before right operand of "&&".',
           ]
         ]
-      ]
+      ])
 
       tester.run(
         ruleName,
         ruleBody,
         {
           valid: [],
-          invalid: invalidCases.flatMap(([patterns, errors]) =>
-            patterns.map(it => ({ ...it, errors }))
-          ),
+          invalid: invalidCases
         }
       )
     })
