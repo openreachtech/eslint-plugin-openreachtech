@@ -24,6 +24,28 @@ class ESLintHelper {
   }) {
     return new RuleTester(options)
   }
+
+  /**
+   * Expand invalid cases.
+   * @param {Array<Array<Array>>} cases - Invalid cases.
+   * @returns {Array<{
+   *   code: string,
+   *   output: string,
+   *   errors: Array<string>,
+   * }>} - Expanded invalid cases.
+   */
+  static expandInvalidCases (cases) {
+    return cases.flatMap(([patterns, errors]) =>
+      patterns.map(({
+        code,
+        output
+      }) => ({
+        code,
+        output,
+        errors
+      }))
+    )
+  }
 }
 
 module.exports = ESLintHelper
