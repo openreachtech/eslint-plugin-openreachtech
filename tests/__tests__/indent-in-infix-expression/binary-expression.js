@@ -132,7 +132,7 @@ describe('BinaryExpression', () => {
     })
 
     describe('Must add indent (x1)', () => {
-      const invalidCodes = [
+      const invalidCases = [
         [
           [
             {
@@ -559,7 +559,7 @@ describe('BinaryExpression', () => {
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([patterns, errors]) =>
+          invalid: invalidCases.flatMap(([patterns, errors]) =>
             patterns.map(it => ({ ...it, errors }))
           ),
         }
@@ -567,7 +567,7 @@ describe('BinaryExpression', () => {
     })
 
     describe('Must remove indent (x1)', () => {
-      const invalidCodes = [
+      const invalidCases = [
         [
           [
             {
@@ -608,7 +608,7 @@ describe('BinaryExpression', () => {
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([patterns, errors]) =>
+          invalid: invalidCases.flatMap(([patterns, errors]) =>
             patterns.map(it => ({ ...it, errors }))
           ),
         }
@@ -616,7 +616,7 @@ describe('BinaryExpression', () => {
     })
 
     describe('Must add indent (x1), Must remove indent (x1)', () => {
-      const invalidCodes = [
+      const invalidCases = [
         [
           [
             {
@@ -862,7 +862,7 @@ describe('BinaryExpression', () => {
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([patterns, errors]) =>
+          invalid: invalidCases.flatMap(([patterns, errors]) =>
             patterns.map(it => ({ ...it, errors }))
           ),
         }
@@ -870,7 +870,7 @@ describe('BinaryExpression', () => {
     })
 
     describe('three errors', () => {
-      const invalidCodes = [
+      const invalidCases = [
         [
           [
             {
@@ -1051,7 +1051,7 @@ describe('BinaryExpression', () => {
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([patterns, errors]) =>
+          invalid: invalidCases.flatMap(([patterns, errors]) =>
             patterns.map(it => ({ ...it, errors }))
           ),
         }
@@ -1183,7 +1183,7 @@ describe('BinaryExpression', () => {
     })
 
     describe('Must add indent (x1)', () => {
-      const invalidCodes = [
+      const invalidCases = [
         [
           [
             {
@@ -1619,7 +1619,7 @@ describe('BinaryExpression', () => {
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([patterns, errors]) =>
+          invalid: invalidCases.flatMap(([patterns, errors]) =>
             patterns.map(it => ({ ...it, errors }))
           ),
         }
@@ -1627,7 +1627,7 @@ describe('BinaryExpression', () => {
     })
 
     describe('Must remove indent (x1)', () => {
-      const invalidCodes = [
+      const invalidCases = [
         [
           [
             {
@@ -1668,7 +1668,7 @@ describe('BinaryExpression', () => {
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([patterns, errors]) =>
+          invalid: invalidCases.flatMap(([patterns, errors]) =>
             patterns.map(it => ({ ...it, errors }))
           ),
         }
@@ -1676,7 +1676,7 @@ describe('BinaryExpression', () => {
     })
 
     describe('Must add indent (x1), Must remove indent (x1)', () => {
-      const invalidCodes = [
+      const invalidCases = [
         [
           [
             {
@@ -1908,7 +1908,7 @@ describe('BinaryExpression', () => {
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([patterns, errors]) =>
+          invalid: invalidCases.flatMap(([patterns, errors]) =>
             patterns.map(it => ({ ...it, errors }))
           ),
         }
@@ -1916,7 +1916,7 @@ describe('BinaryExpression', () => {
     })
 
     describe('three errors', () => {
-      const invalidCodes = [
+      const invalidCases = [
         [
           [
             {
@@ -2081,7 +2081,7 @@ describe('BinaryExpression', () => {
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([patterns, errors]) =>
+          invalid: invalidCases.flatMap(([patterns, errors]) =>
             patterns.map(it => ({ ...it, errors }))
           ),
         }
