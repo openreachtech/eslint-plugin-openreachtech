@@ -1,12 +1,13 @@
 // @ts-check
 'use strict'
 
-// ESLint tester instead of Jest `test()`
-const tester = require('../../tools/ESLintHelper').createTester()
+const ESLintHelper = require('../../tools/ESLintHelper')
 
 /** @type {Function|Object} */
 const ruleBody = require('../../../lib/indent-in-infix-expression')
 
+// ESLint tester instead of Jest `test()`
+const tester = ESLintHelper.createTester()
 const ruleName = 'indent-in-logical-expression'
 
 describe('LogicalExpression', () => {
@@ -67,60 +68,118 @@ describe('LogicalExpression', () => {
         ruleName,
         ruleBody,
         {
-          valid: validCodes.map(code => ({ code })),
+          valid: validCodes.map(code => ({ code, output: code })),
           invalid: [],
         }
       )
     })
 
     describe('Must add indent (x1)', () => {
-      const invalidCodes = [
+      const invalidCases = ESLintHelper.expandInvalidCases([
         [
           [
-            `
-            const result = leftOperand
-            || 1
-            `,
-            `
-              const result = leftOperand
-            || 1
-            `,
-            `
-            function getEnv () {
-              return this.env.NODE_ENV
-              || 'aaaa' // <---------------- should error
-            }
-            `,
-            `
-            if (first
-            || second
-            ) {
-              save(first, second, third)
-            }
-            `,
-            `
-              if (first
-            || second
-              ) {
-                save(first, second)
+            {
+              code: `
+                const result = leftOperand
+                || 1
+              `,
+              output: `
+                const result = leftOperand
+                  || 1
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+              || 1
+              `,
+              output: `
+                const result = leftOperand
+                  || 1
+              `,
+            },
+            {
+              code: `
+              function getEnv () {
+                return this.env.NODE_ENV
+                || 'aaaa' // <---------------- should error
               }
-            `,
-            `
-            if (
-              first
-            || second
-            ) {
-              save(first, second)
-            }
-            `,
-            `
-            function test (xxx) {
-              const zzz = xxx
-              || 999 // <---------------- should error
+              `,
+              output: `
+              function getEnv () {
+                return this.env.NODE_ENV
+                  || 'aaaa' // <---------------- should error
+              }
+              `,
+            },
+            {
+              code: `
+              if (first
+              || second
+              ) {
+                save(first, second, third)
+              }
+              `,
+              output: `
+              if (first
+                || second
+              ) {
+                save(first, second, third)
+              }
+              `,
+            },
+            {
+              code: `
+                if (first
+              || second
+                ) {
+                  save(first, second)
+                }
+              `,
+              output: `
+                if (first
+                  || second
+                ) {
+                  save(first, second)
+                }
+              `,
+            },
+            {
+              code: `
+                if (
+                  first
+                || second
+                ) {
+                  save(first, second)
+                }
+              `,
+              output: `
+                if (
+                  first
+                  || second
+                ) {
+                  save(first, second)
+                }
+              `,
+            },
+            {
+              code: `
+                function test (xxx) {
+                  const zzz = xxx
+                  || 999 // <---------------- should error
 
-              return zzz
-            }
-            `,
+                  return zzz
+                }
+              `,
+              output: `
+                function test (xxx) {
+                  const zzz = xxx
+                    || 999 // <---------------- should error
+
+                  return zzz
+                }
+              `,
+            },
           ],
           [
             'Must add indent before "||".',
@@ -128,211 +187,376 @@ describe('LogicalExpression', () => {
         ],
         [
           [
-            `
-            const result = leftOperand
-            && 11
-            `,
-            `
+            {
+              code: `
               const result = leftOperand
-            && 11
-            `,
+              && 11
+              `,
+              output: `
+              const result = leftOperand
+                && 11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand
+              && 11
+              `,
+              output: `
+                const result = leftOperand
+                  && 11
+              `,
+            },
           ],
           [
             'Must add indent before "&&".',
           ]
         ],
-      ]
+      ])
 
       tester.run(
         ruleName,
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([codes, errors]) =>
-            codes.map(code => ({ code, errors }))
-          ),
+          invalid: invalidCases
         }
       )
     })
 
     describe('Must remove indent (x1)', () => {
-      const invalidCodes = [
+      const invalidCases = ESLintHelper.expandInvalidCases([
         [
           [
-            `
-            if (
+            {
+              code: `
+                if (
+                  first
+                    || second
+                ) {
+                  save(first, second)
+                }
+              `,
+              output: `
+                if (
+                  first
+                  || second
+                ) {
+                  save(first, second)
+                }
+              `,
+            },
+            {
+              code: `
+                if (
+                first
+                  || second
+                ) {
+                  save(first, second)
+                }
+              `,
+              output: `
+                if (
+                first
+                || second
+                ) {
+                  save(first, second)
+                }
+              `,
+            },
+            {
+              code: `
+                if (
               first
                 || second
-            ) {
-              save(first, second)
-            }
-            `,
-            `
-            if (
-            first
+                ) {
+                  save(first, second)
+                }
+              `,
+              output: `
+                if (
+              first
               || second
-            ) {
-              save(first, second)
-            }
-            `,
-            `
-              if (
-            first
-              || second
-              ) {
-                save(first, second)
+                ) {
+                  save(first, second)
+                }
+              `,
+            },
+            {
+              code: `
+              function test (xxx) {
+                const zzz =
+                  xxx
+                    || 999 // <---------------- should error
+
+                return zzz
               }
-            `,
-            `
-            function test (xxx) {
-              const zzz =
-                xxx
+              `,
+              output: `
+              function test (xxx) {
+                const zzz =
+                  xxx
                   || 999 // <---------------- should error
 
-              return zzz
-            }
-            `,
+                return zzz
+              }
+              `,
+            },
           ],
           [
             'Must remove indent before "||".',
           ]
         ]
-      ]
+      ])
 
       tester.run(
         ruleName,
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([codes, errors]) =>
-            codes.map(code => ({ code, errors }))
-          ),
+          invalid: invalidCases
         }
       )
     })
 
     describe('Must add indent (x1), Must remove indent (x1)', () => {
-      const invalidCodes = [
+      const invalidCases = ESLintHelper.expandInvalidCases([
         [
           [
-            `
-            if (first
-            || second
-                && third
-            ) {
-              console.log(first, second, third)
-            }`,
-            `
-            if (first
-                && second
-            || third
-            ) {
-              console.log(first, second, third)
-            }`,
-            `
-            if (first
-          || second
-                && third
-            ) {
-              console.log(first, second, third)
-            }`,
-            `
-            if (first
+            {
+              code: `
+                if (first
+                || second
+                    && third
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output: `
+                if (first
+                  || second
+                  && third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
+            {
+              code: `
+                if (first
+                    && second
+                || third
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output: `
+                if (first
                   && second
-            || third
-            ) {
-              console.log(first, second, third)
-            }`,
-            `
-            if (first
+                  || third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
+            {
+              code: `
+                if (first
+              || second
+                    && third
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output: `
+                if (first
+                  || second
+                  && third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
+            {
+              code: `
+                if (first
+                      && second
+                || third
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output: `
+                if (first
                   && second
-          || third
-            ) {
-              console.log(first, second, third)
-            }`,
-
-            `
-            if (
-              first
-            || second
-                && third
-            ) {
-              console.log(first, second, third)
-            }`,
-            `
-            if (
-              first
-                && second
-            || third
-            ) {
-              console.log(first, second, third)
-            }`,
-            `
-            if (
-              first
-          || second
-                && third
-            ) {
-              console.log(first, second, third)
-            }`,
-            `
-            if (
-              first
+                  || third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
+            {
+              code: `
+                if (first
+                      && second
+              || third
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output: `
+                if (first
                   && second
-            || third
-            ) {
-              console.log(first, second, third)
-            }`,
-            `
-            if (
-              first
+                  || third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
+            {
+              code: `
+                if (
+                  first
+                || second
+                    && third
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output: `
+                if (
+                  first
+                  || second
+                  && third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
+            {
+              code: `
+                if (
+                  first
+                    && second
+                || third
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output: `
+                if (
+                  first
                   && second
-          || third
-            ) {
-              console.log(first, second, third)
-            }`,
+                  || third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
+            {
+              code: `
+                if (
+                  first
+              || second
+                    && third
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output: `
+                if (
+                  first
+                  || second
+                  && third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
+            {
+              code: `
+                if (
+                  first
+                      && second
+                || third
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output: `
+                if (
+                  first
+                  && second
+                  || third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
+            {
+              code: `
+                if (
+                  first
+                      && second
+              || third
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output: `
+                if (
+                  first
+                  && second
+                  || third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
           ],
           [
             'Must add indent before "||".',
             'Must remove indent before "&&".',
           ]
         ],
-      ]
+      ])
 
       tester.run(
         ruleName,
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([codes, errors]) =>
-            codes.map(code => ({ code, errors }))
-          ),
+          invalid: invalidCases
         }
       )
     })
 
     describe('three errors', () => {
-      const invalidCodes = [
+      const invalidCases = ESLintHelper.expandInvalidCases([
         [
           [
-            `
-            if (first
+            {
+              code: `
+                if (first
+                    || second
+                && third
+                || fourth
+                ) {
+                  console.log(first, second, third, fourth)
+                }`,
+              output: `
+                if (first
+                  || second
+                  && third
+                  || fourth
+                ) {
+                  console.log(first, second, third, fourth)
+                }`,
+            },
+            {
+              code:
+              `
+              if (
+                first
+                  || second
+              && third
+              || fourth
+              ) {
+                console.log(first, second, third, fourth)
+              }
+              `,
+              output:
+              `
+              if (
+                first
                 || second
-            && third
-            || fourth
-            ) {
-              console.log(first, second, third, fourth)
-            }`,
-            `
-            if (
-              first
-                || second
-            && third
-            || fourth
-            ) {
-              console.log(first, second, third, fourth)
-            }
-            `,
+                && third
+                || fourth
+              ) {
+                console.log(first, second, third, fourth)
+              }
+              `,
+            },
           ],
           [
             'Must add indent before "||".',
@@ -340,16 +564,14 @@ describe('LogicalExpression', () => {
             'Must add indent before "&&".',
           ]
         ]
-      ]
+      ])
 
       tester.run(
         ruleName,
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([codes, errors]) =>
-            codes.map(code => ({ code, errors }))
-          ),
+          invalid: invalidCases
         }
       )
     })
@@ -419,53 +641,111 @@ describe('LogicalExpression', () => {
     })
 
     describe('Must add indent (x1)', () => {
-      const invalidCodes = [
+      const invalidCases = ESLintHelper.expandInvalidCases([
         [
           [
-            `
-            const result = leftOperand ||
-            1
-            `,
-            `
+            {
+              code: `
+                const result = leftOperand ||
+                1
+              `,
+              output: `
+                const result = leftOperand ||
+                  1
+              `,
+            },
+            {
+              code: `
               const result = leftOperand ||
             1
             `,
-            `
-            function getEnv () {
-              return this.env.NODE_ENV ||
-              'aaaa' // <---------------- should error
-            }
+              output: `
+              const result = leftOperand ||
+                1
             `,
-            `
-            if (first ||
-            second
-            ) {
-              save(first, second, third)
-            }
-            `,
-            `
-              if (first ||
-            second
-              ) {
-                save(first, second)
-              }
-            `,
-            `
-            if (
-              first ||
-            second
-            ) {
-              save(first, second)
-            }
-            `,
-            `
-            function test (xxx) {
-              const zzz = xxx ||
-              999 // <---------------- should error
+            },
+            {
+              code: `
+                function getEnv () {
+                  return this.env.NODE_ENV ||
+                  'aaaa' // <---------------- should error
+                }
+              `,
+              output: `
+                function getEnv () {
+                  return this.env.NODE_ENV ||
+                    'aaaa' // <---------------- should error
+                }
+              `,
+            },
+            {
+              code: `
+                if (first ||
+                second
+                ) {
+                  save(first, second, third)
+                }
+              `,
+              output: `
+                if (first ||
+                  second
+                ) {
+                  save(first, second, third)
+                }
+              `,
+            },
+            {
+              code: `
+                if (first ||
+              second
+                ) {
+                  save(first, second)
+                }
+              `,
+              output: `
+                if (first ||
+                  second
+                ) {
+                  save(first, second)
+                }
+              `,
+            },
+            {
+              code: `
+                if (
+                  first ||
+                second
+                ) {
+                  save(first, second)
+                }
+              `,
+              output: `
+                if (
+                  first ||
+                  second
+                ) {
+                  save(first, second)
+                }
+              `,
+            },
+            {
+              code: `
+                function test (xxx) {
+                  const zzz = xxx ||
+                  999 // <---------------- should error
 
-              return zzz
-            }
-            `,
+                  return zzz
+                }
+              `,
+              output: `
+                function test (xxx) {
+                  const zzz = xxx ||
+                    999 // <---------------- should error
+
+                  return zzz
+                }
+              `,
+            },
           ],
           [
             'Must add indent before right operand of "||".',
@@ -473,211 +753,379 @@ describe('LogicalExpression', () => {
         ],
         [
           [
-            `
-            const result = leftOperand &&
-            11
-            `,
-            `
-              const result = leftOperand &&
-            11
-            `,
+            {
+              code: `
+                const result = leftOperand &&
+                11
+              `,
+              output: `
+                const result = leftOperand &&
+                  11
+              `,
+            },
+            {
+              code: `
+                const result = leftOperand &&
+              11
+              `,
+              output: `
+                const result = leftOperand &&
+                  11
+              `,
+            },
           ],
           [
             'Must add indent before right operand of "&&".',
           ]
         ],
-      ]
+      ])
 
       tester.run(
         ruleName,
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([codes, errors]) =>
-            codes.map(code => ({ code, errors }))
-          ),
+          invalid: invalidCases
         }
       )
     })
 
     describe('Must remove indent (x1)', () => {
-      const invalidCodes = [
+      const invalidCases = ESLintHelper.expandInvalidCases([
         [
           [
-            `
-            if (
+            {
+              code: `
+                if (
+                  first ||
+                    second
+                ) {
+                  save(first, second)
+                }
+              `,
+              output: `
+                if (
+                  first ||
+                  second
+                ) {
+                  save(first, second)
+                }
+              `,
+            },
+            {
+              code: `
+                if (
+                first ||
+                  second
+                ) {
+                  save(first, second)
+                }
+              `,
+              output: `
+                if (
+                first ||
+                second
+                ) {
+                  save(first, second)
+                }
+              `,
+            },
+            {
+              code: `
+                if (
               first ||
                 second
-            ) {
-              save(first, second)
-            }
-            `,
-            `
-            if (
-            first ||
+                ) {
+                  save(first, second)
+                }
+              `,
+              output: `
+                if (
+              first ||
               second
-            ) {
-              save(first, second)
-            }
-            `,
-            `
-              if (
-            first ||
-              second
-              ) {
-                save(first, second)
-              }
-            `,
-            `
-            function test (xxx) {
-              const zzz =
-                xxx ||
-                  999 // <---------------- should error
+                ) {
+                  save(first, second)
+                }
+              `,
+            },
+            {
+              code: `
+                function test (xxx) {
+                  const zzz =
+                    xxx ||
+                      999 // <---------------- should error
 
-              return zzz
-            }
-            `,
+                  return zzz
+                }
+              `,
+              output: `
+                function test (xxx) {
+                  const zzz =
+                    xxx ||
+                    999 // <---------------- should error
+
+                  return zzz
+                }
+              `,
+            },
+
+
+
+
           ],
           [
             'Must remove indent before right operand of "||".',
           ]
         ]
-      ]
+      ])
 
       tester.run(
         ruleName,
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([codes, errors]) =>
-            codes.map(code => ({ code, errors }))
-          ),
+          invalid: invalidCases
         }
       )
     })
 
     describe('Must add indent (x1), Must remove indent (x1)', () => {
-      const invalidCodes = [
+      const invalidCases = ESLintHelper.expandInvalidCases([
         [
           [
-            `
-            if (first ||
-            second &&
+            {
+              code: `
+                if (first ||
+                second &&
+                    third
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output :`
+                if (first ||
+                  second &&
+                  third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
+            {
+              code: `
+                if (first &&
+                    second ||
                 third
-            ) {
-              console.log(first, second, third)
-            }`,
-            `
-            if (first &&
-                second ||
-            third
-            ) {
-              console.log(first, second, third)
-            }`,
-            `
-            if (first ||
-          second &&
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output :`
+                if (first &&
+                  second ||
+                  third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
+            {
+              code: `
+                if (first ||
+              second &&
+                    third
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output :`
+                if (first ||
+                  second &&
+                  third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
+            {
+              code: `
+                if (first &&
+                      second ||
                 third
-            ) {
-              console.log(first, second, third)
-            }`,
-            `
-            if (first &&
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output :`
+                if (first &&
                   second ||
-            third
-            ) {
-              console.log(first, second, third)
-            }`,
-            `
-            if (first &&
+                  third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
+            {
+              code: `
+                if (first &&
+                      second ||
+              third
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output :`
+                if (first &&
                   second ||
-          third
-            ) {
-              console.log(first, second, third)
-            }`,
-
-            `
-            if (
-              first ||
-            second &&
+                  third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
+            {
+              code: `
+                if (
+                  first ||
+                second &&
+                    third
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output :`
+                if (
+                  first ||
+                  second &&
+                  third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
+            {
+              code: `
+                if (
+                  first &&
+                    second ||
                 third
-            ) {
-              console.log(first, second, third)
-            }`,
-            `
-            if (
-              first &&
-                second ||
-            third
-            ) {
-              console.log(first, second, third)
-            }`,
-            `
-            if (
-              first ||
-          second &&
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output :`
+                if (
+                  first &&
+                  second ||
+                  third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
+            {
+              code: `
+                if (
+                  first ||
+              second &&
+                    third
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output :`
+                if (
+                  first ||
+                  second &&
+                  third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
+            {
+              code: `
+                if (
+                  first &&
+                      second ||
                 third
-            ) {
-              console.log(first, second, third)
-            }`,
-            `
-            if (
-              first &&
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output :`
+                if (
+                  first &&
                   second ||
-            third
-            ) {
-              console.log(first, second, third)
-            }`,
-            `
-            if (
-              first &&
+                  third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
+            {
+              code: `
+                if (
+                  first &&
+                      second ||
+              third
+                ) {
+                  console.log(first, second, third)
+                }`,
+              output :`
+                if (
+                  first &&
                   second ||
-          third
-            ) {
-              console.log(first, second, third)
-            }`,
+                  third
+                ) {
+                  console.log(first, second, third)
+                }`,
+            },
           ],
           [
             'Must add indent before right operand of "||".',
             'Must remove indent before right operand of "&&".',
           ]
         ],
-      ]
+      ])
 
       tester.run(
         ruleName,
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([codes, errors]) =>
-            codes.map(code => ({ code, errors }))
-          ),
+          invalid: invalidCases
         }
       )
     })
 
     describe('three errors', () => {
-      const invalidCodes = [
+      const invalidCases = ESLintHelper.expandInvalidCases([
         [
           [
-            `
-            if (first ||
-                second &&
-            third ||
-            fourth
-            ) {
-              console.log(first, second, third, fourth)
-            }`,
-            `
-            if (
-              first ||
-                second &&
-            third ||
-            fourth
-            ) {
-              console.log(first, second, third, fourth)
-            }
-            `,
+            {
+              code: `
+                if (first ||
+                    second &&
+                third ||
+                fourth
+                ) {
+                  console.log(first, second, third, fourth)
+                }`,
+              output: `
+                if (first ||
+                  second &&
+                  third ||
+                  fourth
+                ) {
+                  console.log(first, second, third, fourth)
+                }`,
+            },
+            {
+              code: `
+                if (
+                  first ||
+                    second &&
+                third ||
+                fourth
+                ) {
+                  console.log(first, second, third, fourth)
+                }
+                `,
+              output :`
+                if (
+                  first ||
+                  second &&
+                  third ||
+                  fourth
+                ) {
+                  console.log(first, second, third, fourth)
+                }
+                `,
+            },
+
           ],
           [
             'Must add indent before right operand of "||".',
@@ -685,16 +1133,14 @@ describe('LogicalExpression', () => {
             'Must add indent before right operand of "&&".',
           ]
         ]
-      ]
+      ])
 
       tester.run(
         ruleName,
         ruleBody,
         {
           valid: [],
-          invalid: invalidCodes.flatMap(([codes, errors]) =>
-            codes.map(code => ({ code, errors }))
-          ),
+          invalid: invalidCases
         }
       )
     })
