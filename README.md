@@ -45,4 +45,4 @@ no-else-if
 
 ## Rules
 
-* [`no-else-if`](./documents/rules/no-else-if.md)
+* [`no-else-if`](./documents/rules/en/no-else-if.md) [[日本語](./documents/rules/ja/no-else-if.md)
