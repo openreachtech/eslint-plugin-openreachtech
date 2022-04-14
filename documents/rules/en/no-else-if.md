@@ -14,7 +14,7 @@
 
 * Complex nesting of if statements increases the labor of the code reader in following the conditional branches. If every if does not nest, there is not a single stack of if statements in the code reader's brain, so brain resources will not be wasted.
 
-* In object-oriented programming, conditional branches with if statements can be designed without any nesting. We have decided to prohibit `else if` so that all engineers can work on programming without avoiding precise class design.
+* In object-oriented programming, conditional branches with if statements can be designed without any nesting. We have decided to prohibit `else if` so that complex code cannot be easily produced and all engineers can concentrate on precise class design.
 
 ## How to Refactor to Purge `else if`
 
