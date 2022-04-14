@@ -25,2053 +25,4107 @@ const theCaseSuggestedByGoogle = {
 const ruleName = 'indent-in-infix-expression'
 
 describe('BinaryExpression', () => {
-  describe('\\n before operator', () => {
-    describe('valid code only', () => {
-      const validCodes = [
-        'const result = leftOperand - 11',
+  describe('default options as { indent: 2 }', () => {
+    describe('\\n before operator', () => {
+      describe('valid code only', () => {
+        const validCodes = [
+          'const result = leftOperand - 11',
 
-        `
-        const result = leftOperand
-          + 11
-        `,
-        `
-        const result = leftOperand
-          - 11
-        `,
-        `
-        const result = leftOperand
-          * 11
-        `,
-        `
-        const result = leftOperand
-          / 11
-        `,
-        `
-        const result = leftOperand
-          % 11
-        `,
-        `
-        const result = leftOperand
-          ** 11
-        `,
-        `
-        const result = leftOperand
-          | 11
-        `,
-        `
-        const result = leftOperand
-          & 11
-        `,
-        `
-        const result = leftOperand
-          ^ 11
-        `,
-        `
-        const result = leftOperand
-          << 4
-        `,
-        `
-        const result = leftOperand
-          >> 6
-        `,
-        `
-        const result = leftOperand
-          >>> 8
-        `,
-        `
-        const result = leftOperand
-          in 8
-        `,
-        `
-        const result = leftOperand
-          instanceof 8
-        `,
-
-        `
-        const result = leftOperand
-          + rightOperand
-          - 11
-        `,
-
-        `
-        const result =
-          leftOperand
-          - 11
-        `,
-        `
-        const result =
-          leftOperand
-          + rightOperand
-          - 11
-        `,
-
-        `
-        {
+          `
+          const result = leftOperand
+            + 11
+          `,
+          `
           const result = leftOperand
             - 11
-        }`,
-        `
-        {
+          `,
+          `
+          const result = leftOperand
+            * 11
+          `,
+          `
+          const result = leftOperand
+            / 11
+          `,
+          `
+          const result = leftOperand
+            % 11
+          `,
+          `
+          const result = leftOperand
+            ** 11
+          `,
+          `
+          const result = leftOperand
+            | 11
+          `,
+          `
+          const result = leftOperand
+            & 11
+          `,
+          `
+          const result = leftOperand
+            ^ 11
+          `,
+          `
+          const result = leftOperand
+            << 4
+          `,
+          `
+          const result = leftOperand
+            >> 6
+          `,
+          `
+          const result = leftOperand
+            >>> 8
+          `,
+          `
+          const result = leftOperand
+            in 8
+          `,
+          `
+          const result = leftOperand
+            instanceof 8
+          `,
+
+          `
           const result = leftOperand
             + rightOperand
             - 11
-        }`,
+          `,
 
-        `
-        const result = leftOperand
-          -1 !== flag || die()`,
-      ]
+          `
+          const result =
+            leftOperand
+            - 11
+          `,
+          `
+          const result =
+            leftOperand
+            + rightOperand
+            - 11
+          `,
 
-      // tester.run([rule name], [rule definition], [test patterns])
-      tester.run(
-        ruleName,
-        ruleBody,
-        {
-          valid: validCodes.map(code => ({ code })),
-          invalid: [],
-        }
-      )
-    })
+          `
+          {
+            const result = leftOperand
+              - 11
+          }`,
+          `
+          {
+            const result = leftOperand
+              + rightOperand
+              - 11
+          }`,
 
-    describe('Must add indent (x1)', () => {
-      const invalidCases = ESLintHelper.expandInvalidCases([
-        [
+          `
+          const result = leftOperand
+            -1 !== flag || die()`,
+        ]
+
+        // tester.run([rule name], [rule definition], [test patterns])
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: validCodes.map(code => ({ code })),
+            invalid: [],
+          }
+        )
+      })
+
+      describe('Must add indent (x1)', () => {
+        const invalidCases = ESLintHelper.expandInvalidCases([
           [
-            {
-              code: `
-                const result = leftOperand
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  - 1
+                `,
+                output: `
+                  const result = leftOperand
+                    - 1
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
                 - 1
               `,
-              output: `
-                const result = leftOperand
-                  - 1
-              `,
-            },
-            {
-              code: `
-                const result = leftOperand
-              - 1
-            `,
-              output: `
-                const result = leftOperand
-                  - 1
-            `,
-            },
-            {
-              code: `
-                const result =
-                  leftOperand
-                - 1
-              `,
-              output: `
-                const result =
-                  leftOperand
-                  - 1
-              `,
-            },
-            {
-              code: `
-                const result =
-                    leftOperand
-                  - 1
-              `,
-              output: `
-                const result =
-                    leftOperand
+                output: `
+                  const result = leftOperand
                     - 1
               `,
-            },
-            {
-              code: `
-                const result =
-                leftOperand
-              - 1
-              `,
-              output: `
-                const result =
-                leftOperand
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand
+                  - 1
+                `,
+                output: `
+                  const result =
+                    leftOperand
+                    - 1
+                `,
+              },
+              {
+                code: `
+                  const result =
+                      leftOperand
+                    - 1
+                `,
+                output: `
+                  const result =
+                      leftOperand
+                      - 1
+                `,
+              },
+              {
+                code: `
+                  const result =
+                  leftOperand
                 - 1
-              `,
-            },
-            {
-              code: `
-                function getEnv () {
-                  return this.env.NODE_ENV
-                  - 'aaaa' // <---------------- should error
-                }
-              `,
-              output: `
-                function getEnv () {
-                  return this.env.NODE_ENV
+                `,
+                output: `
+                  const result =
+                  leftOperand
+                  - 1
+                `,
+              },
+              {
+                code: `
+                  function getEnv () {
+                    return this.env.NODE_ENV
                     - 'aaaa' // <---------------- should error
-                }
-              `,
-            },
-            {
-              code: `
-                const result = leftOperand
+                  }
+                `,
+                output: `
+                  function getEnv () {
+                    return this.env.NODE_ENV
+                      - 'aaaa' // <---------------- should error
+                  }
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                  -1 === flag || die()`,
+                output: `
+                  const result = leftOperand
+                    -1 === flag || die()`,
+              },
+              {
+                code: `
+                  const result = leftOperand
                 -1 === flag || die()`,
-              output: `
-                const result = leftOperand
-                  -1 === flag || die()`,
-            },
-            {
-              code: `
-                const result = leftOperand
-              -1 === flag || die()`,
-              output: `
-                const result = leftOperand
-                  -1 === flag || die()`,
-            },
-            theCaseSuggestedByGoogle,
+                output: `
+                  const result = leftOperand
+                    -1 === flag || die()`,
+              },
+              theCaseSuggestedByGoogle,
+            ],
+            [
+              'Must add indent before "-".',
+            ]
           ],
           [
-            'Must add indent before "-".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = leftOperand
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  + 11
+                `,
+                output: `
+                  const result = leftOperand
+                    + 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
                 + 11
               `,
-              output: `
-                const result = leftOperand
-                  + 11
+                output: `
+                  const result = leftOperand
+                    + 11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand
-              + 11
-            `,
-              output: `
-                const result = leftOperand
-                  + 11
-            `,
-            },
+              },
+            ],
+            ['Must add indent before "+".']
           ],
-          ['Must add indent before "+".']
-        ],
-        [
           [
-            {
-              code: `
-                const result = leftOperand
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  * 11
+                `,
+                output: `
+                  const result = leftOperand
+                    * 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
                 * 11
               `,
-              output: `
-                const result = leftOperand
-                  * 11
+                output: `
+                  const result = leftOperand
+                    * 11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand
-              * 11
-            `,
-              output: `
-                const result = leftOperand
-                  * 11
-            `,
-            },
+              },
+            ],
+            ['Must add indent before "*".']
           ],
-          ['Must add indent before "*".']
-        ],
-        [
           [
-            {
-              code: `
-                const result = leftOperand
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  / 11
+                `,
+                output: `
+                  const result = leftOperand
+                    / 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
                 / 11
               `,
-              output: `
-                const result = leftOperand
-                  / 11
+                output: `
+                  const result = leftOperand
+                    / 11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand
-              / 11
-            `,
-              output: `
-                const result = leftOperand
-                  / 11
-            `,
-            },
+              },
+            ],
+            ['Must add indent before "/".']
           ],
-          ['Must add indent before "/".']
-        ],
-        [
           [
-            {
-              code: `
-                const result = leftOperand
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  % 11
+                `,
+                output: `
+                  const result = leftOperand
+                    % 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
                 % 11
               `,
-              output: `
-                const result = leftOperand
-                  % 11
+                output: `
+                  const result = leftOperand
+                    % 11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand
-              % 11
-            `,
-              output: `
-                const result = leftOperand
-                  % 11
-            `,
-            },
+              },
+            ],
+            ['Must add indent before "%".']
           ],
-          ['Must add indent before "%".']
-        ],
-        [
           [
-            {
-              code: `
-                const result = leftOperand
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  ** 11
+                `,
+                output: `
+                  const result = leftOperand
+                    ** 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
                 ** 11
               `,
-              output: `
-                const result = leftOperand
-                  ** 11
+                output: `
+                  const result = leftOperand
+                    ** 11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand
-              ** 11
-            `,
-              output: `
-                const result = leftOperand
-                  ** 11
-            `,
-            },
+              },
+            ],
+            ['Must add indent before "**".']
           ],
-          ['Must add indent before "**".']
-        ],
-        [
           [
-            {
-              code: `
-                const result = leftOperand
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  | 11
+                `,
+                output: `
+                  const result = leftOperand
+                    | 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
                 | 11
               `,
-              output: `
-                const result = leftOperand
-                  | 11
+                output: `
+                  const result = leftOperand
+                    | 11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand
-              | 11
-            `,
-              output: `
-                const result = leftOperand
-                  | 11
-            `,
-            },
+              },
+            ],
+            ['Must add indent before "|".']
           ],
-          ['Must add indent before "|".']
-        ],
-        [
           [
-            {
-              code: `
-                const result = leftOperand
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  & 11
+                `,
+                output: `
+                  const result = leftOperand
+                    & 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
                 & 11
               `,
-              output: `
-                const result = leftOperand
-                  & 11
+                output: `
+                  const result = leftOperand
+                    & 11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand
-              & 11
-            `,
-              output: `
-                const result = leftOperand
-                  & 11
-            `,
-            },
+              },
+            ],
+            ['Must add indent before "&".']
           ],
-          ['Must add indent before "&".']
-        ],
-        [
           [
-            {
-              code: `
-                const result = leftOperand
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  ^ 11
+                `,
+                output: `
+                  const result = leftOperand
+                    ^ 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
                 ^ 11
               `,
-              output: `
-                const result = leftOperand
-                  ^ 11
+                output: `
+                  const result = leftOperand
+                    ^ 11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand
-              ^ 11
-            `,
-              output: `
-                const result = leftOperand
-                  ^ 11
-            `,
-            },
+              },
+            ],
+            ['Must add indent before "^".']
           ],
-          ['Must add indent before "^".']
-        ],
-        [
           [
-            {
-              code: `
-                const result = leftOperand
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  << 11
+                `,
+                output: `
+                  const result = leftOperand
+                    << 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
                 << 11
               `,
-              output: `
-                const result = leftOperand
-                  << 11
+                output: `
+                  const result = leftOperand
+                    << 11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand
-              << 11
-            `,
-              output: `
-                const result = leftOperand
-                  << 11
-            `,
-            },
+              },
+            ],
+            ['Must add indent before "<<".']
           ],
-          ['Must add indent before "<<".']
-        ],
-        [
           [
-            {
-              code: `
-                const result = leftOperand
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  >> 11
+                `,
+                output: `
+                  const result = leftOperand
+                    >> 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
                 >> 11
               `,
-              output: `
-                const result = leftOperand
-                  >> 11
+                output: `
+                  const result = leftOperand
+                    >> 11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand
-              >> 11
-            `,
-              output: `
-                const result = leftOperand
-                  >> 11
-            `,
-            },
+              },
+            ],
+            ['Must add indent before ">>".']
           ],
-          ['Must add indent before ">>".']
-        ],
-        [
           [
-            {
-              code: `
-                const result = leftOperand
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  >>> 11
+                `,
+                output: `
+                  const result = leftOperand
+                    >>> 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
                 >>> 11
               `,
-              output: `
-                const result = leftOperand
-                  >>> 11
+                output: `
+                  const result = leftOperand
+                    >>> 11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand
-              >>> 11
-            `,
-              output: `
-                const result = leftOperand
-                  >>> 11
-            `,
-            },
+              },
+            ],
+            ['Must add indent before ">>>".']
           ],
-          ['Must add indent before ">>>".']
-        ],
-        [
           [
-            {
-              code: `
-                const result = leftOperand
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  in 11
+                `,
+                output: `
+                  const result = leftOperand
+                    in 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
                 in 11
               `,
-              output: `
-                const result = leftOperand
-                  in 11
+                output: `
+                  const result = leftOperand
+                    in 11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand
-              in 11
-            `,
-              output: `
-                const result = leftOperand
-                  in 11
-            `,
-            },
+              },
+            ],
+            ['Must add indent before "in".']
           ],
-          ['Must add indent before "in".']
-        ],
-        [
           [
-            {
-              code: `
-                const result = leftOperand
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  instanceof RightOperandClass
+                `,
+                output: `
+                  const result = leftOperand
+                    instanceof RightOperandClass
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
                 instanceof RightOperandClass
               `,
-              output: `
-                const result = leftOperand
-                  instanceof RightOperandClass
+                output: `
+                  const result = leftOperand
+                    instanceof RightOperandClass
               `,
-            },
-            {
-              code: `
-                const result = leftOperand
-              instanceof RightOperandClass
-            `,
-              output: `
-                const result = leftOperand
-                  instanceof RightOperandClass
-            `,
-            },
+              },
+            ],
+            ['Must add indent before "instanceof".']
           ],
-          ['Must add indent before "instanceof".']
-        ],
-      ])
+        ])
 
-      tester.run(
-        ruleName,
-        ruleBody,
-        {
-          valid: [],
-          invalid: invalidCases
-        }
-      )
-    })
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases
+          }
+        )
+      })
 
-    describe('Must remove indent (x1)', () => {
-      const invalidCases = ESLintHelper.expandInvalidCases([
-        [
+      describe('Must remove indent (x1)', () => {
+        const invalidCases = ESLintHelper.expandInvalidCases([
           [
-            {
-              code: `
-                const result =
-                  leftOperand
+            [
+              {
+                code: `
+                  const result =
+                    leftOperand
+                      - 1
+                `,
+                output: `
+                  const result =
+                    leftOperand
                     - 1
-              `,
-              output: `
-                const result =
-                  leftOperand
-                  - 1
-              `,
-            },
-            {
-              code: `
-                {
-                  const result =
-                    leftOperand
+                `,
+              },
+              {
+                code: `
+                  {
+                    const result =
+                      leftOperand
+                        - 11
+                  }`,
+                output: `
+                  {
+                    const result =
+                      leftOperand
                       - 11
-                }`,
-              output: `
-                {
-                  const result =
-                    leftOperand
-                    - 11
-                }`,
-            },
+                  }`,
+              },
+            ],
+            [
+              'Must remove indent before "-".',
+            ]
           ],
-          [
-            'Must remove indent before "-".',
-          ]
-        ],
-      ])
+        ])
 
-      tester.run(
-        ruleName,
-        ruleBody,
-        {
-          valid: [],
-          invalid: invalidCases
-        }
-      )
-    })
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases
+          }
+        )
+      })
 
-    describe('Must add indent (x1), Must remove indent (x1)', () => {
-      const invalidCases = ESLintHelper.expandInvalidCases([
-        [
+      describe('Must add indent (x1), Must remove indent (x1)', () => {
+        const invalidCases = ESLintHelper.expandInvalidCases([
           [
-            {
-              code: `
-                const result = leftOperand
-                + rightOperand
-                    - 11
-              `,
-              output: `
-                const result = leftOperand
+            [
+              {
+                code: `
+                  const result = leftOperand
                   + rightOperand
-                  - 11
-              `,
-            },
-            {
-              code: `
-                const result = leftOperand
-              + rightOperand
+                      - 11
+                `,
+                output: `
+                  const result = leftOperand
+                    + rightOperand
                     - 11
-              `,
-              output: `
-                const result = leftOperand
-                  + rightOperand
-                  - 11
-              `,
-            },
-            {
-              code: `
-                const result = leftOperand
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
                 + rightOperand
                       - 11
-              `,
-              output: `
-                const result = leftOperand
-                  + rightOperand
-                  - 11
-              `,
-            },
-            {
-              code: `
-                const result = leftOperand
-            + rightOperand
-                      - 11
-              `,
-              output: `
-                const result = leftOperand
-                  + rightOperand
-                  - 11
-              `,
-            },
-            {
-              code: `
-                const result =
-                  leftOperand
-                + rightOperand
+                `,
+                output: `
+                  const result = leftOperand
+                    + rightOperand
                     - 11
-              `,
-              output: `
-                const result =
-                  leftOperand
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
                   + rightOperand
-                  - 11
-              `,
-            },
-            {
-              code: `
-                const result =
-                  leftOperand
-              + rightOperand
+                        - 11
+                `,
+                output: `
+                  const result = leftOperand
+                    + rightOperand
                     - 11
-              `,
-              output: `
-                const result =
-                  leftOperand
-                  + rightOperand
-                  - 11
-              `,
-            },
-            {
-              code: `
-                const result =
-                  leftOperand
-                + rightOperand
-                      - 11
-              `,
-              output: `
-                const result =
-                  leftOperand
-                  + rightOperand
-                  - 11
-              `,
-            },
-            {
-              code: `
-                const result =
-                  leftOperand
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
               + rightOperand
                         - 11
-              `,
-              output: `
-                const result =
-                  leftOperand
+                `,
+                output: `
+                  const result = leftOperand
+                    + rightOperand
+                    - 11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand
                   + rightOperand
-                  - 11
-              `,
-            },
-          ],
-          [
-            'Must remove indent before "-".',
-            'Must add indent before "+".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = leftOperand
-                + rightOperand
-                    * 11
-              `,
-              output: `
-                const result = leftOperand
-                  + rightOperand
-                  * 11
-              `,
-            },
-            {
-              code: `
-                const result = leftOperand
-              + rightOperand
-                    * 11
-              `,
-              output: `
-                const result = leftOperand
-                  + rightOperand
-                  * 11
-              `,
-            },
-            {
-              code: `
-                const result = leftOperand
-                + rightOperand
-                      * 11
-              `,
-              output: `
-                const result = leftOperand
-                  + rightOperand
-                  * 11
-              `,
-            },
-            {
-              code: `
-                const result = leftOperand
-            + rightOperand
-                      * 11
-              `,
-              output: `
-                const result = leftOperand
-                  + rightOperand
-                  * 11
-              `,
-            },
-            {
-              code: `
-                const result =
-                  leftOperand
-                + rightOperand
-                    * 11
-              `,
-              output: `
-                const result =
-                  leftOperand
-                  + rightOperand
-                  * 11
-              `,
-            },
-            {
-              code: `
-                const result =
-                  leftOperand
-              + rightOperand
-                    * 11
-              `,
-              output: `
-                const result =
-                  leftOperand
-                  + rightOperand
-                  * 11
-              `,
-            },
-            {
-              code: `
-                const result =
-                  leftOperand
-                + rightOperand
-                      * 11
-              `,
-              output: `
-                const result =
-                  leftOperand
-                  + rightOperand
-                  * 11
-              `,
-            },
-            {
-              code: `
-                const result =
-                  leftOperand
-              + rightOperand
-                        * 11
-              `,
-              output: `
-                const result =
-                  leftOperand
-                  + rightOperand
-                  * 11
-              `,
-            },
-            {
-              code: `
-                const result =
+                      - 11
+                `,
+                output: `
+                  const result =
+                    leftOperand
+                    + rightOperand
+                    - 11
+                `,
+              },
+              {
+                code: `
+                  const result =
                     leftOperand
                 + rightOperand
-                          * 11
-              `,
-              output: `
-                const result =
+                      - 11
+                `,
+                output: `
+                  const result =
+                    leftOperand
+                    + rightOperand
+                    - 11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand
+                  + rightOperand
+                        - 11
+                `,
+                output: `
+                  const result =
+                    leftOperand
+                    + rightOperand
+                    - 11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand
+                + rightOperand
+                          - 11
+                `,
+                output: `
+                  const result =
+                    leftOperand
+                    + rightOperand
+                    - 11
+                `,
+              },
+            ],
+            [
+              'Must remove indent before "-".',
+              'Must add indent before "+".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  + rightOperand
+                      * 11
+                `,
+                output: `
+                  const result = leftOperand
+                    + rightOperand
+                    * 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                + rightOperand
+                      * 11
+                `,
+                output: `
+                  const result = leftOperand
+                    + rightOperand
+                    * 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                  + rightOperand
+                        * 11
+                `,
+                output: `
+                  const result = leftOperand
+                    + rightOperand
+                    * 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+              + rightOperand
+                        * 11
+                `,
+                output: `
+                  const result = leftOperand
+                    + rightOperand
+                    * 11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand
+                  + rightOperand
+                      * 11
+                `,
+                output: `
+                  const result =
                     leftOperand
                     + rightOperand
                     * 11
-              `,
-            },
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand
+                + rightOperand
+                      * 11
+                `,
+                output: `
+                  const result =
+                    leftOperand
+                    + rightOperand
+                    * 11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand
+                  + rightOperand
+                        * 11
+                `,
+                output: `
+                  const result =
+                    leftOperand
+                    + rightOperand
+                    * 11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand
+                + rightOperand
+                          * 11
+                `,
+                output: `
+                  const result =
+                    leftOperand
+                    + rightOperand
+                    * 11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                      leftOperand
+                  + rightOperand
+                            * 11
+                `,
+                output: `
+                  const result =
+                      leftOperand
+                      + rightOperand
+                      * 11
+                `,
+              },
+            ],
+            [
+              'Must add indent before "+".',
+              'Must remove indent before "*".',
+            ]
+          ],
+        ])
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases
+          }
+        )
+      })
+
+      describe('three errors', () => {
+        const invalidCases = ESLintHelper.expandInvalidCases([
+          [
+            [
+              {
+                code: `
+                  const result = firstOperand
+                  + secondOperand
+                  * thirdOperand
+                  - fourthOperand
+                `,
+                output: `
+                  const result = firstOperand
+                    + secondOperand
+                    * thirdOperand
+                    - fourthOperand
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    firstOperand
+                  + secondOperand
+                  * thirdOperand
+                  - fourthOperand
+                  `,
+                output: `
+                  const result =
+                    firstOperand
+                    + secondOperand
+                    * thirdOperand
+                    - fourthOperand
+                  `,
+              },
+            ],
+            [
+              // in operating priority low to hight.
+              'Must add indent before "-".',
+              'Must add indent before "+".',
+              'Must add indent before "*".',
+            ]
           ],
           [
-            'Must add indent before "+".',
-            'Must remove indent before "*".',
-          ]
-        ],
-      ])
+            [
+              {
+                code: `
+                  const result = firstOperand
+                      + secondOperand
+                  * thirdOperand
+                  - fourthOperand
+                `,
+                output: `
+                  const result = firstOperand
+                    + secondOperand
+                    * thirdOperand
+                    - fourthOperand
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    firstOperand
+                      + secondOperand
+                  * thirdOperand
+                  - fourthOperand
+                `,
+                output: `
+                  const result =
+                    firstOperand
+                    + secondOperand
+                    * thirdOperand
+                    - fourthOperand
+                `,
+              },
+            ],
+            [
+              'Must add indent before "-".',
+              'Must remove indent before "+".',
+              'Must add indent before "*".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = firstOperand
+                  + secondOperand
+                      * thirdOperand
+                  - fourthOperand
+                `,
+                output: `
+                  const result = firstOperand
+                    + secondOperand
+                    * thirdOperand
+                    - fourthOperand
+                `,
+              },
+              {
+                code: `
+                  const result = firstOperand
+                  + secondOperand
+                      * thirdOperand
+                  - fourthOperand
+                `,
+                output: `
+                  const result = firstOperand
+                    + secondOperand
+                    * thirdOperand
+                    - fourthOperand
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    firstOperand
+                  + secondOperand
+                      * thirdOperand
+                  - fourthOperand
+                `,
+                output: `
+                  const result =
+                    firstOperand
+                    + secondOperand
+                    * thirdOperand
+                    - fourthOperand
+                `,
+              },
+            ],
+            [
+              'Must add indent before "-".',
+              'Must add indent before "+".',
+              'Must remove indent before "*".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = firstOperand
+                  + secondOperand
+                  * thirdOperand
+                      - fourthOperand
+                `,
+                output: `
+                  const result = firstOperand
+                    + secondOperand
+                    * thirdOperand
+                    - fourthOperand
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    firstOperand
+                  + secondOperand
+                  * thirdOperand
+                      - fourthOperand
+                `,
+                output: `
+                  const result =
+                    firstOperand
+                    + secondOperand
+                    * thirdOperand
+                    - fourthOperand
+                `,
+              },
 
-      tester.run(
-        ruleName,
-        ruleBody,
-        {
-          valid: [],
-          invalid: invalidCases
-        }
-      )
+
+            ],
+            [
+              'Must remove indent before "-".',
+              'Must add indent before "+".',
+              'Must add indent before "*".',
+            ]
+          ],
+        ])
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases
+          }
+        )
+      })
     })
 
-    describe('three errors', () => {
-      const invalidCases = ESLintHelper.expandInvalidCases([
-        [
-          [
-            {
-              code: `
-                const result = firstOperand
-                + secondOperand
-                * thirdOperand
-                - fourthOperand
-              `,
-              output: `
-                const result = firstOperand
-                  + secondOperand
-                  * thirdOperand
-                  - fourthOperand
-              `,
-            },
-            {
-              code: `
-                const result =
-                  firstOperand
-                + secondOperand
-                * thirdOperand
-                - fourthOperand
-                `,
-              output: `
-                const result =
-                  firstOperand
-                  + secondOperand
-                  * thirdOperand
-                  - fourthOperand
-                `,
-            },
-          ],
-          [
-            // in operating priority low to hight.
-            'Must add indent before "-".',
-            'Must add indent before "+".',
-            'Must add indent before "*".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = firstOperand
-                    + secondOperand
-                * thirdOperand
-                - fourthOperand
-              `,
-              output: `
-                const result = firstOperand
-                  + secondOperand
-                  * thirdOperand
-                  - fourthOperand
-              `,
-            },
-            {
-              code: `
-                const result =
-                  firstOperand
-                    + secondOperand
-                * thirdOperand
-                - fourthOperand
-              `,
-              output: `
-                const result =
-                  firstOperand
-                  + secondOperand
-                  * thirdOperand
-                  - fourthOperand
-              `,
-            },
-          ],
-          [
-            'Must add indent before "-".',
-            'Must remove indent before "+".',
-            'Must add indent before "*".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = firstOperand
-                + secondOperand
-                    * thirdOperand
-                - fourthOperand
-              `,
-              output: `
-                const result = firstOperand
-                  + secondOperand
-                  * thirdOperand
-                  - fourthOperand
-              `,
-            },
-            {
-              code: `
-                const result = firstOperand
-                + secondOperand
-                    * thirdOperand
-                - fourthOperand
-              `,
-              output: `
-                const result = firstOperand
-                  + secondOperand
-                  * thirdOperand
-                  - fourthOperand
-              `,
-            },
-            {
-              code: `
-                const result =
-                  firstOperand
-                + secondOperand
-                    * thirdOperand
-                - fourthOperand
-              `,
-              output: `
-                const result =
-                  firstOperand
-                  + secondOperand
-                  * thirdOperand
-                  - fourthOperand
-              `,
-            },
-          ],
-          [
-            'Must add indent before "-".',
-            'Must add indent before "+".',
-            'Must remove indent before "*".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = firstOperand
-                + secondOperand
-                * thirdOperand
-                    - fourthOperand
-              `,
-              output: `
-                const result = firstOperand
-                  + secondOperand
-                  * thirdOperand
-                  - fourthOperand
-              `,
-            },
-            {
-              code: `
-                const result =
-                  firstOperand
-                + secondOperand
-                * thirdOperand
-                    - fourthOperand
-              `,
-              output: `
-                const result =
-                  firstOperand
-                  + secondOperand
-                  * thirdOperand
-                  - fourthOperand
-              `,
-            },
-
-
-          ],
-          [
-            'Must remove indent before "-".',
-            'Must add indent before "+".',
-            'Must add indent before "*".',
-          ]
-        ],
-      ])
-
-      tester.run(
-        ruleName,
-        ruleBody,
-        {
-          valid: [],
-          invalid: invalidCases
-        }
-      )
-    })
-  })
-
-  describe('\\n before right operand', () => {
-    describe('valid code only', () => {
-      const validCodes = [
-        `
-        const result = leftOperand +
-          11
-        `,
-        `
-        const result = leftOperand -
-          11
-        `,
-        `
-        const result = leftOperand *
-          11
-        `,
-        `
-        const result = leftOperand /
-          11
-        `,
-        `
-        const result = leftOperand %
-          11
-        `,
-        `
-        const result = leftOperand **
-          11
-        `,
-        `
-        const result = leftOperand |
-          11
-        `,
-        `
-        const result = leftOperand &
-          11
-        `,
-        `
-        const result = leftOperand ^
-          11
-        `,
-        `
-        const result = leftOperand <<
-          4
-        `,
-        `
-        const result = leftOperand >>
-          6
-        `,
-        `
-        const result = leftOperand >>>
-          8
-        `,
-        `
-        const result = leftOperand in
-          8
-        `,
-        `
-        const result = leftOperand instanceof
-          8
-        `,
-
-        `
-        const result = leftOperand +
-          rightOperand -
-          11
-        `,
-
-        `
-        const result =
-          leftOperand -
-          11
-        `,
-        `
-        const result =
-          leftOperand +
-          rightOperand -
-          11
-        `,
-
-        `
-        const result = leftOperand +
-          11
-        `,
-        `
-        const result = leftOperand +
-          11 - 22
-        `,
-        `
-        const result = leftOperand +
-          11 - 22 +
-          33
-        `,
-
-        `
-        const result =
-          leftOperand *
-          rightOperand *
-          11
-        `,
-
-        `
-        {
+    describe('\\n before right operand', () => {
+      describe('valid code only', () => {
+        const validCodes = [
+          `
+          const result = leftOperand +
+            11
+          `,
+          `
           const result = leftOperand -
             11
-        }`,
-        `
-        {
+          `,
+          `
+          const result = leftOperand *
+            11
+          `,
+          `
+          const result = leftOperand /
+            11
+          `,
+          `
+          const result = leftOperand %
+            11
+          `,
+          `
+          const result = leftOperand **
+            11
+          `,
+          `
+          const result = leftOperand |
+            11
+          `,
+          `
+          const result = leftOperand &
+            11
+          `,
+          `
+          const result = leftOperand ^
+            11
+          `,
+          `
+          const result = leftOperand <<
+            4
+          `,
+          `
+          const result = leftOperand >>
+            6
+          `,
+          `
+          const result = leftOperand >>>
+            8
+          `,
+          `
+          const result = leftOperand in
+            8
+          `,
+          `
+          const result = leftOperand instanceof
+            8
+          `,
+
+          `
           const result = leftOperand +
             rightOperand -
             11
-        }`,
-      ]
+          `,
 
-      // tester.run([rule name], [rule definition], [test patterns])
-      tester.run(
-        ruleName,
-        ruleBody,
-        {
-          valid: validCodes.map(code => ({ code })),
-          invalid: [],
-        }
-      )
-    })
+          `
+          const result =
+            leftOperand -
+            11
+          `,
+          `
+          const result =
+            leftOperand +
+            rightOperand -
+            11
+          `,
 
-    describe('Must add indent (x1)', () => {
-      const invalidCases = ESLintHelper.expandInvalidCases([
-        [
+          `
+          const result = leftOperand +
+            11
+          `,
+          `
+          const result = leftOperand +
+            11 - 22
+          `,
+          `
+          const result = leftOperand +
+            11 - 22 +
+            33
+          `,
+
+          `
+          const result =
+            leftOperand *
+            rightOperand *
+            11
+          `,
+
+          `
+          {
+            const result = leftOperand -
+              11
+          }`,
+          `
+          {
+            const result = leftOperand +
+              rightOperand -
+              11
+          }`,
+        ]
+
+        // tester.run([rule name], [rule definition], [test patterns])
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: validCodes.map(code => ({ code })),
+            invalid: [],
+          }
+        )
+      })
+
+      describe('Must add indent (x1)', () => {
+        const invalidCases = ESLintHelper.expandInvalidCases([
           [
-            {
-              code: `
-                const result = leftOperand -
+            [
+              {
+                code: `
+                  const result = leftOperand -
+                  1
+                `,
+                output: `
+                  const result = leftOperand -
+                    1
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand -
                 1
               `,
-              output: `
-                const result = leftOperand -
-                  1
-              `,
-            },
-            {
-              code: `
-                const result = leftOperand -
-              1
-            `,
-              output: `
-                const result = leftOperand -
-                  1
-            `,
-            },
-            {
-              code: `
-                const result =
-                  leftOperand -
-                1
-              `,
-              output: `
-                const result =
-                  leftOperand -
-                  1
-              `,
-            },
-            {
-              code: `
-                const result =
-                    leftOperand -
-                  1
-              `,
-              output: `
-                const result =
-                    leftOperand -
+                output: `
+                  const result = leftOperand -
                     1
               `,
-            },
-            {
-              code: `
-                const result =
-                leftOperand -
-              1
-              `,
-              output: `
-                const result =
-                leftOperand -
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand -
+                  1
+                `,
+                output: `
+                  const result =
+                    leftOperand -
+                    1
+                `,
+              },
+              {
+                code: `
+                  const result =
+                      leftOperand -
+                    1
+                `,
+                output: `
+                  const result =
+                      leftOperand -
+                      1
+                `,
+              },
+              {
+                code: `
+                  const result =
+                  leftOperand -
                 1
-              `,
-            },
+                `,
+                output: `
+                  const result =
+                  leftOperand -
+                  1
+                `,
+              },
+            ],
+            [
+              'Must add indent before right operand of "-".',
+            ]
           ],
           [
-            'Must add indent before right operand of "-".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = leftOperand +
+            [
+              {
+                code: `
+                  const result = leftOperand +
+                  11
+                `,
+                output: `
+                  const result = leftOperand +
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand +
                 11
               `,
-              output: `
-                const result = leftOperand +
-                  11
+                output: `
+                  const result = leftOperand +
+                    11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand +
-              11
-            `,
-              output: `
-                const result = leftOperand +
-                  11
-            `,
-            },
-            {
-              code: `
-                function getEnv () {
-                  return this.env.NODE_ENV +
-                  'aaaa' // <---------------- should error
-                }
-              `,
-              output: `
-                function getEnv () {
-                  return this.env.NODE_ENV +
+              },
+              {
+                code: `
+                  function getEnv () {
+                    return this.env.NODE_ENV +
                     'aaaa' // <---------------- should error
-                }
-              `,
-            },
+                  }
+                `,
+                output: `
+                  function getEnv () {
+                    return this.env.NODE_ENV +
+                      'aaaa' // <---------------- should error
+                  }
+                `,
+              },
+            ],
+            [
+              'Must add indent before right operand of "+".',
+            ]
           ],
           [
-            'Must add indent before right operand of "+".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = leftOperand *
+            [
+              {
+                code: `
+                  const result = leftOperand *
+                  11
+                `,
+                output: `
+                  const result = leftOperand *
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand *
                 11
               `,
-              output: `
-                const result = leftOperand *
-                  11
+                output: `
+                  const result = leftOperand *
+                    11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand *
-              11
-            `,
-              output: `
-                const result = leftOperand *
-                  11
-            `,
-            },
+              },
+            ],
+            [
+              'Must add indent before right operand of "*".',
+            ]
           ],
           [
-            'Must add indent before right operand of "*".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = leftOperand /
+            [
+              {
+                code: `
+                  const result = leftOperand /
+                  11
+                `,
+                output: `
+                  const result = leftOperand /
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand /
                 11
               `,
-              output: `
-                const result = leftOperand /
-                  11
+                output: `
+                  const result = leftOperand /
+                    11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand /
-              11
-            `,
-              output: `
-                const result = leftOperand /
-                  11
-            `,
-            },
+              },
+            ],
+            [
+              'Must add indent before right operand of "/".',
+            ]
           ],
           [
-            'Must add indent before right operand of "/".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = leftOperand %
+            [
+              {
+                code: `
+                  const result = leftOperand %
+                  11
+                `,
+                output: `
+                  const result = leftOperand %
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand %
                 11
               `,
-              output: `
-                const result = leftOperand %
-                  11
+                output: `
+                  const result = leftOperand %
+                    11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand %
-              11
-            `,
-              output: `
-                const result = leftOperand %
-                  11
-            `,
-            },
+              },
+            ],
+            [
+              'Must add indent before right operand of "%".',
+            ]
           ],
           [
-            'Must add indent before right operand of "%".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = leftOperand **
+            [
+              {
+                code: `
+                  const result = leftOperand **
+                  11
+                `,
+                output: `
+                  const result = leftOperand **
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand **
                 11
               `,
-              output: `
-                const result = leftOperand **
-                  11
+                output: `
+                  const result = leftOperand **
+                    11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand **
-              11
-            `,
-              output: `
-                const result = leftOperand **
-                  11
-            `,
-            },
+              },
+            ],
+            [
+              'Must add indent before right operand of "**".',
+            ]
           ],
           [
-            'Must add indent before right operand of "**".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = leftOperand |
+            [
+              {
+                code: `
+                  const result = leftOperand |
+                  11
+                `,
+                output: `
+                  const result = leftOperand |
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand |
                 11
               `,
-              output: `
-                const result = leftOperand |
-                  11
+                output: `
+                  const result = leftOperand |
+                    11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand |
-              11
-            `,
-              output: `
-                const result = leftOperand |
-                  11
-            `,
-            },
+              },
+            ],
+            [
+              'Must add indent before right operand of "|".',
+            ]
           ],
           [
-            'Must add indent before right operand of "|".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = leftOperand &
+            [
+              {
+                code: `
+                  const result = leftOperand &
+                  11
+                `,
+                output: `
+                  const result = leftOperand &
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand &
                 11
               `,
-              output: `
-                const result = leftOperand &
-                  11
+                output: `
+                  const result = leftOperand &
+                    11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand &
-              11
-            `,
-              output: `
-                const result = leftOperand &
-                  11
-            `,
-            },
+              },
+            ],
+            [
+              'Must add indent before right operand of "&".',
+            ]
           ],
           [
-            'Must add indent before right operand of "&".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = leftOperand ^
+            [
+              {
+                code: `
+                  const result = leftOperand ^
+                  11
+                `,
+                output: `
+                  const result = leftOperand ^
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand ^
                 11
               `,
-              output: `
-                const result = leftOperand ^
-                  11
+                output: `
+                  const result = leftOperand ^
+                    11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand ^
-              11
-            `,
-              output: `
-                const result = leftOperand ^
-                  11
-            `,
-            },
+              },
+            ],
+            [
+              'Must add indent before right operand of "^".',
+            ]
           ],
           [
-            'Must add indent before right operand of "^".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = leftOperand <<
+            [
+              {
+                code: `
+                  const result = leftOperand <<
+                  11
+                `,
+                output: `
+                  const result = leftOperand <<
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand <<
                 11
               `,
-              output: `
-                const result = leftOperand <<
-                  11
+                output: `
+                  const result = leftOperand <<
+                    11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand <<
-              11
-            `,
-              output: `
-                const result = leftOperand <<
-                  11
-            `,
-            },
+              },
+            ],
+            [
+              'Must add indent before right operand of "<<".',
+            ]
           ],
           [
-            'Must add indent before right operand of "<<".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = leftOperand >>
+            [
+              {
+                code: `
+                  const result = leftOperand >>
+                  11
+                `,
+                output: `
+                  const result = leftOperand >>
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand >>
                 11
               `,
-              output: `
-                const result = leftOperand >>
-                  11
+                output: `
+                  const result = leftOperand >>
+                    11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand >>
-              11
-            `,
-              output: `
-                const result = leftOperand >>
-                  11
-            `,
-            },
+              },
+            ],
+            [
+              'Must add indent before right operand of ">>".',
+            ]
           ],
           [
-            'Must add indent before right operand of ">>".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = leftOperand >>>
+            [
+              {
+                code: `
+                  const result = leftOperand >>>
+                  11
+                `,
+                output: `
+                  const result = leftOperand >>>
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand >>>
                 11
               `,
-              output: `
-                const result = leftOperand >>>
-                  11
+                output: `
+                  const result = leftOperand >>>
+                    11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand >>>
-              11
-            `,
-              output: `
-                const result = leftOperand >>>
-                  11
-            `,
-            },
+              },
+            ],
+            [
+              'Must add indent before right operand of ">>>".',
+            ]
           ],
           [
-            'Must add indent before right operand of ">>>".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = leftOperand in
+            [
+              {
+                code: `
+                  const result = leftOperand in
+                  11
+                `,
+                output: `
+                  const result = leftOperand in
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand in
                 11
               `,
-              output: `
-                const result = leftOperand in
-                  11
+                output: `
+                  const result = leftOperand in
+                    11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand in
-              11
-            `,
-              output: `
-                const result = leftOperand in
-                  11
-            `,
-            },
+              },
+            ],
+            [
+              'Must add indent before right operand of "in".',
+            ]
           ],
           [
-            'Must add indent before right operand of "in".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = leftOperand instanceof
+            [
+              {
+                code: `
+                  const result = leftOperand instanceof
+                  RightOperandClass
+                `,
+                output: `
+                  const result = leftOperand instanceof
+                    RightOperandClass
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand instanceof
                 RightOperandClass
               `,
-              output: `
-                const result = leftOperand instanceof
-                  RightOperandClass
+                output: `
+                  const result = leftOperand instanceof
+                    RightOperandClass
               `,
-            },
-            {
-              code: `
-                const result = leftOperand instanceof
-              RightOperandClass
-            `,
-              output: `
-                const result = leftOperand instanceof
-                  RightOperandClass
-            `,
-            },
+              },
+            ],
+            [
+              'Must add indent before right operand of "instanceof".',
+            ]
+          ],
+        ])
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases
+          }
+        )
+      })
+
+      describe('Must remove indent (x1)', () => {
+        const invalidCases = ESLintHelper.expandInvalidCases([
+          [
+            [
+              {
+                code: `
+                  const result =
+                    leftOperand -
+                      1
+                `,
+                output: `
+                  const result =
+                    leftOperand -
+                    1
+                `,
+              },
+              {
+                code: `
+                {
+                  const result =
+                    leftOperand -
+                      11
+                }`,
+                output: `
+                {
+                  const result =
+                    leftOperand -
+                    11
+                }`,
+              },
+            ],
+            [
+              'Must remove indent before right operand of "-".',
+            ]
+          ],
+        ])
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases
+          }
+        )
+      })
+
+      describe('Must add indent (x1), Must remove indent (x1)', () => {
+        const invalidCases = ESLintHelper.expandInvalidCases([
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand +
+                  rightOperand -
+                      11
+                `,
+                output: `
+                  const result = leftOperand +
+                    rightOperand -
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand +
+                rightOperand -
+                      11
+                `,
+                output: `
+                  const result = leftOperand +
+                    rightOperand -
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand +
+                  rightOperand -
+                        11
+                `,
+                output: `
+                  const result = leftOperand +
+                    rightOperand -
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand +
+              rightOperand -
+                        11
+                `,
+                output: `
+                  const result = leftOperand +
+                    rightOperand -
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand +
+                  rightOperand -
+                      11
+                `,
+                output: `
+                  const result =
+                    leftOperand +
+                    rightOperand -
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand +
+                rightOperand -
+                      11
+                `,
+                output: `
+                  const result =
+                    leftOperand +
+                    rightOperand -
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand +
+                  rightOperand -
+                        11
+                `,
+                output: `
+                  const result =
+                    leftOperand +
+                    rightOperand -
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand +
+                rightOperand -
+                          11
+                `,
+                output: `
+                  const result =
+                    leftOperand +
+                    rightOperand -
+                    11
+                `,
+              },
+            ],
+            [
+              'Must remove indent before right operand of "-".',
+              'Must add indent before right operand of "+".',
+            ]
           ],
           [
-            'Must add indent before right operand of "instanceof".',
-          ]
-        ],
-      ])
+            [
+              {
+                code: `
+                  const result = leftOperand +
+                  rightOperand *
+                      11
+                `,
+                output: `
+                  const result = leftOperand +
+                    rightOperand *
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand +
+                rightOperand *
+                      11
+                `,
+                output: `
+                  const result = leftOperand +
+                    rightOperand *
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand +
+                  rightOperand *
+                        11
+                `,
+                output: `
+                  const result = leftOperand +
+                    rightOperand *
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand +
+              rightOperand *
+                        11
+                `,
+                output: `
+                  const result = leftOperand +
+                    rightOperand *
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand +
+                  rightOperand *
+                      11
+                `,
+                output: `
+                  const result =
+                    leftOperand +
+                    rightOperand *
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand +
+                rightOperand *
+                      11
+                `,
+                output: `
+                  const result =
+                    leftOperand +
+                    rightOperand *
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand +
+                  rightOperand *
+                        11
+                `,
+                output: `
+                  const result =
+                    leftOperand +
+                    rightOperand *
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand +
+                rightOperand *
+                          11
+                `,
+                output: `
+                  const result =
+                    leftOperand +
+                    rightOperand *
+                    11
+                `,
+              },
+            ],
+            [
+              'Must add indent before right operand of "+".',
+              'Must remove indent before right operand of "*".',
+            ]
+          ],
+        ])
 
-      tester.run(
-        ruleName,
-        ruleBody,
-        {
-          valid: [],
-          invalid: invalidCases
-        }
-      )
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases
+          }
+        )
+      })
+
+      describe('three errors', () => {
+        const invalidCases = ESLintHelper.expandInvalidCases([
+          [
+            [
+              {
+                code: `
+                  const result = firstOperand +
+                  secondOperand *
+                thirdOperand -
+                fourthOperand
+                `,
+                output: `
+                  const result = firstOperand +
+                    secondOperand *
+                    thirdOperand -
+                    fourthOperand
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    firstOperand +
+                  secondOperand *
+                thirdOperand -
+                fourthOperand
+                `,
+                output: `
+                  const result =
+                    firstOperand +
+                    secondOperand *
+                    thirdOperand -
+                    fourthOperand
+                `,
+              },
+            ],
+            [
+              // in operating priority low to hight.
+              'Must add indent before right operand of "-".',
+              'Must add indent before right operand of "+".',
+              'Must add indent before right operand of "*".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = firstOperand +
+                      secondOperand *
+                  thirdOperand -
+                  fourthOperand
+                `,
+                output: `
+                  const result = firstOperand +
+                    secondOperand *
+                    thirdOperand -
+                    fourthOperand
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    firstOperand +
+                      secondOperand *
+                  thirdOperand -
+                  fourthOperand
+                `,
+                output: `
+                  const result =
+                    firstOperand +
+                    secondOperand *
+                    thirdOperand -
+                    fourthOperand
+                `,
+              },
+            ],
+            [
+              'Must add indent before right operand of "-".',
+              'Must remove indent before right operand of "+".',
+              'Must add indent before right operand of "*".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = firstOperand +
+                  secondOperand *
+                      thirdOperand -
+                  fourthOperand
+                `,
+                output: `
+                  const result = firstOperand +
+                    secondOperand *
+                    thirdOperand -
+                    fourthOperand
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    firstOperand +
+                  secondOperand *
+                      thirdOperand -
+                  fourthOperand
+                `,
+                output: `
+                  const result =
+                    firstOperand +
+                    secondOperand *
+                    thirdOperand -
+                    fourthOperand
+                `,
+              },
+            ],
+            [
+              'Must add indent before right operand of "-".',
+              'Must add indent before right operand of "+".',
+              'Must remove indent before right operand of "*".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = firstOperand +
+                  secondOperand *
+                thirdOperand -
+                      fourthOperand
+                `,
+                output: `
+                  const result = firstOperand +
+                    secondOperand *
+                    thirdOperand -
+                    fourthOperand
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    firstOperand +
+                  secondOperand *
+                thirdOperand -
+                      fourthOperand
+                `,
+                output: `
+                  const result =
+                    firstOperand +
+                    secondOperand *
+                    thirdOperand -
+                    fourthOperand
+                `,
+              },
+            ],
+            [
+              'Must remove indent before right operand of "-".',
+              'Must add indent before right operand of "+".',
+              'Must add indent before right operand of "*".',
+            ]
+          ],
+        ])
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases
+          }
+        )
+      })
+    })
+  })
+
+  describe('options: { indent: 4 }', () => {
+    describe('\\n before operator', () => {
+      describe('valid code only', () => {
+        const validCodes = [
+          'const result = leftOperand - 11',
+
+          `
+          const result = leftOperand
+            + 11
+          `,
+          `
+          const result = leftOperand
+            - 11
+          `,
+          `
+          const result = leftOperand
+            * 11
+          `,
+          `
+          const result = leftOperand
+            / 11
+          `,
+          `
+          const result = leftOperand
+            % 11
+          `,
+          `
+          const result = leftOperand
+            ** 11
+          `,
+          `
+          const result = leftOperand
+            | 11
+          `,
+          `
+          const result = leftOperand
+            & 11
+          `,
+          `
+          const result = leftOperand
+            ^ 11
+          `,
+          `
+          const result = leftOperand
+            << 4
+          `,
+          `
+          const result = leftOperand
+            >> 6
+          `,
+          `
+          const result = leftOperand
+            >>> 8
+          `,
+          `
+          const result = leftOperand
+            in 8
+          `,
+          `
+          const result = leftOperand
+            instanceof 8
+          `,
+
+          `
+          const result = leftOperand
+            + rightOperand
+            - 11
+          `,
+
+          `
+          const result =
+            leftOperand
+            - 11
+          `,
+          `
+          const result =
+            leftOperand
+            + rightOperand
+            - 11
+          `,
+
+          `
+          {
+            const result = leftOperand
+              - 11
+          }`,
+          `
+          {
+            const result = leftOperand
+              + rightOperand
+              - 11
+          }`,
+
+          `
+          const result = leftOperand
+            -1 !== flag || die()`,
+        ]
+
+        // tester.run([rule name], [rule definition], [test patterns])
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: validCodes.map(code => ({ code })),
+            invalid: [],
+          }
+        )
+      })
+
+      describe('Must add indent (x1)', () => {
+        const invalidCases = ESLintHelper.expandInvalidCases([
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  - 1
+                `,
+                output: `
+                  const result = leftOperand
+                    - 1
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                - 1
+              `,
+                output: `
+                  const result = leftOperand
+                    - 1
+              `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand
+                  - 1
+                `,
+                output: `
+                  const result =
+                    leftOperand
+                    - 1
+                `,
+              },
+              {
+                code: `
+                  const result =
+                      leftOperand
+                    - 1
+                `,
+                output: `
+                  const result =
+                      leftOperand
+                      - 1
+                `,
+              },
+              {
+                code: `
+                  const result =
+                  leftOperand
+                - 1
+                `,
+                output: `
+                  const result =
+                  leftOperand
+                  - 1
+                `,
+              },
+              {
+                code: `
+                  function getEnv () {
+                    return this.env.NODE_ENV
+                    - 'aaaa' // <---------------- should error
+                  }
+                `,
+                output: `
+                  function getEnv () {
+                    return this.env.NODE_ENV
+                      - 'aaaa' // <---------------- should error
+                  }
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                  -1 === flag || die()`,
+                output: `
+                  const result = leftOperand
+                    -1 === flag || die()`,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                -1 === flag || die()`,
+                output: `
+                  const result = leftOperand
+                    -1 === flag || die()`,
+              },
+              theCaseSuggestedByGoogle,
+            ],
+            [
+              'Must add indent before "-".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  + 11
+                `,
+                output: `
+                  const result = leftOperand
+                    + 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                + 11
+              `,
+                output: `
+                  const result = leftOperand
+                    + 11
+              `,
+              },
+            ],
+            ['Must add indent before "+".']
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  * 11
+                `,
+                output: `
+                  const result = leftOperand
+                    * 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                * 11
+              `,
+                output: `
+                  const result = leftOperand
+                    * 11
+              `,
+              },
+            ],
+            ['Must add indent before "*".']
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  / 11
+                `,
+                output: `
+                  const result = leftOperand
+                    / 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                / 11
+              `,
+                output: `
+                  const result = leftOperand
+                    / 11
+              `,
+              },
+            ],
+            ['Must add indent before "/".']
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  % 11
+                `,
+                output: `
+                  const result = leftOperand
+                    % 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                % 11
+              `,
+                output: `
+                  const result = leftOperand
+                    % 11
+              `,
+              },
+            ],
+            ['Must add indent before "%".']
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  ** 11
+                `,
+                output: `
+                  const result = leftOperand
+                    ** 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                ** 11
+              `,
+                output: `
+                  const result = leftOperand
+                    ** 11
+              `,
+              },
+            ],
+            ['Must add indent before "**".']
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  | 11
+                `,
+                output: `
+                  const result = leftOperand
+                    | 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                | 11
+              `,
+                output: `
+                  const result = leftOperand
+                    | 11
+              `,
+              },
+            ],
+            ['Must add indent before "|".']
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  & 11
+                `,
+                output: `
+                  const result = leftOperand
+                    & 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                & 11
+              `,
+                output: `
+                  const result = leftOperand
+                    & 11
+              `,
+              },
+            ],
+            ['Must add indent before "&".']
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  ^ 11
+                `,
+                output: `
+                  const result = leftOperand
+                    ^ 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                ^ 11
+              `,
+                output: `
+                  const result = leftOperand
+                    ^ 11
+              `,
+              },
+            ],
+            ['Must add indent before "^".']
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  << 11
+                `,
+                output: `
+                  const result = leftOperand
+                    << 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                << 11
+              `,
+                output: `
+                  const result = leftOperand
+                    << 11
+              `,
+              },
+            ],
+            ['Must add indent before "<<".']
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  >> 11
+                `,
+                output: `
+                  const result = leftOperand
+                    >> 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                >> 11
+              `,
+                output: `
+                  const result = leftOperand
+                    >> 11
+              `,
+              },
+            ],
+            ['Must add indent before ">>".']
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  >>> 11
+                `,
+                output: `
+                  const result = leftOperand
+                    >>> 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                >>> 11
+              `,
+                output: `
+                  const result = leftOperand
+                    >>> 11
+              `,
+              },
+            ],
+            ['Must add indent before ">>>".']
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  in 11
+                `,
+                output: `
+                  const result = leftOperand
+                    in 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                in 11
+              `,
+                output: `
+                  const result = leftOperand
+                    in 11
+              `,
+              },
+            ],
+            ['Must add indent before "in".']
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  instanceof RightOperandClass
+                `,
+                output: `
+                  const result = leftOperand
+                    instanceof RightOperandClass
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                instanceof RightOperandClass
+              `,
+                output: `
+                  const result = leftOperand
+                    instanceof RightOperandClass
+              `,
+              },
+            ],
+            ['Must add indent before "instanceof".']
+          ],
+        ])
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases
+          }
+        )
+      })
+
+      describe('Must remove indent (x1)', () => {
+        const invalidCases = ESLintHelper.expandInvalidCases([
+          [
+            [
+              {
+                code: `
+                  const result =
+                    leftOperand
+                      - 1
+                `,
+                output: `
+                  const result =
+                    leftOperand
+                    - 1
+                `,
+              },
+              {
+                code: `
+                  {
+                    const result =
+                      leftOperand
+                        - 11
+                  }`,
+                output: `
+                  {
+                    const result =
+                      leftOperand
+                      - 11
+                  }`,
+              },
+            ],
+            [
+              'Must remove indent before "-".',
+            ]
+          ],
+        ])
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases
+          }
+        )
+      })
+
+      describe('Must add indent (x1), Must remove indent (x1)', () => {
+        const invalidCases = ESLintHelper.expandInvalidCases([
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  + rightOperand
+                      - 11
+                `,
+                output: `
+                  const result = leftOperand
+                    + rightOperand
+                    - 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                + rightOperand
+                      - 11
+                `,
+                output: `
+                  const result = leftOperand
+                    + rightOperand
+                    - 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                  + rightOperand
+                        - 11
+                `,
+                output: `
+                  const result = leftOperand
+                    + rightOperand
+                    - 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+              + rightOperand
+                        - 11
+                `,
+                output: `
+                  const result = leftOperand
+                    + rightOperand
+                    - 11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand
+                  + rightOperand
+                      - 11
+                `,
+                output: `
+                  const result =
+                    leftOperand
+                    + rightOperand
+                    - 11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand
+                + rightOperand
+                      - 11
+                `,
+                output: `
+                  const result =
+                    leftOperand
+                    + rightOperand
+                    - 11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand
+                  + rightOperand
+                        - 11
+                `,
+                output: `
+                  const result =
+                    leftOperand
+                    + rightOperand
+                    - 11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand
+                + rightOperand
+                          - 11
+                `,
+                output: `
+                  const result =
+                    leftOperand
+                    + rightOperand
+                    - 11
+                `,
+              },
+            ],
+            [
+              'Must remove indent before "-".',
+              'Must add indent before "+".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand
+                  + rightOperand
+                      * 11
+                `,
+                output: `
+                  const result = leftOperand
+                    + rightOperand
+                    * 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                + rightOperand
+                      * 11
+                `,
+                output: `
+                  const result = leftOperand
+                    + rightOperand
+                    * 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                  + rightOperand
+                        * 11
+                `,
+                output: `
+                  const result = leftOperand
+                    + rightOperand
+                    * 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+              + rightOperand
+                        * 11
+                `,
+                output: `
+                  const result = leftOperand
+                    + rightOperand
+                    * 11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand
+                  + rightOperand
+                      * 11
+                `,
+                output: `
+                  const result =
+                    leftOperand
+                    + rightOperand
+                    * 11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand
+                + rightOperand
+                      * 11
+                `,
+                output: `
+                  const result =
+                    leftOperand
+                    + rightOperand
+                    * 11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand
+                  + rightOperand
+                        * 11
+                `,
+                output: `
+                  const result =
+                    leftOperand
+                    + rightOperand
+                    * 11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand
+                + rightOperand
+                          * 11
+                `,
+                output: `
+                  const result =
+                    leftOperand
+                    + rightOperand
+                    * 11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                      leftOperand
+                  + rightOperand
+                            * 11
+                `,
+                output: `
+                  const result =
+                      leftOperand
+                      + rightOperand
+                      * 11
+                `,
+              },
+            ],
+            [
+              'Must add indent before "+".',
+              'Must remove indent before "*".',
+            ]
+          ],
+        ])
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases
+          }
+        )
+      })
+
+      describe('three errors', () => {
+        const invalidCases = ESLintHelper.expandInvalidCases([
+          [
+            [
+              {
+                code: `
+                  const result = firstOperand
+                  + secondOperand
+                  * thirdOperand
+                  - fourthOperand
+                `,
+                output: `
+                  const result = firstOperand
+                    + secondOperand
+                    * thirdOperand
+                    - fourthOperand
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    firstOperand
+                  + secondOperand
+                  * thirdOperand
+                  - fourthOperand
+                  `,
+                output: `
+                  const result =
+                    firstOperand
+                    + secondOperand
+                    * thirdOperand
+                    - fourthOperand
+                  `,
+              },
+            ],
+            [
+              // in operating priority low to hight.
+              'Must add indent before "-".',
+              'Must add indent before "+".',
+              'Must add indent before "*".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = firstOperand
+                      + secondOperand
+                  * thirdOperand
+                  - fourthOperand
+                `,
+                output: `
+                  const result = firstOperand
+                    + secondOperand
+                    * thirdOperand
+                    - fourthOperand
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    firstOperand
+                      + secondOperand
+                  * thirdOperand
+                  - fourthOperand
+                `,
+                output: `
+                  const result =
+                    firstOperand
+                    + secondOperand
+                    * thirdOperand
+                    - fourthOperand
+                `,
+              },
+            ],
+            [
+              'Must add indent before "-".',
+              'Must remove indent before "+".',
+              'Must add indent before "*".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = firstOperand
+                  + secondOperand
+                      * thirdOperand
+                  - fourthOperand
+                `,
+                output: `
+                  const result = firstOperand
+                    + secondOperand
+                    * thirdOperand
+                    - fourthOperand
+                `,
+              },
+              {
+                code: `
+                  const result = firstOperand
+                  + secondOperand
+                      * thirdOperand
+                  - fourthOperand
+                `,
+                output: `
+                  const result = firstOperand
+                    + secondOperand
+                    * thirdOperand
+                    - fourthOperand
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    firstOperand
+                  + secondOperand
+                      * thirdOperand
+                  - fourthOperand
+                `,
+                output: `
+                  const result =
+                    firstOperand
+                    + secondOperand
+                    * thirdOperand
+                    - fourthOperand
+                `,
+              },
+            ],
+            [
+              'Must add indent before "-".',
+              'Must add indent before "+".',
+              'Must remove indent before "*".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = firstOperand
+                  + secondOperand
+                  * thirdOperand
+                      - fourthOperand
+                `,
+                output: `
+                  const result = firstOperand
+                    + secondOperand
+                    * thirdOperand
+                    - fourthOperand
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    firstOperand
+                  + secondOperand
+                  * thirdOperand
+                      - fourthOperand
+                `,
+                output: `
+                  const result =
+                    firstOperand
+                    + secondOperand
+                    * thirdOperand
+                    - fourthOperand
+                `,
+              },
+
+
+            ],
+            [
+              'Must remove indent before "-".',
+              'Must add indent before "+".',
+              'Must add indent before "*".',
+            ]
+          ],
+        ])
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases
+          }
+        )
+      })
     })
 
-    describe('Must remove indent (x1)', () => {
-      const invalidCases = ESLintHelper.expandInvalidCases([
-        [
+    describe('\\n before right operand', () => {
+      describe('valid code only', () => {
+        const validCodes = [
+          `
+          const result = leftOperand +
+            11
+          `,
+          `
+          const result = leftOperand -
+            11
+          `,
+          `
+          const result = leftOperand *
+            11
+          `,
+          `
+          const result = leftOperand /
+            11
+          `,
+          `
+          const result = leftOperand %
+            11
+          `,
+          `
+          const result = leftOperand **
+            11
+          `,
+          `
+          const result = leftOperand |
+            11
+          `,
+          `
+          const result = leftOperand &
+            11
+          `,
+          `
+          const result = leftOperand ^
+            11
+          `,
+          `
+          const result = leftOperand <<
+            4
+          `,
+          `
+          const result = leftOperand >>
+            6
+          `,
+          `
+          const result = leftOperand >>>
+            8
+          `,
+          `
+          const result = leftOperand in
+            8
+          `,
+          `
+          const result = leftOperand instanceof
+            8
+          `,
+
+          `
+          const result = leftOperand +
+            rightOperand -
+            11
+          `,
+
+          `
+          const result =
+            leftOperand -
+            11
+          `,
+          `
+          const result =
+            leftOperand +
+            rightOperand -
+            11
+          `,
+
+          `
+          const result = leftOperand +
+            11
+          `,
+          `
+          const result = leftOperand +
+            11 - 22
+          `,
+          `
+          const result = leftOperand +
+            11 - 22 +
+            33
+          `,
+
+          `
+          const result =
+            leftOperand *
+            rightOperand *
+            11
+          `,
+
+          `
+          {
+            const result = leftOperand -
+              11
+          }`,
+          `
+          {
+            const result = leftOperand +
+              rightOperand -
+              11
+          }`,
+        ]
+
+        // tester.run([rule name], [rule definition], [test patterns])
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: validCodes.map(code => ({ code })),
+            invalid: [],
+          }
+        )
+      })
+
+      describe('Must add indent (x1)', () => {
+        const invalidCases = ESLintHelper.expandInvalidCases([
           [
-            {
-              code: `
-                const result =
-                  leftOperand -
+            [
+              {
+                code: `
+                  const result = leftOperand -
+                  1
+                `,
+                output: `
+                  const result = leftOperand -
+                    1
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand -
+                1
+              `,
+                output: `
+                  const result = leftOperand -
                     1
               `,
-              output: `
-                const result =
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand -
+                  1
+                `,
+                output: `
+                  const result =
+                    leftOperand -
+                    1
+                `,
+              },
+              {
+                code: `
+                  const result =
+                      leftOperand -
+                    1
+                `,
+                output: `
+                  const result =
+                      leftOperand -
+                      1
+                `,
+              },
+              {
+                code: `
+                  const result =
+                  leftOperand -
+                1
+                `,
+                output: `
+                  const result =
                   leftOperand -
                   1
-              `,
-            },
-            {
-              code: `
-              {
-                const result =
-                  leftOperand -
-                    11
-              }`,
-              output: `
-              {
-                const result =
-                  leftOperand -
-                  11
-              }`,
-            },
+                `,
+              },
+            ],
+            [
+              'Must add indent before right operand of "-".',
+            ]
           ],
           [
-            'Must remove indent before right operand of "-".',
-          ]
-        ],
-      ])
-
-      tester.run(
-        ruleName,
-        ruleBody,
-        {
-          valid: [],
-          invalid: invalidCases
-        }
-      )
-    })
-
-    describe('Must add indent (x1), Must remove indent (x1)', () => {
-      const invalidCases = ESLintHelper.expandInvalidCases([
-        [
+            [
+              {
+                code: `
+                  const result = leftOperand +
+                  11
+                `,
+                output: `
+                  const result = leftOperand +
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand +
+                11
+              `,
+                output: `
+                  const result = leftOperand +
+                    11
+              `,
+              },
+              {
+                code: `
+                  function getEnv () {
+                    return this.env.NODE_ENV +
+                    'aaaa' // <---------------- should error
+                  }
+                `,
+                output: `
+                  function getEnv () {
+                    return this.env.NODE_ENV +
+                      'aaaa' // <---------------- should error
+                  }
+                `,
+              },
+            ],
+            [
+              'Must add indent before right operand of "+".',
+            ]
+          ],
           [
-            {
-              code: `
-                const result = leftOperand +
-                rightOperand -
+            [
+              {
+                code: `
+                  const result = leftOperand *
+                  11
+                `,
+                output: `
+                  const result = leftOperand *
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand *
+                11
+              `,
+                output: `
+                  const result = leftOperand *
                     11
               `,
-              output: `
-                const result = leftOperand +
-                  rightOperand -
+              },
+            ],
+            [
+              'Must add indent before right operand of "*".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand /
                   11
+                `,
+                output: `
+                  const result = leftOperand /
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand /
+                11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand +
-              rightOperand -
+                output: `
+                  const result = leftOperand /
                     11
               `,
-              output: `
-                const result = leftOperand +
-                  rightOperand -
+              },
+            ],
+            [
+              'Must add indent before right operand of "/".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand %
                   11
+                `,
+                output: `
+                  const result = leftOperand %
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand %
+                11
               `,
-            },
-            {
-              code: `
-                const result = leftOperand +
+                output: `
+                  const result = leftOperand %
+                    11
+              `,
+              },
+            ],
+            [
+              'Must add indent before right operand of "%".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand **
+                  11
+                `,
+                output: `
+                  const result = leftOperand **
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand **
+                11
+              `,
+                output: `
+                  const result = leftOperand **
+                    11
+              `,
+              },
+            ],
+            [
+              'Must add indent before right operand of "**".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand |
+                  11
+                `,
+                output: `
+                  const result = leftOperand |
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand |
+                11
+              `,
+                output: `
+                  const result = leftOperand |
+                    11
+              `,
+              },
+            ],
+            [
+              'Must add indent before right operand of "|".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand &
+                  11
+                `,
+                output: `
+                  const result = leftOperand &
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand &
+                11
+              `,
+                output: `
+                  const result = leftOperand &
+                    11
+              `,
+              },
+            ],
+            [
+              'Must add indent before right operand of "&".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand ^
+                  11
+                `,
+                output: `
+                  const result = leftOperand ^
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand ^
+                11
+              `,
+                output: `
+                  const result = leftOperand ^
+                    11
+              `,
+              },
+            ],
+            [
+              'Must add indent before right operand of "^".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand <<
+                  11
+                `,
+                output: `
+                  const result = leftOperand <<
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand <<
+                11
+              `,
+                output: `
+                  const result = leftOperand <<
+                    11
+              `,
+              },
+            ],
+            [
+              'Must add indent before right operand of "<<".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand >>
+                  11
+                `,
+                output: `
+                  const result = leftOperand >>
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand >>
+                11
+              `,
+                output: `
+                  const result = leftOperand >>
+                    11
+              `,
+              },
+            ],
+            [
+              'Must add indent before right operand of ">>".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand >>>
+                  11
+                `,
+                output: `
+                  const result = leftOperand >>>
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand >>>
+                11
+              `,
+                output: `
+                  const result = leftOperand >>>
+                    11
+              `,
+              },
+            ],
+            [
+              'Must add indent before right operand of ">>>".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand in
+                  11
+                `,
+                output: `
+                  const result = leftOperand in
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand in
+                11
+              `,
+                output: `
+                  const result = leftOperand in
+                    11
+              `,
+              },
+            ],
+            [
+              'Must add indent before right operand of "in".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand instanceof
+                  RightOperandClass
+                `,
+                output: `
+                  const result = leftOperand instanceof
+                    RightOperandClass
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand instanceof
+                RightOperandClass
+              `,
+                output: `
+                  const result = leftOperand instanceof
+                    RightOperandClass
+              `,
+              },
+            ],
+            [
+              'Must add indent before right operand of "instanceof".',
+            ]
+          ],
+        ])
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases
+          }
+        )
+      })
+
+      describe('Must remove indent (x1)', () => {
+        const invalidCases = ESLintHelper.expandInvalidCases([
+          [
+            [
+              {
+                code: `
+                  const result =
+                    leftOperand -
+                      1
+                `,
+                output: `
+                  const result =
+                    leftOperand -
+                    1
+                `,
+              },
+              {
+                code: `
+                {
+                  const result =
+                    leftOperand -
+                      11
+                }`,
+                output: `
+                {
+                  const result =
+                    leftOperand -
+                    11
+                }`,
+              },
+            ],
+            [
+              'Must remove indent before right operand of "-".',
+            ]
+          ],
+        ])
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases
+          }
+        )
+      })
+
+      describe('Must add indent (x1), Must remove indent (x1)', () => {
+        const invalidCases = ESLintHelper.expandInvalidCases([
+          [
+            [
+              {
+                code: `
+                  const result = leftOperand +
+                  rightOperand -
+                      11
+                `,
+                output: `
+                  const result = leftOperand +
+                    rightOperand -
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand +
                 rightOperand -
                       11
-              `,
-              output: `
-                const result = leftOperand +
-                  rightOperand -
-                  11
-              `,
-            },
-            {
-              code: `
-                const result = leftOperand +
-            rightOperand -
-                      11
-              `,
-              output: `
-                const result = leftOperand +
-                  rightOperand -
-                  11
-              `,
-            },
-            {
-              code: `
-                const result =
-                  leftOperand +
-                rightOperand -
+                `,
+                output: `
+                  const result = leftOperand +
+                    rightOperand -
                     11
-              `,
-              output: `
-                const result =
-                  leftOperand +
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand +
                   rightOperand -
-                  11
-              `,
-            },
-            {
-              code: `
-                const result =
-                  leftOperand +
-              rightOperand -
+                        11
+                `,
+                output: `
+                  const result = leftOperand +
+                    rightOperand -
                     11
-              `,
-              output: `
-                const result =
-                  leftOperand +
-                  rightOperand -
-                  11
-              `,
-            },
-            {
-              code: `
-                const result =
-                  leftOperand +
-                rightOperand -
-                      11
-              `,
-              output: `
-                const result =
-                  leftOperand +
-                  rightOperand -
-                  11
-              `,
-            },
-            {
-              code: `
-                const result =
-                  leftOperand +
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand +
               rightOperand -
                         11
-              `,
-              output: `
-                const result =
-                  leftOperand +
+                `,
+                output: `
+                  const result = leftOperand +
+                    rightOperand -
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand +
                   rightOperand -
-                  11
-              `,
-            },
+                      11
+                `,
+                output: `
+                  const result =
+                    leftOperand +
+                    rightOperand -
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand +
+                rightOperand -
+                      11
+                `,
+                output: `
+                  const result =
+                    leftOperand +
+                    rightOperand -
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand +
+                  rightOperand -
+                        11
+                `,
+                output: `
+                  const result =
+                    leftOperand +
+                    rightOperand -
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand +
+                rightOperand -
+                          11
+                `,
+                output: `
+                  const result =
+                    leftOperand +
+                    rightOperand -
+                    11
+                `,
+              },
+            ],
+            [
+              'Must remove indent before right operand of "-".',
+              'Must add indent before right operand of "+".',
+            ]
           ],
           [
-            'Must remove indent before right operand of "-".',
-            'Must add indent before right operand of "+".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = leftOperand +
-                rightOperand *
-                    11
-              `,
-              output: `
-                const result = leftOperand +
+            [
+              {
+                code: `
+                  const result = leftOperand +
                   rightOperand *
-                  11
-              `,
-            },
-            {
-              code: `
-                const result = leftOperand +
-              rightOperand *
+                      11
+                `,
+                output: `
+                  const result = leftOperand +
+                    rightOperand *
                     11
-              `,
-              output: `
-                const result = leftOperand +
-                  rightOperand *
-                  11
-              `,
-            },
-            {
-              code: `
-                const result = leftOperand +
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand +
                 rightOperand *
                       11
-              `,
-              output: `
-                const result = leftOperand +
-                  rightOperand *
-                  11
-              `,
-            },
-            {
-              code: `
-                const result = leftOperand +
-            rightOperand *
-                      11
-              `,
-              output: `
-                const result = leftOperand +
-                  rightOperand *
-                  11
-              `,
-            },
-            {
-              code: `
-                const result =
-                  leftOperand +
-                rightOperand *
+                `,
+                output: `
+                  const result = leftOperand +
+                    rightOperand *
                     11
-              `,
-              output: `
-                const result =
-                  leftOperand +
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand +
                   rightOperand *
-                  11
-              `,
-            },
-            {
-              code: `
-                const result =
-                  leftOperand +
-              rightOperand *
+                        11
+                `,
+                output: `
+                  const result = leftOperand +
+                    rightOperand *
                     11
-              `,
-              output: `
-                const result =
-                  leftOperand +
-                  rightOperand *
-                  11
-              `,
-            },
-            {
-              code: `
-                const result =
-                  leftOperand +
-                rightOperand *
-                      11
-              `,
-              output: `
-                const result =
-                  leftOperand +
-                  rightOperand *
-                  11
-              `,
-            },
-            {
-              code: `
-                const result =
-                  leftOperand +
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand +
               rightOperand *
                         11
-              `,
-              output: `
-                const result =
-                  leftOperand +
+                `,
+                output: `
+                  const result = leftOperand +
+                    rightOperand *
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand +
                   rightOperand *
-                  11
-              `,
-            },
+                      11
+                `,
+                output: `
+                  const result =
+                    leftOperand +
+                    rightOperand *
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand +
+                rightOperand *
+                      11
+                `,
+                output: `
+                  const result =
+                    leftOperand +
+                    rightOperand *
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand +
+                  rightOperand *
+                        11
+                `,
+                output: `
+                  const result =
+                    leftOperand +
+                    rightOperand *
+                    11
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    leftOperand +
+                rightOperand *
+                          11
+                `,
+                output: `
+                  const result =
+                    leftOperand +
+                    rightOperand *
+                    11
+                `,
+              },
+            ],
+            [
+              'Must add indent before right operand of "+".',
+              'Must remove indent before right operand of "*".',
+            ]
           ],
-          [
-            'Must add indent before right operand of "+".',
-            'Must remove indent before right operand of "*".',
-          ]
-        ],
-      ])
+        ])
 
-      tester.run(
-        ruleName,
-        ruleBody,
-        {
-          valid: [],
-          invalid: invalidCases
-        }
-      )
-    })
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases
+          }
+        )
+      })
 
-    describe('three errors', () => {
-      const invalidCases = ESLintHelper.expandInvalidCases([
-        [
+      describe('three errors', () => {
+        const invalidCases = ESLintHelper.expandInvalidCases([
           [
-            {
-              code: `
-                const result = firstOperand +
-                secondOperand *
-              thirdOperand -
-              fourthOperand
-              `,
-              output: `
-                const result = firstOperand +
+            [
+              {
+                code: `
+                  const result = firstOperand +
                   secondOperand *
-                  thirdOperand -
-                  fourthOperand
-              `,
-            },
-            {
-              code: `
-                const result =
-                  firstOperand +
-                secondOperand *
-              thirdOperand -
-              fourthOperand
-              `,
-              output: `
-                const result =
-                  firstOperand +
-                  secondOperand *
-                  thirdOperand -
-                  fourthOperand
-              `,
-            },
-          ],
-          [
-            // in operating priority low to hight.
-            'Must add indent before right operand of "-".',
-            'Must add indent before right operand of "+".',
-            'Must add indent before right operand of "*".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = firstOperand +
-                    secondOperand *
                 thirdOperand -
                 fourthOperand
-              `,
-              output: `
-                const result = firstOperand +
-                  secondOperand *
-                  thirdOperand -
-                  fourthOperand
-              `,
-            },
-            {
-              code: `
-                const result =
-                  firstOperand +
+                `,
+                output: `
+                  const result = firstOperand +
                     secondOperand *
+                    thirdOperand -
+                    fourthOperand
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    firstOperand +
+                  secondOperand *
                 thirdOperand -
                 fourthOperand
-              `,
-              output: `
-                const result =
-                  firstOperand +
-                  secondOperand *
-                  thirdOperand -
-                  fourthOperand
-              `,
-            },
-          ],
-          [
-            'Must add indent before right operand of "-".',
-            'Must remove indent before right operand of "+".',
-            'Must add indent before right operand of "*".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = firstOperand +
-                secondOperand *
+                `,
+                output: `
+                  const result =
+                    firstOperand +
+                    secondOperand *
                     thirdOperand -
-                fourthOperand
-              `,
-              output: `
-                const result = firstOperand +
-                  secondOperand *
+                    fourthOperand
+                `,
+              },
+            ],
+            [
+              // in operating priority low to hight.
+              'Must add indent before right operand of "-".',
+              'Must add indent before right operand of "+".',
+              'Must add indent before right operand of "*".',
+            ]
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = firstOperand +
+                      secondOperand *
                   thirdOperand -
                   fourthOperand
-              `,
-            },
-            {
-              code: `
-                const result =
-                  firstOperand +
-                secondOperand *
+                `,
+                output: `
+                  const result = firstOperand +
+                    secondOperand *
                     thirdOperand -
-                fourthOperand
-              `,
-              output: `
-                const result =
-                  firstOperand +
-                  secondOperand *
+                    fourthOperand
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    firstOperand +
+                      secondOperand *
                   thirdOperand -
                   fourthOperand
-              `,
-            },
+                `,
+                output: `
+                  const result =
+                    firstOperand +
+                    secondOperand *
+                    thirdOperand -
+                    fourthOperand
+                `,
+              },
+            ],
+            [
+              'Must add indent before right operand of "-".',
+              'Must remove indent before right operand of "+".',
+              'Must add indent before right operand of "*".',
+            ]
           ],
           [
-            'Must add indent before right operand of "-".',
-            'Must add indent before right operand of "+".',
-            'Must remove indent before right operand of "*".',
-          ]
-        ],
-        [
-          [
-            {
-              code: `
-                const result = firstOperand +
-                secondOperand *
-              thirdOperand -
-                    fourthOperand
-              `,
-              output: `
-                const result = firstOperand +
+            [
+              {
+                code: `
+                  const result = firstOperand +
                   secondOperand *
-                  thirdOperand -
+                      thirdOperand -
                   fourthOperand
-              `,
-            },
-            {
-              code: `
-                const result =
-                  firstOperand +
-                secondOperand *
-              thirdOperand -
+                `,
+                output: `
+                  const result = firstOperand +
+                    secondOperand *
+                    thirdOperand -
                     fourthOperand
-              `,
-              output: `
-                const result =
-                  firstOperand +
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    firstOperand +
                   secondOperand *
-                  thirdOperand -
+                      thirdOperand -
                   fourthOperand
-              `,
-            },
+                `,
+                output: `
+                  const result =
+                    firstOperand +
+                    secondOperand *
+                    thirdOperand -
+                    fourthOperand
+                `,
+              },
+            ],
+            [
+              'Must add indent before right operand of "-".',
+              'Must add indent before right operand of "+".',
+              'Must remove indent before right operand of "*".',
+            ]
           ],
           [
-            'Must remove indent before right operand of "-".',
-            'Must add indent before right operand of "+".',
-            'Must add indent before right operand of "*".',
-          ]
-        ],
-      ])
+            [
+              {
+                code: `
+                  const result = firstOperand +
+                  secondOperand *
+                thirdOperand -
+                      fourthOperand
+                `,
+                output: `
+                  const result = firstOperand +
+                    secondOperand *
+                    thirdOperand -
+                    fourthOperand
+                `,
+              },
+              {
+                code: `
+                  const result =
+                    firstOperand +
+                  secondOperand *
+                thirdOperand -
+                      fourthOperand
+                `,
+                output: `
+                  const result =
+                    firstOperand +
+                    secondOperand *
+                    thirdOperand -
+                    fourthOperand
+                `,
+              },
+            ],
+            [
+              'Must remove indent before right operand of "-".',
+              'Must add indent before right operand of "+".',
+              'Must add indent before right operand of "*".',
+            ]
+          ],
+        ])
 
-      tester.run(
-        ruleName,
-        ruleBody,
-        {
-          valid: [],
-          invalid: invalidCases
-        }
-      )
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases
+          }
+        )
+      })
     })
   })
 })
