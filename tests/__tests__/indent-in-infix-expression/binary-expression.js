@@ -965,20 +965,6 @@ describe('BinaryExpression', () => {
               },
               {
                 code: `
-                  const result = firstOperand
-                  + secondOperand
-                      * thirdOperand
-                  - fourthOperand
-                `,
-                output: `
-                  const result = firstOperand
-                    + secondOperand
-                    * thirdOperand
-                    - fourthOperand
-                `,
-              },
-              {
-                code: `
                   const result =
                     firstOperand
                   + secondOperand
