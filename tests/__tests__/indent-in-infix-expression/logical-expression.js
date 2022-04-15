@@ -12,6 +12,8 @@ const ruleName = 'indent-in-logical-expression'
 
 describe('LogicalExpression', () => {
   describe('default options as { indent: 2 }', () => {
+    const options = [{ indent: 2 }]
+
     describe('\\n before operator', () => {
       describe('valid code only', () => {
         const validCodes = [
@@ -70,6 +72,15 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: validCodes.map(code => ({ code, output: code })),
+            invalid: [],
+          }
+        )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: validCodes.map(code => ({ code, options })),
             invalid: [],
           }
         )
@@ -223,6 +234,15 @@ describe('LogicalExpression', () => {
             invalid: invalidCases
           }
         )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases.map(it => ({ ...it, options }))
+          }
+        )
       })
 
       describe('Must remove indent (x1)', () => {
@@ -316,6 +336,15 @@ describe('LogicalExpression', () => {
           {
             valid: [],
             invalid: invalidCases
+          }
+        )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
@@ -510,6 +539,15 @@ describe('LogicalExpression', () => {
             invalid: invalidCases
           }
         )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases.map(it => ({ ...it, options }))
+          }
+        )
       })
 
       describe('three errors', () => {
@@ -575,6 +613,15 @@ describe('LogicalExpression', () => {
             invalid: invalidCases
           }
         )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases.map(it => ({ ...it, options }))
+          }
+        )
       })
     })
 
@@ -636,6 +683,15 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: validCodes.map(code => ({ code })),
+            invalid: [],
+          }
+        )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: validCodes.map(code => ({ code, options })),
             invalid: [],
           }
         )
@@ -789,6 +845,15 @@ describe('LogicalExpression', () => {
             invalid: invalidCases
           }
         )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases.map(it => ({ ...it, options }))
+          }
+        )
       })
 
       describe('Must remove indent (x1)', () => {
@@ -886,6 +951,15 @@ describe('LogicalExpression', () => {
           {
             valid: [],
             invalid: invalidCases
+          }
+        )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
@@ -1080,6 +1154,15 @@ describe('LogicalExpression', () => {
             invalid: invalidCases
           }
         )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases.map(it => ({ ...it, options }))
+          }
+        )
       })
 
       describe('three errors', () => {
@@ -1142,6 +1225,15 @@ describe('LogicalExpression', () => {
           {
             valid: [],
             invalid: invalidCases
+          }
+        )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
