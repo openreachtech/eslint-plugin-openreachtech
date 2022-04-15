@@ -26,6 +26,8 @@ const ruleName = 'indent-in-infix-expression'
 
 describe('BinaryExpression', () => {
   describe('default options as { indent: 2 }', () => {
+    const options = [{ indent: 2 }]
+
     describe('\\n before operator', () => {
       describe('valid code only', () => {
         const validCodes = [
@@ -129,6 +131,15 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: validCodes.map(code => ({ code })),
+            invalid: [],
+          }
+        )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: validCodes.map(code => ({ code, options })),
             invalid: [],
           }
         )
@@ -565,6 +576,15 @@ describe('BinaryExpression', () => {
             invalid: invalidCases
           }
         )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases.map(it => ({ ...it, options }))
+          }
+        )
       })
 
       describe('Must remove indent (x1)', () => {
@@ -610,6 +630,15 @@ describe('BinaryExpression', () => {
           {
             valid: [],
             invalid: invalidCases
+          }
+        )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
@@ -864,6 +893,15 @@ describe('BinaryExpression', () => {
             invalid: invalidCases
           }
         )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases.map(it => ({ ...it, options }))
+          }
+        )
       })
 
       describe('three errors', () => {
@@ -1037,6 +1075,15 @@ describe('BinaryExpression', () => {
             invalid: invalidCases
           }
         )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases.map(it => ({ ...it, options }))
+          }
+        )
       })
     })
 
@@ -1158,6 +1205,15 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: validCodes.map(code => ({ code })),
+            invalid: [],
+          }
+        )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: validCodes.map(code => ({ code, options })),
             invalid: [],
           }
         )
@@ -1603,6 +1659,15 @@ describe('BinaryExpression', () => {
             invalid: invalidCases
           }
         )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases.map(it => ({ ...it, options }))
+          }
+        )
       })
 
       describe('Must remove indent (x1)', () => {
@@ -1648,6 +1713,15 @@ describe('BinaryExpression', () => {
           {
             valid: [],
             invalid: invalidCases
+          }
+        )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
@@ -1888,6 +1962,15 @@ describe('BinaryExpression', () => {
             invalid: invalidCases
           }
         )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases.map(it => ({ ...it, options }))
+          }
+        )
       })
 
       describe('three errors', () => {
@@ -2057,6 +2140,15 @@ describe('BinaryExpression', () => {
           {
             valid: [],
             invalid: invalidCases
+          }
+        )
+
+        tester.run(
+          ruleName,
+          ruleBody,
+          {
+            valid: [],
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
