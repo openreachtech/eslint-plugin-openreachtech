@@ -36,13 +36,9 @@ class ESLintHelper {
    */
   static expandInvalidCases (cases) {
     return cases.flatMap(([patterns, errors]) =>
-      patterns.map(({
-        code,
-        output
-      }) => ({
-        code,
-        output,
-        errors
+      patterns.map(it => ({
+        errors,
+        ...it,
       }))
     )
   }
