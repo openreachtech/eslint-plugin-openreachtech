@@ -2156,6 +2156,8 @@ describe('BinaryExpression', () => {
   })
 
   describe('options: { indent: 4 }', () => {
+    const options = [{ indent: 4 }]
+
     describe('\\n before operator', () => {
       describe('valid code only', () => {
         const validCodes = [
@@ -2163,94 +2165,94 @@ describe('BinaryExpression', () => {
 
           `
           const result = leftOperand
-            + 11
+              + 11
           `,
           `
           const result = leftOperand
-            - 11
-          `,
-          `
-          const result = leftOperand
-            * 11
-          `,
-          `
-          const result = leftOperand
-            / 11
-          `,
-          `
-          const result = leftOperand
-            % 11
-          `,
-          `
-          const result = leftOperand
-            ** 11
-          `,
-          `
-          const result = leftOperand
-            | 11
-          `,
-          `
-          const result = leftOperand
-            & 11
-          `,
-          `
-          const result = leftOperand
-            ^ 11
-          `,
-          `
-          const result = leftOperand
-            << 4
-          `,
-          `
-          const result = leftOperand
-            >> 6
-          `,
-          `
-          const result = leftOperand
-            >>> 8
-          `,
-          `
-          const result = leftOperand
-            in 8
-          `,
-          `
-          const result = leftOperand
-            instanceof 8
-          `,
-
-          `
-          const result = leftOperand
-            + rightOperand
-            - 11
-          `,
-
-          `
-          const result =
-            leftOperand
-            - 11
-          `,
-          `
-          const result =
-            leftOperand
-            + rightOperand
-            - 11
-          `,
-
-          `
-          {
-            const result = leftOperand
               - 11
-          }`,
+          `,
           `
-          {
-            const result = leftOperand
+          const result = leftOperand
+              * 11
+          `,
+          `
+          const result = leftOperand
+              / 11
+          `,
+          `
+          const result = leftOperand
+              % 11
+          `,
+          `
+          const result = leftOperand
+              ** 11
+          `,
+          `
+          const result = leftOperand
+              | 11
+          `,
+          `
+          const result = leftOperand
+              & 11
+          `,
+          `
+          const result = leftOperand
+              ^ 11
+          `,
+          `
+          const result = leftOperand
+              << 4
+          `,
+          `
+          const result = leftOperand
+              >> 6
+          `,
+          `
+          const result = leftOperand
+              >>> 8
+          `,
+          `
+          const result = leftOperand
+              in 8
+          `,
+          `
+          const result = leftOperand
+              instanceof 8
+          `,
+
+          `
+          const result = leftOperand
               + rightOperand
               - 11
+          `,
+
+          `
+          const result =
+            leftOperand
+            - 11
+          `,
+          `
+          const result =
+            leftOperand
+            + rightOperand
+            - 11
+          `,
+
+          `
+          {
+            const result = leftOperand
+                - 11
+          }`,
+          `
+          {
+            const result = leftOperand
+                + rightOperand
+                - 11
           }`,
 
           `
           const result = leftOperand
-            -1 !== flag || die()`,
+              -1 !== flag || die()`,
         ]
 
         // tester.run([rule name], [rule definition], [test patterns])
@@ -2258,7 +2260,11 @@ describe('BinaryExpression', () => {
           ruleName,
           ruleBody,
           {
-            valid: validCodes.map(code => ({ code })),
+            valid: validCodes.map(code => ({
+              code,
+              options,
+              output: code,
+            })),
             invalid: [],
           }
         )
@@ -2275,7 +2281,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    - 1
+                      - 1
                 `,
               },
               {
@@ -2285,7 +2291,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand
-                    - 1
+                      - 1
               `,
               },
               {
@@ -2334,7 +2340,7 @@ describe('BinaryExpression', () => {
                 output: `
                   function getEnv () {
                     return this.env.NODE_ENV
-                      - 'aaaa' // <---------------- should error
+                        - 'aaaa' // <---------------- should error
                   }
                 `,
               },
@@ -2344,7 +2350,7 @@ describe('BinaryExpression', () => {
                   -1 === flag || die()`,
                 output: `
                   const result = leftOperand
-                    -1 === flag || die()`,
+                      -1 === flag || die()`,
               },
               {
                 code: `
@@ -2352,9 +2358,8 @@ describe('BinaryExpression', () => {
                 -1 === flag || die()`,
                 output: `
                   const result = leftOperand
-                    -1 === flag || die()`,
+                      -1 === flag || die()`,
               },
-              theCaseSuggestedByGoogle,
             ],
             [
               'Must add indent before "-".',
@@ -2369,7 +2374,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    + 11
+                      + 11
                 `,
               },
               {
@@ -2379,7 +2384,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand
-                    + 11
+                      + 11
               `,
               },
             ],
@@ -2394,7 +2399,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    * 11
+                      * 11
                 `,
               },
               {
@@ -2404,7 +2409,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand
-                    * 11
+                      * 11
               `,
               },
             ],
@@ -2419,7 +2424,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    / 11
+                      / 11
                 `,
               },
               {
@@ -2429,7 +2434,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand
-                    / 11
+                      / 11
               `,
               },
             ],
@@ -2444,7 +2449,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    % 11
+                      % 11
                 `,
               },
               {
@@ -2454,7 +2459,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand
-                    % 11
+                      % 11
               `,
               },
             ],
@@ -2469,7 +2474,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    ** 11
+                      ** 11
                 `,
               },
               {
@@ -2479,7 +2484,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand
-                    ** 11
+                      ** 11
               `,
               },
             ],
@@ -2494,7 +2499,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    | 11
+                      | 11
                 `,
               },
               {
@@ -2504,7 +2509,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand
-                    | 11
+                      | 11
               `,
               },
             ],
@@ -2519,7 +2524,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    & 11
+                      & 11
                 `,
               },
               {
@@ -2529,7 +2534,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand
-                    & 11
+                      & 11
               `,
               },
             ],
@@ -2544,7 +2549,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    ^ 11
+                      ^ 11
                 `,
               },
               {
@@ -2554,7 +2559,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand
-                    ^ 11
+                      ^ 11
               `,
               },
             ],
@@ -2569,7 +2574,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    << 11
+                      << 11
                 `,
               },
               {
@@ -2579,7 +2584,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand
-                    << 11
+                      << 11
               `,
               },
             ],
@@ -2594,7 +2599,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    >> 11
+                      >> 11
                 `,
               },
               {
@@ -2604,7 +2609,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand
-                    >> 11
+                      >> 11
               `,
               },
             ],
@@ -2619,7 +2624,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    >>> 11
+                      >>> 11
                 `,
               },
               {
@@ -2629,7 +2634,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand
-                    >>> 11
+                      >>> 11
               `,
               },
             ],
@@ -2644,7 +2649,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    in 11
+                      in 11
                 `,
               },
               {
@@ -2654,7 +2659,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand
-                    in 11
+                      in 11
               `,
               },
             ],
@@ -2669,7 +2674,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    instanceof RightOperandClass
+                      instanceof RightOperandClass
                 `,
               },
               {
@@ -2679,7 +2684,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand
-                    instanceof RightOperandClass
+                      instanceof RightOperandClass
               `,
               },
             ],
@@ -2692,7 +2697,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
@@ -2739,7 +2744,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
@@ -2751,49 +2756,49 @@ describe('BinaryExpression', () => {
               {
                 code: `
                   const result = leftOperand
-                  + rightOperand
-                      - 11
+                    + rightOperand
+                        - 11
                 `,
                 output: `
                   const result = leftOperand
+                      + rightOperand
+                      - 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                  + rightOperand
+                        - 11
+                `,
+                output: `
+                  const result = leftOperand
+                      + rightOperand
+                      - 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
                     + rightOperand
-                    - 11
+                          - 11
+                `,
+                output: `
+                  const result = leftOperand
+                      + rightOperand
+                      - 11
                 `,
               },
               {
                 code: `
                   const result = leftOperand
                 + rightOperand
+                          - 11
+                `,
+                output: `
+                  const result = leftOperand
+                      + rightOperand
                       - 11
-                `,
-                output: `
-                  const result = leftOperand
-                    + rightOperand
-                    - 11
-                `,
-              },
-              {
-                code: `
-                  const result = leftOperand
-                  + rightOperand
-                        - 11
-                `,
-                output: `
-                  const result = leftOperand
-                    + rightOperand
-                    - 11
-                `,
-              },
-              {
-                code: `
-                  const result = leftOperand
-              + rightOperand
-                        - 11
-                `,
-                output: `
-                  const result = leftOperand
-                    + rightOperand
-                    - 11
                 `,
               },
               {
@@ -2863,25 +2868,13 @@ describe('BinaryExpression', () => {
               {
                 code: `
                   const result = leftOperand
-                  + rightOperand
-                      * 11
+                    + rightOperand
+                        * 11
                 `,
                 output: `
                   const result = leftOperand
-                    + rightOperand
-                    * 11
-                `,
-              },
-              {
-                code: `
-                  const result = leftOperand
-                + rightOperand
+                      + rightOperand
                       * 11
-                `,
-                output: `
-                  const result = leftOperand
-                    + rightOperand
-                    * 11
                 `,
               },
               {
@@ -2892,8 +2885,20 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    + rightOperand
-                    * 11
+                      + rightOperand
+                      * 11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand
+                  + rightOperand
+                        * 11
+                `,
+                output: `
+                  const result = leftOperand
+                      + rightOperand
+                      * 11
                 `,
               },
               {
@@ -2904,8 +2909,8 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    + rightOperand
-                    * 11
+                      + rightOperand
+                      * 11
                 `,
               },
               {
@@ -2991,7 +2996,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
@@ -3009,9 +3014,9 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = firstOperand
-                    + secondOperand
-                    * thirdOperand
-                    - fourthOperand
+                      + secondOperand
+                      * thirdOperand
+                      - fourthOperand
                 `,
               },
               {
@@ -3043,15 +3048,15 @@ describe('BinaryExpression', () => {
               {
                 code: `
                   const result = firstOperand
-                      + secondOperand
-                  * thirdOperand
-                  - fourthOperand
+                        + secondOperand
+                    * thirdOperand
+                    - fourthOperand
                 `,
                 output: `
                   const result = firstOperand
-                    + secondOperand
-                    * thirdOperand
-                    - fourthOperand
+                      + secondOperand
+                      * thirdOperand
+                      - fourthOperand
                 `,
               },
               {
@@ -3082,29 +3087,15 @@ describe('BinaryExpression', () => {
               {
                 code: `
                   const result = firstOperand
-                  + secondOperand
-                      * thirdOperand
-                  - fourthOperand
+                    + secondOperand
+                        * thirdOperand
+                    - fourthOperand
                 `,
                 output: `
                   const result = firstOperand
-                    + secondOperand
-                    * thirdOperand
-                    - fourthOperand
-                `,
-              },
-              {
-                code: `
-                  const result = firstOperand
-                  + secondOperand
+                      + secondOperand
                       * thirdOperand
-                  - fourthOperand
-                `,
-                output: `
-                  const result = firstOperand
-                    + secondOperand
-                    * thirdOperand
-                    - fourthOperand
+                      - fourthOperand
                 `,
               },
               {
@@ -3135,15 +3126,15 @@ describe('BinaryExpression', () => {
               {
                 code: `
                   const result = firstOperand
-                  + secondOperand
-                  * thirdOperand
-                      - fourthOperand
+                    + secondOperand
+                    * thirdOperand
+                        - fourthOperand
                 `,
                 output: `
                   const result = firstOperand
-                    + secondOperand
-                    * thirdOperand
-                    - fourthOperand
+                      + secondOperand
+                      * thirdOperand
+                      - fourthOperand
                 `,
               },
               {
@@ -3162,8 +3153,6 @@ describe('BinaryExpression', () => {
                     - fourthOperand
                 `,
               },
-
-
             ],
             [
               'Must remove indent before "-".',
@@ -3178,7 +3167,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
@@ -3189,65 +3178,65 @@ describe('BinaryExpression', () => {
         const validCodes = [
           `
           const result = leftOperand +
-            11
+              11
           `,
           `
           const result = leftOperand -
-            11
+              11
           `,
           `
           const result = leftOperand *
-            11
+              11
           `,
           `
           const result = leftOperand /
-            11
+              11
           `,
           `
           const result = leftOperand %
-            11
+              11
           `,
           `
           const result = leftOperand **
-            11
+              11
           `,
           `
           const result = leftOperand |
-            11
+              11
           `,
           `
           const result = leftOperand &
-            11
+              11
           `,
           `
           const result = leftOperand ^
-            11
+              11
           `,
           `
           const result = leftOperand <<
-            4
+              4
           `,
           `
           const result = leftOperand >>
-            6
+              6
           `,
           `
           const result = leftOperand >>>
-            8
+              8
           `,
           `
           const result = leftOperand in
-            8
+              8
           `,
           `
           const result = leftOperand instanceof
-            8
+              8
           `,
 
           `
           const result = leftOperand +
-            rightOperand -
-            11
+              rightOperand -
+              11
           `,
 
           `
@@ -3264,16 +3253,16 @@ describe('BinaryExpression', () => {
 
           `
           const result = leftOperand +
-            11
+              11
           `,
           `
           const result = leftOperand +
-            11 - 22
+              11 - 22
           `,
           `
           const result = leftOperand +
-            11 - 22 +
-            33
+              11 - 22 +
+              33
           `,
 
           `
@@ -3286,13 +3275,13 @@ describe('BinaryExpression', () => {
           `
           {
             const result = leftOperand -
-              11
+                11
           }`,
           `
           {
             const result = leftOperand +
-              rightOperand -
-              11
+                rightOperand -
+                11
           }`,
         ]
 
@@ -3301,7 +3290,7 @@ describe('BinaryExpression', () => {
           ruleName,
           ruleBody,
           {
-            valid: validCodes.map(code => ({ code })),
+            valid: validCodes.map(code => ({ code, options })),
             invalid: [],
           }
         )
@@ -3318,7 +3307,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand -
-                    1
+                      1
                 `,
               },
               {
@@ -3328,7 +3317,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand -
-                    1
+                      1
               `,
               },
               {
@@ -3381,7 +3370,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand +
-                    11
+                      11
                 `,
               },
               {
@@ -3391,7 +3380,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand +
-                    11
+                      11
               `,
               },
               {
@@ -3404,7 +3393,7 @@ describe('BinaryExpression', () => {
                 output: `
                   function getEnv () {
                     return this.env.NODE_ENV +
-                      'aaaa' // <---------------- should error
+                        'aaaa' // <---------------- should error
                   }
                 `,
               },
@@ -3422,7 +3411,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand *
-                    11
+                      11
                 `,
               },
               {
@@ -3432,7 +3421,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand *
-                    11
+                      11
               `,
               },
             ],
@@ -3449,7 +3438,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand /
-                    11
+                      11
                 `,
               },
               {
@@ -3459,7 +3448,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand /
-                    11
+                      11
               `,
               },
             ],
@@ -3476,7 +3465,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand %
-                    11
+                      11
                 `,
               },
               {
@@ -3486,7 +3475,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand %
-                    11
+                      11
               `,
               },
             ],
@@ -3503,7 +3492,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand **
-                    11
+                      11
                 `,
               },
               {
@@ -3513,7 +3502,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand **
-                    11
+                      11
               `,
               },
             ],
@@ -3530,7 +3519,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand |
-                    11
+                      11
                 `,
               },
               {
@@ -3540,7 +3529,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand |
-                    11
+                      11
               `,
               },
             ],
@@ -3557,7 +3546,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand &
-                    11
+                      11
                 `,
               },
               {
@@ -3567,7 +3556,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand &
-                    11
+                      11
               `,
               },
             ],
@@ -3584,7 +3573,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand ^
-                    11
+                      11
                 `,
               },
               {
@@ -3594,7 +3583,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand ^
-                    11
+                      11
               `,
               },
             ],
@@ -3611,7 +3600,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand <<
-                    11
+                      11
                 `,
               },
               {
@@ -3621,7 +3610,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand <<
-                    11
+                      11
               `,
               },
             ],
@@ -3638,7 +3627,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand >>
-                    11
+                      11
                 `,
               },
               {
@@ -3648,7 +3637,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand >>
-                    11
+                      11
               `,
               },
             ],
@@ -3665,7 +3654,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand >>>
-                    11
+                      11
                 `,
               },
               {
@@ -3675,7 +3664,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand >>>
-                    11
+                      11
               `,
               },
             ],
@@ -3692,7 +3681,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand in
-                    11
+                      11
                 `,
               },
               {
@@ -3702,7 +3691,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand in
-                    11
+                      11
               `,
               },
             ],
@@ -3719,7 +3708,7 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand instanceof
-                    RightOperandClass
+                      RightOperandClass
                 `,
               },
               {
@@ -3729,7 +3718,7 @@ describe('BinaryExpression', () => {
               `,
                 output: `
                   const result = leftOperand instanceof
-                    RightOperandClass
+                      RightOperandClass
               `,
               },
             ],
@@ -3744,7 +3733,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
@@ -3791,7 +3780,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
@@ -3803,25 +3792,13 @@ describe('BinaryExpression', () => {
               {
                 code: `
                   const result = leftOperand +
-                  rightOperand -
-                      11
+                    rightOperand -
+                        11
                 `,
                 output: `
                   const result = leftOperand +
-                    rightOperand -
-                    11
-                `,
-              },
-              {
-                code: `
-                  const result = leftOperand +
-                rightOperand -
+                      rightOperand -
                       11
-                `,
-                output: `
-                  const result = leftOperand +
-                    rightOperand -
-                    11
                 `,
               },
               {
@@ -3832,8 +3809,20 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand +
-                    rightOperand -
-                    11
+                      rightOperand -
+                      11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand +
+                  rightOperand -
+                        11
+                `,
+                output: `
+                  const result = leftOperand +
+                      rightOperand -
+                      11
                 `,
               },
               {
@@ -3844,8 +3833,8 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand +
-                    rightOperand -
-                    11
+                      rightOperand -
+                      11
                 `,
               },
               {
@@ -3915,25 +3904,13 @@ describe('BinaryExpression', () => {
               {
                 code: `
                   const result = leftOperand +
-                  rightOperand *
-                      11
+                    rightOperand *
+                        11
                 `,
                 output: `
                   const result = leftOperand +
-                    rightOperand *
-                    11
-                `,
-              },
-              {
-                code: `
-                  const result = leftOperand +
-                rightOperand *
+                      rightOperand *
                       11
-                `,
-                output: `
-                  const result = leftOperand +
-                    rightOperand *
-                    11
                 `,
               },
               {
@@ -3944,8 +3921,20 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand +
-                    rightOperand *
-                    11
+                      rightOperand *
+                      11
+                `,
+              },
+              {
+                code: `
+                  const result = leftOperand +
+                  rightOperand *
+                        11
+                `,
+                output: `
+                  const result = leftOperand +
+                      rightOperand *
+                      11
                 `,
               },
               {
@@ -3956,8 +3945,8 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = leftOperand +
-                    rightOperand *
-                    11
+                      rightOperand *
+                      11
                 `,
               },
               {
@@ -4029,7 +4018,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
@@ -4047,25 +4036,25 @@ describe('BinaryExpression', () => {
                 `,
                 output: `
                   const result = firstOperand +
-                    secondOperand *
-                    thirdOperand -
-                    fourthOperand
+                      secondOperand *
+                      thirdOperand -
+                      fourthOperand
                 `,
               },
               {
                 code: `
                   const result =
-                    firstOperand +
+                      firstOperand +
                   secondOperand *
                 thirdOperand -
                 fourthOperand
                 `,
                 output: `
                   const result =
-                    firstOperand +
-                    secondOperand *
-                    thirdOperand -
-                    fourthOperand
+                      firstOperand +
+                      secondOperand *
+                      thirdOperand -
+                      fourthOperand
                 `,
               },
             ],
@@ -4081,15 +4070,15 @@ describe('BinaryExpression', () => {
               {
                 code: `
                   const result = firstOperand +
-                      secondOperand *
-                  thirdOperand -
-                  fourthOperand
+                        secondOperand *
+                    thirdOperand -
+                    fourthOperand
                 `,
                 output: `
                   const result = firstOperand +
-                    secondOperand *
-                    thirdOperand -
-                    fourthOperand
+                      secondOperand *
+                      thirdOperand -
+                      fourthOperand
                 `,
               },
               {
@@ -4120,15 +4109,15 @@ describe('BinaryExpression', () => {
               {
                 code: `
                   const result = firstOperand +
-                  secondOperand *
-                      thirdOperand -
-                  fourthOperand
+                    secondOperand *
+                        thirdOperand -
+                    fourthOperand
                 `,
                 output: `
                   const result = firstOperand +
-                    secondOperand *
-                    thirdOperand -
-                    fourthOperand
+                      secondOperand *
+                      thirdOperand -
+                      fourthOperand
                 `,
               },
               {
@@ -4159,15 +4148,15 @@ describe('BinaryExpression', () => {
               {
                 code: `
                   const result = firstOperand +
-                  secondOperand *
-                thirdOperand -
-                      fourthOperand
+                    secondOperand *
+                  thirdOperand -
+                        fourthOperand
                 `,
                 output: `
                   const result = firstOperand +
-                    secondOperand *
-                    thirdOperand -
-                    fourthOperand
+                      secondOperand *
+                      thirdOperand -
+                      fourthOperand
                 `,
               },
               {
@@ -4200,7 +4189,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
