@@ -42,3 +42,7 @@ no-else-if
     /your/project/directory/target-file.js
       9:8  error  Never use else-if statement  openreachtech/no-else-if
     ```
+
+## Rules
+
+* `no-else-if` [[English](./documents/rules/en/no-else-if.md)] [[日本語](./documents/rules/ja/no-else-if.md)]
