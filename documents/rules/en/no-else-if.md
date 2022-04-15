@@ -8,7 +8,7 @@
 
 ### else if causes complex nesting
 
-* `else if` is the sugar-coated syntax for nesting `if` statements. Using `else if` causes nesting of conditional branches as many times as you use it.
+* `else if` is the sugar syntax for nesting `if` statements. Using `else if` causes nesting of conditional branches as many times as you use it.
 
 ### complex nested structures waste the reader's brain resources
 
