@@ -1241,12 +1241,14 @@ describe('LogicalExpression', () => {
   })
 
   describe('options: { indent: 4 }', () => {
+    const options = [{ indent: 4 }]
+
     describe('\\n before operator', () => {
       describe('valid code only', () => {
         const validCodes = [
           `
           if (first
-            || second
+              || second
           ) {
             console.log(1, first, second)
           }
@@ -1261,8 +1263,8 @@ describe('LogicalExpression', () => {
           `,
           `
           if (first
-            || second
-            || third
+              || second
+              || third
           ) {
             console.log(11, first, second, third)
           }
@@ -1279,7 +1281,7 @@ describe('LogicalExpression', () => {
           `
           function test (xxx) {
             return xxx
-              || 999
+                || 999
           }
           `,
           `
@@ -1298,7 +1300,11 @@ describe('LogicalExpression', () => {
           ruleName,
           ruleBody,
           {
-            valid: validCodes.map(code => ({ code, output: code })),
+            valid: validCodes.map(code => ({
+              code,
+              options,
+              output: code,
+            })),
             invalid: [],
           }
         )
@@ -1315,7 +1321,7 @@ describe('LogicalExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    || 1
+                      || 1
                 `,
               },
               {
@@ -1325,7 +1331,7 @@ describe('LogicalExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    || 1
+                      || 1
                 `,
               },
               {
@@ -1338,7 +1344,7 @@ describe('LogicalExpression', () => {
                 output: `
                 function getEnv () {
                   return this.env.NODE_ENV
-                    || 'aaaa' // <---------------- should error
+                      || 'aaaa' // <---------------- should error
                 }
                 `,
               },
@@ -1352,7 +1358,7 @@ describe('LogicalExpression', () => {
                 `,
                 output: `
                 if (first
-                  || second
+                    || second
                 ) {
                   save(first, second, third)
                 }
@@ -1368,7 +1374,7 @@ describe('LogicalExpression', () => {
                 `,
                 output: `
                   if (first
-                    || second
+                      || second
                   ) {
                     save(first, second)
                   }
@@ -1404,7 +1410,7 @@ describe('LogicalExpression', () => {
                 output: `
                   function test (xxx) {
                     const zzz = xxx
-                      || 999 // <---------------- should error
+                        || 999 // <---------------- should error
 
                     return zzz
                   }
@@ -1424,7 +1430,7 @@ describe('LogicalExpression', () => {
                 `,
                 output: `
                 const result = leftOperand
-                  && 11
+                    && 11
                 `,
               },
               {
@@ -1434,7 +1440,7 @@ describe('LogicalExpression', () => {
                 `,
                 output: `
                   const result = leftOperand
-                    && 11
+                      && 11
                 `,
               },
             ],
@@ -1449,7 +1455,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
@@ -1544,7 +1550,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
@@ -1556,15 +1562,15 @@ describe('LogicalExpression', () => {
               {
                 code: `
                   if (first
-                  || second
-                      && third
+                    || second
+                        && third
                   ) {
                     console.log(first, second, third)
                   }`,
                 output: `
                   if (first
-                    || second
-                    && third
+                      || second
+                      && third
                   ) {
                     console.log(first, second, third)
                   }`,
@@ -1572,31 +1578,31 @@ describe('LogicalExpression', () => {
               {
                 code: `
                   if (first
-                      && second
-                  || third
-                  ) {
-                    console.log(first, second, third)
-                  }`,
-                output: `
-                  if (first
-                    && second
+                        && second
                     || third
                   ) {
                     console.log(first, second, third)
                   }`,
+                output: `
+                  if (first
+                      && second
+                      || third
+                  ) {
+                    console.log(first, second, third)
+                  }`,
               },
               {
                 code: `
                   if (first
-                || second
-                      && third
+                  || second
+                        && third
                   ) {
                     console.log(first, second, third)
                   }`,
                 output: `
                   if (first
-                    || second
-                    && third
+                      || second
+                      && third
                   ) {
                     console.log(first, second, third)
                   }`,
@@ -1611,8 +1617,8 @@ describe('LogicalExpression', () => {
                   }`,
                 output: `
                   if (first
-                    && second
-                    || third
+                      && second
+                      || third
                   ) {
                     console.log(first, second, third)
                   }`,
@@ -1627,8 +1633,8 @@ describe('LogicalExpression', () => {
                   }`,
                 output: `
                   if (first
-                    && second
-                    || third
+                      && second
+                      || third
                   ) {
                     console.log(first, second, third)
                   }`,
@@ -1736,7 +1742,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
@@ -1748,17 +1754,17 @@ describe('LogicalExpression', () => {
               {
                 code: `
                   if (first
-                      || second
-                  && third
-                  || fourth
+                        || second
+                    && third
+                    || fourth
                   ) {
                     console.log(first, second, third, fourth)
                   }`,
                 output: `
                   if (first
-                    || second
-                    && third
-                    || fourth
+                      || second
+                      && third
+                      || fourth
                   ) {
                     console.log(first, second, third, fourth)
                   }`,
@@ -1801,7 +1807,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
@@ -1812,7 +1818,7 @@ describe('LogicalExpression', () => {
         const validCodes = [
           `
           if (first ||
-            second
+              second
           ) {
             console.log(1, first, second)
           }
@@ -1827,8 +1833,8 @@ describe('LogicalExpression', () => {
           `,
           `
           if (first ||
-            second ||
-            third
+              second ||
+              third
           ) {
             console.log(11, first, second, third)
           }
@@ -1845,7 +1851,7 @@ describe('LogicalExpression', () => {
           `
           function test (xxx) {
             return xxx ||
-              999
+                999
           }
           `,
           `
@@ -1864,7 +1870,11 @@ describe('LogicalExpression', () => {
           ruleName,
           ruleBody,
           {
-            valid: validCodes.map(code => ({ code })),
+            valid: validCodes.map(code => ({
+              code,
+              options,
+              output: code,
+            })),
             invalid: [],
           }
         )
@@ -1881,7 +1891,7 @@ describe('LogicalExpression', () => {
                 `,
                 output: `
                   const result = leftOperand ||
-                    1
+                      1
                 `,
               },
               {
@@ -1891,7 +1901,7 @@ describe('LogicalExpression', () => {
               `,
                 output: `
                 const result = leftOperand ||
-                  1
+                    1
               `,
               },
               {
@@ -1904,7 +1914,7 @@ describe('LogicalExpression', () => {
                 output: `
                   function getEnv () {
                     return this.env.NODE_ENV ||
-                      'aaaa' // <---------------- should error
+                        'aaaa' // <---------------- should error
                   }
                 `,
               },
@@ -1918,7 +1928,7 @@ describe('LogicalExpression', () => {
                 `,
                 output: `
                   if (first ||
-                    second
+                      second
                   ) {
                     save(first, second, third)
                   }
@@ -1934,7 +1944,7 @@ describe('LogicalExpression', () => {
                 `,
                 output: `
                   if (first ||
-                    second
+                      second
                   ) {
                     save(first, second)
                   }
@@ -1970,7 +1980,7 @@ describe('LogicalExpression', () => {
                 output: `
                   function test (xxx) {
                     const zzz = xxx ||
-                      999 // <---------------- should error
+                        999 // <---------------- should error
 
                     return zzz
                   }
@@ -1990,7 +2000,7 @@ describe('LogicalExpression', () => {
                 `,
                 output: `
                   const result = leftOperand &&
-                    11
+                      11
                 `,
               },
               {
@@ -2000,7 +2010,7 @@ describe('LogicalExpression', () => {
                 `,
                 output: `
                   const result = leftOperand &&
-                    11
+                      11
                 `,
               },
             ],
@@ -2015,7 +2025,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
@@ -2098,10 +2108,6 @@ describe('LogicalExpression', () => {
                   }
                 `,
               },
-
-
-
-
             ],
             [
               'Must remove indent before right operand of "||".',
@@ -2114,7 +2120,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
@@ -2126,47 +2132,47 @@ describe('LogicalExpression', () => {
               {
                 code: `
                   if (first ||
-                  second &&
-                      third
+                    second &&
+                        third
                   ) {
                     console.log(first, second, third)
                   }`,
                 output :`
                   if (first ||
-                    second &&
-                    third
+                      second &&
+                      third
                   ) {
                     console.log(first, second, third)
                   }`,
               },
               {
                 code: `
+                  if (first &&
+                        second ||
+                    third
+                  ) {
+                    console.log(first, second, third)
+                  }`,
+                output :`
                   if (first &&
                       second ||
-                  third
-                  ) {
-                    console.log(first, second, third)
-                  }`,
-                output :`
-                  if (first &&
-                    second ||
-                    third
-                  ) {
-                    console.log(first, second, third)
-                  }`,
-              },
-              {
-                code: `
-                  if (first ||
-                second &&
                       third
                   ) {
                     console.log(first, second, third)
                   }`,
+              },
+              {
+                code: `
+                  if (first ||
+                  second &&
+                        third
+                  ) {
+                    console.log(first, second, third)
+                  }`,
                 output :`
                   if (first ||
-                    second &&
-                    third
+                      second &&
+                      third
                   ) {
                     console.log(first, second, third)
                   }`,
@@ -2181,8 +2187,8 @@ describe('LogicalExpression', () => {
                   }`,
                 output :`
                   if (first &&
-                    second ||
-                    third
+                      second ||
+                      third
                   ) {
                     console.log(first, second, third)
                   }`,
@@ -2190,15 +2196,15 @@ describe('LogicalExpression', () => {
               {
                 code: `
                   if (first &&
-                        second ||
-                third
+                          second ||
+                  third
                   ) {
                     console.log(first, second, third)
                   }`,
                 output :`
                   if (first &&
-                    second ||
-                    third
+                      second ||
+                      third
                   ) {
                     console.log(first, second, third)
                   }`,
@@ -2306,7 +2312,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
@@ -2318,17 +2324,17 @@ describe('LogicalExpression', () => {
               {
                 code: `
                   if (first ||
-                      second &&
-                  third ||
-                  fourth
+                        second &&
+                    third ||
+                    fourth
                   ) {
                     console.log(first, second, third, fourth)
                   }`,
                 output: `
                   if (first ||
-                    second &&
-                    third ||
-                    fourth
+                      second &&
+                      third ||
+                      fourth
                   ) {
                     console.log(first, second, third, fourth)
                   }`,
@@ -2370,7 +2376,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases.map(it => ({ ...it, options }))
           }
         )
       })
