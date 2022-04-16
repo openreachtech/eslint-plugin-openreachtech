@@ -4195,4 +4195,64 @@ describe('BinaryExpression', () => {
       })
     })
   })
+
+  describe('cancel to remove by interrupting comment', () => {
+    const invalidCases = ESLintHelper.expandInvalidCases([
+      [
+        [
+          `
+            const result = leftOperand
+              /* comment here */ - rightOperand
+          `,
+          `
+            const result = leftOperand
+            /*
+             * comment here
+             */ - rightOperand
+          `,
+          `
+            const result = leftOperand
+              /*
+               * comment here
+               */ - rightOperand
+          `,
+        ].map(code => ({ code })),
+        [
+          'Must remove indent before "-".',
+        ]
+      ],
+      [
+        [
+          `
+            const result = leftOperand -
+              /* comment here */ rightOperand
+          `,
+          `
+            const result = leftOperand -
+            /*
+             * comment here
+             */ rightOperand
+          `,
+          `
+            const result = leftOperand -
+              /*
+               * comment here
+               */ rightOperand
+          `,
+        ].map(code => ({ code })),
+        [
+          'Must remove indent before right operand of "-".',
+        ]
+      ],
+    ])
+
+    tester.run(
+      ruleName,
+      ruleBody,
+      {
+        valid: [],
+        invalid: invalidCases
+      }
+    )
+  })
 })
