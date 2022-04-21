@@ -6,9 +6,9 @@
 
 * Here's a summary of why placing a empty line after `super()`.
 
-### Two sentences with different meanings
+### Two Statements with different meanings
 
-* An empty line between two sentences with different meanings improves readability.
+* An empty line between two statements with different meanings improves readability.
 
 ```js
 const pointX = 10
@@ -32,13 +32,13 @@ saveUserDetails({
 
 ### Role of `super()`
 
-* The only role of `super()` is to "execute the constructor of the parent class". Can write statements after `super()`, but the sentence will never have the same meaning as `super()`.
+* The only role of `super()` is to "execute the constructor of the parent class". Though you can write statements after `super()`, those statements do not have the same meaning as `super()`.
 
-* Since so, it needs to be a empty line between `super()` and the following line.
+* Thus, if a statement follows `super()`, there will always be a empty line between `super()` and the following statement.
 
 ### Simplified Review
 
-* If the practice of placing a blank line between `super()` and the following statement is not part of the culture, it will be pointed out in every code review. This custom rule was created to save you the trouble of that review.
+* * If someone is unaware of the practice of placing a blank line between `super()` and the following statement, the you will have to point this out in every review. This custom rule is created to save your time.
 
 😩 Examples of **incorrect** code for `empty-line-after-super` rule:
 
