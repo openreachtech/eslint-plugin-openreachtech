@@ -4,15 +4,15 @@
 
 * The indentation after the second line is aligned with the left operand of the infix expression, in the following condition:
   1. The infix expression is included in other syntaxes.
-  2. Exists newline before the left operand.
+  2. A new line exists before the left operand.
 
 ## Rule Details
 
-* Here's a summary of why indentation is necessary when a infix operator expression is broken in the middle of a line.
+* Here's a summary of why indentation is necessary when there is a line break in the middle of a infix operator expression.
 
 ### Nested Infix Expressions
 
-* When nested infix expressions are written in a single column, readability is compromised because the lines are long.
+* Writing long repeated infix expression in a single line sacrifices the readability of the code.
 
   ```
   const result = leftOperand + middleOperand - rightOperand + extraOperand
@@ -27,7 +27,7 @@
     + extraOperand
   ```
 
-* When an expression is written on multiple lines, it is common practice to indent the second and subsequent lines. However, ESLint currently has no rules to detect this error.
+* When an expression is written in multiple lines, it is common practice to indent the second and subsequent lines. However, ESLint currently has no rules to detect this error.
 Cf.
 [Indent for binary operators #12427](https://github.com/eslint/eslint/issues/12427)
 [indent: add option for multiline [assignment] statement #12248](https://github.com/eslint/eslint/issues/12248)
