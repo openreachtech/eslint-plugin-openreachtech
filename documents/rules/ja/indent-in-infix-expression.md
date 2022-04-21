@@ -37,3 +37,7 @@ Cf.
 
 * 現在、ESLint で此のカスタムルールと同等の処理ができるプルリクエストが出ています。次のバージョンアップで対応される可能性があります。
 [feat: indent: add BinaryExpression option #15555](https://github.com/eslint/eslint/pull/15555)
+
+## Version
+
+* Since `0.1.0`
