@@ -38,7 +38,7 @@ saveUserDetails({
 
 ### Simplified Review
 
-* * If someone is unaware of the practice of placing a blank line between `super()` and the following statement, the you will have to point this out in every review. This custom rule is created to save your time.
+* If someone is unaware of the practice of placing a blank line between `super()` and the following statement, the you will have to point this out in every review. This custom rule is created to save your time.
 
 😩 Examples of **incorrect** code for `empty-line-after-super` rule:
 
