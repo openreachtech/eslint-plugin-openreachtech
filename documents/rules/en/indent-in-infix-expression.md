@@ -10,9 +10,9 @@
 
 * Here's a summary of why indentation is necessary when there is a line break in the middle of a infix operator expression.
 
-### Nested Infix Expressions
+### Repeated Infix Expressions
 
-* Writing long repeated infix expression in a single line sacrifices the readability of the code.
+* Writing long repeated infix expressions in a single line sacrifices the readability of the code.
 
   ```
   const result = leftOperand + middleOperand - rightOperand + extraOperand
