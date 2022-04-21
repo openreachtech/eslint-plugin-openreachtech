@@ -2382,4 +2382,82 @@ describe('LogicalExpression', () => {
       })
     })
   })
+
+  describe('cancel to remove by interrupting comment', () => {
+    const invalidCases = ESLintHelper.expandInvalidCases([
+      [
+        [
+          `
+          if (first
+              /* comment here */ || second
+          ) {
+            console.log(1, first, second)
+          }
+          `,
+          `
+          if (first
+            /*
+             * comment here
+             */ || second
+          ) {
+            console.log(1, first, second)
+          }
+          `,
+          `
+          if (first
+              /*
+               * comment here
+               */ || second
+          ) {
+            console.log(1, first, second)
+          }
+          `,
+        ].map(code => ({ code })),
+        [
+          'Must remove indent before "||".',
+        ]
+      ],
+      [
+        [
+          `
+          if (first ||
+              /* comment here */ second
+          ) {
+            console.log(1, first, second)
+          }
+          `,
+          `
+          if (first ||
+            /*
+             * comment here
+             */ second
+          ) {
+            console.log(1, first, second)
+          }
+          `,
+          `
+          if (first ||
+              /*
+               * comment here
+               */ second
+          ) {
+            console.log(1, first, second)
+          }
+          `,
+        ].map(code => ({ code })),
+        [
+          'Must remove indent before right operand of "||".',
+        ]
+      ],
+    ])
+
+    tester.run(
+      ruleName,
+      ruleBody,
+      {
+        valid: [],
+        invalid: invalidCases
+      }
+    )
+  })
 })
