@@ -45,4 +45,6 @@ no-else-if
 
 ## Rules
 
+* `empty-line-after-super` [[English](./documents/rules/en/empty-line-after-super.md)] [[日本語](./documents/rules/ja/empty-line-after-super.md)]
+* `indent-in-infix-expression` [[English](./documents/rules/en/indent-in-infix-expression.md)] [[日本語](./documents/rules/ja/indent-in-infix-expression.md)]
 * `no-else-if` [[English](./documents/rules/en/no-else-if.md)] [[日本語](./documents/rules/ja/no-else-if.md)]
