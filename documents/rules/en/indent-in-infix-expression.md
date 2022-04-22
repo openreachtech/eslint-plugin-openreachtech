@@ -38,3 +38,7 @@ Cf.
 
 * There is a pull request in the ESLint repository that is equivalent to this custom rule. This may be supported in the next version of ESLint.
 [feat: indent: add BinaryExpression option #15555](https://github.com/eslint/eslint/pull/15555)
+
+## Version
+
+* Since `0.1.0`
