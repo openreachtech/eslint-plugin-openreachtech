@@ -41,6 +41,15 @@ describe('Forbid if statements and else to be written on a single line.', () => 
           }
         }
       `,
+      `
+        if (condition) {
+          foo()
+        } else if (condition2) {
+          bar()
+          kit()
+        }
+    `,
+
     ]
     const invalidCodes = [
       `
@@ -75,6 +84,13 @@ describe('Forbid if statements and else to be written on a single line.', () => 
           if (condition
             || condition2
           ) { return }
+        }
+      `,
+      `
+        if (condition) {
+          foo()
+        } else if (condition2) { bar()
+          kit()
         }
       `,
     ]
