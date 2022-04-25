@@ -1,17 +1,15 @@
 // @ts-check
 'use strict'
 
-// ESLint tester instead of Jest `test()`
-const RuleTester = require('eslint').RuleTester
-
-const noIfInOnelineRule = require('../../lib/no-if-in-oneline')
+const ESLintHelper = require('../tools/ESLintHelper')
+const ruleBody = require('../../lib/no-if-in-oneline')
 
 describe('Forbid if statements and else to be written on a single line.', () => {
   const errors = ['Forbid if statements to be written on a single line.']
   const name = 'no-if-in-oneline'
-  const tester = new RuleTester()
+  const tester = ESLintHelper.createTester()
 
-  describe('if branch', () => {
+  describe('then branch', () => {
     const validCodes = [
       `
         if (condition);
@@ -20,11 +18,14 @@ describe('Forbid if statements and else to be written on a single line.', () => 
         if (condition) {}
       `,
       `
-        function test() {
-          if (condition) {
-            return
-          }
-        }
+        if (condition) 
+          foo()
+      `,
+      `
+        if (condition
+          ||condition2
+        )
+          foo() 
       `,
       `
         if (condition) {
@@ -48,8 +49,7 @@ describe('Forbid if statements and else to be written on a single line.', () => 
           bar()
           kit()
         }
-    `,
-
+      `,
     ]
     const invalidCodes = [
       `
@@ -59,7 +59,48 @@ describe('Forbid if statements and else to be written on a single line.', () => 
       `,
       `
         function test() {
+          if (condition) return;
+        }
+      `,
+      `
+        function test() {
+          if (condition) return result; return calc()
+        }
+      `,
+      `
+        function test() {
+          if (condition) return result; return calc();
+        }
+      `,
+      `
+        if (condition) foo()
+      `,
+      `
+        if (condition
+          ||condition2
+        ) foo() 
+      `,
+      `
+        function test() {
           if (condition) { return }
+        }
+      `,
+      `
+        function test() {
+          if (condition) { return; }
+        }
+      `,
+      `
+        if (condition) { foo() }
+      `,
+      `
+        function test() {
+          if (condition) { var result = calc(); return result }
+        }
+      `,
+      `
+        function test() {
+          if (condition) { var result = calc(); return result; }
         }
       `,
       `
@@ -97,7 +138,7 @@ describe('Forbid if statements and else to be written on a single line.', () => 
 
     tester.run(
       name,
-      noIfInOnelineRule,
+      ruleBody,
       {
         valid: validCodes.map(code => ({ code })),
         invalid: invalidCodes.map(code => ({ code, errors }))
@@ -113,9 +154,15 @@ describe('Forbid if statements and else to be written on a single line.', () => 
         } else;
       `,
       `
-      if (condition) {
-        foo()
-      } else {}
+        if (condition) {
+          foo()
+        } else {}
+      `,
+      `
+        if (condition) {
+          foo()
+        } else
+          bar()
       `,
       `
         function test() {
@@ -152,6 +199,11 @@ describe('Forbid if statements and else to be written on a single line.', () => 
         }
       `,
       `
+        if (condition) {
+          foo()
+        } else bar()
+      `,
+      `
         function test() {
           if (condition) {
             foo()
@@ -182,7 +234,7 @@ describe('Forbid if statements and else to be written on a single line.', () => 
 
     tester.run(
       name,
-      noIfInOnelineRule,
+      ruleBody,
       {
         valid: validCodes.map(code => ({ code })),
         invalid: invalidCodes.map(code => ({ code, errors }))
