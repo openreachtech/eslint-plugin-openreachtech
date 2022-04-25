@@ -6,6 +6,7 @@ const ruleBody = require('../../lib/no-if-in-oneline')
 
 describe('Forbid if statements and else to be written on a single line.', () => {
   const errors = ['Forbid if statements to be written on a single line.']
+  const errorString = 'Forbid if statements to be written on a single line.'
   const name = 'no-if-in-oneline'
   const tester = ESLintHelper.createTester()
 
@@ -238,6 +239,42 @@ describe('Forbid if statements and else to be written on a single line.', () => 
       {
         valid: validCodes.map(code => ({ code })),
         invalid: invalidCodes.map(code => ({ code, errors }))
+      }
+    )
+  })
+
+  describe('then else branch', () => {
+    const doubleErrors = [
+      `
+        function test2() {
+          if (condition) foo()
+          else return 
+        }
+      `,
+      `
+        function test2() {
+          if (condition) return 111
+          else return 222
+        }
+      `,
+      `
+        function test2() {
+          if (condition) { foo() } else { return }
+        }
+      `,
+      `
+        function test2() {
+          if (condition) { return 111 } else { return 222 }
+        }
+      `,
+    ]
+
+    tester.run(
+      name,
+      ruleBody,
+      {
+        valid: [],
+        invalid: doubleErrors.map(code => ({ code,errors:[errorString, errorString]}))
       }
     )
   })
