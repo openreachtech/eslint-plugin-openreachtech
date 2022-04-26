@@ -275,7 +275,7 @@ describe('Forbid if statements and else to be written on a single line.', () => 
       ruleBody,
       {
         valid: [],
-        invalid: invalidCodes.map(code => ({ code, errors:doubleErrors }))
+        invalid: invalidCodes.map(code => ({ code, errors: doubleErrors }))
       }
     )
   })
