@@ -1,6 +1,6 @@
 # no-unexpected-multiline
 
-* When all of the conditions as follows, decide error.
+* When all of the following conditions are met, throw error.
   1. The node is `+` expression or `-` expression.
   2. There is line-break before the operator.
   3. The line starts with an operator is not indented.
@@ -9,11 +9,11 @@
 
 ## Rule Details
 
-* Here's a summary of why require this rule.
+* Here's a summary of why this rule is required.
 
 ### Unexpected Multiline Expression
 
-* One problem with operating with the no semicolon rule is that the unexpected generation of multi-line expressions.
+* Code without semicolons may produce unexpected multi-line expressions.
 
 * Examples
 
@@ -45,13 +45,13 @@ var THINGS_TO_EAT = [apples, oysters, sprayOnCheese]  // No semicolon here.
 -1 == resultOfOperation() || die();
 ```
 
-* In the above code example, 1. and 2. are irrelevant to this rule.
+* In the above example, 1 and 2 do not cause problems.
 
 * 3. causes a problem where an expression beginning with `-1` is connected to the previous line and recognized as a "subtraction expression".
 
-### How to Avoid
+### How to Resolve
 
-* To get around this problem, thought of the following
+* Regarding this issue, we have considered as following.
 
   1. A problem arose where a unary operator expression like `-1` written at the beginning of a line was recognized as "a subtraction expression following from the previous line".
   1. If a programmer "writes a line that begins with a unary operator without indentation," it can be determined that this is not the intention of "code written as a continuation of the previous line.
