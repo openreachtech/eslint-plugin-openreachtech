@@ -739,6 +739,178 @@ describe('newline-per-argument', () => {
                 }
               `,
             },
+          ])
+          .concat([
+            {
+              code: `
+                function method ({ firstArgument } = {}) {
+                  return firstArgument * 10
+                }
+              `,
+            },
+            {
+              code: `
+                const method = function ({ firstArgument } = {}) {
+                  return firstArgument * 20
+                }
+              `,
+            },
+            {
+              code: `
+                const method = ({ firstArgument } = {}) => {
+                  return firstArgument * 30
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  constructor ({ firstArgument } = {}) {
+                    this.firstArgument = firstArgument
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  method ({ firstArgument } = {}) {
+                    return firstArgument * 50
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  static method ({ firstArgument } = {}) {
+                    return firstArgument * 60
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method ({ firstArgument } = {}) {
+                    return firstArgument * 70
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method: function ({ firstArgument } = {}) {
+                    return firstArgument * 80
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method: ({ firstArgument } = {}) => {
+                    return firstArgument * 90
+                  }
+                }
+              `,
+            },
+          ])
+          .concat([
+            {
+              code: `
+                function method (
+                  { firstArgument } = {}
+                ) {
+                  return firstArgument * 10
+                }
+              `,
+            },
+            {
+              code: `
+                const method = function (
+                  { firstArgument } = {}
+                ) {
+                  return firstArgument * 20
+                }
+              `,
+            },
+            {
+              code: `
+                const method = (
+                  { firstArgument } = {}
+                ) => {
+                  return firstArgument * 30
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  constructor (
+                    { firstArgument } = {}
+                  ) {
+                    this.firstArgument = firstArgument
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  method (
+                    { firstArgument } = {}
+                  ) {
+                    return firstArgument * 50
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  static method (
+                    { firstArgument } = {}
+                  ) {
+                    return firstArgument * 60
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method (
+                    { firstArgument } = {}
+                  ) {
+                    return firstArgument * 70
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method: function (
+                    { firstArgument } = {}
+                  ) {
+                    return firstArgument * 80
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method: (
+                    { firstArgument } = {}
+                  ) => {
+                    return firstArgument * 90
+                  }
+                }
+              `,
+            },
           ]),
         errors
       ]
