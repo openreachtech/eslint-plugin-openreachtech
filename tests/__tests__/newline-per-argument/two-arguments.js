@@ -12,84 +12,6 @@ describe('newline-per-argument', () => {
 
   describe('two arguments', () => {
     const validCases = []
-      .concat([ // (arg1, arg2) patterns
-        {
-          code: `
-            function method (firstArgument, secondArgument) {
-              return firstArgument + secondArgument * 10
-            }
-          `,
-        },
-        {
-          code: `
-            const method = function (firstArgument, secondArgument) {
-              return firstArgument + secondArgument * 20
-            }
-          `,
-        },
-        {
-          code: `
-            const method = (firstArgument, secondArgument) => {
-              return firstArgument + secondArgument * 30
-            }
-          `,
-        },
-        {
-          code: `
-            class TestClass {
-              constructor (firstArgument, secondArgument) {
-                this.firstArgument = firstArgument
-                this.secondArgument = secondArgument
-              }
-            }
-          `,
-        },
-        {
-          code: `
-            class TestClass {
-              method (firstArgument, secondArgument) {
-                return firstArgument + secondArgument * 50
-              }
-            }
-          `,
-        },
-        {
-          code: `
-            class TestClass {
-              static method (firstArgument, secondArgument) {
-                return firstArgument + secondArgument * 60
-              }
-            }
-          `,
-        },
-        {
-          code: `
-            const object = {
-              method (firstArgument, secondArgument) {
-                return firstArgument + secondArgument * 70
-              }
-            }
-          `,
-        },
-        {
-          code: `
-            const object = {
-              method: function (firstArgument, secondArgument) {
-                return firstArgument + secondArgument * 80
-              }
-            }
-          `,
-        },
-        {
-          code: `
-            const object = {
-              method: (firstArgument, secondArgument) => {
-                return firstArgument + secondArgument * 90
-              }
-            }
-          `,
-        },
-      ])
       .concat([ // (\narg1,\narg2\n) patterns
         {
           code: `
@@ -523,6 +445,84 @@ describe('newline-per-argument', () => {
     const invalidCases = ESLintHelper.expandInvalidCases([
       [
         []
+          .concat([ // (arg1, arg2) patterns
+            {
+              code: `
+                function method (firstArgument, secondArgument) {
+                  return firstArgument + secondArgument * 10
+                }
+              `,
+            },
+            {
+              code: `
+                const method = function (firstArgument, secondArgument) {
+                  return firstArgument + secondArgument * 20
+                }
+              `,
+            },
+            {
+              code: `
+                const method = (firstArgument, secondArgument) => {
+                  return firstArgument + secondArgument * 30
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  constructor (firstArgument, secondArgument) {
+                    this.firstArgument = firstArgument
+                    this.secondArgument = secondArgument
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  method (firstArgument, secondArgument) {
+                    return firstArgument + secondArgument * 50
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  static method (firstArgument, secondArgument) {
+                    return firstArgument + secondArgument * 60
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method (firstArgument, secondArgument) {
+                    return firstArgument + secondArgument * 70
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method: function (firstArgument, secondArgument) {
+                    return firstArgument + secondArgument * 80
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method: (firstArgument, secondArgument) => {
+                    return firstArgument + secondArgument * 90
+                  }
+                }
+              `,
+            },
+          ])
           .concat([ // (arg1, { arg2 }) patterns
             {
               code: `
