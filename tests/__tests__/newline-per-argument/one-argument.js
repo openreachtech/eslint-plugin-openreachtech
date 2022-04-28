@@ -392,6 +392,83 @@ describe('newline-per-argument', () => {
   // -------------------------------------------------------- with default value
   describe('one argument', () => {
     const validCases = []
+      .concat([ // (arg = 0) patterns
+        {
+          code: `
+            function method (firstArgument = 100) {
+              return firstArgument * 10
+            }
+          `,
+        },
+        {
+          code: `
+            const method = function (firstArgument = 101) {
+              return firstArgument * 20
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (firstArgument = 102) => {
+              return firstArgument * 30
+            }
+          `,
+        },
+        {
+          code: `
+            class TestClass {
+              constructor (firstArgument = 103) {
+                this.firstArgument = firstArgument
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            class TestClass {
+              method (firstArgument = 104) {
+                return firstArgument * 50
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            class TestClass {
+              static method (firstArgument = 105) {
+                return firstArgument * 60
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method (firstArgument = 106) {
+                return firstArgument * 70
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: function (firstArgument = 107) {
+                return firstArgument * 80
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (firstArgument = 108) => {
+                return firstArgument * 90
+              }
+            }
+          `,
+        },
+      ])
       .concat([ // (\narg = 0\n) patterns
         {
           code: `
@@ -586,84 +663,7 @@ describe('newline-per-argument', () => {
     const invalidCases = ESLintHelper.expandInvalidCases([
       [
         []
-          .concat([
-            {
-              code: `
-                function method (firstArgument = 100) {
-                  return firstArgument * 10
-                }
-              `,
-            },
-            {
-              code: `
-                const method = function (firstArgument = 101) {
-                  return firstArgument * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = (firstArgument = 102) => {
-                  return firstArgument * 30
-                }
-              `,
-            },
-            {
-              code: `
-                class TestClass {
-                  constructor (firstArgument = 103) {
-                    this.firstArgument = firstArgument
-                  }
-                }
-              `,
-            },
-            {
-              code: `
-                class TestClass {
-                  method (firstArgument = 104) {
-                    return firstArgument * 50
-                  }
-                }
-              `,
-            },
-            {
-              code: `
-                class TestClass {
-                  static method (firstArgument = 105) {
-                    return firstArgument * 60
-                  }
-                }
-              `,
-            },
-            {
-              code: `
-                const object = {
-                  method (firstArgument = 106) {
-                    return firstArgument * 70
-                  }
-                }
-              `,
-            },
-            {
-              code: `
-                const object = {
-                  method: function (firstArgument = 107) {
-                    return firstArgument * 80
-                  }
-                }
-              `,
-            },
-            {
-              code: `
-                const object = {
-                  method: (firstArgument = 108) => {
-                    return firstArgument * 90
-                  }
-                }
-              `,
-            },
-          ])
-          .concat([
+          .concat([ // ({ arg = 0 }) patterns
             {
               code: `
                 function method ({ firstArgument = 100 }) {
@@ -740,7 +740,7 @@ describe('newline-per-argument', () => {
               `,
             },
           ])
-          .concat([
+          .concat([ // ({ arg } = {}) patterns
             {
               code: `
                 function method ({ firstArgument } = {}) {
@@ -817,7 +817,7 @@ describe('newline-per-argument', () => {
               `,
             },
           ])
-          .concat([
+          .concat([ // (\n{ arg } = {}\n) patterns
             {
               code: `
                 function method (
