@@ -6,7 +6,7 @@ const ruleBody = require('../../../lib/newline-per-parameter')
 // ESLint tester instead of Jest `test()`
 const tester = ESLintHelper.createTester()
 
-describe('newline-per-argument', () => {
+describe('newline-per-parameter', () => {
   const errors = ['Require to chop down per argument.']
 
   describe('nested object arguments', () => {
