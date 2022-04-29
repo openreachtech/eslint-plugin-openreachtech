@@ -1,12 +1,12 @@
 'use strict'
 
 const ESLintHelper = require('../../tools/ESLintHelper')
-const ruleBody = require('../../../lib/newline-per-argument')
+const ruleBody = require('../../../lib/newline-per-parameter')
 
 // ESLint tester instead of Jest `test()`
 const tester = ESLintHelper.createTester()
 
-describe('newline-per-argument', () => {
+describe('newline-per-parameter', () => {
   const validCases = []
     .concat([
       {
@@ -88,7 +88,7 @@ describe('newline-per-argument', () => {
 
   // tester.run([rule name], [rule definition], [test patterns])
   tester.run(
-    'zero-arguments',
+    'zero-parameters',
     ruleBody,
     {
       valid: validCases,
