@@ -1,7 +1,7 @@
 'use strict'
 
 const ESLintHelper = require('../../tools/ESLintHelper')
-const ruleBody = require('../../../lib/newline-per-argument')
+const ruleBody = require('../../../lib/newline-per-parameter')
 
 // ESLint tester instead of Jest `test()`
 const tester = ESLintHelper.createTester()
