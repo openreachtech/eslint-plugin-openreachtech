@@ -8,7 +8,7 @@ const ruleBody = require('../../../lib/newline-per-parameter')
 const tester = ESLintHelper.createTester()
 
 describe('newline-per-parameter', () => {
-  const errors = ['Require to chop down per argument.']
+  const errors = ['Require to chop down per parameter of function declaration.']
 
   describe('three or more arguments', () => {
     describe('three plane arguments', () => {
