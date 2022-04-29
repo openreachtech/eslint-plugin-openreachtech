@@ -367,6 +367,457 @@ describe('newline-per-parameter', () => {
             `,
           },
         ])
+        .concat([ // ({\narg1,\narg2,\narg3\n}) patterns
+          {
+            code: `
+              function method ({
+                firstItem,
+                secondItem,
+                thirdItem,
+              }) {
+                return firstItem + secondItem + thirdItem * 10
+              }
+            `,
+          },
+          {
+            code: `
+              const method = function ({
+                firstItem,
+                secondItem,
+                thirdItem,
+              }) {
+                return firstItem + secondItem + thirdItem * 20
+              }
+            `,
+          },
+          {
+            code: `
+              const method = ({
+                firstItem,
+                secondItem,
+                thirdItem,
+              }) => {
+                return firstItem + secondItem + thirdItem * 30
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                constructor ({
+                  firstItem,
+                  secondItem,
+                  thirdItem,
+                }) {
+                  this.firstItem = firstItem
+                  this.secondItem = secondItem
+                  this.thirdItem = thirdItem
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                method ({
+                  firstItem,
+                  secondItem,
+                  thirdItem,
+                }) {
+                  return firstItem + secondItem + thirdItem * 50
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                static method ({
+                  firstItem,
+                  secondItem,
+                  thirdItem,
+                }) {
+                  return firstItem + secondItem + thirdItem * 60
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method ({
+                  firstItem,
+                  secondItem,
+                  thirdItem,
+                }) {
+                  return firstItem + secondItem + thirdItem * 70
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method: function ({
+                  firstItem,
+                  secondItem,
+                  thirdItem,
+                }) {
+                  return firstItem + secondItem + thirdItem * 80
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method: ({
+                  firstItem,
+                  secondItem,
+                  thirdItem,
+                }) => {
+                  return firstItem + secondItem + thirdItem * 90
+                }
+              }
+            `,
+          },
+        ])
+        .concat([ // (\narg1,\narg2,\n...args\n) patterns
+          {
+            code: `
+              function method (
+                firstItem,
+                secondItem,
+                ...thirdItems
+              ) {
+                return firstItem + secondItem + thirdItems.length * 10
+              }
+            `,
+          },
+          {
+            code: `
+              const method = function (
+                firstItem,
+                secondItem,
+                ...thirdItems
+              ) {
+                return firstItem + secondItem + thirdItems.length * 20
+              }
+            `,
+          },
+          {
+            code: `
+              const method = (
+                firstItem,
+                secondItem,
+                ...thirdItems
+              ) => {
+                return firstItem + secondItem + thirdItems.length * 30
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                constructor (
+                  firstItem,
+                  secondItem,
+                  ...thirdItems
+                ) {
+                  this.firstItem = firstItem
+                  this.secondItem = secondItem
+                  this.thirdItems = thirdItems
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                method (
+                  firstItem,
+                  secondItem,
+                  ...thirdItems
+                ) {
+                  return firstItem + secondItem + thirdItems.length * 50
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                static method (
+                  firstItem,
+                  secondItem,
+                  ...thirdItems
+                ) {
+                  return firstItem + secondItem + thirdItems.length * 60
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method (
+                  firstItem,
+                  secondItem,
+                  ...thirdItems
+                ) {
+                  return firstItem + secondItem + thirdItems.length * 70
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method: function (
+                  firstItem,
+                  secondItem,
+                  ...thirdItems
+                ) {
+                  return firstItem + secondItem + thirdItems.length * 80
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method: (
+                  firstItem,
+                  secondItem,
+                  ...thirdItems
+                ) => {
+                  return firstItem + secondItem + thirdItems.length * 90
+                }
+              }
+            `,
+          },
+        ])
+        .concat([ // (arg1, {\narg2\n...args\n}) patterns
+          {
+            code: `
+              function method (firstItem, {
+                secondItem,
+                ...thirdItems
+              }) {
+                return firstItem + secondItem + thirdItems.length * 10
+              }
+            `,
+          },
+          {
+            code: `
+              const method = function (firstItem, {
+                secondItem,
+                ...thirdItems
+              }) {
+                return firstItem + secondItem + thirdItems.length * 20
+              }
+            `,
+          },
+          {
+            code: `
+              const method = (firstItem, {
+                secondItem,
+                ...thirdItems
+              }) => {
+                return firstItem + secondItem + thirdItems.length * 30
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                constructor (firstItem, {
+                  secondItem,
+                  ...thirdItems
+                }) {
+                  this.firstItem = firstItem
+                  this.secondItem = secondItem
+                  this.thirdItems = thirdItems
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                method (firstItem, {
+                  secondItem,
+                  ...thirdItems
+                }) {
+                  return firstItem + secondItem + thirdItems.length * 50
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                static method (firstItem, {
+                  secondItem,
+                  ...thirdItems
+                }) {
+                  return firstItem + secondItem + thirdItems.length * 60
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method (firstItem, {
+                  secondItem,
+                  ...thirdItems
+                }) {
+                  return firstItem + secondItem + thirdItems.length * 70
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method: function (firstItem, {
+                  secondItem,
+                  ...thirdItems
+                }) {
+                  return firstItem + secondItem + thirdItems.length * 80
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method: (firstItem, {
+                  secondItem,
+                  ...thirdItems
+                }) => {
+                  return firstItem + secondItem + thirdItems.length * 90
+                }
+              }
+            `,
+          },
+        ])
+        .concat([ // ({\narg1,\narg2,\n...args\n}) patterns
+          {
+            code: `
+              function method ({
+                firstItem,
+                secondItem,
+                ...thirdItems
+              }) {
+                return firstItem + secondItem + thirdItems.length * 10
+              }
+            `,
+          },
+          {
+            code: `
+              const method = function ({
+                firstItem,
+                secondItem,
+                ...thirdItems
+              }) {
+                return firstItem + secondItem + thirdItems.length * 20
+              }
+            `,
+          },
+          {
+            code: `
+              const method = ({
+                firstItem,
+                secondItem,
+                ...thirdItems
+              }) => {
+                return firstItem + secondItem + thirdItems.length * 30
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                constructor ({
+                  firstItem,
+                  secondItem,
+                  ...thirdItems
+                }) {
+                  this.firstItem = firstItem
+                  this.secondItem = secondItem
+                  this.thirdItems = thirdItems
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                method ({
+                  firstItem,
+                  secondItem,
+                  ...thirdItems
+                }) {
+                  return firstItem + secondItem + thirdItems.length * 50
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                static method ({
+                  firstItem,
+                  secondItem,
+                  ...thirdItems
+                }) {
+                  return firstItem + secondItem + thirdItems.length * 60
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method ({
+                  firstItem,
+                  secondItem,
+                  ...thirdItems
+                }) {
+                  return firstItem + secondItem + thirdItems.length * 70
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method: function ({
+                  firstItem,
+                  secondItem,
+                  ...thirdItems
+                }) {
+                  return firstItem + secondItem + thirdItems.length * 80
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method: ({
+                  firstItem,
+                  secondItem,
+                  ...thirdItems
+                }) => {
+                  return firstItem + secondItem + thirdItems.length * 90
+                }
+              }
+            `,
+          },
+        ])
 
       const invalidCases = ESLintHelper.expandInvalidCases([
         [
@@ -633,6 +1084,427 @@ describe('newline-per-parameter', () => {
                   }
                 `,
               },
+            ])
+            .concat([ // ({ arg1, arg2, arg3 }) patterns
+              {
+                code: `
+                  function method ({ firstItem, secondItem, thirdItem }) {
+                    return firstItem + secondItem + thirdItem * 10
+                  }
+                `,
+              },
+              {
+                code: `
+                  const method = function ({ firstItem, secondItem, thirdItem }) {
+                    return firstItem + secondItem + thirdItem * 20
+                  }
+                `,
+              },
+              {
+                code: `
+                  const method = ({ firstItem, secondItem, thirdItem }) => {
+                    return firstItem + secondItem + thirdItem * 30
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    constructor ({ firstItem, secondItem, thirdItem }) {
+                      this.firstItem = firstItem
+                      this.secondItem = secondItem
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    method ({ firstItem, secondItem, thirdItem }) {
+                      return firstItem + secondItem + thirdItem * 50
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    static method ({ firstItem, secondItem, thirdItem }) {
+                      return firstItem + secondItem + thirdItem * 60
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method ({ firstItem, secondItem, thirdItem }) {
+                      return firstItem + secondItem + thirdItem * 70
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method: function ({ firstItem, secondItem, thirdItem }) {
+                      return firstItem + secondItem + thirdItem * 80
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method: ({ firstItem, secondItem, thirdItem }) => {
+                      return firstItem + secondItem + thirdItem * 90
+                    }
+                  }
+                `,
+              },
+            ])
+            .concat([ // (arg1, arg2, ...args) patterns
+              {
+                code: `
+                  function method (firstItem, secondItem, ...thirdItems) {
+                    return firstItem + secondItem + thirdItems.length * 10
+                  }
+                `,
+              },
+              {
+                code: `
+                  const method = function (firstItem, secondItem, ...thirdItems) {
+                    return firstItem + secondItem + thirdItems.length * 20
+                  }
+                `,
+              },
+              {
+                code: `
+                  const method = (firstItem, secondItem, ...thirdItems) => {
+                    return firstItem + secondItem + thirdItems.length * 30
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    constructor (firstItem, secondItem, ...thirdItems) {
+                      this.firstItem = firstItem
+                      this.secondItem = secondItem
+                      this.thirdItems = thirdItems
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    method (firstItem, secondItem, ...thirdItems) {
+                      return firstItem + secondItem + thirdItems.length * 50
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    static method (firstItem, secondItem, ...thirdItems) {
+                      return firstItem + secondItem + thirdItems.length * 60
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method (firstItem, secondItem, ...thirdItems) {
+                      return firstItem + secondItem + thirdItems.length * 70
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method: function (firstItem, secondItem, ...thirdItems) {
+                      return firstItem + secondItem + thirdItems.length * 80
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method: (firstItem, secondItem, ...thirdItems) => {
+                      return firstItem + secondItem + thirdItems.length * 90
+                    }
+                  }
+                `,
+              },
+            ])
+            .concat([ // (arg1, { arg2, ...args }) patterns
+              {
+                code: `
+                  function method (firstItem, { secondItem, ...thirdItems }) {
+                    return firstItem + secondItem + thirdItems.length * 10
+                  }
+                `,
+              },
+              {
+                code: `
+                  const method = function (firstItem, { secondItem, ...thirdItems }) {
+                    return firstItem + secondItem + thirdItems.length * 20
+                  }
+                `,
+              },
+              {
+                code: `
+                  const method = (firstItem, { secondItem, ...thirdItems }) => {
+                    return firstItem + secondItem + thirdItems.length * 30
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    constructor (firstItem, { secondItem, ...thirdItems }) {
+                      this.firstItem = firstItem
+                      this.secondItem = secondItem
+                      this.thirdItems = thirdItems
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    method (firstItem, { secondItem, ...thirdItems }) {
+                      return firstItem + secondItem + thirdItems.length * 50
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    static method (firstItem, { secondItem, ...thirdItems }) {
+                      return firstItem + secondItem + thirdItems.length * 60
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method (firstItem, { secondItem, ...thirdItems }) {
+                      return firstItem + secondItem + thirdItems.length * 70
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method: function (firstItem, { secondItem, ...thirdItems }) {
+                      return firstItem + secondItem + thirdItems.length * 80
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method: (firstItem, { secondItem, ...thirdItems }) => {
+                      return firstItem + secondItem + thirdItems.length * 90
+                    }
+                  }
+                `,
+              },
+            ])
+            .concat([ // (\narg1,\n{ arg2, ...arg3 }\n) patterns
+              {
+                code: `
+                  function method (
+                    firstItem,
+                    { secondItem, ...thirdItems }
+                  ) {
+                    return firstItem + secondItem + thirdItems.length * 10
+                  }
+                `,
+              },
+              {
+                code: `
+                  const method = function (
+                    firstItem,
+                    { secondItem, ...thirdItems }
+                  ) {
+                    return firstItem + secondItem + thirdItems.length * 20
+                  }
+                `,
+              },
+              {
+                code: `
+                  const method = (
+                    firstItem,
+                    { secondItem, ...thirdItems }
+                  ) => {
+                    return firstItem + secondItem + thirdItems.length * 30
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    constructor (
+                      firstItem,
+                      { secondItem, ...thirdItems }
+                    ) {
+                      this.firstItem = firstItem
+                      this.secondItem = secondItem
+                      this.thirdItems = thirdItems
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    method (
+                      firstItem,
+                      { secondItem, ...thirdItems }
+                    ) {
+                      return firstItem + secondItem + thirdItems.length * 50
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    static method (
+                      firstItem,
+                      { secondItem, ...thirdItems }
+                    ) {
+                      return firstItem + secondItem + thirdItems.length * 60
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method (
+                      firstItem,
+                      { secondItem, ...thirdItems }
+                    ) {
+                      return firstItem + secondItem + thirdItems.length * 70
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method: function (
+                      firstItem,
+                      { secondItem, ...thirdItems }
+                    ) {
+                      return firstItem + secondItem + thirdItems.length * 80
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method: (
+                      firstItem,
+                      { secondItem, ...thirdItems }
+                    ) => {
+                      return firstItem + secondItem + thirdItems.length * 90
+                    }
+                  }
+                `,
+              },
+            ])
+            .concat([ // ({ arg1, arg2, ...args }) patterns
+              {
+                code: `
+                  function method ({ firstItem, secondItem, ...thirdItems }) {
+                    return firstItem + secondItem + thirdItems.length * 10
+                  }
+                `,
+              },
+              {
+                code: `
+                  const method = function ({ firstItem, secondItem, ...thirdItems }) {
+                    return firstItem + secondItem + thirdItems.length * 20
+                  }
+                `,
+              },
+              {
+                code: `
+                  const method = ({ firstItem, secondItem, ...thirdItems }) => {
+                    return firstItem + secondItem + thirdItems.length * 30
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    constructor ({ firstItem, secondItem, ...thirdItems }) {
+                      this.firstItem = firstItem
+                      this.secondItem = secondItem
+                      this.thirdItems = thirdItems
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    method ({ firstItem, secondItem, ...thirdItems }) {
+                      return firstItem + secondItem + thirdItems.length * 50
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    static method ({ firstItem, secondItem, ...thirdItems }) {
+                      return firstItem + secondItem + thirdItems.length * 60
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method ({ firstItem, secondItem, ...thirdItems }) {
+                      return firstItem + secondItem + thirdItems.length * 70
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method: function ({ firstItem, secondItem, ...thirdItems }) {
+                      return firstItem + secondItem + thirdItems.length * 80
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method: ({ firstItem, secondItem, ...thirdItems }) => {
+                      return firstItem + secondItem + thirdItems.length * 90
+                    }
+                  }
+                `,
+              },
             ]),
           errors
         ]
@@ -766,7 +1638,7 @@ describe('newline-per-parameter', () => {
             `,
           },
         ])
-        .concat([ // (arg1, {\narg2\narg3\n}) patterns
+        .concat([ // (arg1, {\narg2\narg3 = 2\n}) patterns
           {
             code: `
               function method (firstItem, {
@@ -872,7 +1744,7 @@ describe('newline-per-parameter', () => {
             `,
           },
         ])
-        .concat([ // (\narg1,\n{\narg2,\narg3\n}\n) patterns
+        .concat([ // (\narg1,\n{\narg2,\narg3 = 2\n}\n) patterns
           {
             code: `
               function method (
@@ -1000,6 +1872,236 @@ describe('newline-per-parameter', () => {
                   }
                 ) => {
                   return firstItem + secondItem + thirdItem * 90
+                }
+              }
+            `,
+          },
+        ])
+        .concat([ // ({\narg1,\narg2,\narg3\n} = {}) patterns
+          {
+            code: `
+              function method ({
+                firstItem,
+                secondItem,
+                thirdItem,
+              } = {}) {
+                return firstItem + secondItem + thirdItem * 10
+              }
+            `,
+          },
+          {
+            code: `
+              const method = function ({
+                firstItem,
+                secondItem,
+                thirdItem,
+              } = {}) {
+                return firstItem + secondItem + thirdItem * 20
+              }
+            `,
+          },
+          {
+            code: `
+              const method = ({
+                firstItem,
+                secondItem,
+                thirdItem,
+              } = {}) => {
+                return firstItem + secondItem + thirdItem * 30
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                constructor ({
+                  firstItem,
+                  secondItem,
+                  thirdItem,
+                } = {}) {
+                  this.firstItem = firstItem
+                  this.secondItem = secondItem
+                  this.thirdItem = thirdItem
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                method ({
+                  firstItem,
+                  secondItem,
+                  thirdItem,
+                } = {}) {
+                  return firstItem + secondItem + thirdItem * 50
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                static method ({
+                  firstItem,
+                  secondItem,
+                  thirdItem,
+                } = {}) {
+                  return firstItem + secondItem + thirdItem * 60
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method ({
+                  firstItem,
+                  secondItem,
+                  thirdItem,
+                } = {}) {
+                  return firstItem + secondItem + thirdItem * 70
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method: function ({
+                  firstItem,
+                  secondItem,
+                  thirdItem,
+                } = {}) {
+                  return firstItem + secondItem + thirdItem * 80
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method: ({
+                  firstItem,
+                  secondItem,
+                  thirdItem,
+                } = {}) => {
+                  return firstItem + secondItem + thirdItem * 90
+                }
+              }
+            `,
+          },
+        ])
+        .concat([ // ({\narg1,\narg2,\n...args\n} = {}) patterns
+          {
+            code: `
+              function method ({
+                firstItem,
+                secondItem,
+                ...thirdItems
+              } = {}) {
+                return firstItem + secondItem + thirdItems.length * 10
+              }
+            `,
+          },
+          {
+            code: `
+              const method = function ({
+                firstItem,
+                secondItem,
+                ...thirdItems
+              } = {}) {
+                return firstItem + secondItem + thirdItems.length * 20
+              }
+            `,
+          },
+          {
+            code: `
+              const method = ({
+                firstItem,
+                secondItem,
+                ...thirdItems
+              } = {}) => {
+                return firstItem + secondItem + thirdItems.length * 30
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                constructor ({
+                  firstItem,
+                  secondItem,
+                  ...thirdItems
+                } = {}) {
+                  this.firstItem = firstItem
+                  this.secondItem = secondItem
+                  this.thirdItems = thirdItems
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                method ({
+                  firstItem,
+                  secondItem,
+                  ...thirdItems
+                } = {}) {
+                  return firstItem + secondItem + thirdItems.length * 50
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                static method ({
+                  firstItem,
+                  secondItem,
+                  ...thirdItems
+                } = {}) {
+                  return firstItem + secondItem + thirdItems.length * 60
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method ({
+                  firstItem,
+                  secondItem,
+                  ...thirdItems
+                } = {}) {
+                  return firstItem + secondItem + thirdItems.length * 70
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method: function ({
+                  firstItem,
+                  secondItem,
+                  ...thirdItems
+                } = {}) {
+                  return firstItem + secondItem + thirdItems.length * 80
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method: ({
+                  firstItem,
+                  secondItem,
+                  ...thirdItems
+                } = {}) => {
+                  return firstItem + secondItem + thirdItems.length * 90
                 }
               }
             `,
@@ -1167,7 +2269,7 @@ describe('newline-per-parameter', () => {
                 `,
               },
             ])
-            .concat([ // (\narg1,\n{ arg2, arg3 = 2 }\n) patterns
+            .concat([ // (arg1, { arg2, arg3 = 2 }) patterns
               {
                 code: `
                   function method (
@@ -1267,6 +2369,164 @@ describe('newline-per-parameter', () => {
                       { secondItem, thirdItem = 2 }
                     ) => {
                       return firstItem + secondItem + thirdItem * 90
+                    }
+                  }
+                `,
+              },
+            ])
+            .concat([ // ({ arg1, arg2, arg3 } = {}) patterns
+              {
+                code: `
+                  function method ({ firstItem, secondItem, thirdItem } = {}) {
+                    return firstItem + secondItem + thirdItem * 10
+                  }
+                `,
+              },
+              {
+                code: `
+                  const method = function ({ firstItem, secondItem, thirdItem } = {}) {
+                    return firstItem + secondItem + thirdItem * 20
+                  }
+                `,
+              },
+              {
+                code: `
+                  const method = ({ firstItem, secondItem, thirdItem } = {}) => {
+                    return firstItem + secondItem + thirdItem * 30
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    constructor ({ firstItem, secondItem, thirdItem } = {}) {
+                      this.firstItem = firstItem
+                      this.secondItem = secondItem
+                      this.thirdItem = thirdItem
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    method ({ firstItem, secondItem, thirdItem } = {}) {
+                      return firstItem + secondItem + thirdItem * 50
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    static method ({ firstItem, secondItem, thirdItem } = {}) {
+                      return firstItem + secondItem + thirdItem * 60
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method ({ firstItem, secondItem, thirdItem } = {}) {
+                      return firstItem + secondItem + thirdItem * 70
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method: function ({ firstItem, secondItem, thirdItem } = {}) {
+                      return firstItem + secondItem + thirdItem * 80
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method: ({ firstItem, secondItem, thirdItem } = {}) => {
+                      return firstItem + secondItem + thirdItem * 90
+                    }
+                  }
+                `,
+              },
+            ])
+            .concat([ // ({ arg1, arg2, ...args } = {}) patterns
+              {
+                code: `
+                  function method ({ firstItem, secondItem, ...thirdItems } = {}) {
+                    return firstItem + secondItem + thirdItems.length * 10
+                  }
+                `,
+              },
+              {
+                code: `
+                  const method = function ({ firstItem, secondItem, ...thirdItems } = {}) {
+                    return firstItem + secondItem + thirdItems.length * 20
+                  }
+                `,
+              },
+              {
+                code: `
+                  const method = ({ firstItem, secondItem, ...thirdItems } = {}) => {
+                    return firstItem + secondItem + thirdItems.length * 30
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    constructor ({ firstItem, secondItem, ...thirdItems } = {}) {
+                      this.firstItem = firstItem
+                      this.secondItem = secondItem
+                      this.thirdItems = thirdItems
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    method ({ firstItem, secondItem, ...thirdItems } = {}) {
+                      return firstItem + secondItem + thirdItems.length * 50
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    static method ({ firstItem, secondItem, ...thirdItems } = {}) {
+                      return firstItem + secondItem + thirdItems.length * 60
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method ({ firstItem, secondItem, ...thirdItems  } = {}) {
+                      return firstItem + secondItem + thirdItems.length * 70
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method: function ({ firstItem, secondItem, ...thirdItems } = {}) {
+                      return firstItem + secondItem + thirdItems.length * 80
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method: ({ firstItem, secondItem, ...thirdItems } = {}) => {
+                      return firstItem + secondItem + thirdItems.length * 90
                     }
                   }
                 `,
@@ -1404,7 +2664,7 @@ describe('newline-per-parameter', () => {
             `,
           },
         ])
-        .concat([ // (arg1, {\narg2\narg3\n}) patterns
+        .concat([ // (arg1, {\narg2 = 1\narg3 = 2\n}) patterns
           {
             code: `
               function method (firstItem, {
@@ -1510,7 +2770,7 @@ describe('newline-per-parameter', () => {
             `,
           },
         ])
-        .concat([ // (\narg1,\n{\narg2,\narg3\n}\n) patterns
+        .concat([ // (\narg1,\n{\narg2 = 1,\narg3 = 2\n}\n) patterns
           {
             code: `
               function method (
@@ -1643,6 +2903,121 @@ describe('newline-per-parameter', () => {
             `,
           },
         ])
+        .concat([ // ({\narg1,\narg2 = 1,\narg3 = 2\n}) patterns
+          {
+            code: `
+              function method ({
+                firstItem,
+                secondItem = 1,
+                thirdItem = 2,
+              }) {
+                return firstItem + secondItem + thirdItem * 10
+              }
+            `,
+          },
+          {
+            code: `
+              const method = function ({
+                firstItem,
+                secondItem = 1,
+                thirdItem = 2,
+              }) {
+                return firstItem + secondItem + thirdItem * 20
+              }
+            `,
+          },
+          {
+            code: `
+              const method = ({
+                firstItem,
+                secondItem = 1,
+                thirdItem = 2,
+              }) => {
+                return firstItem + secondItem + thirdItem * 30
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                constructor ({
+                  firstItem,
+                  secondItem = 1,
+                  thirdItem = 2,
+                }) {
+                  this.firstItem = firstItem
+                  this.secondItem = secondItem
+                  this.thirdItem = thirdItem
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                method ({
+                  firstItem,
+                  secondItem = 1,
+                  thirdItem = 2,
+                }) {
+                  return firstItem + secondItem + thirdItem * 50
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              class TestClass {
+                static method ({
+                  firstItem,
+                  secondItem = 1,
+                  thirdItem = 2,
+                }) {
+                  return firstItem + secondItem + thirdItem * 60
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method ({
+                  firstItem,
+                  secondItem = 1,
+                  thirdItem = 2,
+                }) {
+                  return firstItem + secondItem + thirdItem * 70
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method: function ({
+                  firstItem,
+                  secondItem = 1,
+                  thirdItem = 2,
+                }) {
+                  return firstItem + secondItem + thirdItem * 80
+                }
+              }
+            `,
+          },
+          {
+            code: `
+              const object = {
+                method: ({
+                  firstItem,
+                  secondItem = 1,
+                  thirdItem = 2,
+                }) => {
+                  return firstItem + secondItem + thirdItem * 90
+                }
+              }
+            `,
+          },
+        ])
 
       const invalidCases = ESLintHelper.expandInvalidCases([
         [
@@ -1726,7 +3101,7 @@ describe('newline-per-parameter', () => {
                 `,
               },
             ])
-            .concat([ // (arg1, { arg2, arg3 = 2 }) patterns
+            .concat([ // (arg1, { arg2 = 1, arg3 = 2 }) patterns
               {
                 code: `
                   function method (firstItem, { secondItem = 1, thirdItem = 2 }) {
@@ -1805,7 +3180,7 @@ describe('newline-per-parameter', () => {
                 `,
               },
             ])
-            .concat([ // (\narg1,\n{ arg2, arg3 = 2 }\n) patterns
+            .concat([ // (\narg1,\n{ arg2 = 1, arg3 = 2 }\n) patterns
               {
                 code: `
                   function method (
@@ -1904,6 +3279,84 @@ describe('newline-per-parameter', () => {
                       firstItem,
                       { secondItem = 1, thirdItem = 2 }
                     ) => {
+                      return firstItem + secondItem + thirdItem * 90
+                    }
+                  }
+                `,
+              },
+            ])
+            .concat([ // ({ arg1, arg2 = 1, arg3 = 2 }) patterns
+              {
+                code: `
+                  function method ({ firstItem, secondItem = 1, thirdItem = 2 }) {
+                    return firstItem + secondItem + thirdItem * 10
+                  }
+                `,
+              },
+              {
+                code: `
+                  const method = function ({ firstItem, secondItem = 1, thirdItem = 2 }) {
+                    return firstItem + secondItem + thirdItem * 20
+                  }
+                `,
+              },
+              {
+                code: `
+                  const method = ({ firstItem, secondItem = 1, thirdItem = 2 }) => {
+                    return firstItem + secondItem + thirdItem * 30
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    constructor ({ firstItem, secondItem = 1, thirdItem = 2 }) {
+                      this.firstItem = firstItem
+                      this.secondItem = secondItem
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    method ({ firstItem, secondItem = 1, thirdItem = 2 }) {
+                      return firstItem + secondItem + thirdItem * 50
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  class TestClass {
+                    static method ({ firstItem, secondItem = 1, thirdItem = 2 }) {
+                      return firstItem + secondItem + thirdItem * 60
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method ({ firstItem, secondItem = 1, thirdItem = 2 }) {
+                      return firstItem + secondItem + thirdItem * 70
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method: function ({ firstItem, secondItem = 1, thirdItem = 2 }) {
+                      return firstItem + secondItem + thirdItem * 80
+                    }
+                  }
+                `,
+              },
+              {
+                code: `
+                  const object = {
+                    method: ({ firstItem, secondItem = 1, thirdItem = 2 }) => {
                       return firstItem + secondItem + thirdItem * 90
                     }
                   }
@@ -2042,7 +3495,7 @@ describe('newline-per-parameter', () => {
             `,
           },
         ])
-        .concat([ // (arg1, {\narg2\narg3\n}) patterns
+        .concat([ // (arg1 = 0, {\narg2 = 1\narg3 = 2\n}) patterns
           {
             code: `
               function method (firstItem = 0, {
@@ -2148,42 +3601,36 @@ describe('newline-per-parameter', () => {
             `,
           },
         ])
-        .concat([ // (\narg1,\n{\narg2,\narg3\n}\n) patterns
+        .concat([ // ({\narg1 = 0,\narg2 = 1,\narg3 = 2\n}) patterns
           {
             code: `
-              function method (
+              function method ({
                 firstItem = 0,
-                {
-                  secondItem = 1,
-                  thirdItem = 2,
-                }
-              ) {
+                secondItem = 1,
+                thirdItem = 2,
+              }) {
                 return firstItem + secondItem + thirdItem * 10
               }
             `,
           },
           {
             code: `
-              const method = function (
+              const method = function ({
                 firstItem = 0,
-                {
-                  secondItem = 1,
-                  thirdItem = 2,
-                }
-              ) {
+                secondItem = 1,
+                thirdItem = 2,
+              }) {
                 return firstItem + secondItem + thirdItem * 20
               }
             `,
           },
           {
             code: `
-              const method = (
+              const method = ({
                 firstItem = 0,
-                {
-                  secondItem = 1,
-                  thirdItem = 2,
-                }
-              ) => {
+                secondItem = 1,
+                thirdItem = 2,
+              }) => {
                 return firstItem + secondItem + thirdItem * 30
               }
             `,
@@ -2191,13 +3638,11 @@ describe('newline-per-parameter', () => {
           {
             code: `
               class TestClass {
-                constructor (
+                constructor ({
                   firstItem = 0,
-                  {
-                    secondItem = 1,
-                    thirdItem = 2,
-                  }
-                ) {
+                  secondItem = 1,
+                  thirdItem = 2,
+                }) {
                   this.firstItem = firstItem
                   this.secondItem = secondItem
                   this.thirdItem = thirdItem
@@ -2208,13 +3653,11 @@ describe('newline-per-parameter', () => {
           {
             code: `
               class TestClass {
-                method (
+                method ({
                   firstItem = 0,
-                  {
-                    secondItem = 1,
-                    thirdItem = 2,
-                  }
-                ) {
+                  secondItem = 1,
+                  thirdItem = 2,
+                }) {
                   return firstItem + secondItem + thirdItem * 50
                 }
               }
@@ -2223,13 +3666,11 @@ describe('newline-per-parameter', () => {
           {
             code: `
               class TestClass {
-                static method (
+                static method ({
                   firstItem = 0,
-                  {
-                    secondItem = 1,
-                    thirdItem = 2,
-                  }
-                ) {
+                  secondItem = 1,
+                  thirdItem = 2,
+                }) {
                   return firstItem + secondItem + thirdItem * 60
                 }
               }
@@ -2238,13 +3679,11 @@ describe('newline-per-parameter', () => {
           {
             code: `
               const object = {
-                method (
+                method ({
                   firstItem = 0,
-                  {
-                    secondItem = 1,
-                    thirdItem = 2,
-                  }
-                ) {
+                  secondItem = 1,
+                  thirdItem = 2,
+                }) {
                   return firstItem + secondItem + thirdItem * 70
                 }
               }
@@ -2253,13 +3692,11 @@ describe('newline-per-parameter', () => {
           {
             code: `
               const object = {
-                method: function (
+                method: function ({
                   firstItem = 0,
-                  {
-                    secondItem = 1,
-                    thirdItem = 2,
-                  }
-                ) {
+                  secondItem = 1,
+                  thirdItem = 2,
+                }) {
                   return firstItem + secondItem + thirdItem * 80
                 }
               }
@@ -2268,13 +3705,11 @@ describe('newline-per-parameter', () => {
           {
             code: `
               const object = {
-                method: (
+                method: ({
                   firstItem = 0,
-                  {
-                    secondItem = 1,
-                    thirdItem = 2,
-                  }
-                ) => {
+                  secondItem = 1,
+                  thirdItem = 2,
+                }) => {
                   return firstItem + secondItem + thirdItem * 90
                 }
               }
@@ -2364,7 +3799,7 @@ describe('newline-per-parameter', () => {
                 `,
               },
             ])
-            .concat([ // (arg1, { arg2, arg3 = 2 }) patterns
+            .concat([ // (arg1 = 0, { arg2 = 1, arg3 = 2 }) patterns
               {
                 code: `
                   function method (firstItem = 0, { secondItem = 1, thirdItem = 2 }) {
@@ -2443,7 +3878,7 @@ describe('newline-per-parameter', () => {
                 `,
               },
             ])
-            .concat([ // (\narg1,\n{ arg2, arg3 = 2 }\n) patterns
+            .concat([ // (\narg1 = 0,\n{ arg2 = 1, arg3 = 2 }\n) patterns
               {
                 code: `
                   function method (
