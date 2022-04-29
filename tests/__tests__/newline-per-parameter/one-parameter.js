@@ -9,7 +9,7 @@ const tester = ESLintHelper.createTester()
 describe('newline-per-parameter', () => {
   const errors = ['Require to chop down per parameter of function declaration.']
 
-  describe('one argument', () => {
+  describe('one parameter', () => {
     const validCases = []
       .concat([ // (arg) patterns
         {
@@ -380,7 +380,7 @@ describe('newline-per-parameter', () => {
 
     // tester.run([rule name], [rule definition], [test patterns])
     tester.run(
-      'plane argument',
+      'plane parameter',
       ruleBody,
       {
         valid: validCases,
@@ -390,7 +390,7 @@ describe('newline-per-parameter', () => {
   })
 
   // -------------------------------------------------------- with default value
-  describe('one argument', () => {
+  describe('one parameter', () => {
     const validCases = []
       .concat([ // (arg = 0) patterns
         {

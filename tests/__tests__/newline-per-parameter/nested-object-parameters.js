@@ -9,7 +9,7 @@ const tester = ESLintHelper.createTester()
 describe('newline-per-parameter', () => {
   const errors = ['Require to chop down per parameter of function declaration.']
 
-  describe('nested object arguments', () => {
+  describe('nested object parameters', () => {
     const validCases = []
       .concat([
         {
@@ -156,7 +156,7 @@ describe('newline-per-parameter', () => {
 
     // tester.run([rule name], [rule definition], [test patterns])
     tester.run(
-      'plane argument',
+      'plane parameter',
       ruleBody,
       {
         valid: validCases,

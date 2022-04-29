@@ -88,7 +88,7 @@ describe('newline-per-parameter', () => {
 
   // tester.run([rule name], [rule definition], [test patterns])
   tester.run(
-    'zero-arguments',
+    'zero-parameters',
     ruleBody,
     {
       valid: validCases,
