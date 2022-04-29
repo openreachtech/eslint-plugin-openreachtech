@@ -15,39 +15,39 @@ describe('newline-per-parameter', () => {
         {
           code: `
             function method ({
-              firstArgument,
-              secondArgument: {
-                thirdArgument,
-                fourthArgument,
+              firstItem,
+              secondItem: {
+                thirdItem,
+                fourthItem,
               }
             }) {
-              return firstArgument + thirdArgument + fourthArgument * 10
+              return firstItem + thirdItem + fourthItem * 10
             }
           `,
         },
         {
           code: `
             const method = function ({
-              firstArgument,
-              secondArgument: {
-                thirdArgument,
-                fourthArgument,
+              firstItem,
+              secondItem: {
+                thirdItem,
+                fourthItem,
               }
             }) {
-              return firstArgument + thirdArgument + fourthArgument * 20
+              return firstItem + thirdItem + fourthItem * 20
             }
           `,
         },
         {
           code: `
             const method = ({
-              firstArgument,
-              secondArgument: {
-                thirdArgument,
-                fourthArgument,
+              firstItem,
+              secondItem: {
+                thirdItem,
+                fourthItem,
               }
             }) => {
-              return firstArgument + thirdArgument + fourthArgument * 30
+              return firstItem + thirdItem + fourthItem * 30
             }
           `,
         },
@@ -55,15 +55,15 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               constructor ({
-                firstArgument,
-                secondArgument: {
-                  thirdArgument,
-                  fourthArgument,
+                firstItem,
+                secondItem: {
+                  thirdItem,
+                  fourthItem,
                 }
               }) {
-                this.firstArgument = firstArgument
-                this.thirdArgument = thirdArgument
-                this.fourthArgument = fourthArgument
+                this.firstItem = firstItem
+                this.thirdItem = thirdItem
+                this.fourthItem = fourthItem
               }
             }
           `,
@@ -72,13 +72,13 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               method ({
-                firstArgument,
-                secondArgument: {
-                  thirdArgument,
-                  fourthArgument,
+                firstItem,
+                secondItem: {
+                  thirdItem,
+                  fourthItem,
                 }
               }) {
-                return firstArgument + thirdArgument + fourthArgument * 50
+                return firstItem + thirdItem + fourthItem * 50
               }
             }
           `,
@@ -87,13 +87,13 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               static method ({
-                firstArgument,
-                secondArgument: {
-                  thirdArgument,
-                  fourthArgument,
+                firstItem,
+                secondItem: {
+                  thirdItem,
+                  fourthItem,
                 }
               }) {
-                return firstArgument + thirdArgument + fourthArgument * 60
+                return firstItem + thirdItem + fourthItem * 60
               }
             }
           `,
@@ -102,13 +102,13 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method ({
-                firstArgument,
-                secondArgument: {
-                  thirdArgument,
-                  fourthArgument,
+                firstItem,
+                secondItem: {
+                  thirdItem,
+                  fourthItem,
                 }
               }) {
-                return firstArgument + thirdArgument + fourthArgument * 70
+                return firstItem + thirdItem + fourthItem * 70
               }
             }
           `,
@@ -117,13 +117,13 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: function ({
-                firstArgument,
-                secondArgument: {
-                  thirdArgument,
-                  fourthArgument,
+                firstItem,
+                secondItem: {
+                  thirdItem,
+                  fourthItem,
                 }
               }) {
-                return firstArgument + thirdArgument + fourthArgument * 80
+                return firstItem + thirdItem + fourthItem * 80
               }
             }
           `,
@@ -132,13 +132,13 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: ({
-                firstArgument,
-                secondArgument: {
-                  thirdArgument,
-                  fourthArgument,
+                firstItem,
+                secondItem: {
+                  thirdItem,
+                  fourthItem,
                 }
               }) => {
-                return firstArgument + thirdArgument + fourthArgument * 90
+                return firstItem + thirdItem + fourthItem * 90
               }
             }
           `,

@@ -16,30 +16,30 @@ describe('newline-per-parameter', () => {
         {
           code: `
             function method (
-              firstArgument,
-              secondArgument
+              firstItem,
+              secondItem
             ) {
-              return firstArgument + secondArgument * 10
+              return firstItem + secondItem * 10
             }
           `,
         },
         {
           code: `
             const method = function (
-              firstArgument,
-              secondArgument
+              firstItem,
+              secondItem
             ) {
-              return firstArgument + secondArgument * 20
+              return firstItem + secondItem * 20
             }
           `,
         },
         {
           code: `
             const method = (
-              firstArgument,
-              secondArgument
+              firstItem,
+              secondItem
             ) => {
-              return firstArgument + secondArgument * 30
+              return firstItem + secondItem * 30
             }
           `,
         },
@@ -47,11 +47,11 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               constructor (
-                firstArgument,
-                secondArgument
+                firstItem,
+                secondItem
               ) {
-                this.firstArgument = firstArgument
-                this.secondArgument = secondArgument
+                this.firstItem = firstItem
+                this.secondItem = secondItem
               }
             }
           `,
@@ -60,10 +60,10 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               method (
-                firstArgument,
-                secondArgument
+                firstItem,
+                secondItem
               ) {
-                return firstArgument + secondArgument * 50
+                return firstItem + secondItem * 50
               }
             }
           `,
@@ -72,10 +72,10 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               static method (
-                firstArgument,
-                secondArgument
+                firstItem,
+                secondItem
               ) {
-                return firstArgument + secondArgument * 60
+                return firstItem + secondItem * 60
               }
             }
           `,
@@ -84,10 +84,10 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method (
-                firstArgument,
-                secondArgument
+                firstItem,
+                secondItem
               ) {
-                return firstArgument + secondArgument * 70
+                return firstItem + secondItem * 70
               }
             }
           `,
@@ -96,10 +96,10 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: function (
-                firstArgument,
-                secondArgument
+                firstItem,
+                secondItem
               ) {
-                return firstArgument + secondArgument * 80
+                return firstItem + secondItem * 80
               }
             }
           `,
@@ -108,10 +108,10 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: (
-                firstArgument,
-                secondArgument
+                firstItem,
+                secondItem
               ) => {
-                return firstArgument + secondArgument * 90
+                return firstItem + secondItem * 90
               }
             }
           `,
@@ -120,50 +120,39 @@ describe('newline-per-parameter', () => {
       .concat([ // (arg1, {\narg2\n}) patterns
         {
           code: `
-            function method (firstArgument, {
-              secondArgument
+            function method (firstItem, {
+              secondItem
             }) {
-              return firstArgument + secondArgument * 10
+              return firstItem + secondItem * 10
             }
           `,
         },
         {
           code: `
-            const method = function (firstArgument, {
-              secondArgument
+            const method = function (firstItem, {
+              secondItem
             }) {
-              return firstArgument + secondArgument * 20
+              return firstItem + secondItem * 20
             }
           `,
         },
         {
           code: `
-            const method = (firstArgument, {
-              secondArgument
+            const method = (firstItem, {
+              secondItem
             }) => {
-              return firstArgument + secondArgument * 30
+              return firstItem + secondItem * 30
             }
           `,
         },
         {
           code: `
             class TestClass {
-              constructor (firstArgument, {
-                secondArgument
+              constructor (firstItem, {
+                secondItem
               }) {
-                this.firstArgument = firstArgument
-                this.secondArgument = secondArgument
-              }
-            }
-          `,
-        },
-        {
-          code: `
-            class TestClass {
-              method (firstArgument, {
-                secondArgument
-              }) {
-                return firstArgument + secondArgument * 50
+                this.firstItem = firstItem
+                this.secondItem = secondItem
               }
             }
           `,
@@ -171,10 +160,21 @@ describe('newline-per-parameter', () => {
         {
           code: `
             class TestClass {
-              static method (firstArgument, {
-                secondArgument
+              method (firstItem, {
+                secondItem
               }) {
-                return firstArgument + secondArgument * 60
+                return firstItem + secondItem * 50
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            class TestClass {
+              static method (firstItem, {
+                secondItem
+              }) {
+                return firstItem + secondItem * 60
               }
             }
           `,
@@ -182,10 +182,10 @@ describe('newline-per-parameter', () => {
         {
           code: `
             const object = {
-              method (firstArgument, {
-                secondArgument
+              method (firstItem, {
+                secondItem
               }) {
-                return firstArgument + secondArgument * 70
+                return firstItem + secondItem * 70
               }
             }
           `,
@@ -193,10 +193,10 @@ describe('newline-per-parameter', () => {
         {
           code: `
             const object = {
-              method: function (firstArgument, {
-                secondArgument
+              method: function (firstItem, {
+                secondItem
               }) {
-                return firstArgument + secondArgument * 80
+                return firstItem + secondItem * 80
               }
             }
           `,
@@ -204,10 +204,10 @@ describe('newline-per-parameter', () => {
         {
           code: `
             const object = {
-              method: (firstArgument, {
-                secondArgument
+              method: (firstItem, {
+                secondItem
               }) => {
-                return firstArgument + secondArgument * 90
+                return firstItem + secondItem * 90
               }
             }
           `,
@@ -217,36 +217,36 @@ describe('newline-per-parameter', () => {
         {
           code: `
             function method (
-              firstArgument,
+              firstItem,
               {
-                secondArgument
+                secondItem
               }
             ) {
-              return firstArgument + secondArgument * 10
+              return firstItem + secondItem * 10
             }
           `,
         },
         {
           code: `
             const method = function (
-              firstArgument,
+              firstItem,
               {
-                secondArgument
+                secondItem
               }
             ) {
-              return firstArgument + secondArgument * 20
+              return firstItem + secondItem * 20
             }
           `,
         },
         {
           code: `
             const method = (
-              firstArgument,
+              firstItem,
               {
-                secondArgument
+                secondItem
               }
             ) => {
-              return firstArgument + secondArgument * 30
+              return firstItem + secondItem * 30
             }
           `,
         },
@@ -254,13 +254,13 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               constructor (
-                firstArgument,
+                firstItem,
                 {
-                  secondArgument
+                  secondItem
                 }
               ) {
-                this.firstArgument = firstArgument
-                this.secondArgument = secondArgument
+                this.firstItem = firstItem
+                this.secondItem = secondItem
               }
             }
           `,
@@ -269,12 +269,12 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               method (
-                firstArgument,
+                firstItem,
                 {
-                  secondArgument
+                  secondItem
                 }
               ) {
-                return firstArgument + secondArgument * 50
+                return firstItem + secondItem * 50
               }
             }
           `,
@@ -283,12 +283,12 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               static method (
-                firstArgument,
+                firstItem,
                 {
-                  secondArgument
+                  secondItem
                 }
               ) {
-                return firstArgument + secondArgument * 60
+                return firstItem + secondItem * 60
               }
             }
           `,
@@ -297,12 +297,12 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method (
-                firstArgument,
+                firstItem,
                 {
-                  secondArgument
+                  secondItem
                 }
               ) {
-                return firstArgument + secondArgument * 70
+                return firstItem + secondItem * 70
               }
             }
           `,
@@ -311,12 +311,12 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: function (
-                firstArgument,
+                firstItem,
                 {
-                  secondArgument
+                  secondItem
                 }
               ) {
-                return firstArgument + secondArgument * 80
+                return firstItem + secondItem * 80
               }
             }
           `,
@@ -325,12 +325,12 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: (
-                firstArgument,
+                firstItem,
                 {
-                  secondArgument
+                  secondItem
                 }
               ) => {
-                return firstArgument + secondArgument * 90
+                return firstItem + secondItem * 90
               }
             }
           `,
@@ -340,30 +340,30 @@ describe('newline-per-parameter', () => {
         {
           code: `
             function method ({
-              firstArgument,
-              secondArgument,
+              firstItem,
+              secondItem,
             }) {
-              return firstArgument + secondArgument * 10
+              return firstItem + secondItem * 10
             }
           `,
         },
         {
           code: `
             const method = function ({
-              firstArgument,
-              secondArgument,
+              firstItem,
+              secondItem,
             }) {
-              return firstArgument + secondArgument * 20
+              return firstItem + secondItem * 20
             }
           `,
         },
         {
           code: `
             const method = ({
-              firstArgument,
-              secondArgument,
+              firstItem,
+              secondItem,
             }) => {
-              return firstArgument + secondArgument * 30
+              return firstItem + secondItem * 30
             }
           `,
         },
@@ -371,11 +371,11 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               constructor ({
-                firstArgument,
-                secondArgument,
+                firstItem,
+                secondItem,
               }) {
-                this.firstArgument = firstArgument
-                this.secondArgument = secondArgument
+                this.firstItem = firstItem
+                this.secondItem = secondItem
               }
             }
           `,
@@ -384,10 +384,10 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               method ({
-                firstArgument,
-                secondArgument,
+                firstItem,
+                secondItem,
               }) {
-                return firstArgument + secondArgument * 50
+                return firstItem + secondItem * 50
               }
             }
           `,
@@ -396,10 +396,10 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               static method ({
-                firstArgument,
-                secondArgument,
+                firstItem,
+                secondItem,
               }) {
-                return firstArgument + secondArgument * 60
+                return firstItem + secondItem * 60
               }
             }
           `,
@@ -408,10 +408,10 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method ({
-                firstArgument,
-                secondArgument,
+                firstItem,
+                secondItem,
               }) {
-                return firstArgument + secondArgument * 70
+                return firstItem + secondItem * 70
               }
             }
           `,
@@ -420,10 +420,10 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: function ({
-                firstArgument,
-                secondArgument,
+                firstItem,
+                secondItem,
               }) {
-                return firstArgument + secondArgument * 80
+                return firstItem + secondItem * 80
               }
             }
           `,
@@ -432,10 +432,10 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: ({
-                firstArgument,
-                secondArgument,
+                firstItem,
+                secondItem,
               }) => {
-                return firstArgument + secondArgument * 90
+                return firstItem + secondItem * 90
               }
             }
           `,
@@ -448,40 +448,31 @@ describe('newline-per-parameter', () => {
           .concat([ // (arg1, arg2) patterns
             {
               code: `
-                function method (firstArgument, secondArgument) {
-                  return firstArgument + secondArgument * 10
+                function method (firstItem, secondItem) {
+                  return firstItem + secondItem * 10
                 }
               `,
             },
             {
               code: `
-                const method = function (firstArgument, secondArgument) {
-                  return firstArgument + secondArgument * 20
+                const method = function (firstItem, secondItem) {
+                  return firstItem + secondItem * 20
                 }
               `,
             },
             {
               code: `
-                const method = (firstArgument, secondArgument) => {
-                  return firstArgument + secondArgument * 30
-                }
-              `,
-            },
-            {
-              code: `
-                class TestClass {
-                  constructor (firstArgument, secondArgument) {
-                    this.firstArgument = firstArgument
-                    this.secondArgument = secondArgument
-                  }
+                const method = (firstItem, secondItem) => {
+                  return firstItem + secondItem * 30
                 }
               `,
             },
             {
               code: `
                 class TestClass {
-                  method (firstArgument, secondArgument) {
-                    return firstArgument + secondArgument * 50
+                  constructor (firstItem, secondItem) {
+                    this.firstItem = firstItem
+                    this.secondItem = secondItem
                   }
                 }
               `,
@@ -489,8 +480,17 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 class TestClass {
-                  static method (firstArgument, secondArgument) {
-                    return firstArgument + secondArgument * 60
+                  method (firstItem, secondItem) {
+                    return firstItem + secondItem * 50
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  static method (firstItem, secondItem) {
+                    return firstItem + secondItem * 60
                   }
                 }
               `,
@@ -498,8 +498,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method (firstArgument, secondArgument) {
-                    return firstArgument + secondArgument * 70
+                  method (firstItem, secondItem) {
+                    return firstItem + secondItem * 70
                   }
                 }
               `,
@@ -507,8 +507,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method: function (firstArgument, secondArgument) {
-                    return firstArgument + secondArgument * 80
+                  method: function (firstItem, secondItem) {
+                    return firstItem + secondItem * 80
                   }
                 }
               `,
@@ -516,8 +516,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method: (firstArgument, secondArgument) => {
-                    return firstArgument + secondArgument * 90
+                  method: (firstItem, secondItem) => {
+                    return firstItem + secondItem * 90
                   }
                 }
               `,
@@ -526,40 +526,31 @@ describe('newline-per-parameter', () => {
           .concat([ // (arg1, { arg2 }) patterns
             {
               code: `
-                function method (firstArgument, { secondArgument }) {
-                  return firstArgument + secondArgument * 10
+                function method (firstItem, { secondItem }) {
+                  return firstItem + secondItem * 10
                 }
               `,
             },
             {
               code: `
-                const method = function (firstArgument, { secondArgument }) {
-                  return firstArgument + secondArgument * 20
+                const method = function (firstItem, { secondItem }) {
+                  return firstItem + secondItem * 20
                 }
               `,
             },
             {
               code: `
-                const method = (firstArgument, { secondArgument }) => {
-                  return firstArgument + secondArgument * 30
-                }
-              `,
-            },
-            {
-              code: `
-                class TestClass {
-                  constructor (firstArgument, { secondArgument }) {
-                    this.firstArgument = firstArgument
-                    this.secondArgument = secondArgument
-                  }
+                const method = (firstItem, { secondItem }) => {
+                  return firstItem + secondItem * 30
                 }
               `,
             },
             {
               code: `
                 class TestClass {
-                  method (firstArgument, { secondArgument }) {
-                    return firstArgument + secondArgument * 50
+                  constructor (firstItem, { secondItem }) {
+                    this.firstItem = firstItem
+                    this.secondItem = secondItem
                   }
                 }
               `,
@@ -567,8 +558,17 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 class TestClass {
-                  static method (firstArgument, { secondArgument }) {
-                    return firstArgument + secondArgument * 60
+                  method (firstItem, { secondItem }) {
+                    return firstItem + secondItem * 50
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  static method (firstItem, { secondItem }) {
+                    return firstItem + secondItem * 60
                   }
                 }
               `,
@@ -576,8 +576,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method (firstArgument, { secondArgument }) {
-                    return firstArgument + secondArgument * 70
+                  method (firstItem, { secondItem }) {
+                    return firstItem + secondItem * 70
                   }
                 }
               `,
@@ -585,8 +585,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method: function (firstArgument, { secondArgument }) {
-                    return firstArgument + secondArgument * 80
+                  method: function (firstItem, { secondItem }) {
+                    return firstItem + secondItem * 80
                   }
                 }
               `,
@@ -594,8 +594,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method: (firstArgument, { secondArgument }) => {
-                    return firstArgument + secondArgument * 90
+                  method: (firstItem, { secondItem }) => {
+                    return firstItem + secondItem * 90
                   }
                 }
               `,
@@ -605,30 +605,30 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 function method (
-                  firstArgument,
-                  { secondArgument }
+                  firstItem,
+                  { secondItem }
                 ) {
-                  return firstArgument + secondArgument * 10
+                  return firstItem + secondItem * 10
                 }
               `,
             },
             {
               code: `
                 const method = function (
-                  firstArgument,
-                  { secondArgument }
+                  firstItem,
+                  { secondItem }
                 ) {
-                  return firstArgument + secondArgument * 20
+                  return firstItem + secondItem * 20
                 }
               `,
             },
             {
               code: `
                 const method = (
-                  firstArgument,
-                  { secondArgument }
+                  firstItem,
+                  { secondItem }
                 ) => {
-                  return firstArgument + secondArgument * 30
+                  return firstItem + secondItem * 30
                 }
               `,
             },
@@ -636,11 +636,11 @@ describe('newline-per-parameter', () => {
               code: `
                 class TestClass {
                   constructor (
-                    firstArgument,
-                    { secondArgument }
+                    firstItem,
+                    { secondItem }
                   ) {
-                    this.firstArgument = firstArgument
-                    this.secondArgument = secondArgument
+                    this.firstItem = firstItem
+                    this.secondItem = secondItem
                   }
                 }
               `,
@@ -649,10 +649,10 @@ describe('newline-per-parameter', () => {
               code: `
                 class TestClass {
                   method (
-                    firstArgument,
-                    { secondArgument }
+                    firstItem,
+                    { secondItem }
                   ) {
-                    return firstArgument + secondArgument * 50
+                    return firstItem + secondItem * 50
                   }
                 }
               `,
@@ -661,10 +661,10 @@ describe('newline-per-parameter', () => {
               code: `
                 class TestClass {
                   static method (
-                    firstArgument,
-                    { secondArgument }
+                    firstItem,
+                    { secondItem }
                   ) {
-                    return firstArgument + secondArgument * 60
+                    return firstItem + secondItem * 60
                   }
                 }
               `,
@@ -673,10 +673,10 @@ describe('newline-per-parameter', () => {
               code: `
                 const object = {
                   method (
-                    firstArgument,
-                    { secondArgument }
+                    firstItem,
+                    { secondItem }
                   ) {
-                    return firstArgument + secondArgument * 70
+                    return firstItem + secondItem * 70
                   }
                 }
               `,
@@ -685,10 +685,10 @@ describe('newline-per-parameter', () => {
               code: `
                 const object = {
                   method: function (
-                    firstArgument,
-                    { secondArgument }
+                    firstItem,
+                    { secondItem }
                   ) {
-                    return firstArgument + secondArgument * 80
+                    return firstItem + secondItem * 80
                   }
                 }
               `,
@@ -697,10 +697,10 @@ describe('newline-per-parameter', () => {
               code: `
                 const object = {
                   method: (
-                    firstArgument,
-                    { secondArgument }
+                    firstItem,
+                    { secondItem }
                   ) => {
-                    return firstArgument + secondArgument * 90
+                    return firstItem + secondItem * 90
                   }
                 }
               `,
@@ -709,40 +709,31 @@ describe('newline-per-parameter', () => {
           .concat([ // ({ arg1, arg2 }) patterns
             {
               code: `
-                function method ({ firstArgument, secondArgument }) {
-                  return firstArgument + secondArgument * 10
+                function method ({ firstItem, secondItem }) {
+                  return firstItem + secondItem * 10
                 }
               `,
             },
             {
               code: `
-                const method = function ({ firstArgument, secondArgument }) {
-                  return firstArgument + secondArgument * 20
+                const method = function ({ firstItem, secondItem }) {
+                  return firstItem + secondItem * 20
                 }
               `,
             },
             {
               code: `
-                const method = ({ firstArgument, secondArgument }) => {
-                  return firstArgument + secondArgument * 30
-                }
-              `,
-            },
-            {
-              code: `
-                class TestClass {
-                  constructor ({ firstArgument, secondArgument }) {
-                    this.firstArgument = firstArgument
-                    this.secondArgument = secondArgument
-                  }
+                const method = ({ firstItem, secondItem }) => {
+                  return firstItem + secondItem * 30
                 }
               `,
             },
             {
               code: `
                 class TestClass {
-                  method ({ firstArgument, secondArgument }) {
-                    return firstArgument + secondArgument * 50
+                  constructor ({ firstItem, secondItem }) {
+                    this.firstItem = firstItem
+                    this.secondItem = secondItem
                   }
                 }
               `,
@@ -750,8 +741,17 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 class TestClass {
-                  static method ({ firstArgument, secondArgument }) {
-                    return firstArgument + secondArgument * 60
+                  method ({ firstItem, secondItem }) {
+                    return firstItem + secondItem * 50
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  static method ({ firstItem, secondItem }) {
+                    return firstItem + secondItem * 60
                   }
                 }
               `,
@@ -759,8 +759,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method ({ firstArgument, secondArgument }) {
-                    return firstArgument + secondArgument * 70
+                  method ({ firstItem, secondItem }) {
+                    return firstItem + secondItem * 70
                   }
                 }
               `,
@@ -768,8 +768,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method: function ({ firstArgument, secondArgument }) {
-                    return firstArgument + secondArgument * 80
+                  method: function ({ firstItem, secondItem }) {
+                    return firstItem + secondItem * 80
                   }
                 }
               `,
@@ -777,8 +777,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method: ({ firstArgument, secondArgument }) => {
-                    return firstArgument + secondArgument * 90
+                  method: ({ firstItem, secondItem }) => {
+                    return firstItem + secondItem * 90
                   }
                 }
               `,
@@ -805,30 +805,30 @@ describe('newline-per-parameter', () => {
         {
           code: `
             function method (
-              firstArgument,
-              secondArgument = 1
+              firstItem,
+              secondItem = 1
             ) {
-              return firstArgument + secondArgument * 10
+              return firstItem + secondItem * 10
             }
           `,
         },
         {
           code: `
             const method = function (
-              firstArgument,
-              secondArgument = 1
+              firstItem,
+              secondItem = 1
             ) {
-              return firstArgument + secondArgument * 20
+              return firstItem + secondItem * 20
             }
           `,
         },
         {
           code: `
             const method = (
-              firstArgument,
-              secondArgument = 1
+              firstItem,
+              secondItem = 1
             ) => {
-              return firstArgument + secondArgument * 30
+              return firstItem + secondItem * 30
             }
           `,
         },
@@ -836,11 +836,11 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               constructor (
-                firstArgument,
-                secondArgument = 1
+                firstItem,
+                secondItem = 1
               ) {
-                this.firstArgument = firstArgument
-                this.secondArgument = secondArgument
+                this.firstItem = firstItem
+                this.secondItem = secondItem
               }
             }
           `,
@@ -849,10 +849,10 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               method (
-                firstArgument,
-                secondArgument = 1
+                firstItem,
+                secondItem = 1
               ) {
-                return firstArgument + secondArgument * 50
+                return firstItem + secondItem * 50
               }
             }
           `,
@@ -861,10 +861,10 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               static method (
-                firstArgument,
-                secondArgument = 1
+                firstItem,
+                secondItem = 1
               ) {
-                return firstArgument + secondArgument * 60
+                return firstItem + secondItem * 60
               }
             }
           `,
@@ -873,10 +873,10 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method (
-                firstArgument,
-                secondArgument = 1
+                firstItem,
+                secondItem = 1
               ) {
-                return firstArgument + secondArgument * 70
+                return firstItem + secondItem * 70
               }
             }
           `,
@@ -885,10 +885,10 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: function (
-                firstArgument,
-                secondArgument = 1
+                firstItem,
+                secondItem = 1
               ) {
-                return firstArgument + secondArgument * 80
+                return firstItem + secondItem * 80
               }
             }
           `,
@@ -897,10 +897,10 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: (
-                firstArgument,
-                secondArgument = 1
+                firstItem,
+                secondItem = 1
               ) => {
-                return firstArgument + secondArgument * 90
+                return firstItem + secondItem * 90
               }
             }
           `,
@@ -909,50 +909,39 @@ describe('newline-per-parameter', () => {
       .concat([ // (arg1, {\narg2\n} = {}) patterns
         {
           code: `
-            function method (firstArgument, {
-              secondArgument
+            function method (firstItem, {
+              secondItem
             } = {}) {
-              return firstArgument + secondArgument * 10
+              return firstItem + secondItem * 10
             }
           `,
         },
         {
           code: `
-            const method = function (firstArgument, {
-              secondArgument
+            const method = function (firstItem, {
+              secondItem
             } = {}) {
-              return firstArgument + secondArgument * 20
+              return firstItem + secondItem * 20
             }
           `,
         },
         {
           code: `
-            const method = (firstArgument, {
-              secondArgument
+            const method = (firstItem, {
+              secondItem
             } = {}) => {
-              return firstArgument + secondArgument * 30
+              return firstItem + secondItem * 30
             }
           `,
         },
         {
           code: `
             class TestClass {
-              constructor (firstArgument, {
-                secondArgument
+              constructor (firstItem, {
+                secondItem
               } = {}) {
-                this.firstArgument = firstArgument
-                this.secondArgument = secondArgument
-              }
-            }
-          `,
-        },
-        {
-          code: `
-            class TestClass {
-              method (firstArgument, {
-                secondArgument
-              } = {}) {
-                return firstArgument + secondArgument * 50
+                this.firstItem = firstItem
+                this.secondItem = secondItem
               }
             }
           `,
@@ -960,10 +949,21 @@ describe('newline-per-parameter', () => {
         {
           code: `
             class TestClass {
-              static method (firstArgument, {
-                secondArgument
+              method (firstItem, {
+                secondItem
               } = {}) {
-                return firstArgument + secondArgument * 60
+                return firstItem + secondItem * 50
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            class TestClass {
+              static method (firstItem, {
+                secondItem
+              } = {}) {
+                return firstItem + secondItem * 60
               }
             }
           `,
@@ -971,10 +971,10 @@ describe('newline-per-parameter', () => {
         {
           code: `
             const object = {
-              method (firstArgument, {
-                secondArgument
+              method (firstItem, {
+                secondItem
               } = {}) {
-                return firstArgument + secondArgument * 70
+                return firstItem + secondItem * 70
               }
             }
           `,
@@ -982,10 +982,10 @@ describe('newline-per-parameter', () => {
         {
           code: `
             const object = {
-              method: function (firstArgument, {
-                secondArgument
+              method: function (firstItem, {
+                secondItem
               } = {}) {
-                return firstArgument + secondArgument * 80
+                return firstItem + secondItem * 80
               }
             }
           `,
@@ -993,10 +993,10 @@ describe('newline-per-parameter', () => {
         {
           code: `
             const object = {
-              method: (firstArgument, {
-                secondArgument
+              method: (firstItem, {
+                secondItem
               } = {}) => {
-                return firstArgument + secondArgument * 90
+                return firstItem + secondItem * 90
               }
             }
           `,
@@ -1006,36 +1006,36 @@ describe('newline-per-parameter', () => {
         {
           code: `
             function method (
-              firstArgument,
+              firstItem,
               {
-                secondArgument
+                secondItem
               } = {}
             ) {
-              return firstArgument + secondArgument * 10
+              return firstItem + secondItem * 10
             }
           `,
         },
         {
           code: `
             const method = function (
-              firstArgument,
+              firstItem,
               {
-                secondArgument
+                secondItem
               } = {}
             ) {
-              return firstArgument + secondArgument * 20
+              return firstItem + secondItem * 20
             }
           `,
         },
         {
           code: `
             const method = (
-              firstArgument,
+              firstItem,
               {
-                secondArgument
+                secondItem
               } = {}
             ) => {
-              return firstArgument + secondArgument * 30
+              return firstItem + secondItem * 30
             }
           `,
         },
@@ -1043,13 +1043,13 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               constructor (
-                firstArgument,
+                firstItem,
                 {
-                  secondArgument
+                  secondItem
                 } = {}
               ) {
-                this.firstArgument = firstArgument
-                this.secondArgument = secondArgument
+                this.firstItem = firstItem
+                this.secondItem = secondItem
               }
             }
           `,
@@ -1058,12 +1058,12 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               method (
-                firstArgument,
+                firstItem,
                 {
-                  secondArgument
+                  secondItem
                 } = {}
               ) {
-                return firstArgument + secondArgument * 50
+                return firstItem + secondItem * 50
               }
             }
           `,
@@ -1072,12 +1072,12 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               static method (
-                firstArgument,
+                firstItem,
                 {
-                  secondArgument
+                  secondItem
                 } = {}
               ) {
-                return firstArgument + secondArgument * 60
+                return firstItem + secondItem * 60
               }
             }
           `,
@@ -1086,12 +1086,12 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method (
-                firstArgument,
+                firstItem,
                 {
-                  secondArgument
+                  secondItem
                 } = {}
               ) {
-                return firstArgument + secondArgument * 70
+                return firstItem + secondItem * 70
               }
             }
           `,
@@ -1100,12 +1100,12 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: function (
-                firstArgument,
+                firstItem,
                 {
-                  secondArgument
+                  secondItem
                 } = {}
               ) {
-                return firstArgument + secondArgument * 80
+                return firstItem + secondItem * 80
               }
             }
           `,
@@ -1114,12 +1114,12 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: (
-                firstArgument,
+                firstItem,
                 {
-                  secondArgument
+                  secondItem
                 } = {}
               ) => {
-                return firstArgument + secondArgument * 90
+                return firstItem + secondItem * 90
               }
             }
           `,
@@ -1129,30 +1129,30 @@ describe('newline-per-parameter', () => {
         {
           code: `
             function method ({
-              firstArgument,
-              secondArgument = 1,
+              firstItem,
+              secondItem = 1,
             }) {
-              return firstArgument + secondArgument * 10
+              return firstItem + secondItem * 10
             }
           `,
         },
         {
           code: `
             const method = function ({
-              firstArgument,
-              secondArgument = 1,
+              firstItem,
+              secondItem = 1,
             }) {
-              return firstArgument + secondArgument * 20
+              return firstItem + secondItem * 20
             }
           `,
         },
         {
           code: `
             const method = ({
-              firstArgument,
-              secondArgument = 1,
+              firstItem,
+              secondItem = 1,
             }) => {
-              return firstArgument + secondArgument * 30
+              return firstItem + secondItem * 30
             }
           `,
         },
@@ -1160,11 +1160,11 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               constructor ({
-                firstArgument,
-                secondArgument = 1,
+                firstItem,
+                secondItem = 1,
               }) {
-                this.firstArgument = firstArgument
-                this.secondArgument = secondArgument
+                this.firstItem = firstItem
+                this.secondItem = secondItem
               }
             }
           `,
@@ -1173,10 +1173,10 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               method ({
-                firstArgument,
-                secondArgument = 1,
+                firstItem,
+                secondItem = 1,
               }) {
-                return firstArgument + secondArgument * 50
+                return firstItem + secondItem * 50
               }
             }
           `,
@@ -1185,10 +1185,10 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               static method ({
-                firstArgument,
-                secondArgument = 1,
+                firstItem,
+                secondItem = 1,
               }) {
-                return firstArgument + secondArgument * 60
+                return firstItem + secondItem * 60
               }
             }
           `,
@@ -1197,10 +1197,10 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method ({
-                firstArgument,
-                secondArgument = 1,
+                firstItem,
+                secondItem = 1,
               }) {
-                return firstArgument + secondArgument * 70
+                return firstItem + secondItem * 70
               }
             }
           `,
@@ -1209,10 +1209,10 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: function ({
-                firstArgument,
-                secondArgument = 1,
+                firstItem,
+                secondItem = 1,
               }) {
-                return firstArgument + secondArgument * 80
+                return firstItem + secondItem * 80
               }
             }
           `,
@@ -1221,10 +1221,10 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: ({
-                firstArgument,
-                secondArgument = 1,
+                firstItem,
+                secondItem = 1,
               }) => {
-                return firstArgument + secondArgument * 90
+                return firstItem + secondItem * 90
               }
             }
           `,
@@ -1237,40 +1237,31 @@ describe('newline-per-parameter', () => {
           .concat([ // (arg1, { arg2 } = {}) patterns
             {
               code: `
-                function method (firstArgument, { secondArgument } = {}) {
-                  return firstArgument + secondArgument * 10
+                function method (firstItem, { secondItem } = {}) {
+                  return firstItem + secondItem * 10
                 }
               `,
             },
             {
               code: `
-                const method = function (firstArgument, { secondArgument } = {}) {
-                  return firstArgument + secondArgument * 20
+                const method = function (firstItem, { secondItem } = {}) {
+                  return firstItem + secondItem * 20
                 }
               `,
             },
             {
               code: `
-                const method = (firstArgument, { secondArgument } = {}) => {
-                  return firstArgument + secondArgument * 30
-                }
-              `,
-            },
-            {
-              code: `
-                class TestClass {
-                  constructor (firstArgument, { secondArgument } = {}) {
-                    this.firstArgument = firstArgument
-                    this.secondArgument = secondArgument
-                  }
+                const method = (firstItem, { secondItem } = {}) => {
+                  return firstItem + secondItem * 30
                 }
               `,
             },
             {
               code: `
                 class TestClass {
-                  method (firstArgument, { secondArgument } = {}) {
-                    return firstArgument + secondArgument * 50
+                  constructor (firstItem, { secondItem } = {}) {
+                    this.firstItem = firstItem
+                    this.secondItem = secondItem
                   }
                 }
               `,
@@ -1278,8 +1269,17 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 class TestClass {
-                  static method (firstArgument, { secondArgument } = {}) {
-                    return firstArgument + secondArgument * 60
+                  method (firstItem, { secondItem } = {}) {
+                    return firstItem + secondItem * 50
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  static method (firstItem, { secondItem } = {}) {
+                    return firstItem + secondItem * 60
                   }
                 }
               `,
@@ -1287,8 +1287,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method (firstArgument, { secondArgument } = {}) {
-                    return firstArgument + secondArgument * 70
+                  method (firstItem, { secondItem } = {}) {
+                    return firstItem + secondItem * 70
                   }
                 }
               `,
@@ -1296,8 +1296,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method: function (firstArgument, { secondArgument } = {}) {
-                    return firstArgument + secondArgument * 80
+                  method: function (firstItem, { secondItem } = {}) {
+                    return firstItem + secondItem * 80
                   }
                 }
               `,
@@ -1305,8 +1305,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method: (firstArgument, { secondArgument } = {}) => {
-                    return firstArgument + secondArgument * 90
+                  method: (firstItem, { secondItem } = {}) => {
+                    return firstItem + secondItem * 90
                   }
                 }
               `,
@@ -1316,30 +1316,30 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 function method (
-                  firstArgument,
-                  { secondArgument } = {}
+                  firstItem,
+                  { secondItem } = {}
                 ) {
-                  return firstArgument + secondArgument * 10
+                  return firstItem + secondItem * 10
                 }
               `,
             },
             {
               code: `
                 const method = function (
-                  firstArgument,
-                  { secondArgument } = {}
+                  firstItem,
+                  { secondItem } = {}
                 ) {
-                  return firstArgument + secondArgument * 20
+                  return firstItem + secondItem * 20
                 }
               `,
             },
             {
               code: `
                 const method = (
-                  firstArgument,
-                  { secondArgument } = {}
+                  firstItem,
+                  { secondItem } = {}
                 ) => {
-                  return firstArgument + secondArgument * 30
+                  return firstItem + secondItem * 30
                 }
               `,
             },
@@ -1347,11 +1347,11 @@ describe('newline-per-parameter', () => {
               code: `
                 class TestClass {
                   constructor (
-                    firstArgument,
-                    { secondArgument } = {}
+                    firstItem,
+                    { secondItem } = {}
                   ) {
-                    this.firstArgument = firstArgument
-                    this.secondArgument = secondArgument
+                    this.firstItem = firstItem
+                    this.secondItem = secondItem
                   }
                 }
               `,
@@ -1360,10 +1360,10 @@ describe('newline-per-parameter', () => {
               code: `
                 class TestClass {
                   method (
-                    firstArgument,
-                    { secondArgument } = {}
+                    firstItem,
+                    { secondItem } = {}
                   ) {
-                    return firstArgument + secondArgument * 50
+                    return firstItem + secondItem * 50
                   }
                 }
               `,
@@ -1372,10 +1372,10 @@ describe('newline-per-parameter', () => {
               code: `
                 class TestClass {
                   static method (
-                    firstArgument,
-                    { secondArgument } = {}
+                    firstItem,
+                    { secondItem } = {}
                   ) {
-                    return firstArgument + secondArgument * 60
+                    return firstItem + secondItem * 60
                   }
                 }
               `,
@@ -1384,10 +1384,10 @@ describe('newline-per-parameter', () => {
               code: `
                 const object = {
                   method (
-                    firstArgument,
-                    { secondArgument } = {}
+                    firstItem,
+                    { secondItem } = {}
                   ) {
-                    return firstArgument + secondArgument * 70
+                    return firstItem + secondItem * 70
                   }
                 }
               `,
@@ -1396,10 +1396,10 @@ describe('newline-per-parameter', () => {
               code: `
                 const object = {
                   method: function (
-                    firstArgument,
-                    { secondArgument } = {}
+                    firstItem,
+                    { secondItem } = {}
                   ) {
-                    return firstArgument + secondArgument * 80
+                    return firstItem + secondItem * 80
                   }
                 }
               `,
@@ -1408,10 +1408,10 @@ describe('newline-per-parameter', () => {
               code: `
                 const object = {
                   method: (
-                    firstArgument,
-                    { secondArgument } = {}
+                    firstItem,
+                    { secondItem } = {}
                   ) => {
-                    return firstArgument + secondArgument * 90
+                    return firstItem + secondItem * 90
                   }
                 }
               `,
@@ -1420,40 +1420,31 @@ describe('newline-per-parameter', () => {
           .concat([ // ({ arg1, arg2 = 1 }) patterns
             {
               code: `
-                function method ({ firstArgument, secondArgument = 1 }) {
-                  return firstArgument + secondArgument * 10
+                function method ({ firstItem, secondItem = 1 }) {
+                  return firstItem + secondItem * 10
                 }
               `,
             },
             {
               code: `
-                const method = function ({ firstArgument, secondArgument = 1 }) {
-                  return firstArgument + secondArgument * 20
+                const method = function ({ firstItem, secondItem = 1 }) {
+                  return firstItem + secondItem * 20
                 }
               `,
             },
             {
               code: `
-                const method = ({ firstArgument, secondArgument = 1 }) => {
-                  return firstArgument + secondArgument * 30
-                }
-              `,
-            },
-            {
-              code: `
-                class TestClass {
-                  constructor ({ firstArgument, secondArgument = 1 }) {
-                    this.firstArgument = firstArgument
-                    this.secondArgument = secondArgument
-                  }
+                const method = ({ firstItem, secondItem = 1 }) => {
+                  return firstItem + secondItem * 30
                 }
               `,
             },
             {
               code: `
                 class TestClass {
-                  method ({ firstArgument, secondArgument = 1 }) {
-                    return firstArgument + secondArgument * 50
+                  constructor ({ firstItem, secondItem = 1 }) {
+                    this.firstItem = firstItem
+                    this.secondItem = secondItem
                   }
                 }
               `,
@@ -1461,8 +1452,17 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 class TestClass {
-                  static method ({ firstArgument, secondArgument = 1 }) {
-                    return firstArgument + secondArgument * 60
+                  method ({ firstItem, secondItem = 1 }) {
+                    return firstItem + secondItem * 50
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  static method ({ firstItem, secondItem = 1 }) {
+                    return firstItem + secondItem * 60
                   }
                 }
               `,
@@ -1470,8 +1470,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method ({ firstArgument, secondArgument = 1 }) {
-                    return firstArgument + secondArgument * 70
+                  method ({ firstItem, secondItem = 1 }) {
+                    return firstItem + secondItem * 70
                   }
                 }
               `,
@@ -1479,8 +1479,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method: function ({ firstArgument, secondArgument = 1 }) {
-                    return firstArgument + secondArgument * 80
+                  method: function ({ firstItem, secondItem = 1 }) {
+                    return firstItem + secondItem * 80
                   }
                 }
               `,
@@ -1488,8 +1488,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method: ({ firstArgument, secondArgument = 1 }) => {
-                    return firstArgument + secondArgument * 90
+                  method: ({ firstItem, secondItem = 1 }) => {
+                    return firstItem + secondItem * 90
                   }
                 }
               `,
@@ -1516,30 +1516,30 @@ describe('newline-per-parameter', () => {
         {
           code: `
             function method (
-              firstArgument = 0,
-              secondArgument = 1
+              firstItem = 0,
+              secondItem = 1
             ) {
-              return firstArgument + secondArgument * 10
+              return firstItem + secondItem * 10
             }
           `,
         },
         {
           code: `
             const method = function (
-              firstArgument = 0,
-              secondArgument = 1
+              firstItem = 0,
+              secondItem = 1
             ) {
-              return firstArgument + secondArgument * 20
+              return firstItem + secondItem * 20
             }
           `,
         },
         {
           code: `
             const method = (
-              firstArgument = 0,
-              secondArgument = 1
+              firstItem = 0,
+              secondItem = 1
             ) => {
-              return firstArgument + secondArgument * 30
+              return firstItem + secondItem * 30
             }
           `,
         },
@@ -1547,11 +1547,11 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               constructor (
-                firstArgument = 0,
-                secondArgument = 1
+                firstItem = 0,
+                secondItem = 1
               ) {
-                this.firstArgument = firstArgument
-                this.secondArgument = secondArgument
+                this.firstItem = firstItem
+                this.secondItem = secondItem
               }
             }
           `,
@@ -1560,10 +1560,10 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               method (
-                firstArgument = 0,
-                secondArgument = 1
+                firstItem = 0,
+                secondItem = 1
               ) {
-                return firstArgument + secondArgument * 50
+                return firstItem + secondItem * 50
               }
             }
           `,
@@ -1572,10 +1572,10 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               static method (
-                firstArgument = 0,
-                secondArgument = 1
+                firstItem = 0,
+                secondItem = 1
               ) {
-                return firstArgument + secondArgument * 60
+                return firstItem + secondItem * 60
               }
             }
           `,
@@ -1584,10 +1584,10 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method (
-                firstArgument = 0,
-                secondArgument = 1
+                firstItem = 0,
+                secondItem = 1
               ) {
-                return firstArgument + secondArgument * 70
+                return firstItem + secondItem * 70
               }
             }
           `,
@@ -1596,10 +1596,10 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: function (
-                firstArgument = 0,
-                secondArgument = 1
+                firstItem = 0,
+                secondItem = 1
               ) {
-                return firstArgument + secondArgument * 80
+                return firstItem + secondItem * 80
               }
             }
           `,
@@ -1608,10 +1608,10 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: (
-                firstArgument = 0,
-                secondArgument = 1
+                firstItem = 0,
+                secondItem = 1
               ) => {
-                return firstArgument + secondArgument * 90
+                return firstItem + secondItem * 90
               }
             }
           `,
@@ -1621,36 +1621,36 @@ describe('newline-per-parameter', () => {
         {
           code: `
             function method (
-              firstArgument = 0,
+              firstItem = 0,
               {
-                secondArgument
+                secondItem
               } = {}
             ) {
-              return firstArgument + secondArgument * 10
+              return firstItem + secondItem * 10
             }
           `,
         },
         {
           code: `
             const method = function (
-              firstArgument = 0,
+              firstItem = 0,
               {
-                secondArgument
+                secondItem
               } = {}
             ) {
-              return firstArgument + secondArgument * 20
+              return firstItem + secondItem * 20
             }
           `,
         },
         {
           code: `
             const method = (
-              firstArgument = 0,
+              firstItem = 0,
               {
-                secondArgument
+                secondItem
               } = {}
             ) => {
-              return firstArgument + secondArgument * 30
+              return firstItem + secondItem * 30
             }
           `,
         },
@@ -1658,13 +1658,13 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               constructor (
-                firstArgument = 0,
+                firstItem = 0,
                 {
-                  secondArgument
+                  secondItem
                 } = {}
               ) {
-                this.firstArgument = firstArgument
-                this.secondArgument = secondArgument
+                this.firstItem = firstItem
+                this.secondItem = secondItem
               }
             }
           `,
@@ -1673,12 +1673,12 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               method (
-                firstArgument = 0,
+                firstItem = 0,
                 {
-                  secondArgument
+                  secondItem
                 } = {}
               ) {
-                return firstArgument + secondArgument * 50
+                return firstItem + secondItem * 50
               }
             }
           `,
@@ -1687,12 +1687,12 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               static method (
-                firstArgument = 0,
+                firstItem = 0,
                 {
-                  secondArgument
+                  secondItem
                 } = {}
               ) {
-                return firstArgument + secondArgument * 60
+                return firstItem + secondItem * 60
               }
             }
           `,
@@ -1701,12 +1701,12 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method (
-                firstArgument = 0,
+                firstItem = 0,
                 {
-                  secondArgument
+                  secondItem
                 } = {}
               ) {
-                return firstArgument + secondArgument * 70
+                return firstItem + secondItem * 70
               }
             }
           `,
@@ -1715,12 +1715,12 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: function (
-                firstArgument = 0,
+                firstItem = 0,
                 {
-                  secondArgument
+                  secondItem
                 } = {}
               ) {
-                return firstArgument + secondArgument * 80
+                return firstItem + secondItem * 80
               }
             }
           `,
@@ -1729,12 +1729,12 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: (
-                firstArgument = 0,
+                firstItem = 0,
                 {
-                  secondArgument
+                  secondItem
                 } = {}
               ) => {
-                return firstArgument + secondArgument * 90
+                return firstItem + secondItem * 90
               }
             }
           `,
@@ -1744,30 +1744,30 @@ describe('newline-per-parameter', () => {
         {
           code: `
             function method ({
-              firstArgument = 0,
-              secondArgument = 1,
+              firstItem = 0,
+              secondItem = 1,
             }) {
-              return firstArgument + secondArgument * 10
+              return firstItem + secondItem * 10
             }
           `,
         },
         {
           code: `
             const method = function ({
-              firstArgument = 0,
-              secondArgument = 1,
+              firstItem = 0,
+              secondItem = 1,
             }) {
-              return firstArgument + secondArgument * 20
+              return firstItem + secondItem * 20
             }
           `,
         },
         {
           code: `
             const method = ({
-              firstArgument = 0,
-              secondArgument = 1,
+              firstItem = 0,
+              secondItem = 1,
             }) => {
-              return firstArgument + secondArgument * 30
+              return firstItem + secondItem * 30
             }
           `,
         },
@@ -1775,11 +1775,11 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               constructor ({
-                firstArgument = 0,
-                secondArgument = 1,
+                firstItem = 0,
+                secondItem = 1,
               }) {
-                this.firstArgument = firstArgument
-                this.secondArgument = secondArgument
+                this.firstItem = firstItem
+                this.secondItem = secondItem
               }
             }
           `,
@@ -1788,10 +1788,10 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               method ({
-                firstArgument = 0,
-                secondArgument = 1,
+                firstItem = 0,
+                secondItem = 1,
               }) {
-                return firstArgument + secondArgument * 50
+                return firstItem + secondItem * 50
               }
             }
           `,
@@ -1800,10 +1800,10 @@ describe('newline-per-parameter', () => {
           code: `
             class TestClass {
               static method ({
-                firstArgument = 0,
-                secondArgument = 1,
+                firstItem = 0,
+                secondItem = 1,
               }) {
-                return firstArgument + secondArgument * 60
+                return firstItem + secondItem * 60
               }
             }
           `,
@@ -1812,10 +1812,10 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method ({
-                firstArgument = 0,
-                secondArgument = 1,
+                firstItem = 0,
+                secondItem = 1,
               }) {
-                return firstArgument + secondArgument * 70
+                return firstItem + secondItem * 70
               }
             }
           `,
@@ -1824,10 +1824,10 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: function ({
-                firstArgument = 0,
-                secondArgument = 1,
+                firstItem = 0,
+                secondItem = 1,
               }) {
-                return firstArgument + secondArgument * 80
+                return firstItem + secondItem * 80
               }
             }
           `,
@@ -1836,10 +1836,10 @@ describe('newline-per-parameter', () => {
           code: `
             const object = {
               method: ({
-                firstArgument = 0,
-                secondArgument = 1,
+                firstItem = 0,
+                secondItem = 1,
               }) => {
-                return firstArgument + secondArgument * 90
+                return firstItem + secondItem * 90
               }
             }
           `,
@@ -1852,40 +1852,31 @@ describe('newline-per-parameter', () => {
           .concat([ // (arg1 = 0, arg2 = 1) patterns
             {
               code: `
-                function method (firstArgument = 0, secondArgument = 1) {
-                  return firstArgument + secondArgument * 10
+                function method (firstItem = 0, secondItem = 1) {
+                  return firstItem + secondItem * 10
                 }
               `,
             },
             {
               code: `
-                const method = function (firstArgument = 0, secondArgument = 1) {
-                  return firstArgument + secondArgument * 20
+                const method = function (firstItem = 0, secondItem = 1) {
+                  return firstItem + secondItem * 20
                 }
               `,
             },
             {
               code: `
-                const method = (firstArgument = 0, secondArgument = 1) => {
-                  return firstArgument + secondArgument * 30
-                }
-              `,
-            },
-            {
-              code: `
-                class TestClass {
-                  constructor (firstArgument = 0, secondArgument = 1) {
-                    this.firstArgument = firstArgument
-                    this.secondArgument = secondArgument
-                  }
+                const method = (firstItem = 0, secondItem = 1) => {
+                  return firstItem + secondItem * 30
                 }
               `,
             },
             {
               code: `
                 class TestClass {
-                  method (firstArgument = 0, secondArgument = 1) {
-                    return firstArgument + secondArgument * 50
+                  constructor (firstItem = 0, secondItem = 1) {
+                    this.firstItem = firstItem
+                    this.secondItem = secondItem
                   }
                 }
               `,
@@ -1893,8 +1884,17 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 class TestClass {
-                  static method (firstArgument = 0, secondArgument = 1) {
-                    return firstArgument + secondArgument * 60
+                  method (firstItem = 0, secondItem = 1) {
+                    return firstItem + secondItem * 50
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  static method (firstItem = 0, secondItem = 1) {
+                    return firstItem + secondItem * 60
                   }
                 }
               `,
@@ -1902,8 +1902,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method (firstArgument = 0, secondArgument = 1) {
-                    return firstArgument + secondArgument * 70
+                  method (firstItem = 0, secondItem = 1) {
+                    return firstItem + secondItem * 70
                   }
                 }
               `,
@@ -1911,8 +1911,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method: function (firstArgument = 0, secondArgument = 1) {
-                    return firstArgument + secondArgument * 80
+                  method: function (firstItem = 0, secondItem = 1) {
+                    return firstItem + secondItem * 80
                   }
                 }
               `,
@@ -1920,8 +1920,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method: (firstArgument = 0, secondArgument = 1) => {
-                    return firstArgument + secondArgument * 90
+                  method: (firstItem = 0, secondItem = 1) => {
+                    return firstItem + secondItem * 90
                   }
                 }
               `,
@@ -1931,30 +1931,30 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 function method (
-                  firstArgument = 0,
-                  { secondArgument } = {}
+                  firstItem = 0,
+                  { secondItem } = {}
                 ) {
-                  return firstArgument + secondArgument * 10
+                  return firstItem + secondItem * 10
                 }
               `,
             },
             {
               code: `
                 const method = function (
-                  firstArgument = 0,
-                  { secondArgument } = {}
+                  firstItem = 0,
+                  { secondItem } = {}
                 ) {
-                  return firstArgument + secondArgument * 20
+                  return firstItem + secondItem * 20
                 }
               `,
             },
             {
               code: `
                 const method = (
-                  firstArgument = 0,
-                  { secondArgument } = {}
+                  firstItem = 0,
+                  { secondItem } = {}
                 ) => {
-                  return firstArgument + secondArgument * 30
+                  return firstItem + secondItem * 30
                 }
               `,
             },
@@ -1962,11 +1962,11 @@ describe('newline-per-parameter', () => {
               code: `
                 class TestClass {
                   constructor (
-                    firstArgument = 0,
-                    { secondArgument } = {}
+                    firstItem = 0,
+                    { secondItem } = {}
                   ) {
-                    this.firstArgument = firstArgument
-                    this.secondArgument = secondArgument
+                    this.firstItem = firstItem
+                    this.secondItem = secondItem
                   }
                 }
               `,
@@ -1975,10 +1975,10 @@ describe('newline-per-parameter', () => {
               code: `
                 class TestClass {
                   method (
-                    firstArgument = 0,
-                    { secondArgument } = {}
+                    firstItem = 0,
+                    { secondItem } = {}
                   ) {
-                    return firstArgument + secondArgument * 50
+                    return firstItem + secondItem * 50
                   }
                 }
               `,
@@ -1987,10 +1987,10 @@ describe('newline-per-parameter', () => {
               code: `
                 class TestClass {
                   static method (
-                    firstArgument = 0,
-                    { secondArgument } = {}
+                    firstItem = 0,
+                    { secondItem } = {}
                   ) {
-                    return firstArgument + secondArgument * 60
+                    return firstItem + secondItem * 60
                   }
                 }
               `,
@@ -1999,10 +1999,10 @@ describe('newline-per-parameter', () => {
               code: `
                 const object = {
                   method (
-                    firstArgument = 0,
-                    { secondArgument } = {}
+                    firstItem = 0,
+                    { secondItem } = {}
                   ) {
-                    return firstArgument + secondArgument * 70
+                    return firstItem + secondItem * 70
                   }
                 }
               `,
@@ -2011,10 +2011,10 @@ describe('newline-per-parameter', () => {
               code: `
                 const object = {
                   method: function (
-                    firstArgument = 0,
-                    { secondArgument } = {}
+                    firstItem = 0,
+                    { secondItem } = {}
                   ) {
-                    return firstArgument + secondArgument * 80
+                    return firstItem + secondItem * 80
                   }
                 }
               `,
@@ -2023,10 +2023,10 @@ describe('newline-per-parameter', () => {
               code: `
                 const object = {
                   method: (
-                    firstArgument = 0,
-                    { secondArgument } = {}
+                    firstItem = 0,
+                    { secondItem } = {}
                   ) => {
-                    return firstArgument + secondArgument * 90
+                    return firstItem + secondItem * 90
                   }
                 }
               `,
@@ -2035,40 +2035,31 @@ describe('newline-per-parameter', () => {
           .concat([ // ({ arg1 = 0, arg2 = 1 }) patterns
             {
               code: `
-                function method ({ firstArgument = 0, secondArgument = 1 }) {
-                  return firstArgument + secondArgument * 10
+                function method ({ firstItem = 0, secondItem = 1 }) {
+                  return firstItem + secondItem * 10
                 }
               `,
             },
             {
               code: `
-                const method = function ({ firstArgument = 0, secondArgument = 1 }) {
-                  return firstArgument + secondArgument * 20
+                const method = function ({ firstItem = 0, secondItem = 1 }) {
+                  return firstItem + secondItem * 20
                 }
               `,
             },
             {
               code: `
-                const method = ({ firstArgument = 0, secondArgument = 1 }) => {
-                  return firstArgument + secondArgument * 30
-                }
-              `,
-            },
-            {
-              code: `
-                class TestClass {
-                  constructor ({ firstArgument = 0, secondArgument = 1 }) {
-                    this.firstArgument = firstArgument
-                    this.secondArgument = secondArgument
-                  }
+                const method = ({ firstItem = 0, secondItem = 1 }) => {
+                  return firstItem + secondItem * 30
                 }
               `,
             },
             {
               code: `
                 class TestClass {
-                  method ({ firstArgument = 0, secondArgument = 1 }) {
-                    return firstArgument + secondArgument * 50
+                  constructor ({ firstItem = 0, secondItem = 1 }) {
+                    this.firstItem = firstItem
+                    this.secondItem = secondItem
                   }
                 }
               `,
@@ -2076,8 +2067,17 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 class TestClass {
-                  static method ({ firstArgument = 0, secondArgument = 1 }) {
-                    return firstArgument + secondArgument * 60
+                  method ({ firstItem = 0, secondItem = 1 }) {
+                    return firstItem + secondItem * 50
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  static method ({ firstItem = 0, secondItem = 1 }) {
+                    return firstItem + secondItem * 60
                   }
                 }
               `,
@@ -2085,8 +2085,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method ({ firstArgument = 0, secondArgument = 1 }) {
-                    return firstArgument + secondArgument * 70
+                  method ({ firstItem = 0, secondItem = 1 }) {
+                    return firstItem + secondItem * 70
                   }
                 }
               `,
@@ -2094,8 +2094,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method: function ({ firstArgument = 0, secondArgument = 1 }) {
-                    return firstArgument + secondArgument * 80
+                  method: function ({ firstItem = 0, secondItem = 1 }) {
+                    return firstItem + secondItem * 80
                   }
                 }
               `,
@@ -2103,8 +2103,8 @@ describe('newline-per-parameter', () => {
             {
               code: `
                 const object = {
-                  method: ({ firstArgument = 0, secondArgument = 1 }) => {
-                    return firstArgument + secondArgument * 90
+                  method: ({ firstItem = 0, secondItem = 1 }) => {
+                    return firstItem + secondItem * 90
                   }
                 }
               `,
