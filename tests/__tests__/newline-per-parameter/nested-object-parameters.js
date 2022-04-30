@@ -147,9 +147,131 @@ describe('newline-per-parameter', () => {
 
     const invalidCases = ESLintHelper.expandInvalidCases([
       [
-        [
-
-        ],
+        []
+          .concat([
+            {
+              code: `
+                function method ({
+                  firstItem,
+                  secondItem: {
+                    thirdItem, fourthItem,
+                  }
+                }) {
+                  return firstItem + thirdItem + fourthItem * 10
+                }
+              `,
+            },
+            {
+              code: `
+                const method = function ({
+                  firstItem,
+                  secondItem: {
+                    thirdItem, fourthItem,
+                  }
+                }) {
+                  return firstItem + thirdItem + fourthItem * 20
+                }
+              `,
+            },
+            {
+              code: `
+                const method = ({
+                  firstItem,
+                  secondItem: {
+                    thirdItem, fourthItem,
+                  }
+                }) => {
+                  return firstItem + thirdItem + fourthItem * 30
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  constructor ({
+                    firstItem,
+                    secondItem: {
+                      thirdItem, fourthItem,
+                    }
+                  }) {
+                    this.firstItem = firstItem
+                    this.thirdItem = thirdItem
+                    this.fourthItem = fourthItem
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  method ({
+                    firstItem,
+                    secondItem: {
+                      thirdItem, fourthItem,
+                    }
+                  }) {
+                    return firstItem + thirdItem + fourthItem * 50
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  static method ({
+                    firstItem,
+                    secondItem: {
+                      thirdItem, fourthItem,
+                    }
+                  }) {
+                    return firstItem + thirdItem + fourthItem * 60
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method ({
+                    firstItem,
+                    secondItem: {
+                      thirdItem, fourthItem,
+                    }
+                  }) {
+                    return firstItem + thirdItem + fourthItem * 70
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method: function ({
+                    firstItem,
+                    secondItem: {
+                      thirdItem, fourthItem,
+                    }
+                  }) {
+                    return firstItem + thirdItem + fourthItem * 80
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method: ({
+                    firstItem,
+                    secondItem: {
+                      thirdItem, fourthItem,
+                    }
+                  }) => {
+                    return firstItem + thirdItem + fourthItem * 90
+                  }
+                }
+              `,
+            },
+          ]),
         errors
       ],
     ])
