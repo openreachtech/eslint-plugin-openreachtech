@@ -294,86 +294,431 @@ describe('newline-per-parameter', () => {
           `,
         },
       ])
+      .concat([ // (...args) patterns
+        {
+          code: `
+            function method (...firstItems) {
+              return firstItems.map(it => it + 10)
+            }
+          `,
+        },
+        {
+          code: `
+            const method = function (...firstItems) {
+              return firstItems.map(it => it + 20)
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (...firstItems) => {
+              return firstItems.map(it => it + 30)
+            }
+          `,
+        },
+        {
+          code: `
+            class TestClass {
+              constructor (...firstItems) {
+                this.firstItems = firstItems
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            class TestClass {
+              method (...firstItems) {
+                return firstItems.map(it => it + 60)
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            class TestClass {
+              static method (...firstItems) {
+                return firstItems.map(it => it + 70)
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method (...firstItems) {
+                return firstItems.map(it => it + 80)
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: function (...firstItems) {
+                return firstItems.map(it => it + 90)
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (...firstItems) => {
+                return firstItems.map(it => it + 100)
+              }
+            }
+          `,
+        },
+      ])
+      .concat([ // (\n...args\n) patterns
+        {
+          code: `
+            function method (
+              ...firstItems
+            ) {
+              return firstItems.map(it => it + 10)
+            }
+          `,
+        },
+        {
+          code: `
+            const method = function (
+              ...firstItems
+            ) {
+              return firstItems.map(it => it + 20)
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (
+              ...firstItems
+            ) => {
+              return firstItems.map(it => it + 30)
+            }
+          `,
+        },
+        {
+          code: `
+            class TestClass {
+              constructor (
+                ...firstItems
+              ) {
+                this.firstItems = firstItems
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            class TestClass {
+              method (
+                ...firstItems
+              ) {
+                return firstItems.map(it => it + 50)
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            class TestClass {
+              static method (
+                ...firstItems
+              ) {
+                return firstItems.map(it => it + 60)
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method (
+                ...firstItems
+              ) {
+                return firstItems.map(it => it + 70)
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: function (
+                ...firstItems
+              ) {
+                return firstItems.map(it => it + 80)
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (
+                ...firstItems
+              ) => {
+                return firstItems.map(it => it + 90)
+              }
+            }
+          `,
+        },
+      ])
+      .concat([ // ({\n...args\n}) patterns
+        {
+          code: `
+            function method ({
+              ...firstItems
+            }) {
+              return firstItems.map(it => it + 10)
+            }
+          `,
+        },
+        {
+          code: `
+            const method = function ({
+              ...firstItems
+            }) {
+              return firstItems.map(it => it + 20)
+            }
+          `,
+        },
+        {
+          code: `
+            const method = ({
+              ...firstItems
+            }) => {
+              return firstItems.map(it => it + 30)
+            }
+          `,
+        },
+        {
+          code: `
+            class TestClass {
+              constructor ({
+                firstItems
+              }) {
+                this.firstItems = firstItems
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            class TestClass {
+              method ({
+                ...firstItems
+              }) {
+                return firstItems.map(it => it + 50)
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            class TestClass {
+              static method ({
+                ...firstItems
+              }) {
+                return firstItems.map(it => it + 60)
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method ({
+                ...firstItems
+              }) {
+                return firstItems.map(it => it + 70)
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: function ({
+                ...firstItems
+              }) {
+                return firstItems.map(it => it + 80)
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: ({
+                ...firstItems
+              }) => {
+                return firstItems.map(it => it + 90)
+              }
+            }
+          `,
+        },
+      ])
 
     const invalidCases = ESLintHelper.expandInvalidCases([
       [
-        [
-          {
-            code: `
-              function method ({ firstItem }) {
-                return firstItem * 10
-              }
-            `,
-          },
-          {
-            code: `
-              const method = function ({ firstItem }) {
-                return firstItem * 20
-              }
-            `,
-          },
-          {
-            code: `
-              const method = ({ firstItem }) => {
-                return firstItem * 30
-              }
-            `,
-          },
-          {
-            code: `
-              class TestClass {
-                constructor ({ firstItem }) {
-                  this.firstItem = firstItem
+        []
+          .concat([ // { arg } patterns
+            {
+              code: `
+                function method ({ firstItem }) {
+                  return firstItem * 10
                 }
-              }
-            `,
-          },
-          {
-            code: `
-              class TestClass {
-                method ({ firstItem }) {
-                  return firstItem * 50
+              `,
+            },
+            {
+              code: `
+                const method = function ({ firstItem }) {
+                  return firstItem * 20
                 }
-              }
-            `,
-          },
-          {
-            code: `
-              class TestClass {
-                static method ({ firstItem }) {
-                  return firstItem * 60
+              `,
+            },
+            {
+              code: `
+                const method = ({ firstItem }) => {
+                  return firstItem * 30
                 }
-              }
-            `,
-          },
-          {
-            code: `
-              const object = {
-                method ({ firstItem }) {
-                  return firstItem * 70
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  constructor ({ firstItem }) {
+                    this.firstItem = firstItem
+                  }
                 }
-              }
-            `,
-          },
-          {
-            code: `
-              const object = {
-                method: function ({ firstItem }) {
-                  return firstItem * 80
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  method ({ firstItem }) {
+                    return firstItem * 50
+                  }
                 }
-              }
-            `,
-          },
-          {
-            code: `
-              const object = {
-                method: ({ firstItem }) => {
-                  return firstItem * 90
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  static method ({ firstItem }) {
+                    return firstItem * 60
+                  }
                 }
-              }
-            `,
-          },
-        ],
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method ({ firstItem }) {
+                    return firstItem * 70
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method: function ({ firstItem }) {
+                    return firstItem * 80
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method: ({ firstItem }) => {
+                    return firstItem * 90
+                  }
+                }
+              `,
+            },
+          ])
+          .concat([ // { ...args } patterns
+            {
+              code: `
+                function method ({ ...firstItems }) {
+                  return firstItems.map(it => it + 10)
+                }
+              `,
+            },
+            {
+              code: `
+                const method = function ({ ...firstItems }) {
+                  return firstItems.map(it => it + 20)
+                }
+              `,
+            },
+            {
+              code: `
+                const method = ({ ...firstItems }) => {
+                  return firstItems.map(it => it + 30)
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  constructor ({ ...firstItems }) {
+                    this.firstItem = firstItem
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  method ({ ...firstItems }) {
+                    return firstItems.map(it => it + 50)
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  static method ({ ...firstItems }) {
+                    return firstItems.map(it => it + 60)
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method ({ ...firstItems }) {
+                    return firstItems.map(it => it + 70)
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method: function ({ ...firstItems }) {
+                    return firstItems.map(it => it + 80)
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method: ({ ...firstItems }) => {
+                    return firstItems.map(it => it + 90)
+                  }
+                }
+              `,
+            },
+          ]),
         errors
       ],
     ])
@@ -907,6 +1252,178 @@ describe('newline-per-parameter', () => {
                     { firstItem } = {}
                   ) => {
                     return firstItem * 90
+                  }
+                }
+              `,
+            },
+          ])
+          .concat([ // ({ ...args } = {}) patterns
+            {
+              code: `
+                function method ({ ...firstItems } = {}) {
+                  return firstItems.map(it => it + 10)
+                }
+              `,
+            },
+            {
+              code: `
+                const method = function ({ ...firstItems } = {}) {
+                  return firstItems.map(it => it + 20)
+                }
+              `,
+            },
+            {
+              code: `
+                const method = ({ ...firstItems } = {}) => {
+                  return firstItems.map(it => it + 30)
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  constructor ({ ...firstItems } = {}) {
+                    this.firstItems = firstItems
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  method ({ ...firstItems } = {}) {
+                    return firstItems.map(it => it + 50)
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  static method ({ ...firstItems } = {}) {
+                    return firstItems.map(it => it + 60)
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method ({ ...firstItems } = {}) {
+                    return firstItems.map(it => it + 70)
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method: function ({ ...firstItems } = {}) {
+                    return firstItems.map(it => it + 80)
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method: ({ ...firstItems } = {}) => {
+                    return firstItems.map(it => it + 90)
+                  }
+                }
+              `,
+            },
+          ])
+          .concat([ // (\n.{..args} = {}\n) patterns
+            {
+              code: `
+                function method (
+                  { ...firstItems } = {}
+                ) {
+                  return firstItems.map(it => it + 10)
+                }
+              `,
+            },
+            {
+              code: `
+                const method = function (
+                  { ...firstItems } = {}
+                ) {
+                  return firstItems.map(it => it + 20)
+                }
+              `,
+            },
+            {
+              code: `
+                const method = (
+                  { ...firstItems } = {}
+                ) => {
+                  return firstItems.map(it => it + 30)
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  constructor (
+                    { ...firstItems } = {}
+                  ) {
+                    this.firstItems = firstItems
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  method (
+                    { ...firstItems } = {}
+                  ) {
+                    return firstItems.map(it => it + 50)
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                class TestClass {
+                  static method (
+                    { ...firstItems } = {}
+                  ) {
+                    return firstItems.map(it => it + 60)
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method (
+                    { ...firstItems } = {}
+                  ) {
+                    return firstItems.map(it => it + 70)
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method: function (
+                    { ...firstItems } = {}
+                  ) {
+                    return firstItems.map(it => it + 80)
+                  }
+                }
+              `,
+            },
+            {
+              code: `
+                const object = {
+                  method: (
+                    { ...firstItems } = {}
+                  ) => {
+                    return firstItems.map(it => it + 90)
                   }
                 }
               `,
