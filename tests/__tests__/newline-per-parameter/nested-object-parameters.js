@@ -40,19 +40,6 @@ describe('newline-per-parameter', () => {
         },
         {
           code: `
-            const method = ({
-              firstItem,
-              secondItem: {
-                thirdItem,
-                fourthItem,
-              }
-            }) => {
-              return firstItem + thirdItem + fourthItem * 30
-            }
-          `,
-        },
-        {
-          code: `
             class TestClass {
               constructor ({
                 firstItem,
@@ -128,6 +115,21 @@ describe('newline-per-parameter', () => {
             }
           `,
         },
+      ])
+      .concat([ // fo ArrowFunctionExpression like valid
+        {
+          code: `
+            const method = ({
+              firstItem,
+              secondItem: {
+                thirdItem,
+                fourthItem,
+              }
+            }) => {
+              return firstItem + thirdItem + fourthItem * 30
+            }
+          `,
+        },
         {
           code: `
             const object = {
@@ -136,6 +138,34 @@ describe('newline-per-parameter', () => {
                 secondItem: {
                   thirdItem,
                   fourthItem,
+                }
+              }) => {
+                return firstItem + thirdItem + fourthItem * 90
+              }
+            }
+          `,
+        },
+      ])
+      .concat([ // fo ArrowFunctionExpression like invalid
+        {
+          code: `
+            const method = ({
+              firstItem,
+              secondItem: {
+                thirdItem, fourthItem,
+              }
+            }) => {
+              return firstItem + thirdItem + fourthItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: ({
+                firstItem,
+                secondItem: {
+                  thirdItem, fourthItem,
                 }
               }) => {
                 return firstItem + thirdItem + fourthItem * 90
@@ -170,18 +200,6 @@ describe('newline-per-parameter', () => {
                   }
                 }) {
                   return firstItem + thirdItem + fourthItem * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = ({
-                  firstItem,
-                  secondItem: {
-                    thirdItem, fourthItem,
-                  }
-                }) => {
-                  return firstItem + thirdItem + fourthItem * 30
                 }
               `,
             },
@@ -253,20 +271,6 @@ describe('newline-per-parameter', () => {
                     }
                   }) {
                     return firstItem + thirdItem + fourthItem * 80
-                  }
-                }
-              `,
-            },
-            {
-              code: `
-                const object = {
-                  method: ({
-                    firstItem,
-                    secondItem: {
-                      thirdItem, fourthItem,
-                    }
-                  }) => {
-                    return firstItem + thirdItem + fourthItem * 90
                   }
                 }
               `,
