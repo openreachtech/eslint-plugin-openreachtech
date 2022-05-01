@@ -54,7 +54,7 @@ if (condition) {
 }
 ```
 
-* In contrast, the advantages of writing a single `if` statement on a single line are as follows:
+* In contrast, the advangtage of writing a single `if` statement on a single line is only one thing:
   1. Fewer apparent lines of source code
 
 * The reader of the code is reading it sentence by sentence. If one preferred to reduce the number of physical lines of source code, it would be a superior notation to concatenate all statements with `;` and write them on a single line, but this is not the case.
