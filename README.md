@@ -9,7 +9,9 @@
 ```
 empty-line-after-super
 indent-in-infix-expression
+newline-per-parameter
 no-else-if
+no-if-in-oneline
 no-unexpected-multiline
 ```
 
@@ -34,8 +36,10 @@ no-unexpected-multiline
     rules:
       openreachtech/empty-line-after-super: error
       openreachtech/indent-in-infix-expression: error
+      openreachtech/newline-per-parameter: error
       openreachtech/no-else-if: error
-      openreachtech/no-unexpected-multiline: error
+      openreachtech/no-if-in-oneline: error
+      openreachtech/newline-per-parameter: error
 
     ...
     ```
@@ -62,5 +66,7 @@ no-unexpected-multiline
 
 * `empty-line-after-super` [[English](./documents/rules/en/empty-line-after-super.md)] [[日本語](./documents/rules/ja/empty-line-after-super.md)]
 * `indent-in-infix-expression` [[English](./documents/rules/en/indent-in-infix-expression.md)] [[日本語](./documents/rules/ja/indent-in-infix-expression.md)]
+* `newline-per-parameter` [[English](./documents/rules/en/newline-per-parameter.md)] [[日本語](./documents/rules/ja/newline-per-parameter.md)]
 * `no-else-if` [[English](./documents/rules/en/no-else-if.md)] [[日本語](./documents/rules/ja/no-else-if.md)]
+* `no-if-in-oneline` [[English](./documents/rules/en/no-if-in-oneline.md)] [[日本語](./documents/rules/ja/no-if-in-oneline.md)]
 * `no-unexpected-multiline` [[English](./documents/rules/en/no-unexpected-multiline.md)] [[日本語](./documents/rules/ja/no-unexpected-multiline.md)]
