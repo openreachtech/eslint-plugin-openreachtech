@@ -35,16 +35,6 @@ describe('newline-per-parameter', () => {
         },
         {
           code: `
-            const method = (
-              firstItem,
-              secondItem
-            ) => {
-              return firstItem + secondItem * 30
-            }
-          `,
-        },
-        {
-          code: `
             class TestClass {
               constructor (
                 firstItem,
@@ -104,18 +94,6 @@ describe('newline-per-parameter', () => {
             }
           `,
         },
-        {
-          code: `
-            const object = {
-              method: (
-                firstItem,
-                secondItem
-              ) => {
-                return firstItem + secondItem * 90
-              }
-            }
-          `,
-        },
       ])
       .concat([ // (arg1, {\narg2\n}) patterns
         {
@@ -133,15 +111,6 @@ describe('newline-per-parameter', () => {
               secondItem
             }) {
               return firstItem + secondItem * 20
-            }
-          `,
-        },
-        {
-          code: `
-            const method = (firstItem, {
-              secondItem
-            }) => {
-              return firstItem + secondItem * 30
             }
           `,
         },
@@ -201,17 +170,6 @@ describe('newline-per-parameter', () => {
             }
           `,
         },
-        {
-          code: `
-            const object = {
-              method: (firstItem, {
-                secondItem
-              }) => {
-                return firstItem + secondItem * 90
-              }
-            }
-          `,
-        },
       ])
       .concat([ // (\narg1,\n{\narg2\n}\n) patterns
         {
@@ -235,18 +193,6 @@ describe('newline-per-parameter', () => {
               }
             ) {
               return firstItem + secondItem * 20
-            }
-          `,
-        },
-        {
-          code: `
-            const method = (
-              firstItem,
-              {
-                secondItem
-              }
-            ) => {
-              return firstItem + secondItem * 30
             }
           `,
         },
@@ -321,20 +267,6 @@ describe('newline-per-parameter', () => {
             }
           `,
         },
-        {
-          code: `
-            const object = {
-              method: (
-                firstItem,
-                {
-                  secondItem
-                }
-              ) => {
-                return firstItem + secondItem * 90
-              }
-            }
-          `,
-        },
       ])
       .concat([ // ({\narg1,\narg2\n}) patterns
         {
@@ -354,16 +286,6 @@ describe('newline-per-parameter', () => {
               secondItem,
             }) {
               return firstItem + secondItem * 20
-            }
-          `,
-        },
-        {
-          code: `
-            const method = ({
-              firstItem,
-              secondItem,
-            }) => {
-              return firstItem + secondItem * 30
             }
           `,
         },
@@ -428,18 +350,6 @@ describe('newline-per-parameter', () => {
             }
           `,
         },
-        {
-          code: `
-            const object = {
-              method: ({
-                firstItem,
-                secondItem,
-              }) => {
-                return firstItem + secondItem * 90
-              }
-            }
-          `,
-        },
       ])
       .concat([ // (\narg1,\n...args\n) patterns
         {
@@ -459,16 +369,6 @@ describe('newline-per-parameter', () => {
               ...secondItems
             ) {
               return firstItem + secondItems.length * 20
-            }
-          `,
-        },
-        {
-          code: `
-            const method = (
-              firstItem,
-              ...secondItems
-            ) => {
-              return firstItem + secondItems.length * 30
             }
           `,
         },
@@ -533,18 +433,6 @@ describe('newline-per-parameter', () => {
             }
           `,
         },
-        {
-          code: `
-            const object = {
-              method: (
-                firstItem,
-                ...secondItems
-              ) => {
-                return firstItem + secondItems.length * 90
-              }
-            }
-          `,
-        },
       ])
       .concat([ // (arg1, {\n...args\n}) patterns
         {
@@ -562,15 +450,6 @@ describe('newline-per-parameter', () => {
               ...secondItems
             }) {
               return firstItem + secondItems.length * 20
-            }
-          `,
-        },
-        {
-          code: `
-            const method = (firstItem, {
-              ...secondItems
-            }) => {
-              return firstItem + secondItems.length * 30
             }
           `,
         },
@@ -630,17 +509,6 @@ describe('newline-per-parameter', () => {
             }
           `,
         },
-        {
-          code: `
-            const object = {
-              method: (firstItem, {
-                ...secondItems
-              }) => {
-                return firstItem + secondItems.length * 90
-              }
-            }
-          `,
-        },
       ])
       .concat([ // ({\narg1,\n...args\n}) patterns
         {
@@ -660,16 +528,6 @@ describe('newline-per-parameter', () => {
               ...secondItems
             }) {
               return firstItem + secondItems.length * 20
-            }
-          `,
-        },
-        {
-          code: `
-            const method = ({
-              firstItem,
-              ...secondItems
-            }) => {
-              return firstItem + secondItems.length * 30
             }
           `,
         },
@@ -734,6 +592,150 @@ describe('newline-per-parameter', () => {
             }
           `,
         },
+      ])
+      .concat([ // fo ArrowFunctionExpression like valid
+        {
+          code: `
+            const method = (
+              firstItem,
+              secondItem
+            ) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (
+                firstItem,
+                secondItem
+              ) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (firstItem, {
+              secondItem
+            }) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (firstItem, {
+                secondItem
+              }) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (
+              firstItem,
+              {
+                secondItem
+              }
+            ) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (
+                firstItem,
+                {
+                  secondItem
+                }
+              ) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = ({
+              firstItem,
+              secondItem,
+            }) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: ({
+                firstItem,
+                secondItem,
+              }) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (
+              firstItem,
+              ...secondItems
+            ) => {
+              return firstItem + secondItems.length * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (
+                firstItem,
+                ...secondItems
+              ) => {
+                return firstItem + secondItems.length * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (firstItem, {
+              ...secondItems
+            }) => {
+              return firstItem + secondItems.length * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (firstItem, {
+                ...secondItems
+              }) => {
+                return firstItem + secondItems.length * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = ({
+              firstItem,
+              ...secondItems
+            }) => {
+              return firstItem + secondItems.length * 30
+            }
+          `,
+        },
         {
           code: `
             const object = {
@@ -741,6 +743,126 @@ describe('newline-per-parameter', () => {
                 firstItem,
                 ...secondItems
               }) => {
+                return firstItem + secondItems.length * 90
+              }
+            }
+          `,
+        },
+      ])
+      .concat([ // fo ArrowFunctionExpression like invalid
+        {
+          code: `
+            const method = (firstItem, secondItem) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (firstItem, secondItem) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (firstItem, { secondItem }) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (firstItem, { secondItem }) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (
+              firstItem,
+              { secondItem }
+            ) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (
+                firstItem,
+                { secondItem }
+              ) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = ({ firstItem, secondItem }) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: ({ firstItem, secondItem }) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (firstItem, ...secondItems) => {
+              return firstItem + secondItems.length * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (firstItem, ...secondItems) => {
+                return firstItem + secondItems.length * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (firstItem, { ...secondItems }) => {
+              return firstItem + secondItems.length * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (firstItem, { ...secondItems }) => {
+                return firstItem + secondItems.length * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = ({ firstItem, ...secondItems }) => {
+              return firstItem + secondItems.length * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: ({ firstItem, ...secondItems }) => {
                 return firstItem + secondItems.length * 90
               }
             }
@@ -763,13 +885,6 @@ describe('newline-per-parameter', () => {
               code: `
                 const method = function (firstItem, secondItem) {
                   return firstItem + secondItem * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = (firstItem, secondItem) => {
-                  return firstItem + secondItem * 30
                 }
               `,
             },
@@ -819,15 +934,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: (firstItem, secondItem) => {
-                    return firstItem + secondItem * 90
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // (arg1, { arg2 }) patterns
             {
@@ -841,13 +947,6 @@ describe('newline-per-parameter', () => {
               code: `
                 const method = function (firstItem, { secondItem }) {
                   return firstItem + secondItem * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = (firstItem, { secondItem }) => {
-                  return firstItem + secondItem * 30
                 }
               `,
             },
@@ -897,15 +996,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: (firstItem, { secondItem }) => {
-                    return firstItem + secondItem * 90
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // (\narg1,\n{ arg2 }\n) patterns
             {
@@ -925,16 +1015,6 @@ describe('newline-per-parameter', () => {
                   { secondItem }
                 ) {
                   return firstItem + secondItem * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = (
-                  firstItem,
-                  { secondItem }
-                ) => {
-                  return firstItem + secondItem * 30
                 }
               `,
             },
@@ -999,18 +1079,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: (
-                    firstItem,
-                    { secondItem }
-                  ) => {
-                    return firstItem + secondItem * 90
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // ({ arg1, arg2 }) patterns
             {
@@ -1024,13 +1092,6 @@ describe('newline-per-parameter', () => {
               code: `
                 const method = function ({ firstItem, secondItem }) {
                   return firstItem + secondItem * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = ({ firstItem, secondItem }) => {
-                  return firstItem + secondItem * 30
                 }
               `,
             },
@@ -1080,15 +1141,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: ({ firstItem, secondItem }) => {
-                    return firstItem + secondItem * 90
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // (arg1, ...args) patterns
             {
@@ -1102,13 +1154,6 @@ describe('newline-per-parameter', () => {
               code: `
                 const method = function (firstItem, ...secondItems) {
                   return firstItem + secondItems.length * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = (firstItem, ...secondItems) => {
-                  return firstItem + secondItems.length * 30
                 }
               `,
             },
@@ -1158,15 +1203,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: (firstItem, ...secondItems) => {
-                    return firstItem + secondItems.length * 90
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // (arg1, { ...args }) patterns
             {
@@ -1180,13 +1216,6 @@ describe('newline-per-parameter', () => {
               code: `
                 const method = function (firstItem, { ...secondItems }) {
                   return firstItem + secondItems.length * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = (firstItem, { ...secondItems }) => {
-                  return firstItem + secondItems.length * 30
                 }
               `,
             },
@@ -1236,15 +1265,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: (firstItem, { ...secondItems }) => {
-                    return firstItem + secondItems.length * 90
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // ({ arg1, ...args }) patterns
             {
@@ -1258,13 +1278,6 @@ describe('newline-per-parameter', () => {
               code: `
                 const method = function ({ firstItem, ...secondItems }) {
                   return firstItem + secondItems.length * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = ({ firstItem, ...secondItems }) => {
-                  return firstItem + secondItems.length * 30
                 }
               `,
             },
@@ -1314,15 +1327,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: ({ firstItem, ...secondItems }) => {
-                    return firstItem + secondItems.length * 90
-                  }
-                }
-              `,
-            },
           ]),
         errors
       ]
@@ -1359,16 +1363,6 @@ describe('newline-per-parameter', () => {
               secondItem = 1
             ) {
               return firstItem + secondItem * 20
-            }
-          `,
-        },
-        {
-          code: `
-            const method = (
-              firstItem,
-              secondItem = 1
-            ) => {
-              return firstItem + secondItem * 30
             }
           `,
         },
@@ -1433,18 +1427,6 @@ describe('newline-per-parameter', () => {
             }
           `,
         },
-        {
-          code: `
-            const object = {
-              method: (
-                firstItem,
-                secondItem = 1
-              ) => {
-                return firstItem + secondItem * 90
-              }
-            }
-          `,
-        },
       ])
       .concat([ // (arg1, {\narg2\n} = {}) patterns
         {
@@ -1462,15 +1444,6 @@ describe('newline-per-parameter', () => {
               secondItem
             } = {}) {
               return firstItem + secondItem * 20
-            }
-          `,
-        },
-        {
-          code: `
-            const method = (firstItem, {
-              secondItem
-            } = {}) => {
-              return firstItem + secondItem * 30
             }
           `,
         },
@@ -1530,17 +1503,6 @@ describe('newline-per-parameter', () => {
             }
           `,
         },
-        {
-          code: `
-            const object = {
-              method: (firstItem, {
-                secondItem
-              } = {}) => {
-                return firstItem + secondItem * 90
-              }
-            }
-          `,
-        },
       ])
       .concat([ // (\narg1,\n{\narg2\n} = {}\n) patterns
         {
@@ -1564,18 +1526,6 @@ describe('newline-per-parameter', () => {
               } = {}
             ) {
               return firstItem + secondItem * 20
-            }
-          `,
-        },
-        {
-          code: `
-            const method = (
-              firstItem,
-              {
-                secondItem
-              } = {}
-            ) => {
-              return firstItem + secondItem * 30
             }
           `,
         },
@@ -1650,20 +1600,6 @@ describe('newline-per-parameter', () => {
             }
           `,
         },
-        {
-          code: `
-            const object = {
-              method: (
-                firstItem,
-                {
-                  secondItem
-                } = {}
-              ) => {
-                return firstItem + secondItem * 90
-              }
-            }
-          `,
-        },
       ])
       .concat([ // ({\narg1,\narg2 = 1\n}) patterns
         {
@@ -1683,16 +1619,6 @@ describe('newline-per-parameter', () => {
               secondItem = 1,
             }) {
               return firstItem + secondItem * 20
-            }
-          `,
-        },
-        {
-          code: `
-            const method = ({
-              firstItem,
-              secondItem = 1,
-            }) => {
-              return firstItem + secondItem * 30
             }
           `,
         },
@@ -1757,18 +1683,6 @@ describe('newline-per-parameter', () => {
             }
           `,
         },
-        {
-          code: `
-            const object = {
-              method: ({
-                firstItem,
-                secondItem = 1,
-              }) => {
-                return firstItem + secondItem * 90
-              }
-            }
-          `,
-        },
       ])
       .concat([ // (arg1, {\n...args\n} = {}) patterns
         {
@@ -1786,15 +1700,6 @@ describe('newline-per-parameter', () => {
               ...secondItems
             } = {}) {
               return firstItem + secondItems.length * 20
-            }
-          `,
-        },
-        {
-          code: `
-            const method = (firstItem, {
-              ...secondItems
-            } = {}) => {
-              return firstItem + secondItems.length * 30
             }
           `,
         },
@@ -1854,17 +1759,6 @@ describe('newline-per-parameter', () => {
             }
           `,
         },
-        {
-          code: `
-            const object = {
-              method: (firstItem, {
-                ...secondItems
-              } = {}) => {
-                return firstItem + secondItems.length * 90
-              }
-            }
-          `,
-        },
       ])
       .concat([ // (\narg1,\n{\n...args\n} = {}\n) patterns
         {
@@ -1888,18 +1782,6 @@ describe('newline-per-parameter', () => {
               } = {}
             ) {
               return firstItem + secondItems.length * 20
-            }
-          `,
-        },
-        {
-          code: `
-            const method = (
-              firstItem,
-              {
-                ...secondItems
-              } = {}
-            ) => {
-              return firstItem + secondItems.length * 30
             }
           `,
         },
@@ -1974,6 +1856,130 @@ describe('newline-per-parameter', () => {
             }
           `,
         },
+      ])
+      .concat([ // fo ArrowFunctionExpression like valid
+        {
+          code: `
+            const method = (
+              firstItem,
+              secondItem = 1
+            ) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (
+                firstItem,
+                secondItem = 1
+              ) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (firstItem, {
+              secondItem
+            } = {}) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (firstItem, {
+                secondItem
+              } = {}) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (
+              firstItem,
+              {
+                secondItem
+              } = {}
+            ) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (
+                firstItem,
+                {
+                  secondItem
+                } = {}
+              ) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = ({
+              firstItem,
+              secondItem = 1,
+            }) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: ({
+                firstItem,
+                secondItem = 1,
+              }) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (firstItem, {
+              ...secondItems
+            } = {}) => {
+              return firstItem + secondItems.length * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (firstItem, {
+                ...secondItems
+              } = {}) => {
+                return firstItem + secondItems.length * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (
+              firstItem,
+              {
+                ...secondItems
+              } = {}
+            ) => {
+              return firstItem + secondItems.length * 30
+            }
+          `,
+        },
         {
           code: `
             const object = {
@@ -1982,6 +1988,100 @@ describe('newline-per-parameter', () => {
                 {
                   ...secondItems
                 } = {}
+              ) => {
+                return firstItem + secondItems.length * 90
+              }
+            }
+          `,
+        },
+      ])
+      .concat([ // fo ArrowFunctionExpression like invalid
+        {
+          code: `
+            const method = (firstItem, { secondItem } = {}) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (firstItem, { secondItem } = {}) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (
+              firstItem,
+              { secondItem } = {}
+            ) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (
+                firstItem,
+                { secondItem } = {}
+              ) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = ({ firstItem, secondItem = 1 }) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: ({ firstItem, secondItem = 1 }) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (firstItem, { ...secondItems } = {}) => {
+              return firstItem + secondItems.length * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (firstItem, { ...secondItems } = {}) => {
+                return firstItem + secondItems.length * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (
+              firstItem,
+              { ...secondItems } = {}
+            ) => {
+              return firstItem + secondItems.length * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (
+                firstItem,
+                { ...secondItems } = {}
               ) => {
                 return firstItem + secondItems.length * 90
               }
@@ -2005,13 +2105,6 @@ describe('newline-per-parameter', () => {
               code: `
                 const method = function (firstItem, { secondItem } = {}) {
                   return firstItem + secondItem * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = (firstItem, { secondItem } = {}) => {
-                  return firstItem + secondItem * 30
                 }
               `,
             },
@@ -2061,15 +2154,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: (firstItem, { secondItem } = {}) => {
-                    return firstItem + secondItem * 90
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // (\narg1,\n{ arg2 } = {}\n) patterns
             {
@@ -2089,16 +2173,6 @@ describe('newline-per-parameter', () => {
                   { secondItem } = {}
                 ) {
                   return firstItem + secondItem * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = (
-                  firstItem,
-                  { secondItem } = {}
-                ) => {
-                  return firstItem + secondItem * 30
                 }
               `,
             },
@@ -2163,18 +2237,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: (
-                    firstItem,
-                    { secondItem } = {}
-                  ) => {
-                    return firstItem + secondItem * 90
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // ({ arg1, arg2 = 1 }) patterns
             {
@@ -2188,13 +2250,6 @@ describe('newline-per-parameter', () => {
               code: `
                 const method = function ({ firstItem, secondItem = 1 }) {
                   return firstItem + secondItem * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = ({ firstItem, secondItem = 1 }) => {
-                  return firstItem + secondItem * 30
                 }
               `,
             },
@@ -2244,15 +2299,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: ({ firstItem, secondItem = 1 }) => {
-                    return firstItem + secondItem * 90
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // (arg1, { ...args } = {}) patterns
             {
@@ -2266,13 +2312,6 @@ describe('newline-per-parameter', () => {
               code: `
                 const method = function (firstItem, { ...secondItems } = {}) {
                   return firstItem + secondItems.length * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = (firstItem, { ...secondItems } = {}) => {
-                  return firstItem + secondItems.length * 30
                 }
               `,
             },
@@ -2322,15 +2361,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: (firstItem, { ...secondItems } = {}) => {
-                    return firstItem + secondItems.length * 90
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // (\narg1,\n{ ...args } = {}\n) patterns
             {
@@ -2350,16 +2380,6 @@ describe('newline-per-parameter', () => {
                   { ...secondItems } = {}
                 ) {
                   return firstItem + secondItems.length * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = (
-                  firstItem,
-                  { ...secondItems } = {}
-                ) => {
-                  return firstItem + secondItems.length * 30
                 }
               `,
             },
@@ -2424,18 +2444,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: (
-                    firstItem,
-                    { ...secondItems } = {}
-                  ) => {
-                    return firstItem + secondItems.length * 90
-                  }
-                }
-              `,
-            },
           ]),
         errors
       ]
@@ -2477,16 +2485,6 @@ describe('newline-per-parameter', () => {
         },
         {
           code: `
-            const method = (
-              firstItem = 0,
-              secondItem = 1
-            ) => {
-              return firstItem + secondItem * 30
-            }
-          `,
-        },
-        {
-          code: `
             class TestClass {
               constructor (
                 firstItem = 0,
@@ -2542,18 +2540,6 @@ describe('newline-per-parameter', () => {
                 secondItem = 1
               ) {
                 return firstItem + secondItem * 80
-              }
-            }
-          `,
-        },
-        {
-          code: `
-            const object = {
-              method: (
-                firstItem = 0,
-                secondItem = 1
-              ) => {
-                return firstItem + secondItem * 90
               }
             }
           `,
@@ -2586,18 +2572,6 @@ describe('newline-per-parameter', () => {
         },
         {
           code: `
-            const method = (
-              firstItem = 0,
-              {
-                secondItem
-              } = {}
-            ) => {
-              return firstItem + secondItem * 30
-            }
-          `,
-        },
-        {
-          code: `
             class TestClass {
               constructor (
                 firstItem = 0,
@@ -2667,20 +2641,6 @@ describe('newline-per-parameter', () => {
             }
           `,
         },
-        {
-          code: `
-            const object = {
-              method: (
-                firstItem = 0,
-                {
-                  secondItem
-                } = {}
-              ) => {
-                return firstItem + secondItem * 90
-              }
-            }
-          `,
-        },
       ])
       .concat([ // ({\narg1 = 0,\narg2 = 1\n}) patterns
         {
@@ -2700,16 +2660,6 @@ describe('newline-per-parameter', () => {
               secondItem = 1,
             }) {
               return firstItem + secondItem * 20
-            }
-          `,
-        },
-        {
-          code: `
-            const method = ({
-              firstItem = 0,
-              secondItem = 1,
-            }) => {
-              return firstItem + secondItem * 30
             }
           `,
         },
@@ -2774,18 +2724,6 @@ describe('newline-per-parameter', () => {
             }
           `,
         },
-        {
-          code: `
-            const object = {
-              method: ({
-                firstItem = 0,
-                secondItem = 1,
-              }) => {
-                return firstItem + secondItem * 90
-              }
-            }
-          `,
-        },
       ])
       .concat([ // (\narg1 = 0,\n{\n...args\n} = {}\n) patterns
         {
@@ -2809,18 +2747,6 @@ describe('newline-per-parameter', () => {
               } = {}
             ) {
               return firstItem + secondItems.length * 20
-            }
-          `,
-        },
-        {
-          code: `
-            const method = (
-              firstItem = 0,
-              {
-                ...secondItems
-              } = {}
-            ) => {
-              return firstItem + secondItems.length * 30
             }
           `,
         },
@@ -2895,6 +2821,90 @@ describe('newline-per-parameter', () => {
             }
           `,
         },
+      ])
+      .concat([ // fo ArrowFunctionExpression like valid
+        {
+          code: `
+            const method = (
+              firstItem = 0,
+              secondItem = 1
+            ) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (
+                firstItem = 0,
+                secondItem = 1
+              ) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (
+              firstItem = 0,
+              {
+                secondItem
+              } = {}
+            ) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (
+                firstItem = 0,
+                {
+                  secondItem
+                } = {}
+              ) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = ({
+              firstItem = 0,
+              secondItem = 1,
+            }) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: ({
+                firstItem = 0,
+                secondItem = 1,
+              }) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (
+              firstItem = 0,
+              {
+                ...secondItems
+              } = {}
+            ) => {
+              return firstItem + secondItems.length * 30
+            }
+          `,
+        },
         {
           code: `
             const object = {
@@ -2904,6 +2914,100 @@ describe('newline-per-parameter', () => {
                   ...secondItems
                 } = {}
               ) => {
+                return firstItem + secondItems.length * 90
+              }
+            }
+          `,
+        },
+      ])
+      .concat([ // fo ArrowFunctionExpression like invalid
+        {
+          code: `
+            const method = (firstItem = 0, secondItem = 1) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (firstItem = 0, secondItem = 1) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (
+              firstItem = 0,
+              { secondItem } = {}
+            ) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (
+                firstItem = 0,
+                { secondItem } = {}
+              ) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = ({ firstItem = 0, secondItem = 1 }) => {
+              return firstItem + secondItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: ({ firstItem = 0, secondItem = 1 }) => {
+                return firstItem + secondItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (
+              firstItem = 0,
+              { ...secondItems } = {}
+            ) => {
+              return firstItem + secondItems.length * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (
+                firstItem = 0,
+                { ...secondItems } = {}
+              ) => {
+                return firstItem + secondItems.length * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = ({ firstItem = 0, ...secondItems } = {}) => {
+              return firstItem + secondItems.length * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: ({ firstItem = 0, ...secondItems } = {}) => {
                 return firstItem + secondItems.length * 90
               }
             }
@@ -2926,13 +3030,6 @@ describe('newline-per-parameter', () => {
               code: `
                 const method = function (firstItem = 0, secondItem = 1) {
                   return firstItem + secondItem * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = (firstItem = 0, secondItem = 1) => {
-                  return firstItem + secondItem * 30
                 }
               `,
             },
@@ -2982,15 +3079,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: (firstItem = 0, secondItem = 1) => {
-                    return firstItem + secondItem * 90
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // (\narg1 = 0,\n{ arg2 } = {}\n) patterns
             {
@@ -3010,16 +3098,6 @@ describe('newline-per-parameter', () => {
                   { secondItem } = {}
                 ) {
                   return firstItem + secondItem * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = (
-                  firstItem = 0,
-                  { secondItem } = {}
-                ) => {
-                  return firstItem + secondItem * 30
                 }
               `,
             },
@@ -3084,18 +3162,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: (
-                    firstItem = 0,
-                    { secondItem } = {}
-                  ) => {
-                    return firstItem + secondItem * 90
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // ({ arg1 = 0, arg2 = 1 }) patterns
             {
@@ -3109,13 +3175,6 @@ describe('newline-per-parameter', () => {
               code: `
                 const method = function ({ firstItem = 0, secondItem = 1 }) {
                   return firstItem + secondItem * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = ({ firstItem = 0, secondItem = 1 }) => {
-                  return firstItem + secondItem * 30
                 }
               `,
             },
@@ -3165,15 +3224,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: ({ firstItem = 0, secondItem = 1 }) => {
-                    return firstItem + secondItem * 90
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // (\narg1 = 0,\n{ ...args } = {}\n) patterns
             {
@@ -3193,16 +3243,6 @@ describe('newline-per-parameter', () => {
                   { ...secondItems } = {}
                 ) {
                   return firstItem + secondItems.length * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = (
-                  firstItem = 0,
-                  { ...secondItems } = {}
-                ) => {
-                  return firstItem + secondItems.length * 30
                 }
               `,
             },
@@ -3267,18 +3307,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: (
-                    firstItem = 0,
-                    { ...secondItems } = {}
-                  ) => {
-                    return firstItem + secondItems.length * 90
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // ({ arg1 = 0, ...args } = {}) patterns
             {
@@ -3292,13 +3320,6 @@ describe('newline-per-parameter', () => {
               code: `
                 const method = function ({ firstItem = 0, ...secondItems } = {}) {
                   return firstItem + secondItems.length * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = ({ firstItem = 0, ...secondItems } = {}) => {
-                  return firstItem + secondItems.length * 30
                 }
               `,
             },
@@ -3344,15 +3365,6 @@ describe('newline-per-parameter', () => {
                 const object = {
                   method: function ({ firstItem = 0, ...secondItems } = {}) {
                     return firstItem + secondItems.length * 80
-                  }
-                }
-              `,
-            },
-            {
-              code: `
-                const object = {
-                  method: ({ firstItem = 0, ...secondItems } = {}) => {
-                    return firstItem + secondItems.length * 90
                   }
                 }
               `,

@@ -28,20 +28,6 @@ describe('newline-per-parameter', () => {
         },
         {
           code: `
-            const method = (firstItem) => {
-              return firstItem * 30
-            }
-          `,
-        },
-        {
-          code: `
-            const method = firstItem => {
-              return firstItem * 40
-            }
-          `,
-        },
-        {
-          code: `
             class TestClass {
               constructor (firstItem) {
                 this.firstItem = firstItem
@@ -81,24 +67,6 @@ describe('newline-per-parameter', () => {
             const object = {
               method: function (firstItem) {
                 return firstItem * 80
-              }
-            }
-          `,
-        },
-        {
-          code: `
-            const object = {
-              method: (firstItem) => {
-                return firstItem * 90
-              }
-            }
-          `,
-        },
-        {
-          code: `
-            const object = {
-              method: firstItem => {
-                return firstItem * 100
               }
             }
           `,
@@ -561,6 +529,74 @@ describe('newline-per-parameter', () => {
           `,
         },
       ])
+      .concat([ // fo ArrowFunctionExpression like valid
+        {
+          code: `
+            const method = (firstItem) => {
+              return firstItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const method = firstItem => {
+              return firstItem * 40
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (firstItem) => {
+                return firstItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: firstItem => {
+                return firstItem * 100
+              }
+            }
+          `,
+        },
+      ])
+      .concat([ // fo ArrowFunctionExpression like invalid
+        {
+          code: `
+            const method = ({ firstItem }) => {
+              return firstItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const method = ({ ...firstItems }) => {
+              return firstItems.map(it => it + 30)
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: ({ ...firstItems }) => {
+                return firstItems.map(it => it + 90)
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: ({ firstItem }) => {
+                return firstItem * 90
+              }
+            }
+          `,
+        },
+      ])
 
     const invalidCases = ESLintHelper.expandInvalidCases([
       [
@@ -577,13 +613,6 @@ describe('newline-per-parameter', () => {
               code: `
                 const method = function ({ firstItem }) {
                   return firstItem * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = ({ firstItem }) => {
-                  return firstItem * 30
                 }
               `,
             },
@@ -632,15 +661,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: ({ firstItem }) => {
-                    return firstItem * 90
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // { ...args } patterns
             {
@@ -654,13 +674,6 @@ describe('newline-per-parameter', () => {
               code: `
                 const method = function ({ ...firstItems }) {
                   return firstItems.map(it => it + 20)
-                }
-              `,
-            },
-            {
-              code: `
-                const method = ({ ...firstItems }) => {
-                  return firstItems.map(it => it + 30)
                 }
               `,
             },
@@ -709,15 +722,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: ({ ...firstItems }) => {
-                    return firstItems.map(it => it + 90)
-                  }
-                }
-              `,
-            },
           ]),
         errors
       ],
@@ -749,13 +753,6 @@ describe('newline-per-parameter', () => {
           code: `
             const method = function (firstItem = 101) {
               return firstItem * 20
-            }
-          `,
-        },
-        {
-          code: `
-            const method = (firstItem = 102) => {
-              return firstItem * 30
             }
           `,
         },
@@ -800,15 +797,6 @@ describe('newline-per-parameter', () => {
             const object = {
               method: function (firstItem = 107) {
                 return firstItem * 80
-              }
-            }
-          `,
-        },
-        {
-          code: `
-            const object = {
-              method: (firstItem = 108) => {
-                return firstItem * 90
               }
             }
           `,
@@ -1004,6 +992,114 @@ describe('newline-per-parameter', () => {
           `,
         },
       ])
+      .concat([ // fo ArrowFunctionExpression like valid
+        {
+          code: `
+            const method = (firstItem = 102) => {
+              return firstItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (firstItem = 108) => {
+                return firstItem * 90
+              }
+            }
+          `,
+        },
+      ])
+      .concat([ // fo ArrowFunctionExpression like invalid
+        {
+          code: `
+            const method = ({ firstItem = 102 }) => {
+              return firstItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: ({ firstItem = 108 }) => {
+                return firstItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = ({ firstItem } = {}) => {
+              return firstItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: ({ firstItem } = {}) => {
+                return firstItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (
+              { firstItem } = {}
+            ) => {
+              return firstItem * 30
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (
+                { firstItem } = {}
+              ) => {
+                return firstItem * 90
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = ({ ...firstItems } = {}) => {
+              return firstItems.map(it => it + 30)
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: ({ ...firstItems } = {}) => {
+                return firstItems.map(it => it + 90)
+              }
+            }
+          `,
+        },
+        {
+          code: `
+            const method = (
+              { ...firstItems } = {}
+            ) => {
+              return firstItems.map(it => it + 30)
+            }
+          `,
+        },
+        {
+          code: `
+            const object = {
+              method: (
+                { ...firstItems } = {}
+              ) => {
+                return firstItems.map(it => it + 90)
+              }
+            }
+          `,
+        },
+      ])
 
     const invalidCases = ESLintHelper.expandInvalidCases([
       [
@@ -1020,13 +1116,6 @@ describe('newline-per-parameter', () => {
               code: `
                 const method = function ({ firstItem = 101 }) {
                   return firstItem * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = ({ firstItem = 102 }) => {
-                  return firstItem * 30
                 }
               `,
             },
@@ -1075,15 +1164,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: ({ firstItem = 108 }) => {
-                    return firstItem * 90
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // ({ arg } = {}) patterns
             {
@@ -1097,13 +1177,6 @@ describe('newline-per-parameter', () => {
               code: `
                 const method = function ({ firstItem } = {}) {
                   return firstItem * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = ({ firstItem } = {}) => {
-                  return firstItem * 30
                 }
               `,
             },
@@ -1152,15 +1225,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: ({ firstItem } = {}) => {
-                    return firstItem * 90
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // (\n{ arg } = {}\n) patterns
             {
@@ -1178,15 +1242,6 @@ describe('newline-per-parameter', () => {
                   { firstItem } = {}
                 ) {
                   return firstItem * 20
-                }
-              `,
-            },
-            {
-              code: `
-                const method = (
-                  { firstItem } = {}
-                ) => {
-                  return firstItem * 30
                 }
               `,
             },
@@ -1245,17 +1300,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: (
-                    { firstItem } = {}
-                  ) => {
-                    return firstItem * 90
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // ({ ...args } = {}) patterns
             {
@@ -1269,13 +1313,6 @@ describe('newline-per-parameter', () => {
               code: `
                 const method = function ({ ...firstItems } = {}) {
                   return firstItems.map(it => it + 20)
-                }
-              `,
-            },
-            {
-              code: `
-                const method = ({ ...firstItems } = {}) => {
-                  return firstItems.map(it => it + 30)
                 }
               `,
             },
@@ -1324,15 +1361,6 @@ describe('newline-per-parameter', () => {
                 }
               `,
             },
-            {
-              code: `
-                const object = {
-                  method: ({ ...firstItems } = {}) => {
-                    return firstItems.map(it => it + 90)
-                  }
-                }
-              `,
-            },
           ])
           .concat([ // (\n.{..args} = {}\n) patterns
             {
@@ -1350,15 +1378,6 @@ describe('newline-per-parameter', () => {
                   { ...firstItems } = {}
                 ) {
                   return firstItems.map(it => it + 20)
-                }
-              `,
-            },
-            {
-              code: `
-                const method = (
-                  { ...firstItems } = {}
-                ) => {
-                  return firstItems.map(it => it + 30)
                 }
               `,
             },
@@ -1413,17 +1432,6 @@ describe('newline-per-parameter', () => {
                     { ...firstItems } = {}
                   ) {
                     return firstItems.map(it => it + 80)
-                  }
-                }
-              `,
-            },
-            {
-              code: `
-                const object = {
-                  method: (
-                    { ...firstItems } = {}
-                  ) => {
-                    return firstItems.map(it => it + 90)
                   }
                 }
               `,
