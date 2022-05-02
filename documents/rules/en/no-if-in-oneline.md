@@ -8,7 +8,7 @@
 
 ### Speed of Reading Statement Structure
 
-* Writing an `if` statement on a single line places an excessive burden on the reader of the source code. The code reader must read right through the lines of an `if` statement written on a single line to see what is being done.
+* Writing an `if` statement on a single line places an excessive burden on the reader of the source code. The code reader has to read the lines of an `if` statement written on a single line from left to right to see what is being done.
 
 * Considering which of the following is easier, it is easy to see why syntactic interpretation while reading to the right is a bad idea.
   1. While moving your eyes to the right, check the position of spaces, `{ }`, `;`, etc. and construct the syntax in your brain.

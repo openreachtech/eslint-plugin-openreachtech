@@ -8,7 +8,7 @@
 
 ### Speed of Understanding Arguments of Function Declaration
 
-* When defining a function or method, if multiple argument definitions are written on a single line, the source code reader will have to rely on `,` to separate them in his or her brain as he or she reads. If each parameter is a plain definition with identifiers separated by `,`, it is not difficult, but if default values are specified or object syntax is used, it is difficult to read through the source code while stacking `,` in the brain.
+* When defining a function or method, if multiple arguments are written on a single line, the source code reader will have to rely on `,` to separate them in his or her brain as he or she reads. If each parameter is a plain definition with identifiers separated by `,`, it is not difficult, but if default values are specified or objects are used as parameters, it is difficult to read through the source code while stacking `,` in the brain.
 
 ```js
 function method (first, second) {
@@ -120,7 +120,7 @@ function method (first, second, third, fourth, fifth) { ... }
 
 ### Case of Two Identifiers
 
-* This rule requires a line break even for "a simple definition with only two identifiers. Although it is possible to make an exception for this case, we have decided not to adopt this rule for the following reasons.
+* This rule requires a line break even for "a simple definition with only two identifiers. Although it is possible to make an exception for this case, we have decided not to adopt that exception for the following reasons.
   1. When a developer learns this coding rule, it is easier to remember "one identifier per line" with no exceptions.
   1. A function definition with two or more arguments is likely to be poorly designed, and breaking the line has the effect of making the developer aware that there is a poorly designed function definition there.
 
