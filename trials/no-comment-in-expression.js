@@ -4,11 +4,13 @@
 // npx eslint trials\no-comment-in-expression.js --no-ignore --rulesdir lib\
 // ../.eslintrc.yml: no-comment-in-expression: error
 
-const first = 5 , second = 10
+const first = 5 , second = 10 , third = true
 
 const leftOperand = 20
 
 foo()
+
+caf()
 
 const a = 2 // comment
   + 8 // comment
@@ -31,13 +33,38 @@ const answer =
   / (2 // comment
   * a)
 
+const x = undefined
+const y = + /** this is
+a comment */
+// this is another comment
+x
+
+const result = -( // comment
+  foo()
+  + 10 // comment
+)
+
 function foo () {
   if (
     first // comment
     || second
   ) {
-    return 2 + first + second
+    return 2 + first + second + y
   }
 
   return answer + a + b
 }
+
+function caf (){
+  if (+( // comment
+    first
+    || second
+    && third // comment
+  ) > 0
+  ) {
+    return 11 + first + second + third
+  }
+
+  return result
+}
+
