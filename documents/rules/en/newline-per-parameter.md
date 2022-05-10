@@ -126,7 +126,7 @@ function method (first, second, third, fourth, fifth) { ... }
 
 * The reasons for the above "a function definition with two or more arguments is likely to be poorly designed" are as follows:
   1. In a function definition with two or more arguments, it is necessary for the user of the function to remember the argument order.
-  1. With object syntax, all arguments can be passed in a single argument, eliminating the need for the function caller to be aware of the argument order.
+  1. Using objects, all arguments can be passed in a single argument, eliminating the need for the function caller to be aware of the argument order.
 
 ## Version
 
