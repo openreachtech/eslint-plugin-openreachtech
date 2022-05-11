@@ -5,13 +5,15 @@ const ESLintHelper = require('../tools/ESLintHelper')
 const ruleBody = require('../../lib/no-comment-in-expression')
 
 const binaryExpressionCases = require('../no-comment-in-expression_cases/binary-expression_cases')
+const conditionalExpressionCases = require('../no-comment-in-expression_cases/conditional-expression_cases')
 const logicalExpressionCases = require('../no-comment-in-expression_cases/logical-expression_cases')
 const unaryExpressionCases = require('../no-comment-in-expression_cases/unary-expression_cases')
 
 const groups = [
   binaryExpressionCases,
+  conditionalExpressionCases,
   logicalExpressionCases,
-  unaryExpressionCases,
+  unaryExpressionCases,  
 ]
 
 describe('Prohibiting comments in expression.', () => {
