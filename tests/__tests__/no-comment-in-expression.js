@@ -13,7 +13,7 @@ const groups = [
   binaryExpressionCases,
   conditionalExpressionCases,
   logicalExpressionCases,
-  unaryExpressionCases,  
+  unaryExpressionCases,
 ]
 
 describe('Prohibiting comments in expression.', () => {
