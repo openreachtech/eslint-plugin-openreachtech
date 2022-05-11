@@ -55,6 +55,25 @@ function foo () {
   return answer + a + b
 }
 
+const test =
+a > 0 // comment
+  ? a // comment
+  : -a
+
+const test2 =
+first > 0 // line comment
+  ? 1 // line comment
+  : (second > 0 // line comment
+    ? -1 // line comment
+    : 2)
+
+const test3 = first > 0
+  ? 1
+  : (second > 0
+    ? -// comment
+    1
+    : 2)
+
 function caf (){
   if (+( // comment
     first
@@ -62,9 +81,8 @@ function caf (){
     && third // comment
   ) > 0
   ) {
-    return 11 + first + second + third
+    return 11 + first + second + third + test + test2 + test3
   }
 
   return result
 }
-
