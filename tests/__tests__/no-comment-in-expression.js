@@ -8,12 +8,14 @@ const binaryExpressionCases = require('../no-comment-in-expression_cases/binary-
 const conditionalExpressionCases = require('../no-comment-in-expression_cases/conditional-expression_cases')
 const logicalExpressionCases = require('../no-comment-in-expression_cases/logical-expression_cases')
 const unaryExpressionCases = require('../no-comment-in-expression_cases/unary-expression_cases')
+const updateExpressionCases = require('../no-comment-in-expression_cases/update-expression_cases')
 
 const groups = [
   binaryExpressionCases,
   conditionalExpressionCases,
   logicalExpressionCases,
   unaryExpressionCases,
+  updateExpressionCases
 ]
 
 describe('Prohibiting comments in expression.', () => {
