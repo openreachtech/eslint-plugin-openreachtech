@@ -36,14 +36,17 @@ const answer =
   * a)
 
 const x = undefined
-const y = + /** this is
-a comment */
+const y = +
+/**
+ * this is
+ * a comment
+ */
 // this is another comment
 x
 
 const result = -( // comment
   foo()
-  + 10 // comment
+    + 10 // comment
 )
 
 function foo () {
@@ -59,10 +62,10 @@ function foo () {
 
 function foo2 (a, b){
   if(a > 0 || b > 0 ){
-    return -(++/** block comment */a / 4)
+    return -(++/** block comment */ a / 4)
   }
 
-  return --/** block comment */b * 5
+  return -- /** block comment */ b * 5
 }
 
 const test =
@@ -79,8 +82,8 @@ first > 0 // line comment
 
 const test3 = first > 0
   ? 1
-  : (second > 0
-    ? -// comment
+  : ((second > 0)
+    ? - // comment
     1
     : 2)
 
