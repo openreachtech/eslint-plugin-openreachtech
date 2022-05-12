@@ -10,6 +10,8 @@ const leftOperand = 20
 
 foo()
 
+foo2()
+
 caf()
 
 const a = 2 // comment
@@ -53,6 +55,14 @@ function foo () {
   }
 
   return answer + a + b
+}
+
+function foo2 (a, b){
+  if(a > 0 || b > 0 ){
+    return -(++/** block comment */a / 4)
+  }
+
+  return --/** block comment */b * 5
 }
 
 const test =
