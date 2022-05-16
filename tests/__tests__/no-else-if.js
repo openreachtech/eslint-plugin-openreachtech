@@ -46,7 +46,7 @@ describe('ESLint: no-else-if', () => {
   // ESLint tester instead of Jest `test()`
   const tester = new RuleTester()
 
-  // tester.run([rule name], [rule defination], [test patterns])
+  // tester.run([rule name], [rule definition], [test patterns])
   tester.run(
     'no-else-if',
     noElseIfRule,
