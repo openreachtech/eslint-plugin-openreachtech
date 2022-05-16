@@ -1,7 +1,7 @@
 {
   "name": "eslint-plugin-openreachtech",
   "description": "ESLint custom rules by Open Reach Tech.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Open Reach Tech inc.",
   "files": [
     "lib/",
