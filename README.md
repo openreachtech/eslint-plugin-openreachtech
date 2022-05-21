@@ -39,7 +39,7 @@ no-unexpected-multiline
       openreachtech/newline-per-parameter: error
       openreachtech/no-else-if: error
       openreachtech/no-if-in-oneline: error
-      openreachtech/newline-per-parameter: error
+      openreachtech/no-unexpected-multiline: error
 
     ...
     ```
