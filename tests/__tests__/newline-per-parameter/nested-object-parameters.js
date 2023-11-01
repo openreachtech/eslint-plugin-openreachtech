@@ -276,7 +276,7 @@ describe('newline-per-parameter', () => {
               `,
             },
           ]),
-        errors
+        errors,
       ],
     ])
 

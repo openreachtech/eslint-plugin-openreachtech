@@ -723,7 +723,7 @@ describe('newline-per-parameter', () => {
               `,
             },
           ]),
-        errors
+        errors,
       ],
     ])
 
@@ -1437,8 +1437,8 @@ describe('newline-per-parameter', () => {
               `,
             },
           ]),
-        errors
-      ]
+        errors,
+      ],
     ])
 
     // tester.run([rule name], [rule definition], [test patterns])

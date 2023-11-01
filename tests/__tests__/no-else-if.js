@@ -52,7 +52,7 @@ describe('ESLint: no-else-if', () => {
     noElseIfRule,
     {
       valid: validCodes.map(code => ({ code })),
-      invalid: invalidCodes.map(code => ({ code, errors }))
+      invalid: invalidCodes.map(code => ({ code, errors })),
     }
   )
 })

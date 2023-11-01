@@ -195,7 +195,7 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must add indent before "||".',
-            ]
+            ],
           ],
           [
             [
@@ -222,7 +222,7 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must add indent before "&&".',
-            ]
+            ],
           ],
         ])
 
@@ -231,7 +231,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -240,7 +240,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -326,8 +326,8 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must remove indent before "||".',
-            ]
-          ]
+            ],
+          ],
         ])
 
         tester.run(
@@ -335,7 +335,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -344,7 +344,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -527,7 +527,7 @@ describe('LogicalExpression', () => {
             [
               'Must add indent before "||".',
               'Must remove indent before "&&".',
-            ]
+            ],
           ],
         ])
 
@@ -536,7 +536,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -545,7 +545,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -601,8 +601,8 @@ describe('LogicalExpression', () => {
               'Must add indent before "||".',
               'Must remove indent before "||".',
               'Must add indent before "&&".',
-            ]
-          ]
+            ],
+          ],
         ])
 
         tester.run(
@@ -610,7 +610,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -619,7 +619,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -806,7 +806,7 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must add indent before right operand of "||".',
-            ]
+            ],
           ],
           [
             [
@@ -833,7 +833,7 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must add indent before right operand of "&&".',
-            ]
+            ],
           ],
         ])
 
@@ -842,7 +842,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -851,7 +851,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -941,8 +941,8 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must remove indent before right operand of "||".',
-            ]
-          ]
+            ],
+          ],
         ])
 
         tester.run(
@@ -950,7 +950,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -959,7 +959,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -1142,7 +1142,7 @@ describe('LogicalExpression', () => {
             [
               'Must add indent before right operand of "||".',
               'Must remove indent before right operand of "&&".',
-            ]
+            ],
           ],
         ])
 
@@ -1151,7 +1151,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -1160,7 +1160,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -1215,8 +1215,8 @@ describe('LogicalExpression', () => {
               'Must add indent before right operand of "||".',
               'Must remove indent before right operand of "||".',
               'Must add indent before right operand of "&&".',
-            ]
-          ]
+            ],
+          ],
         ])
 
         tester.run(
@@ -1224,7 +1224,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -1233,7 +1233,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -1419,7 +1419,7 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must add indent before "||".',
-            ]
+            ],
           ],
           [
             [
@@ -1446,7 +1446,7 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must add indent before "&&".',
-            ]
+            ],
           ],
         ])
 
@@ -1455,7 +1455,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -1541,8 +1541,8 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must remove indent before "||".',
-            ]
-          ]
+            ],
+          ],
         ])
 
         tester.run(
@@ -1550,7 +1550,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -1733,7 +1733,7 @@ describe('LogicalExpression', () => {
             [
               'Must add indent before "||".',
               'Must remove indent before "&&".',
-            ]
+            ],
           ],
         ])
 
@@ -1742,7 +1742,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -1798,8 +1798,8 @@ describe('LogicalExpression', () => {
               'Must add indent before "||".',
               'Must remove indent before "||".',
               'Must add indent before "&&".',
-            ]
-          ]
+            ],
+          ],
         ])
 
         tester.run(
@@ -1807,7 +1807,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -1989,7 +1989,7 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must add indent before right operand of "||".',
-            ]
+            ],
           ],
           [
             [
@@ -2016,7 +2016,7 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must add indent before right operand of "&&".',
-            ]
+            ],
           ],
         ])
 
@@ -2025,7 +2025,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -2111,8 +2111,8 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must remove indent before right operand of "||".',
-            ]
-          ]
+            ],
+          ],
         ])
 
         tester.run(
@@ -2120,7 +2120,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -2303,7 +2303,7 @@ describe('LogicalExpression', () => {
             [
               'Must add indent before right operand of "||".',
               'Must remove indent before right operand of "&&".',
-            ]
+            ],
           ],
         ])
 
@@ -2312,7 +2312,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -2367,8 +2367,8 @@ describe('LogicalExpression', () => {
               'Must add indent before right operand of "||".',
               'Must remove indent before right operand of "||".',
               'Must add indent before right operand of "&&".',
-            ]
-          ]
+            ],
+          ],
         ])
 
         tester.run(
@@ -2376,7 +2376,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -2415,7 +2415,7 @@ describe('LogicalExpression', () => {
         ].map(code => ({ code })),
         [
           'Must remove indent before "||".',
-        ]
+        ],
       ],
       [
         [
@@ -2447,7 +2447,7 @@ describe('LogicalExpression', () => {
         ].map(code => ({ code })),
         [
           'Must remove indent before right operand of "||".',
-        ]
+        ],
       ],
     ])
 
@@ -2456,7 +2456,7 @@ describe('LogicalExpression', () => {
       ruleBody,
       {
         valid: [],
-        invalid: invalidCases
+        invalid: invalidCases,
       }
     )
   })
