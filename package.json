@@ -31,9 +31,8 @@
   },
   "homepage": "https://github.com/openreachtech/eslint-plugin-openreachtech#readme",
   "devDependencies": {
-    "@types/jest": "^27.4.1",
-    "eslint": "^8.12.0",
-    "eslint-plugin-jsdoc": "^38.1.4",
-    "jest": "^27.5.1"
+    "@types/jest": "^29.1.1",
+    "eslint": "^8.24.0",
+    "jest": "^29.1.2"
   }
 }
