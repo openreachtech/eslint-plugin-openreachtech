@@ -195,5 +195,5 @@ module.exports = {
       : bar  // line comment
       )
     `,
-  ]
+  ],
 }

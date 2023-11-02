@@ -110,7 +110,7 @@ describe('no-unexpected-multiline', () => {
               ; - 1 == resultOfOperation() || die();`,
           },
         ],
-        ['no unexpected multiline in "-" expression.']
+        ['no unexpected multiline in "-" expression.'],
       ],
       [
         [
@@ -139,7 +139,7 @@ describe('no-unexpected-multiline', () => {
               ; + 1 == resultOfOperation() || die();`,
           },
         ],
-        ['no unexpected multiline in "+" expression.']
+        ['no unexpected multiline in "+" expression.'],
       ],
     ])
 
@@ -290,7 +290,7 @@ describe('no-unexpected-multiline', () => {
                 ; - 1 == resultOfOperation() || die();`,
           },
         ],
-        ['no unexpected multiline in "-" expression.']
+        ['no unexpected multiline in "-" expression.'],
       ],
       [
         [
@@ -343,7 +343,7 @@ describe('no-unexpected-multiline', () => {
                 ; + 1 == resultOfOperation() || die();`,
           },
         ],
-        ['no unexpected multiline in "+" expression.']
+        ['no unexpected multiline in "+" expression.'],
       ],
     ])
 

@@ -2,5 +2,5 @@
 'use strict'
 
 module.exports = {
-  rules: require('./lib/_')
+  rules: require('./lib/_'),
 }

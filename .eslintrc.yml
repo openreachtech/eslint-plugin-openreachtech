@@ -3,7 +3,6 @@ extends:
 ignorePatterns:
   - trials
 rules:
-  comma-dangle: off
   key-spacing: off
   jsdoc/tag-lines: off
   openreachtech/indent-in-infix-expression: off

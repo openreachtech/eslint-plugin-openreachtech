@@ -2,7 +2,7 @@
 'use strict'
 
 const {
-  RuleTester
+  RuleTester,
 } = require('eslint')
 
 class ESLintHelper {
@@ -20,7 +20,7 @@ class ESLintHelper {
     },
     parserOptions: {
       ecmaVersion: 'latest',
-    }
+    },
   }) {
     return new RuleTester(options)
   }

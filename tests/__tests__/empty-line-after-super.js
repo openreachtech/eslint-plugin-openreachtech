@@ -13,7 +13,7 @@ const rule = require('../../lib/empty-line-after-super')
 const errors = [{
   messageId: 'errorMessage',
   data: { kind: 'this' },
-  type: 'ExpressionStatement'
+  type: 'ExpressionStatement',
 }]
 
 const name = 'empty-line-after-super'
@@ -33,7 +33,7 @@ describe('Require empty line between super call and other statements.', () => {
               super(name)
             } 
           }
-        `
+        `,
       },
       {
         description: 'has empty line after super()',
@@ -45,7 +45,7 @@ describe('Require empty line between super call and other statements.', () => {
               this.age = age
             }
           }
-        `
+        `,
       },
       {
         description: 'has empty lines after super()',
@@ -58,7 +58,7 @@ describe('Require empty line between super call and other statements.', () => {
               this.age = age
             }
           }
-        `
+        `,
       },
       {
         description: 'has empty line after super() - single line comments',
@@ -70,7 +70,7 @@ describe('Require empty line between super call and other statements.', () => {
               this.age = age
             }
           }
-        `
+        `,
       },
       {
         description: 'has empty line after super() - single line comments at new line',
@@ -83,7 +83,7 @@ describe('Require empty line between super call and other statements.', () => {
               this.age = age
             }
           }
-        `
+        `,
       },
       {
         description: 'has empty line after super() - multiple lines comments',
@@ -101,7 +101,7 @@ describe('Require empty line between super call and other statements.', () => {
               this.age = age
             }
           }
-        `
+        `,
       },
       {
         description: 'has empty line after super() - super call break to multiple lines',
@@ -115,7 +115,7 @@ describe('Require empty line between super call and other statements.', () => {
               this.age = age
             }
           }
-        `
+        `,
       },
     ]
 
@@ -125,7 +125,7 @@ describe('Require empty line between super call and other statements.', () => {
         rule,
         {
           valid: [{ code }],
-          invalid: []
+          invalid: [],
         }
       )
     })
@@ -150,7 +150,7 @@ describe('Require empty line between super call and other statements.', () => {
               this.age = age
             }
           }
-        `
+        `,
       },
       {
         description: 'has no empty line after super()',
@@ -170,7 +170,7 @@ describe('Require empty line between super call and other statements.', () => {
               this.age = age
             }
           }
-        `
+        `,
       },
       {
         description: 'has no empty line after super() - super call break to multiple lines',
@@ -194,7 +194,7 @@ describe('Require empty line between super call and other statements.', () => {
               this.age = age
             }
           }
-        `
+        `,
       },
       {
         description: 'has no empty line after super() - single line comment',
@@ -214,7 +214,7 @@ describe('Require empty line between super call and other statements.', () => {
               this.age = age
             }
           }
-        `
+        `,
       },
       {
         description: 'has no empty line after super() - single line comment in new line',
@@ -236,7 +236,7 @@ describe('Require empty line between super call and other statements.', () => {
               this.age = age
             }
           }
-        `
+        `,
       },
       {
         description: 'has no empty line after super() - multiple lines comments',
@@ -268,7 +268,7 @@ describe('Require empty line between super call and other statements.', () => {
               this.age = age
             }
           }
-        `
+        `,
       },
       {
         description: 'has no empty line after super() - multiple lines comments start from super line',
@@ -299,7 +299,7 @@ describe('Require empty line between super call and other statements.', () => {
               this.age = age
             }
           }
-        `
+        `,
 
       },
       {
@@ -320,7 +320,7 @@ describe('Require empty line between super call and other statements.', () => {
               this.age = age
             }
           }
-        `
+        `,
 
       },
       {
@@ -345,7 +345,7 @@ describe('Require empty line between super call and other statements.', () => {
               this.age = age
             }
           }
-        `
+        `,
       },
       {
         description: 'has no empty line after super() - all in one line',
@@ -356,7 +356,7 @@ describe('Require empty line between super call and other statements.', () => {
           class A extends B {constructor (name, age) {super(name);
 
           this.age = age;}}
-        `
+        `,
       },
       {
         description: 'has no empty line after super() - all in one line in constructor',
@@ -371,7 +371,7 @@ describe('Require empty line between super call and other statements.', () => {
 
             this.age = age;}
           }
-        `
+        `,
       },
     ]
 
@@ -381,7 +381,7 @@ describe('Require empty line between super call and other statements.', () => {
         rule,
         {
           valid: [],
-          invalid: [{ code, output, errors }]
+          invalid: [{ code, output, errors }],
         }
       )
     })
