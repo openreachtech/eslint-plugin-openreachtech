@@ -27,7 +27,7 @@ describe('Require empty line between super call and other statements.', () => {
     const validCodes = [
       {
         description: 'has no statements after super()',
-        code:`
+        code: `
           class A extends B {
             constructor (name) {
               super(name)
@@ -37,7 +37,7 @@ describe('Require empty line between super call and other statements.', () => {
       },
       {
         description: 'has empty line after super()',
-        code:`
+        code: `
           class A extends B {
             constructor (name, age) {
               super(name)
@@ -49,7 +49,7 @@ describe('Require empty line between super call and other statements.', () => {
       },
       {
         description: 'has empty lines after super()',
-        code:`
+        code: `
           class A extends B {
             constructor (name, age) {
               super(name)
@@ -62,7 +62,7 @@ describe('Require empty line between super call and other statements.', () => {
       },
       {
         description: 'has empty line after super() - single line comments',
-        code:`
+        code: `
           class A extends B {
             constructor (name, age) {
               super(name) // does not require age.
@@ -74,7 +74,7 @@ describe('Require empty line between super call and other statements.', () => {
       },
       {
         description: 'has empty line after super() - single line comments at new line',
-        code:`
+        code: `
           class A extends B {
             constructor (name, age) {
               super(name)
@@ -87,7 +87,7 @@ describe('Require empty line between super call and other statements.', () => {
       },
       {
         description: 'has empty line after super() - multiple lines comments',
-        code:`
+        code: `
           class A extends B {
             constructor (name, age) {
               super(name)
@@ -105,7 +105,7 @@ describe('Require empty line between super call and other statements.', () => {
       },
       {
         description: 'has empty line after super() - super call break to multiple lines',
-        code:`
+        code: `
           class A extends B {
             constructor (name, age) {
               super(
