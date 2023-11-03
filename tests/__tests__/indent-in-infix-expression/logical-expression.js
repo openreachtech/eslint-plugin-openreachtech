@@ -676,6 +676,15 @@ describe('LogicalExpression', () => {
           }
           `,
         ]
+          .concat([ // with parens
+            `
+            const isLeadingNode = node.parent?.type !== node.type
+              && (
+                node.parent?.type === 'Program'
+                || node.parent?.loc.start.line !== node.loc.start.line
+              )
+            `,
+          ])
 
         // tester.run([rule name], [rule definition], [test patterns])
         tester.run(
@@ -835,6 +844,29 @@ describe('LogicalExpression', () => {
               'Must add indent before right operand of "&&".',
             ],
           ],
+          [
+            [
+              {
+                code: `
+                  const isLeadingNode = node.parent?.type !== node.type
+                    && (
+                      node.parent?.type === 'Program'
+                    || node.parent?.loc.start.line !== node.loc.start.line
+                    )
+                `,
+                output: `
+                  const isLeadingNode = node.parent?.type !== node.type
+                    && (
+                      node.parent?.type === 'Program'
+                      || node.parent?.loc.start.line !== node.loc.start.line
+                    )
+                `,
+              },
+            ],
+            [
+              'Must add indent before "||".',
+            ],
+          ],
         ])
 
         tester.run(
@@ -937,6 +969,29 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must remove indent before right operand of "||".',
+            ],
+          ],
+          [
+            [
+              {
+                code: `
+                  const isLeadingNode = node.parent?.type !== node.type
+                    && (
+                      node.parent?.type === 'Program'
+                        || node.parent?.loc.start.line !== node.loc.start.line
+                    )
+                `,
+                output: `
+                  const isLeadingNode = node.parent?.type !== node.type
+                    && (
+                      node.parent?.type === 'Program'
+                      || node.parent?.loc.start.line !== node.loc.start.line
+                    )
+                `,
+              },
+            ],
+            [
+              'Must remove indent before "||".',
             ],
           ],
         ])
