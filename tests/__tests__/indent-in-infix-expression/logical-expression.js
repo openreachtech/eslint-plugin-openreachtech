@@ -8,7 +8,7 @@ const ruleBody = require('../../../lib/indent-in-infix-expression')
 
 // ESLint tester instead of Jest `test()`
 const tester = ESLintHelper.createTester()
-const ruleName = 'indent-in-logical-expression'
+const ruleName = 'indent-in-infix-expression'
 
 describe('LogicalExpression', () => {
   describe('default options as { indent: 2 }', () => {
