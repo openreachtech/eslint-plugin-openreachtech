@@ -3,7 +3,7 @@
 
 const ESLintHelper = require('../../tools/ESLintHelper')
 
-/** @type {Function|Object} */
+/** @type {Function | object} */
 const ruleBody = require('../../../lib/indent-in-infix-expression')
 
 // ESLint tester instead of Jest `test()`
