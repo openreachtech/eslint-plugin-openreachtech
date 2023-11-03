@@ -5,10 +5,15 @@
 // Requirements
 //  ------------------------------------------------------------------------------
 
-// ESLint tester instead of Jest `test()`
-const tester = require('../tools/ESLintHelper').createTester()
+const ESLintHelper = require('../tools/ESLintHelper')
+const ruleBody = require('../../lib/empty-line-after-super')
 
-const rule = require('../../lib/empty-line-after-super')
+//  ------------------------------------------------------------------------------
+// Preparations
+//  ------------------------------------------------------------------------------
+
+// ESLint tester instead of Jest `test()`
+const tester = ESLintHelper.createTester()
 
 const errors = [{
   messageId: 'errorMessage',
@@ -122,7 +127,7 @@ describe('Require empty line between super call and other statements.', () => {
     describe.each(validCodes)('$# - $description', ({ code }) => {
       tester.run(
         name,
-        rule,
+        ruleBody,
         {
           valid: [{ code }],
           invalid: [],
@@ -378,7 +383,7 @@ describe('Require empty line between super call and other statements.', () => {
     describe.each(invalidCodes)('$# - $description', ({ code, output }) => {
       tester.run(
         name,
-        rule,
+        ruleBody,
         {
           valid: [],
           invalid: [{ code, output, errors }],
