@@ -4,5 +4,4 @@ ignorePatterns:
   - trials
 rules:
   openreachtech/indent-in-infix-expression: off
-  prefer-destructuring: off
   consistent-return: off
