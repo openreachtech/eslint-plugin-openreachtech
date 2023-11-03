@@ -8,6 +8,7 @@ const {
 class ESLintHelper {
   /**
    * Create tester instance.
+   *
    * @param {Object.<string, *>} options
    * @returns {RuleTester} - RuleTester instance.
    */
@@ -27,6 +28,7 @@ class ESLintHelper {
 
   /**
    * Expand invalid cases.
+   *
    * @param {Array<Array<Array>>} cases - Invalid cases.
    * @returns {Array<{
    *   code: string,
