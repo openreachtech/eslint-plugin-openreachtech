@@ -5,5 +5,4 @@ ignorePatterns:
 rules:
   openreachtech/indent-in-infix-expression: off
   prefer-destructuring: off
-  jsdoc/check-line-alignment: off
   consistent-return: off
