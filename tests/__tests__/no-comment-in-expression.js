@@ -18,7 +18,7 @@ const groups = [
   updateExpressionCases,
 ]
 
-describe('Prohibiting comments in expression.', () => {
+describe('Prohibiting comments in expression', () => {
   const name = 'no-comment-in-expression'
   const tester = ESLintHelper.createTester()
 
