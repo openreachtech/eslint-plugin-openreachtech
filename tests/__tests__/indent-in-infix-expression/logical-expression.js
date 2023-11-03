@@ -934,10 +934,6 @@ describe('LogicalExpression', () => {
                   }
                 `,
               },
-
-
-
-
             ],
             [
               'Must remove indent before right operand of "||".',

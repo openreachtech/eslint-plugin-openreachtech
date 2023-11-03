@@ -1056,8 +1056,6 @@ describe('BinaryExpression', () => {
                     - fourthOperand
                 `,
               },
-
-
             ],
             [
               'Must remove indent before "-".',
