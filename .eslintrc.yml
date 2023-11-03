@@ -3,7 +3,6 @@ extends:
 ignorePatterns:
   - trials
 rules:
-  jsdoc/tag-lines: off
   openreachtech/indent-in-infix-expression: off
   newline-per-chained-call: off
   jsdoc/sort-tags: off
