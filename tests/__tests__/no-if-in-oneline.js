@@ -4,7 +4,7 @@
 const ESLintHelper = require('../tools/ESLintHelper')
 const ruleBody = require('../../lib/no-if-in-oneline')
 
-describe('Forbid if statements and else to be written on a single line.', () => {
+describe('Forbid if statements and else to be written on a single line', () => {
   const errorMessage = 'Forbid if statements to be written on a single line.'
   const errors = [errorMessage]
   const name = 'no-if-in-oneline'

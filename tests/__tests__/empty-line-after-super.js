@@ -27,7 +27,7 @@ const name = 'empty-line-after-super'
 // Tests
 //  ------------------------------------------------------------------------------
 
-describe('Require empty line between super call and other statements.', () => {
+describe('Require empty line between super call and other statements', () => {
   describe('valid', () => {
     const validCodes = [
       {
