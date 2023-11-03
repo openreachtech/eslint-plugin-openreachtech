@@ -5,10 +5,15 @@
 // Requirements
 //  ------------------------------------------------------------------------------
 
-// ESLint tester instead of Jest `test()`
-const tester = require('../tools/ESLintHelper').createTester()
-
+const ESLintHelper = require('../tools/ESLintHelper')
 const rule = require('../../lib/empty-line-after-super')
+
+//  ------------------------------------------------------------------------------
+// Preparations
+//  ------------------------------------------------------------------------------
+
+// ESLint tester instead of Jest `test()`
+const tester = ESLintHelper.createTester()
 
 const errors = [{
   messageId: 'errorMessage',
