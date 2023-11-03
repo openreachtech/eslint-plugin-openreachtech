@@ -976,7 +976,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first ||
                     second &&
                     third
@@ -992,7 +992,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first &&
                     second ||
                     third
@@ -1008,7 +1008,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first ||
                     second &&
                     third
@@ -1024,7 +1024,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first &&
                     second ||
                     third
@@ -1040,7 +1040,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first &&
                     second ||
                     third
@@ -1057,7 +1057,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first ||
                     second &&
@@ -1075,7 +1075,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first &&
                     second ||
@@ -1093,7 +1093,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first ||
                     second &&
@@ -1111,7 +1111,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first &&
                     second ||
@@ -1129,7 +1129,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first &&
                     second ||
@@ -1198,7 +1198,7 @@ describe('LogicalExpression', () => {
                     console.log(first, second, third, fourth)
                   }
                   `,
-                output :`
+                output: `
                   if (
                     first ||
                     second &&
@@ -2137,7 +2137,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first ||
                       second &&
                       third
@@ -2153,7 +2153,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first &&
                       second ||
                       third
@@ -2169,7 +2169,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first ||
                       second &&
                       third
@@ -2185,7 +2185,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first &&
                       second ||
                       third
@@ -2201,7 +2201,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first &&
                       second ||
                       third
@@ -2218,7 +2218,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first ||
                     second &&
@@ -2236,7 +2236,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first &&
                     second ||
@@ -2254,7 +2254,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first ||
                     second &&
@@ -2272,7 +2272,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first &&
                     second ||
@@ -2290,7 +2290,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first &&
                     second ||
@@ -2350,7 +2350,7 @@ describe('LogicalExpression', () => {
                     console.log(first, second, third, fourth)
                   }
                   `,
-                output :`
+                output: `
                   if (
                     first ||
                     second &&
