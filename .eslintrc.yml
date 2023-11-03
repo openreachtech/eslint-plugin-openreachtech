@@ -4,7 +4,6 @@ ignorePatterns:
   - trials
 rules:
   openreachtech/indent-in-infix-expression: off
-  arrow-parens: off
   object-curly-spacing: off
   no-multi-spaces: off
   jest/valid-title: off
