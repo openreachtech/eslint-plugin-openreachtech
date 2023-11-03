@@ -4,7 +4,6 @@ ignorePatterns:
   - trials
 rules:
   openreachtech/indent-in-infix-expression: off
-  jsdoc/sort-tags: off
   jsdoc/check-indentation: off
   no-multiple-empty-lines: off
   arrow-parens: off
