@@ -8,7 +8,7 @@ const ruleBody = require('../../../lib/indent-in-infix-expression')
 
 // ESLint tester instead of Jest `test()`
 const tester = ESLintHelper.createTester()
-const ruleName = 'indent-in-logical-expression'
+const ruleName = 'indent-in-infix-expression'
 
 describe('LogicalExpression', () => {
   describe('default options as { indent: 2 }', () => {
@@ -676,6 +676,15 @@ describe('LogicalExpression', () => {
           }
           `,
         ]
+          .concat([ // with parens
+            `
+            const isLeadingNode = node.parent?.type !== node.type
+              && (
+                node.parent?.type === 'Program'
+                || node.parent?.loc.start.line !== node.loc.start.line
+              )
+            `,
+          ])
 
         // tester.run([rule name], [rule definition], [test patterns])
         tester.run(
@@ -835,6 +844,29 @@ describe('LogicalExpression', () => {
               'Must add indent before right operand of "&&".',
             ],
           ],
+          [
+            [
+              {
+                code: `
+                  const isLeadingNode = node.parent?.type !== node.type
+                    && (
+                      node.parent?.type === 'Program'
+                    || node.parent?.loc.start.line !== node.loc.start.line
+                    )
+                `,
+                output: `
+                  const isLeadingNode = node.parent?.type !== node.type
+                    && (
+                      node.parent?.type === 'Program'
+                      || node.parent?.loc.start.line !== node.loc.start.line
+                    )
+                `,
+              },
+            ],
+            [
+              'Must add indent before "||".',
+            ],
+          ],
         ])
 
         tester.run(
@@ -937,6 +969,29 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must remove indent before right operand of "||".',
+            ],
+          ],
+          [
+            [
+              {
+                code: `
+                  const isLeadingNode = node.parent?.type !== node.type
+                    && (
+                      node.parent?.type === 'Program'
+                        || node.parent?.loc.start.line !== node.loc.start.line
+                    )
+                `,
+                output: `
+                  const isLeadingNode = node.parent?.type !== node.type
+                    && (
+                      node.parent?.type === 'Program'
+                      || node.parent?.loc.start.line !== node.loc.start.line
+                    )
+                `,
+              },
+            ],
+            [
+              'Must remove indent before "||".',
             ],
           ],
         ])
