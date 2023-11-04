@@ -1,6 +1,9 @@
 'use strict'
 
-const RuleTester = require('eslint').RuleTester
+const {
+  RuleTester,
+} = require('eslint')
+
 const noElseIfRule = require('../../lib/no-else-if')
 
 const errors = ['Never use else-if statement.']
