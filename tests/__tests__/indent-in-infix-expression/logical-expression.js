@@ -683,6 +683,14 @@ describe('LogicalExpression', () => {
                 || node.parent?.loc.start.line !== node.loc.start.line
               )
             `,
+            `
+              const result = value === null
+                || typeof value !== 'object'
+                || (
+                  value.constructor.name !== 'Array'
+                  && value.constructor.name !== 'Object'
+                )
+            `,
           ])
 
         // tester.run([rule name], [rule definition], [test patterns])
@@ -866,6 +874,31 @@ describe('LogicalExpression', () => {
               'Must add indent before "||".',
             ],
           ],
+          [
+            [
+              {
+                code: `
+                  const result = value === null
+                    || typeof value !== 'object'
+                    || (
+                      value.constructor.name !== 'Array'
+                    && value.constructor.name !== 'Object'
+                    )
+                `,
+                output: `
+                  const result = value === null
+                    || typeof value !== 'object'
+                    || (
+                      value.constructor.name !== 'Array'
+                      && value.constructor.name !== 'Object'
+                    )
+                `,
+              },
+            ],
+            [
+              'Must add indent before "&&".',
+            ],
+          ],
         ])
 
         tester.run(
@@ -991,6 +1024,31 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must remove indent before "||".',
+            ],
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = value === null
+                    || typeof value !== 'object'
+                    || (
+                      value.constructor.name !== 'Array'
+                        && value.constructor.name !== 'Object'
+                    )
+                `,
+                output: `
+                  const result = value === null
+                    || typeof value !== 'object'
+                    || (
+                      value.constructor.name !== 'Array'
+                      && value.constructor.name !== 'Object'
+                    )
+                `,
+              },
+            ],
+            [
+              'Must remove indent before "&&".',
             ],
           ],
         ])
