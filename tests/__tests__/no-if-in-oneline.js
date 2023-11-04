@@ -1,10 +1,9 @@
-// @ts-check
 'use strict'
 
 const ESLintHelper = require('../tools/ESLintHelper')
 const ruleBody = require('../../lib/no-if-in-oneline')
 
-describe('Forbid if statements and else to be written on a single line.', () => {
+describe('Forbid if statements and else to be written on a single line', () => {
   const errorMessage = 'Forbid if statements to be written on a single line.'
   const errors = [errorMessage]
   const name = 'no-if-in-oneline'
@@ -19,14 +18,14 @@ describe('Forbid if statements and else to be written on a single line.', () => 
         if (condition) {}
       `,
       `
-        if (condition) 
+        if (condition)
           foo()
       `,
       `
         if (condition
           ||condition2
         )
-          foo() 
+          foo()
       `,
       `
         if (condition) {
@@ -79,7 +78,7 @@ describe('Forbid if statements and else to be written on a single line.', () => 
       `
         if (condition
           ||condition2
-        ) foo() 
+        ) foo()
       `,
       `
         function test() {
@@ -116,7 +115,7 @@ describe('Forbid if statements and else to be written on a single line.', () => 
           if (condition) { m
             .foo()
             .bar
-    
+
             return
           }
         }
@@ -142,7 +141,7 @@ describe('Forbid if statements and else to be written on a single line.', () => 
       ruleBody,
       {
         valid: validCodes.map(code => ({ code })),
-        invalid: invalidCodes.map(code => ({ code, errors }))
+        invalid: invalidCodes.map(code => ({ code, errors })),
       }
     )
   })
@@ -215,8 +214,8 @@ describe('Forbid if statements and else to be written on a single line.', () => 
         function test() {
           if (condition) {
             foo()
-          } else { bar() 
-            return 
+          } else { bar()
+            return
           }
         }
       `,
@@ -227,7 +226,7 @@ describe('Forbid if statements and else to be written on a single line.', () => 
           } else { m.
             bar()
 
-            return 
+            return
           }
         }
       `,
@@ -238,7 +237,7 @@ describe('Forbid if statements and else to be written on a single line.', () => 
       ruleBody,
       {
         valid: validCodes.map(code => ({ code })),
-        invalid: invalidCodes.map(code => ({ code, errors }))
+        invalid: invalidCodes.map(code => ({ code, errors })),
       }
     )
   })
@@ -249,7 +248,7 @@ describe('Forbid if statements and else to be written on a single line.', () => 
       `
         function test2() {
           if (condition) foo()
-          else return 
+          else return
         }
       `,
       `
@@ -275,7 +274,7 @@ describe('Forbid if statements and else to be written on a single line.', () => 
       ruleBody,
       {
         valid: [],
-        invalid: invalidCodes.map(code => ({ code, errors: doubleErrors }))
+        invalid: invalidCodes.map(code => ({ code, errors: doubleErrors })),
       }
     )
   })

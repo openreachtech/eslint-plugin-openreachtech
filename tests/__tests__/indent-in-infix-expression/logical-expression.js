@@ -1,14 +1,13 @@
-// @ts-check
 'use strict'
 
 const ESLintHelper = require('../../tools/ESLintHelper')
 
-/** @type {Function|Object} */
+/** @type {Function | object} */
 const ruleBody = require('../../../lib/indent-in-infix-expression')
 
 // ESLint tester instead of Jest `test()`
 const tester = ESLintHelper.createTester()
-const ruleName = 'indent-in-logical-expression'
+const ruleName = 'indent-in-infix-expression'
 
 describe('LogicalExpression', () => {
   describe('default options as { indent: 2 }', () => {
@@ -195,7 +194,7 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must add indent before "||".',
-            ]
+            ],
           ],
           [
             [
@@ -222,7 +221,7 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must add indent before "&&".',
-            ]
+            ],
           ],
         ])
 
@@ -231,7 +230,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -240,7 +239,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -326,8 +325,8 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must remove indent before "||".',
-            ]
-          ]
+            ],
+          ],
         ])
 
         tester.run(
@@ -335,7 +334,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -344,7 +343,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -527,7 +526,7 @@ describe('LogicalExpression', () => {
             [
               'Must add indent before "||".',
               'Must remove indent before "&&".',
-            ]
+            ],
           ],
         ])
 
@@ -536,7 +535,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -545,7 +544,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -601,8 +600,8 @@ describe('LogicalExpression', () => {
               'Must add indent before "||".',
               'Must remove indent before "||".',
               'Must add indent before "&&".',
-            ]
-          ]
+            ],
+          ],
         ])
 
         tester.run(
@@ -610,7 +609,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -619,7 +618,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -676,6 +675,23 @@ describe('LogicalExpression', () => {
           }
           `,
         ]
+          .concat([ // with parens
+            `
+            const isLeadingNode = node.parent?.type !== node.type
+              && (
+                node.parent?.type === 'Program'
+                || node.parent?.loc.start.line !== node.loc.start.line
+              )
+            `,
+            `
+              const result = value === null
+                || typeof value !== 'object'
+                || (
+                  value.constructor.name !== 'Array'
+                  && value.constructor.name !== 'Object'
+                )
+            `,
+          ])
 
         // tester.run([rule name], [rule definition], [test patterns])
         tester.run(
@@ -806,7 +822,7 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must add indent before right operand of "||".',
-            ]
+            ],
           ],
           [
             [
@@ -833,7 +849,55 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must add indent before right operand of "&&".',
-            ]
+            ],
+          ],
+          [
+            [
+              {
+                code: `
+                  const isLeadingNode = node.parent?.type !== node.type
+                    && (
+                      node.parent?.type === 'Program'
+                    || node.parent?.loc.start.line !== node.loc.start.line
+                    )
+                `,
+                output: `
+                  const isLeadingNode = node.parent?.type !== node.type
+                    && (
+                      node.parent?.type === 'Program'
+                      || node.parent?.loc.start.line !== node.loc.start.line
+                    )
+                `,
+              },
+            ],
+            [
+              'Must add indent before "||".',
+            ],
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = value === null
+                    || typeof value !== 'object'
+                    || (
+                      value.constructor.name !== 'Array'
+                    && value.constructor.name !== 'Object'
+                    )
+                `,
+                output: `
+                  const result = value === null
+                    || typeof value !== 'object'
+                    || (
+                      value.constructor.name !== 'Array'
+                      && value.constructor.name !== 'Object'
+                    )
+                `,
+              },
+            ],
+            [
+              'Must add indent before "&&".',
+            ],
           ],
         ])
 
@@ -842,7 +906,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -851,7 +915,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -934,15 +998,59 @@ describe('LogicalExpression', () => {
                   }
                 `,
               },
-
-
-
-
             ],
             [
               'Must remove indent before right operand of "||".',
-            ]
-          ]
+            ],
+          ],
+          [
+            [
+              {
+                code: `
+                  const isLeadingNode = node.parent?.type !== node.type
+                    && (
+                      node.parent?.type === 'Program'
+                        || node.parent?.loc.start.line !== node.loc.start.line
+                    )
+                `,
+                output: `
+                  const isLeadingNode = node.parent?.type !== node.type
+                    && (
+                      node.parent?.type === 'Program'
+                      || node.parent?.loc.start.line !== node.loc.start.line
+                    )
+                `,
+              },
+            ],
+            [
+              'Must remove indent before "||".',
+            ],
+          ],
+          [
+            [
+              {
+                code: `
+                  const result = value === null
+                    || typeof value !== 'object'
+                    || (
+                      value.constructor.name !== 'Array'
+                        && value.constructor.name !== 'Object'
+                    )
+                `,
+                output: `
+                  const result = value === null
+                    || typeof value !== 'object'
+                    || (
+                      value.constructor.name !== 'Array'
+                      && value.constructor.name !== 'Object'
+                    )
+                `,
+              },
+            ],
+            [
+              'Must remove indent before "&&".',
+            ],
+          ],
         ])
 
         tester.run(
@@ -950,7 +1058,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -959,7 +1067,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -976,7 +1084,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first ||
                     second &&
                     third
@@ -992,7 +1100,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first &&
                     second ||
                     third
@@ -1008,7 +1116,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first ||
                     second &&
                     third
@@ -1024,7 +1132,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first &&
                     second ||
                     third
@@ -1040,7 +1148,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first &&
                     second ||
                     third
@@ -1057,7 +1165,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first ||
                     second &&
@@ -1075,7 +1183,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first &&
                     second ||
@@ -1093,7 +1201,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first ||
                     second &&
@@ -1111,7 +1219,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first &&
                     second ||
@@ -1129,7 +1237,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first &&
                     second ||
@@ -1142,7 +1250,7 @@ describe('LogicalExpression', () => {
             [
               'Must add indent before right operand of "||".',
               'Must remove indent before right operand of "&&".',
-            ]
+            ],
           ],
         ])
 
@@ -1151,7 +1259,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -1160,7 +1268,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -1198,7 +1306,7 @@ describe('LogicalExpression', () => {
                     console.log(first, second, third, fourth)
                   }
                   `,
-                output :`
+                output: `
                   if (
                     first ||
                     second &&
@@ -1215,8 +1323,8 @@ describe('LogicalExpression', () => {
               'Must add indent before right operand of "||".',
               'Must remove indent before right operand of "||".',
               'Must add indent before right operand of "&&".',
-            ]
-          ]
+            ],
+          ],
         ])
 
         tester.run(
@@ -1224,7 +1332,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -1233,7 +1341,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -1419,7 +1527,7 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must add indent before "||".',
-            ]
+            ],
           ],
           [
             [
@@ -1446,7 +1554,7 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must add indent before "&&".',
-            ]
+            ],
           ],
         ])
 
@@ -1455,7 +1563,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -1541,8 +1649,8 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must remove indent before "||".',
-            ]
-          ]
+            ],
+          ],
         ])
 
         tester.run(
@@ -1550,7 +1658,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -1733,7 +1841,7 @@ describe('LogicalExpression', () => {
             [
               'Must add indent before "||".',
               'Must remove indent before "&&".',
-            ]
+            ],
           ],
         ])
 
@@ -1742,7 +1850,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -1798,8 +1906,8 @@ describe('LogicalExpression', () => {
               'Must add indent before "||".',
               'Must remove indent before "||".',
               'Must add indent before "&&".',
-            ]
-          ]
+            ],
+          ],
         ])
 
         tester.run(
@@ -1807,7 +1915,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -1989,7 +2097,7 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must add indent before right operand of "||".',
-            ]
+            ],
           ],
           [
             [
@@ -2016,7 +2124,7 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must add indent before right operand of "&&".',
-            ]
+            ],
           ],
         ])
 
@@ -2025,7 +2133,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -2111,8 +2219,8 @@ describe('LogicalExpression', () => {
             ],
             [
               'Must remove indent before right operand of "||".',
-            ]
-          ]
+            ],
+          ],
         ])
 
         tester.run(
@@ -2120,7 +2228,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -2137,7 +2245,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first ||
                       second &&
                       third
@@ -2153,7 +2261,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first &&
                       second ||
                       third
@@ -2169,7 +2277,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first ||
                       second &&
                       third
@@ -2185,7 +2293,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first &&
                       second ||
                       third
@@ -2201,7 +2309,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (first &&
                       second ||
                       third
@@ -2218,7 +2326,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first ||
                     second &&
@@ -2236,7 +2344,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first &&
                     second ||
@@ -2254,7 +2362,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first ||
                     second &&
@@ -2272,7 +2380,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first &&
                     second ||
@@ -2290,7 +2398,7 @@ describe('LogicalExpression', () => {
                   ) {
                     console.log(first, second, third)
                   }`,
-                output :`
+                output: `
                   if (
                     first &&
                     second ||
@@ -2303,7 +2411,7 @@ describe('LogicalExpression', () => {
             [
               'Must add indent before right operand of "||".',
               'Must remove indent before right operand of "&&".',
-            ]
+            ],
           ],
         ])
 
@@ -2312,7 +2420,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -2350,7 +2458,7 @@ describe('LogicalExpression', () => {
                     console.log(first, second, third, fourth)
                   }
                   `,
-                output :`
+                output: `
                   if (
                     first ||
                     second &&
@@ -2367,8 +2475,8 @@ describe('LogicalExpression', () => {
               'Must add indent before right operand of "||".',
               'Must remove indent before right operand of "||".',
               'Must add indent before right operand of "&&".',
-            ]
-          ]
+            ],
+          ],
         ])
 
         tester.run(
@@ -2376,7 +2484,7 @@ describe('LogicalExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -2415,7 +2523,7 @@ describe('LogicalExpression', () => {
         ].map(code => ({ code })),
         [
           'Must remove indent before "||".',
-        ]
+        ],
       ],
       [
         [
@@ -2447,7 +2555,7 @@ describe('LogicalExpression', () => {
         ].map(code => ({ code })),
         [
           'Must remove indent before right operand of "||".',
-        ]
+        ],
       ],
     ])
 
@@ -2456,7 +2564,7 @@ describe('LogicalExpression', () => {
       ruleBody,
       {
         valid: [],
-        invalid: invalidCases
+        invalid: invalidCases,
       }
     )
   })

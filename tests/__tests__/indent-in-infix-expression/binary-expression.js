@@ -1,9 +1,8 @@
-// @ts-check
 'use strict'
 
 const ESLintHelper = require('../../tools/ESLintHelper')
 
-/** @type {Function|Object} */
+/** @type {Function | object} */
 const ruleBody = require('../../../lib/indent-in-infix-expression')
 
 // ESLint tester instead of Jest `test()`
@@ -239,7 +238,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before "-".',
-            ]
+            ],
           ],
           [
             [
@@ -264,7 +263,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "+".']
+            ['Must add indent before "+".'],
           ],
           [
             [
@@ -289,7 +288,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "*".']
+            ['Must add indent before "*".'],
           ],
           [
             [
@@ -314,7 +313,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "/".']
+            ['Must add indent before "/".'],
           ],
           [
             [
@@ -339,7 +338,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "%".']
+            ['Must add indent before "%".'],
           ],
           [
             [
@@ -364,7 +363,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "**".']
+            ['Must add indent before "**".'],
           ],
           [
             [
@@ -389,7 +388,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "|".']
+            ['Must add indent before "|".'],
           ],
           [
             [
@@ -414,7 +413,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "&".']
+            ['Must add indent before "&".'],
           ],
           [
             [
@@ -439,7 +438,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "^".']
+            ['Must add indent before "^".'],
           ],
           [
             [
@@ -464,7 +463,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "<<".']
+            ['Must add indent before "<<".'],
           ],
           [
             [
@@ -489,7 +488,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before ">>".']
+            ['Must add indent before ">>".'],
           ],
           [
             [
@@ -514,7 +513,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before ">>>".']
+            ['Must add indent before ">>>".'],
           ],
           [
             [
@@ -539,7 +538,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "in".']
+            ['Must add indent before "in".'],
           ],
           [
             [
@@ -564,7 +563,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "instanceof".']
+            ['Must add indent before "instanceof".'],
           ],
         ])
 
@@ -573,7 +572,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -582,7 +581,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -620,7 +619,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must remove indent before "-".',
-            ]
+            ],
           ],
         ])
 
@@ -629,7 +628,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -638,7 +637,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -755,7 +754,7 @@ describe('BinaryExpression', () => {
             [
               'Must remove indent before "-".',
               'Must add indent before "+".',
-            ]
+            ],
           ],
           [
             [
@@ -881,7 +880,7 @@ describe('BinaryExpression', () => {
             [
               'Must add indent before "+".',
               'Must remove indent before "*".',
-            ]
+            ],
           ],
         ])
 
@@ -890,7 +889,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -899,7 +898,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -944,7 +943,7 @@ describe('BinaryExpression', () => {
               'Must add indent before "-".',
               'Must add indent before "+".',
               'Must add indent before "*".',
-            ]
+            ],
           ],
           [
             [
@@ -983,7 +982,7 @@ describe('BinaryExpression', () => {
               'Must add indent before "-".',
               'Must remove indent before "+".',
               'Must add indent before "*".',
-            ]
+            ],
           ],
           [
             [
@@ -1022,7 +1021,7 @@ describe('BinaryExpression', () => {
               'Must add indent before "-".',
               'Must add indent before "+".',
               'Must remove indent before "*".',
-            ]
+            ],
           ],
           [
             [
@@ -1056,14 +1055,12 @@ describe('BinaryExpression', () => {
                     - fourthOperand
                 `,
               },
-
-
             ],
             [
               'Must remove indent before "-".',
               'Must add indent before "+".',
               'Must add indent before "*".',
-            ]
+            ],
           ],
         ])
 
@@ -1072,7 +1069,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -1081,7 +1078,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -1282,7 +1279,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "-".',
-            ]
+            ],
           ],
           [
             [
@@ -1323,7 +1320,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "+".',
-            ]
+            ],
           ],
           [
             [
@@ -1350,7 +1347,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "*".',
-            ]
+            ],
           ],
           [
             [
@@ -1377,7 +1374,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "/".',
-            ]
+            ],
           ],
           [
             [
@@ -1404,7 +1401,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "%".',
-            ]
+            ],
           ],
           [
             [
@@ -1431,7 +1428,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "**".',
-            ]
+            ],
           ],
           [
             [
@@ -1458,7 +1455,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "|".',
-            ]
+            ],
           ],
           [
             [
@@ -1485,7 +1482,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "&".',
-            ]
+            ],
           ],
           [
             [
@@ -1512,7 +1509,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "^".',
-            ]
+            ],
           ],
           [
             [
@@ -1539,7 +1536,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "<<".',
-            ]
+            ],
           ],
           [
             [
@@ -1566,7 +1563,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of ">>".',
-            ]
+            ],
           ],
           [
             [
@@ -1593,7 +1590,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of ">>>".',
-            ]
+            ],
           ],
           [
             [
@@ -1620,7 +1617,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "in".',
-            ]
+            ],
           ],
           [
             [
@@ -1647,7 +1644,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "instanceof".',
-            ]
+            ],
           ],
         ])
 
@@ -1656,7 +1653,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -1665,7 +1662,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -1703,7 +1700,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must remove indent before right operand of "-".',
-            ]
+            ],
           ],
         ])
 
@@ -1712,7 +1709,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -1721,7 +1718,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -1838,7 +1835,7 @@ describe('BinaryExpression', () => {
             [
               'Must remove indent before right operand of "-".',
               'Must add indent before right operand of "+".',
-            ]
+            ],
           ],
           [
             [
@@ -1950,7 +1947,7 @@ describe('BinaryExpression', () => {
             [
               'Must add indent before right operand of "+".',
               'Must remove indent before right operand of "*".',
-            ]
+            ],
           ],
         ])
 
@@ -1959,7 +1956,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -1968,7 +1965,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -2013,7 +2010,7 @@ describe('BinaryExpression', () => {
               'Must add indent before right operand of "-".',
               'Must add indent before right operand of "+".',
               'Must add indent before right operand of "*".',
-            ]
+            ],
           ],
           [
             [
@@ -2052,7 +2049,7 @@ describe('BinaryExpression', () => {
               'Must add indent before right operand of "-".',
               'Must remove indent before right operand of "+".',
               'Must add indent before right operand of "*".',
-            ]
+            ],
           ],
           [
             [
@@ -2091,7 +2088,7 @@ describe('BinaryExpression', () => {
               'Must add indent before right operand of "-".',
               'Must add indent before right operand of "+".',
               'Must remove indent before right operand of "*".',
-            ]
+            ],
           ],
           [
             [
@@ -2130,7 +2127,7 @@ describe('BinaryExpression', () => {
               'Must remove indent before right operand of "-".',
               'Must add indent before right operand of "+".',
               'Must add indent before right operand of "*".',
-            ]
+            ],
           ],
         ])
 
@@ -2139,7 +2136,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases
+            invalid: invalidCases,
           }
         )
 
@@ -2148,7 +2145,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -2363,7 +2360,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before "-".',
-            ]
+            ],
           ],
           [
             [
@@ -2388,7 +2385,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "+".']
+            ['Must add indent before "+".'],
           ],
           [
             [
@@ -2413,7 +2410,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "*".']
+            ['Must add indent before "*".'],
           ],
           [
             [
@@ -2438,7 +2435,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "/".']
+            ['Must add indent before "/".'],
           ],
           [
             [
@@ -2463,7 +2460,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "%".']
+            ['Must add indent before "%".'],
           ],
           [
             [
@@ -2488,7 +2485,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "**".']
+            ['Must add indent before "**".'],
           ],
           [
             [
@@ -2513,7 +2510,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "|".']
+            ['Must add indent before "|".'],
           ],
           [
             [
@@ -2538,7 +2535,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "&".']
+            ['Must add indent before "&".'],
           ],
           [
             [
@@ -2563,7 +2560,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "^".']
+            ['Must add indent before "^".'],
           ],
           [
             [
@@ -2588,7 +2585,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "<<".']
+            ['Must add indent before "<<".'],
           ],
           [
             [
@@ -2613,7 +2610,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before ">>".']
+            ['Must add indent before ">>".'],
           ],
           [
             [
@@ -2638,7 +2635,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before ">>>".']
+            ['Must add indent before ">>>".'],
           ],
           [
             [
@@ -2663,7 +2660,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "in".']
+            ['Must add indent before "in".'],
           ],
           [
             [
@@ -2688,7 +2685,7 @@ describe('BinaryExpression', () => {
               `,
               },
             ],
-            ['Must add indent before "instanceof".']
+            ['Must add indent before "instanceof".'],
           ],
         ])
 
@@ -2697,7 +2694,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -2735,7 +2732,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must remove indent before "-".',
-            ]
+            ],
           ],
         ])
 
@@ -2744,7 +2741,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -2861,7 +2858,7 @@ describe('BinaryExpression', () => {
             [
               'Must remove indent before "-".',
               'Must add indent before "+".',
-            ]
+            ],
           ],
           [
             [
@@ -2987,7 +2984,7 @@ describe('BinaryExpression', () => {
             [
               'Must add indent before "+".',
               'Must remove indent before "*".',
-            ]
+            ],
           ],
         ])
 
@@ -2996,7 +2993,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -3041,7 +3038,7 @@ describe('BinaryExpression', () => {
               'Must add indent before "-".',
               'Must add indent before "+".',
               'Must add indent before "*".',
-            ]
+            ],
           ],
           [
             [
@@ -3080,7 +3077,7 @@ describe('BinaryExpression', () => {
               'Must add indent before "-".',
               'Must remove indent before "+".',
               'Must add indent before "*".',
-            ]
+            ],
           ],
           [
             [
@@ -3119,7 +3116,7 @@ describe('BinaryExpression', () => {
               'Must add indent before "-".',
               'Must add indent before "+".',
               'Must remove indent before "*".',
-            ]
+            ],
           ],
           [
             [
@@ -3158,7 +3155,7 @@ describe('BinaryExpression', () => {
               'Must remove indent before "-".',
               'Must add indent before "+".',
               'Must add indent before "*".',
-            ]
+            ],
           ],
         ])
 
@@ -3167,7 +3164,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -3359,7 +3356,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "-".',
-            ]
+            ],
           ],
           [
             [
@@ -3400,7 +3397,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "+".',
-            ]
+            ],
           ],
           [
             [
@@ -3427,7 +3424,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "*".',
-            ]
+            ],
           ],
           [
             [
@@ -3454,7 +3451,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "/".',
-            ]
+            ],
           ],
           [
             [
@@ -3481,7 +3478,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "%".',
-            ]
+            ],
           ],
           [
             [
@@ -3508,7 +3505,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "**".',
-            ]
+            ],
           ],
           [
             [
@@ -3535,7 +3532,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "|".',
-            ]
+            ],
           ],
           [
             [
@@ -3562,7 +3559,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "&".',
-            ]
+            ],
           ],
           [
             [
@@ -3589,7 +3586,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "^".',
-            ]
+            ],
           ],
           [
             [
@@ -3616,7 +3613,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "<<".',
-            ]
+            ],
           ],
           [
             [
@@ -3643,7 +3640,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of ">>".',
-            ]
+            ],
           ],
           [
             [
@@ -3670,7 +3667,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of ">>>".',
-            ]
+            ],
           ],
           [
             [
@@ -3697,7 +3694,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "in".',
-            ]
+            ],
           ],
           [
             [
@@ -3724,7 +3721,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must add indent before right operand of "instanceof".',
-            ]
+            ],
           ],
         ])
 
@@ -3733,7 +3730,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -3771,7 +3768,7 @@ describe('BinaryExpression', () => {
             ],
             [
               'Must remove indent before right operand of "-".',
-            ]
+            ],
           ],
         ])
 
@@ -3780,7 +3777,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -3897,7 +3894,7 @@ describe('BinaryExpression', () => {
             [
               'Must remove indent before right operand of "-".',
               'Must add indent before right operand of "+".',
-            ]
+            ],
           ],
           [
             [
@@ -4009,7 +4006,7 @@ describe('BinaryExpression', () => {
             [
               'Must add indent before right operand of "+".',
               'Must remove indent before right operand of "*".',
-            ]
+            ],
           ],
         ])
 
@@ -4018,7 +4015,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -4063,7 +4060,7 @@ describe('BinaryExpression', () => {
               'Must add indent before right operand of "-".',
               'Must add indent before right operand of "+".',
               'Must add indent before right operand of "*".',
-            ]
+            ],
           ],
           [
             [
@@ -4102,7 +4099,7 @@ describe('BinaryExpression', () => {
               'Must add indent before right operand of "-".',
               'Must remove indent before right operand of "+".',
               'Must add indent before right operand of "*".',
-            ]
+            ],
           ],
           [
             [
@@ -4141,7 +4138,7 @@ describe('BinaryExpression', () => {
               'Must add indent before right operand of "-".',
               'Must add indent before right operand of "+".',
               'Must remove indent before right operand of "*".',
-            ]
+            ],
           ],
           [
             [
@@ -4180,7 +4177,7 @@ describe('BinaryExpression', () => {
               'Must remove indent before right operand of "-".',
               'Must add indent before right operand of "+".',
               'Must add indent before right operand of "*".',
-            ]
+            ],
           ],
         ])
 
@@ -4189,7 +4186,7 @@ describe('BinaryExpression', () => {
           ruleBody,
           {
             valid: [],
-            invalid: invalidCases.map(it => ({ ...it, options }))
+            invalid: invalidCases.map(it => ({ ...it, options })),
           }
         )
       })
@@ -4208,7 +4205,7 @@ describe('BinaryExpression', () => {
             output: `
                           const result = leftOperand
             /* comment */   - rightOperand
-            `
+            `,
           },
           {
             code: `
@@ -4227,7 +4224,7 @@ describe('BinaryExpression', () => {
         ],
         [
           'Must add indent before "-".',
-        ]
+        ],
       ],
       [
         [
@@ -4239,7 +4236,7 @@ describe('BinaryExpression', () => {
             output: `
                           const result = leftOperand -
             /* comment */   rightOperand
-            `
+            `,
           },
           {
             code: `
@@ -4258,7 +4255,7 @@ describe('BinaryExpression', () => {
         ],
         [
           'Must add indent before right operand of "-".',
-        ]
+        ],
       ],
     ])
 
@@ -4267,7 +4264,7 @@ describe('BinaryExpression', () => {
       ruleBody,
       {
         valid: [],
-        invalid: invalidCases
+        invalid: invalidCases,
       }
     )
   })
@@ -4295,7 +4292,7 @@ describe('BinaryExpression', () => {
         ].map(code => ({ code })),
         [
           'Must remove indent before "-".',
-        ]
+        ],
       ],
       [
         [
@@ -4318,7 +4315,7 @@ describe('BinaryExpression', () => {
         ].map(code => ({ code })),
         [
           'Must remove indent before right operand of "-".',
-        ]
+        ],
       ],
     ])
 
@@ -4327,7 +4324,7 @@ describe('BinaryExpression', () => {
       ruleBody,
       {
         valid: [],
-        invalid: invalidCases
+        invalid: invalidCases,
       }
     )
   })

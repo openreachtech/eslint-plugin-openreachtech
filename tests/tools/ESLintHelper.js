@@ -1,14 +1,16 @@
-// @ts-check
 'use strict'
 
 const {
-  RuleTester
+  RuleTester,
 } = require('eslint')
 
 class ESLintHelper {
   /**
    * Create tester instance.
-   * @param {Object.<string, *>} options
+   *
+   * @param {{
+   *   [key: string]: *,
+   * }} options
    * @returns {RuleTester} - RuleTester instance.
    */
   static createTester (options = {
@@ -20,13 +22,14 @@ class ESLintHelper {
     },
     parserOptions: {
       ecmaVersion: 'latest',
-    }
+    },
   }) {
     return new RuleTester(options)
   }
 
   /**
    * Expand invalid cases.
+   *
    * @param {Array<Array<Array>>} cases - Invalid cases.
    * @returns {Array<{
    *   code: string,

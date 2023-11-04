@@ -1,4 +1,3 @@
-// @ts-check
 'use strict'
 
 module.exports = {
@@ -82,5 +81,5 @@ module.exports = {
             : value4
       }
     `,
-  ]
+  ],
 }

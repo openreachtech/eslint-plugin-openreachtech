@@ -1,4 +1,3 @@
-// @ts-check
 'use strict'
 
 module.exports = {
@@ -133,5 +132,5 @@ module.exports = {
         / // ----------------------------------------
              (2 * a)
     `,
-  ]
+  ],
 }

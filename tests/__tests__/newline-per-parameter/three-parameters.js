@@ -1,4 +1,3 @@
-// @ts-check
 'use strict'
 
 const ESLintHelper = require('../../tools/ESLintHelper')
@@ -1510,8 +1509,8 @@ describe('newline-per-parameter', () => {
                 `,
               },
             ]),
-          errors
-        ]
+          errors,
+        ],
       ])
 
       // tester.run([rule name], [rule definition], [test patterns])
@@ -2530,8 +2529,8 @@ describe('newline-per-parameter', () => {
                 `,
               },
             ]),
-          errors
-        ]
+          errors,
+        ],
       ])
 
       // tester.run([rule name], [rule definition], [test patterns])
@@ -3365,8 +3364,8 @@ describe('newline-per-parameter', () => {
                 `,
               },
             ]),
-          errors
-        ]
+          errors,
+        ],
       ])
 
       // tester.run([rule name], [rule definition], [test patterns])
@@ -3989,8 +3988,8 @@ describe('newline-per-parameter', () => {
                 `,
               },
             ]),
-          errors
-        ]
+          errors,
+        ],
       ])
 
       // tester.run([rule name], [rule definition], [test patterns])

@@ -1,4 +1,3 @@
-// @ts-check
 'use strict'
 
 module.exports = {
@@ -69,5 +68,5 @@ module.exports = {
         foo()
       }
     `,
-  ]
+  ],
 }

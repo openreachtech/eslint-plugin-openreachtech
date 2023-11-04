@@ -1,4 +1,3 @@
-// @ts-check
 'use strict'
 
 module.exports = {
@@ -195,5 +194,5 @@ module.exports = {
       : bar  // line comment
       )
     `,
-  ]
+  ],
 }

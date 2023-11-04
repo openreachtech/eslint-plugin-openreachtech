@@ -1,4 +1,3 @@
-// @ts-check
 'use strict'
 
 const ESLintHelper = require('../tools/ESLintHelper')
@@ -15,10 +14,10 @@ const groups = [
   conditionalExpressionCases,
   logicalExpressionCases,
   unaryExpressionCases,
-  updateExpressionCases
+  updateExpressionCases,
 ]
 
-describe('Prohibiting comments in expression.', () => {
+describe('Prohibiting comments in expression', () => {
   const name = 'no-comment-in-expression'
   const tester = ESLintHelper.createTester()
 
@@ -28,7 +27,7 @@ describe('Prohibiting comments in expression.', () => {
       ruleBody,
       {
         valid: validCodes.map(code => ({ code })),
-        invalid: invalidCodes.map(code => ({ code, errors: [{ messageId: 'errorMessage' }]}))
+        invalid: invalidCodes.map(code => ({ code, errors: [{ messageId: 'errorMessage' }] })),
       }
     )
   })
