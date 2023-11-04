@@ -35,7 +35,7 @@ describe('Require empty line between super call and other statements', () => {
           class A extends B {
             constructor (name) {
               super(name)
-            } 
+            }
           }
         `,
       },
@@ -45,7 +45,7 @@ describe('Require empty line between super call and other statements', () => {
           class A extends B {
             constructor (name, age) {
               super(name)
-     
+
               this.age = age
             }
           }
@@ -57,8 +57,8 @@ describe('Require empty line between super call and other statements', () => {
           class A extends B {
             constructor (name, age) {
               super(name)
-            
-     
+
+
               this.age = age
             }
           }
@@ -70,7 +70,7 @@ describe('Require empty line between super call and other statements', () => {
           class A extends B {
             constructor (name, age) {
               super(name) // does not require age.
- 
+
               this.age = age
             }
           }
@@ -82,7 +82,7 @@ describe('Require empty line between super call and other statements', () => {
           class A extends B {
             constructor (name, age) {
               super(name)
-     
+
               // NOTE: Max number of age is 99.
               this.age = age
             }
@@ -95,7 +95,7 @@ describe('Require empty line between super call and other statements', () => {
           class A extends B {
             constructor (name, age) {
               super(name)
-             
+
               /**
                * @type {{
                *   age: number,
@@ -115,7 +115,7 @@ describe('Require empty line between super call and other statements', () => {
               super(
                 name
               )
-      
+
               this.age = age
             }
           }
