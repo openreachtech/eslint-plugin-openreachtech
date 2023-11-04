@@ -18,14 +18,14 @@ describe('Forbid if statements and else to be written on a single line', () => {
         if (condition) {}
       `,
       `
-        if (condition) 
+        if (condition)
           foo()
       `,
       `
         if (condition
           ||condition2
         )
-          foo() 
+          foo()
       `,
       `
         if (condition) {
@@ -78,7 +78,7 @@ describe('Forbid if statements and else to be written on a single line', () => {
       `
         if (condition
           ||condition2
-        ) foo() 
+        ) foo()
       `,
       `
         function test() {
@@ -115,7 +115,7 @@ describe('Forbid if statements and else to be written on a single line', () => {
           if (condition) { m
             .foo()
             .bar
-    
+
             return
           }
         }
@@ -214,8 +214,8 @@ describe('Forbid if statements and else to be written on a single line', () => {
         function test() {
           if (condition) {
             foo()
-          } else { bar() 
-            return 
+          } else { bar()
+            return
           }
         }
       `,
@@ -226,7 +226,7 @@ describe('Forbid if statements and else to be written on a single line', () => {
           } else { m.
             bar()
 
-            return 
+            return
           }
         }
       `,
@@ -248,7 +248,7 @@ describe('Forbid if statements and else to be written on a single line', () => {
       `
         function test2() {
           if (condition) foo()
-          else return 
+          else return
         }
       `,
       `
