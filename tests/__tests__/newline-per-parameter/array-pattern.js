@@ -347,7 +347,7 @@ describe('newline-per-parameter', () => {
               `,
             },
           ]),
-        errors
+        errors,
       ],
     ])
 
@@ -701,7 +701,7 @@ describe('newline-per-parameter', () => {
               `,
             },
           ]),
-        errors
+        errors,
       ],
     ])
 

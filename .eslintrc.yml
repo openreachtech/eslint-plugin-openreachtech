@@ -3,20 +3,4 @@ extends:
 ignorePatterns:
   - trials
 rules:
-  comma-dangle: off
-  key-spacing: off
-  jsdoc/tag-lines: off
   openreachtech/indent-in-infix-expression: off
-  newline-per-chained-call: off
-  jsdoc/sort-tags: off
-  jsdoc/check-indentation: off
-  no-multiple-empty-lines: off
-  arrow-parens: off
-  object-curly-spacing: off
-  no-multi-spaces: off
-  jest/valid-title: off
-  jsdoc/check-types: off
-  jsdoc/check-tag-names: off
-  prefer-destructuring: off
-  jsdoc/check-line-alignment: off
-  consistent-return: off
