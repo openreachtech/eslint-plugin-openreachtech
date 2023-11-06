@@ -2,5 +2,3 @@ extends:
   - '@openreachtech'
 ignorePatterns:
   - trials
-rules:
-  openreachtech/indent-in-infix-expression: off
