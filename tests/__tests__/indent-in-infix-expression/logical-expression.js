@@ -691,6 +691,14 @@ describe('LogicalExpression', () => {
                   && value.constructor.name !== 'Object'
                 )
             `,
+            `
+              function returnsAsIs (value) {
+                return value === null || typeof value !== 'object' || (
+                  value.constructor.name !== 'Array'
+                  && value.constructor.name !== 'Object'
+                )
+              }
+            `,
           ])
 
         // tester.run([rule name], [rule definition], [test patterns])
@@ -894,6 +902,24 @@ describe('LogicalExpression', () => {
                     )
                 `,
               },
+              {
+                code: `
+                  function returnsAsIs (value) {
+                    return value === null || typeof value !== 'object' || (
+                      value.constructor.name !== 'Array'
+                    && value.constructor.name !== 'Object'
+                    )
+                  }
+                `,
+                output: `
+                  function returnsAsIs (value) {
+                    return value === null || typeof value !== 'object' || (
+                      value.constructor.name !== 'Array'
+                      && value.constructor.name !== 'Object'
+                    )
+                  }
+                `,
+              },
             ],
             [
               'Must add indent before "&&".',
@@ -1044,6 +1070,24 @@ describe('LogicalExpression', () => {
                       value.constructor.name !== 'Array'
                       && value.constructor.name !== 'Object'
                     )
+                `,
+              },
+              {
+                code: `
+                  function returnsAsIs (value) {
+                    return value === null || typeof value !== 'object' || (
+                      value.constructor.name !== 'Array'
+                        && value.constructor.name !== 'Object'
+                    )
+                  }
+                `,
+                output: `
+                  function returnsAsIs (value) {
+                    return value === null || typeof value !== 'object' || (
+                      value.constructor.name !== 'Array'
+                      && value.constructor.name !== 'Object'
+                    )
+                  }
                 `,
               },
             ],
