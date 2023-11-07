@@ -20,27 +20,27 @@ const validCodes = [
   }`,
   `/* if (condition) {
     // noop 01-05
-  } else if (subconditions) {
+  } else if (secondCondition) {
     // noop 01-06
   } */`,
 ]
 const invalidCodes = [
   `if (condition) {
     // noop 02-01
-  } else if (subconditions) {
+  } else if (secondCondition) {
     // noop 02-01
   }`,
   `if (condition) {
     // noop 02-03
   } else
-  if (subconditions) {
+  if (secondCondition) {
     // noop 02-04
   }`,
   `if (condition) {
     // noop 02-05
   }
   else
-  if (subconditions) {
+  if (secondCondition) {
     // noop 02-06
   }`,
 ]
