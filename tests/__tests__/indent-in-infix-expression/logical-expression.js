@@ -677,11 +677,11 @@ describe('LogicalExpression', () => {
         ]
           .concat([ // with parens
             `
-            const isLeadingNode = node.parent?.type !== node.type
-              && (
-                node.parent?.type === 'Program'
-                || node.parent?.loc.start.line !== node.loc.start.line
-              )
+              const isLeadingNode = node.parent?.type !== node.type
+                && (
+                  node.parent?.type === 'Program'
+                  || node.parent?.loc.start.line !== node.loc.start.line
+                )
             `,
             `
               const result = value === null
@@ -690,6 +690,14 @@ describe('LogicalExpression', () => {
                   value.constructor.name !== 'Array'
                   && value.constructor.name !== 'Object'
                 )
+            `,
+            `
+              function returnsAsIs (value) {
+                return value === null || typeof value !== 'object' || (
+                  value.constructor.name !== 'Array'
+                  && value.constructor.name !== 'Object'
+                )
+              }
             `,
           ])
 
@@ -894,6 +902,24 @@ describe('LogicalExpression', () => {
                     )
                 `,
               },
+              {
+                code: `
+                  function returnsAsIs (value) {
+                    return value === null || typeof value !== 'object' || (
+                      value.constructor.name !== 'Array'
+                    && value.constructor.name !== 'Object'
+                    )
+                  }
+                `,
+                output: `
+                  function returnsAsIs (value) {
+                    return value === null || typeof value !== 'object' || (
+                      value.constructor.name !== 'Array'
+                      && value.constructor.name !== 'Object'
+                    )
+                  }
+                `,
+              },
             ],
             [
               'Must add indent before "&&".',
@@ -1044,6 +1070,24 @@ describe('LogicalExpression', () => {
                       value.constructor.name !== 'Array'
                       && value.constructor.name !== 'Object'
                     )
+                `,
+              },
+              {
+                code: `
+                  function returnsAsIs (value) {
+                    return value === null || typeof value !== 'object' || (
+                      value.constructor.name !== 'Array'
+                        && value.constructor.name !== 'Object'
+                    )
+                  }
+                `,
+                output: `
+                  function returnsAsIs (value) {
+                    return value === null || typeof value !== 'object' || (
+                      value.constructor.name !== 'Array'
+                      && value.constructor.name !== 'Object'
+                    )
+                  }
                 `,
               },
             ],
