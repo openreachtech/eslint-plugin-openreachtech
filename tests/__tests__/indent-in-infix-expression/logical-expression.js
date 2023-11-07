@@ -677,11 +677,11 @@ describe('LogicalExpression', () => {
         ]
           .concat([ // with parens
             `
-            const isLeadingNode = node.parent?.type !== node.type
-              && (
-                node.parent?.type === 'Program'
-                || node.parent?.loc.start.line !== node.loc.start.line
-              )
+              const isLeadingNode = node.parent?.type !== node.type
+                && (
+                  node.parent?.type === 'Program'
+                  || node.parent?.loc.start.line !== node.loc.start.line
+                )
             `,
             `
               const result = value === null
