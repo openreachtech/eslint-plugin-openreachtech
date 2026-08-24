@@ -1,4 +1,4 @@
-# ESLint plugin Open Reach Tech inc.
+# ESLint plugin Open Reach Tech Inc.
 
 ## Overview
 
