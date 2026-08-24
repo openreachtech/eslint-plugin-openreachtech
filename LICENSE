@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2022 Open Reach Tech inc.
+Copyright (c) 2022 Open Reach Tech Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
